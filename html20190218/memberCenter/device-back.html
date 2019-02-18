@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	   	<!-- <meta name="viewport" content="width=device-width, initial-scale=1">-->
+	    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+	    <title>采购订单售后服务</title>
+		<meta name="applicable-device" content="pc">
+	    <!-- Bootstrap -->
+	   	<link href="../css/bootstrap.min.css" rel="stylesheet">
+	    <link rel="stylesheet" type="text/css" href="../css/comm.css"/>
+	   	<link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
+	    <link rel="stylesheet" type="text/css" href="../css/person_style.css"/>
+	    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+	    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+	    <!--[if lt IE 9]>
+	      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+	      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+	</head>
+	<body>
+		<div class="perPart">
+			<div class="site-nav clear">
+				<div class="site-nav-bd">
+				  	<ul class="site-nav-bd-l">
+				  		<li class="site-nav-menu">
+				  			<div class="site-nav-menu-hd">
+				  				<span>您好！欢迎来到器械商城!</span>
+				  			</div>
+				  			<!--登录之后显示begin-->
+				  			<div class="sign_index" style="display: none;">
+				  				<a href="../index.html">
+				  					<i class="glyphicon glyphicon-home"></i>
+				  					首页
+				  				</a>
+				  			</div>
+						<!--登录之后显示end-->
+				  		</li>
+				  		<li class="site-nav-menu">
+				  			<div class="site-nav-menu-hd">
+				  				<div class="site-nav-sign">
+				  					<a href="../login.html" target="_top">登录</a>
+				  					<a href="../register.html" target="_top">注册</a>
+				  				</div>
+				  				<!--登录之后显示begin-->
+				  				<div class="sign_after" style="display: none;">
+				  					<p>
+				  						<i class="iconfont icon-logout-user"></i>
+				  						<span><a href="member_center.html">151****2316</a></span>
+				  					</p>
+				  				</div>
+				  				<!--登录之后显示end-->
+				  			</div>
+				  		</li>
+				  		<li class="site-nav-menu">
+				  			<div class="site-nav-menu-hd">	
+				  				<div class="site-nav-bom">
+				  					<a href="../copy.html" target="_blank">BOM批量导入型号</a>
+				  				</div>								
+				  			</div>
+				  		</li>
+				  	</ul>
+				  	<ul class="site-nav-bd-r">
+				  		<li class="site-nav-menu">
+				  			<div class="site-nav-menu-hd">
+				  				<div class="site-nav-menu-order">
+				  					<a href="purchase-order.html" target="_top">
+				  						<span class="site-nav-icon site-nav-myorder"></span>
+				  						<span>我的订单</span>
+				  					</a>
+				  				</div>
+				  			</div>					
+				  		</li>
+				  		<li class="site-nav-menu">
+				  			<div class="site-nav-menu-hd">
+				  				<div class="site-nav-member">
+				  					<a href="member_center.html" target="_top">
+				  						<span class="site-nav-icon site-nav-center"></span>
+				  						<span>会员中心</span>
+				  					</a>
+				  				</div>
+				  			</div>			
+				  		</li>
+				  		<li class="site-nav-menu">
+				  			<div class="site-nav-menu-hd">
+				  				<div class="site-nav-phone">
+				  					<a href="tel:0551-8888888">
+				  						<span class="site-nav-icon site-nav-tel"></span>
+				  						<span>: 0551-8888888</span>
+				  					</a>
+				  				</div>
+				  			</div>				
+				  		</li>
+				  	</ul>
+				</div>
+			</div>
+			<!--头部-->
+			<div class="person-head">
+				<div class="wraper">
+					<div class="person-head-list">
+						<a href="../index.html">
+							<div class="person-logo">
+								<img src="../images/logo.png" alt="" />
+							</div>
+						</a>
+						<div class="person-title">
+							<h3>会员中心</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--主要内容-->
+			<div class="person-content">
+				<div class="wraper row totalback">
+					<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+						<div class="person-left-nav">
+							<ul class="person-left-ul">
+								<li>
+									<div class="person-left-nav-list">
+										<h3>订单管理</h3>
+										<ul>
+											<li><a class="per-active" href="purchase-order.html"><i></i>采购订单</a></li>
+											<li><a href="sampling-order.html"><i></i>样品订单</a></li>
+										</ul>
+									</div>
+								</li>
+								<li>
+									<div class="person-left-nav-list">
+										<h3>询价管理</h3>
+										<ul>
+											<li><a href="bominquiry-list.html"><i></i>BOM单询价</a></li>
+											<li><a href="cominquiry-list.html"><i></i>元器件询价</a></li>
+										</ul>
+									</div>
+								</li>
+								<li>
+									<div class="person-left-nav-list">
+										<h3>发票管理</h3>
+										<ul>
+											<li><a href="invoice-process.html"><i></i>开票进程</a></li>
+											<li><a href="invoice-information.html"><i></i>开票资料</a></li>
+										</ul>
+									</div>
+								</li>
+								<li>
+									<div class="person-left-nav-list">
+										<h3>资产管理</h3>
+										<ul>
+											<li><a href="line-credit.html"><i></i>授信额度</a></li>
+											<li><a href="credit-payment.html"><i></i>信用还款</a></li>
+											<li><a href="credit-statement.html"><i></i>对账单</a></li>
+											<li><a href="credit-discount.html"><i></i>优惠券</a></li>
+										</ul>
+									</div>
+								</li>
+								<li>
+									<div class="person-left-nav-list">
+										<h3>会员信息</h3>
+										<ul>
+											<li><a href="basic-information.html"><i></i>基本信息</a></li>
+											<li><a href="receiver-address.html"><i></i>收货地址</a></li>
+											<li><a href="change-password.html"><i></i>修改密码</a></li>
+										</ul>
+									</div>
+								</li>
+								<li>
+									<div class="person-left-nav-list">
+										<h3>礼品中心</h3>
+										<ul>
+											<li><a href="credits-exchange.html"><i></i>积分兑换</a></li>
+											<li><a href="exchange-record.html"><i></i>兑换记录</a></li>
+										</ul>
+									</div>
+								</li>
+								<li>
+									<div class="person-left-nav-list">
+										<h3>售后服务</h3>
+										<ul>
+											<li><a href="device-back-info.html"><i></i>元器件售后</a></li>
+											<li><a href="complaint-advice.html"><i></i>投诉建议</a></li>
+										</ul>
+									</div>
+								</li>
+							</ul>	
+						</div>
+					</div>
+					<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10" style="padding: 0;">
+						<div class="person-right">
+							<div class="person-right-head">
+								<p class="perpadding">
+									<span>订单管理</span>
+									<i class="iconfont icon-jiantoudown"></i>
+									<a href="purchase-order.html">采购订单</a>
+									<i class="iconfont icon-jiantoudown"></i>
+									<a href="device-back.html">申请售后</a>
+								</p>
+							</div>
+							<div class="person-right-content">
+								<div class="back-info">
+									<h3>温馨提示：</h3>
+									<h4>以下情况是不能退（换）货</h4>
+									<p>1、非由本商城出售的任何产品。</p>
+									<p>2、已经上机的产品无法退换货。</p>
+									<p>3、特别订货：应客户的要求，特别购买、定制的产品，如海外代购产品不能退货等。</p>
+									<p>4、因客户的责任，造成产品外观、使用性能破坏的。</p>
+									<p>5、收到货物后超出7天内无异议的，则默认产品质量符合标准。</p>
+								</div>
+								<div class="person-order-detail">
+									<form action="" method="post">
+										<div class="back-order">
+											<div class="back-order-title">
+												<table class="table backTable">
+													<tbody>
+														<tr>
+															<th width="10%">订单号</th>
+															<th width="16%">型号</th>
+															<th width="12%">品牌</th>
+															<th width="12%">单价</th>
+															<th width="12%">数量</th>
+															<th width="16%">提交数量</th>
+															<th width="22%">处理方式</th>
+														</tr>
+														<tr>
+															<td>
+																<div class="backtd">
+																	<p>123</p>
+																</div>
+															</td>
+															<td>
+																<div class="backtd">
+																	<p>DMPH6050SPD-13</p>
+																</div>
+															</td>
+															<td>
+																<div class="backtd">
+																	<p> Diodes </p>
+																</div>
+															</td>
+															<td>
+																<div class="backtd">
+																	<p>￥5.1200</p>
+																</div>
+															</td>
+															<td>
+																<div class="backtd">
+																	<p>100</p>
+																</div>
+															</td>
+															<td>
+																<div class="backtd-num clear">
+																	<p class="btn-add omin" onclick="minus(this,'9.9','100');">
+																		<span class="glyphicon glyphicon-minus"></span>
+																	</p>
+																	<input type="text" class="btn-num onum" value="56" name="count" />
+																	<p class="btn-add oplus" onclick="plus(this,'9.9}','100}');">
+																		<span class="glyphicon glyphicon-plus"></span>
+																	</p>
+																</div>
+															</td>
+															<td>
+																<div class="backtd-select">
+																	<div class="back-cell return-goods choice-select">
+																		退货
+																	</div>
+																	<div class="back-cell change-goods">
+																		换货
+																	</div>
+																	<div class="back-cell replen-goods">
+																		补货
+																	</div>
+																</div>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+											<div class="back-form-detail">
+												<p>服务单明细</p>
+												<div class="back-box clear">
+													<p><span>*</span>退换货原因</p>
+													<div>
+														<select name="backSer">
+															<option value="0">型号错误</option>
+														</select>
+													</div>
+												</div>
+												<div class="back-box clear">
+													<p><span>*</span>问题描述</p>
+													<div>
+														<textarea name="dsc" maxlength="500"></textarea>
+														<p>请您如实填写申请原因及商品情况，字数控制在500字以内。</p>
+													</div>
+												</div>
+												<div class="back-box clear">
+													<p><span>*</span>图片信息</p>
+													<div>
+														<label for="tpic">
+															<p>上传图片</p>
+															<input type="file" name="" id="tpic" class="hideinp" accept="image/*" multiple/>
+														</label>
+														<span>上传实物照，产品标签，原包装照</span>
+														<p>支持jpg/gif/png/jpeg格式，单张不要超过1M，最多上传5张照片</p>
+													</div>
+												</div>
+												<div class="back-box clear">
+													<p><span>*</span>质量检测报告</p>
+													<div>
+														<label for="zhjc">
+															<p>上传文件</p>
+															<input type="file" name="" id="zhjc" class="hideinp" />
+														</label>
+														<p>支持excel/word/jpg/gif/png/jpeg格式，文件不要超过5M，多个文件请先把文件打包压缩再上传</p>
+													</div>
+												</div>
+												<div class="back-box clear">
+													<p><span>*</span>联系人</p>
+													<div class="back-box-list">
+														<input type="text" name="name" id="name" value="" />
+													</div>
+												</div>
+												<div class="back-box clear">
+													<p><span>*</span>联系电话</p>
+													<div class="back-box-list">
+														<input type="text" name="phone" id="phone" value="" />
+													</div>
+												</div>
+											</div>
+										</div>
+										<p class="deml tipMsg"></p>
+										<div class="back-button">
+											<input type="submit" value="提交" id="deBtn"/>
+										</div>
+									</form>
+								</div>
+							</div>
+						
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div id="bottomFooter"></div>
+			<!---->
+		</div>
+		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+	    <script src="../js/jquery-1.12.1.min.js"></script>
+	    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+	    <script src="../js/bootstrap.min.js"></script>
+	  	<script type="text/javascript" src="../js/person.js"></script>
+	  	<script type="text/javascript" src="../js/laydate.js"></script>
+	  	<script type="text/javascript">
+		       //日期范围限制
+		       var start = {
+		           elem: '#start',
+		           format: 'YYYY-MM-DD',
+		           min: laydate.now(), //设定最小日期为当前日期
+		           max:'', //最大日期
+		           istime: false,
+		           istoday: true,
+		           choose: function(datas){
+		           		end.min = datas; //开始日选好后，重置结束日的最小日期
+                		end.start = datas; //将结束日的初始值设定为开始日
+		           }
+		       };
+		
+		    laydate(start);  
+		    var end = {
+		           elem: '#end',
+		           format: 'YYYY-MM-DD',
+		           min: laydate.now(), //设定最小日期为当前日期
+		           max:'', //最大日期
+		           istime: false,
+		            istoday: false,
+		           choose: function(datas){ 
+		                start.max = datas; //结束日选好后，重置开始日的最大日期   
+		           }
+		       };
+		    laydate(end);  
+		    //取消订单
+		    $(".canaelOrder").click(function(){
+		    	$("#cancel-order").fadeIn();
+		    });
+		    $("#cancel-order .cancel-close i").click(function(){
+		    	$("#cancel-order").fadeOut();
+		    });
+		    
+		    
+		   // 选择处理方式
+		   $(".backtd-select div").click(function(){
+		   		$(this).addClass("choice-select").siblings().removeClass("choice-select");
+		   });
+		
+		    
+		    
+	  	</script>
+	  	
+	</body>
+</html>

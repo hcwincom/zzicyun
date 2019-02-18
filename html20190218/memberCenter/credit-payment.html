@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	   	<!-- <meta name="viewport" content="width=device-width, initial-scale=1">-->
+	    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+	    <title>信用还款</title>
+		<meta name="applicable-device" content="pc">
+	    <!-- Bootstrap -->
+	   	<link href="../css/bootstrap.min.css" rel="stylesheet">
+	    <link rel="stylesheet" type="text/css" href="../css/comm.css"/>
+	   	<link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
+	    <link rel="stylesheet" type="text/css" href="../css/person_style.css"/>
+	    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+	    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+	    <!--[if lt IE 9]>
+	      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+	      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+	</head>
+	<body>
+		<div class="perPart">
+			<div class="site-nav clear">
+				<div class="site-nav-bd">
+				  	<ul class="site-nav-bd-l">
+				  		<li class="site-nav-menu">
+				  			<div class="site-nav-menu-hd">
+				  				<span>您好！欢迎来到器械商城!</span>
+				  			</div>
+				  			<!--登录之后显示begin-->
+				  			<div class="sign_index" style="display: none;">
+				  				<a href="../index.html">
+				  					<i class="glyphicon glyphicon-home"></i>
+				  					首页
+				  				</a>
+				  			</div>
+						<!--登录之后显示end-->
+				  		</li>
+				  		<li class="site-nav-menu">
+				  			<div class="site-nav-menu-hd">
+				  				<div class="site-nav-sign">
+				  					<a href="../login.html" target="_top">登录</a>
+				  					<a href="../register.html" target="_top">注册</a>
+				  				</div>
+				  				<!--登录之后显示begin-->
+				  				<div class="sign_after" style="display: none;">
+				  					<p>
+				  						<i class="iconfont icon-logout-user"></i>
+				  						<span><a href="member_center.html">151****2316</a></span>
+				  					</p>
+				  				</div>
+				  				<!--登录之后显示end-->
+				  			</div>
+				  		</li>
+				  		<li class="site-nav-menu">
+				  			<div class="site-nav-menu-hd">	
+				  				<div class="site-nav-bom">
+				  					<a href="../copy.html" target="_blank">BOM批量导入型号</a>
+				  				</div>								
+				  			</div>
+				  		</li>
+				  	</ul>
+				  	<ul class="site-nav-bd-r">
+				  		<li class="site-nav-menu">
+				  			<div class="site-nav-menu-hd">
+				  				<div class="site-nav-menu-order">
+				  					<a href="purchase-order.html" target="_top">
+				  						<span class="site-nav-icon site-nav-myorder"></span>
+				  						<span>我的订单</span>
+				  					</a>
+				  				</div>
+				  			</div>					
+				  		</li>
+				  		<li class="site-nav-menu">
+				  			<div class="site-nav-menu-hd">
+				  				<div class="site-nav-member">
+				  					<a href="member_center.html" target="_top">
+				  						<span class="site-nav-icon site-nav-center"></span>
+				  						<span>会员中心</span>
+				  					</a>
+				  				</div>
+				  			</div>			
+				  		</li>
+				  		<li class="site-nav-menu">
+				  			<div class="site-nav-menu-hd">
+				  				<div class="site-nav-phone">
+				  					<a href="tel:0551-8888888">
+				  						<span class="site-nav-icon site-nav-tel"></span>
+				  						<span>: 0551-8888888</span>
+				  					</a>
+				  				</div>
+				  			</div>				
+				  		</li>
+				  	</ul>
+				</div>
+			</div>
+			<!--头部-->
+			<div class="person-head">
+				<div class="wraper">
+					<div class="person-head-list">
+						<a href="../index.html">
+							<div class="person-logo">
+								<img src="../images/logo.png" alt="" />
+							</div>
+						</a>
+						<div class="person-title">
+							<h3>会员中心</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--主要内容-->
+			<div class="person-content">
+				<div class="wraper row totalback">
+					<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+						<div class="person-left-nav">
+							<ul class="person-left-ul">
+								<li>
+									<div class="person-left-nav-list">
+										<h3>订单管理</h3>
+										<ul>
+											<li><a href="purchase-order.html"><i></i>采购订单</a></li>
+											<li><a href="sampling-order.html"><i></i>样品订单</a></li>
+										</ul>
+									</div>
+								</li>
+								<li>
+									<div class="person-left-nav-list">
+										<h3>询价管理</h3>
+										<ul>
+											<li><a href="bominquiry-list.html"><i></i>BOM单询价</a></li>
+											<li><a href="cominquiry-list.html"><i></i>元器件询价</a></li>
+										</ul>
+									</div>
+								</li>
+								<li>
+									<div class="person-left-nav-list">
+										<h3>发票管理</h3>
+										<ul>
+											<li><a href="invoice-process.html"><i></i>开票进程</a></li>
+											<li><a href="invoice-information.html"><i></i>开票资料</a></li>
+										</ul>
+									</div>
+								</li>
+								<li>
+									<div class="person-left-nav-list">
+										<h3>资产管理</h3>
+										<ul>
+											<li><a href="line-credit.html"><i></i>授信额度</a></li>
+											<li><a class="per-active" href="credit-payment.html"><i></i>信用还款</a></li>
+											<li><a href="credit-statement.html"><i></i>对账单</a></li>
+											<li><a href="credit-discount.html"><i></i>优惠券</a></li>
+										</ul>
+									</div>
+								</li>
+								<li>
+									<div class="person-left-nav-list">
+										<h3>会员信息</h3>
+										<ul>
+											<li><a href="basic-information.html"><i></i>基本信息</a></li>
+											<li><a href="receiver-address.html"><i></i>收货地址</a></li>
+											<li><a href="change-password.html"><i></i>修改密码</a></li>
+										</ul>
+									</div>
+								</li>
+								<li>
+									<div class="person-left-nav-list">
+										<h3>礼品中心</h3>
+										<ul>
+											<li><a href="credits-exchange.html"><i></i>积分兑换</a></li>
+											<li><a href="exchange-record.html"><i></i>兑换记录</a></li>
+										</ul>
+									</div>
+								</li>
+								<li>
+									<div class="person-left-nav-list">
+										<h3>售后服务</h3>
+										<ul>
+											<li><a href="device-back-info.html"><i></i>元器件售后</a></li>
+											<li><a href="complaint-advice.html"><i></i>投诉建议</a></li>
+										</ul>
+									</div>
+								</li>
+							</ul>	
+						</div>
+					</div>
+					<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10" style="padding: 0;">
+						<div class="person-right">
+							<div class="person-right-head borderColor">
+								<p class="perpadding">
+									<span>资产管理</span>
+									<i class="iconfont icon-jiantoudown"></i>
+									<a href="credit-payment.html">信用还款</a>
+								</p>
+							</div>
+							<div class="person-detail-content">
+								<!--首次进行额度申请-->
+								<div class="credit-limit" style="display: none;">
+									<div class="lineHead">
+										<h3>额度申请：</h3>
+									</div>
+									<div class="lineContent">
+										<form action="" method="post">
+											<div class="line-apply">
+												<div class="invoform-box">
+													<span>申请日期：</span>
+													<div class="invo-group lineBorNone">
+														<input type="text" name="" id="" value="2018-12-25" class="invo-input" readonly />
+													</div>
+												</div>
+												<div class="invoform-box">
+													<span>币种：</span>
+													<div class="invo-group">
+														<select name="currency" class="currency">
+															<option value="0">人民币</option>
+														</select>
+													</div>
+												</div>
+												<div class="invoform-box">
+													<span>已有授信额度：</span>
+													<div class="invo-group lineBorNone">
+														<span class="linered">￥0.00</span>
+													</div>
+												</div>
+												<div class="invoform-box">
+													<p>申请额度：</p>
+													<div class="invo-group">
+														<input type="text" name="" id="" value="" class="invo-input" />
+													</div>
+												</div>
+												<div class="invoform-box">
+													<p>近三个月已采购金额：</p>
+													<div class="invo-group">
+														<input type="text" name="" id="" value="" class="invo-input" />
+													</div>
+												</div>
+												<div class="invoform-box">
+													<p>未来预计月平均采购金额：</p>
+													<div class="invo-group">
+														<input type="text" name="" id="" value="" class="invo-input" />
+													</div>
+												</div>
+												<div class="invoform-box">
+													<div class="invo-check">
+														<input type="checkbox" name="" id="" value="" checked="checked" />
+														<span>我已经阅读并同意</span>
+														<a href="invoice-xuzhi.html">《发票须知》</a>
+													</div>
+												</div>
+												<p class="info-tip"></p>
+												<div class="invoform-button">
+													<div class="invo-group">
+														<input type="submit" name="" id="" value="保存" class="invo-button" />
+														<a href="javascript:;" class="invo-cancel">取消</a>
+													</div>
+												</div>
+												<!---->
+											</div>
+											
+										</form>
+									</div>
+								</div>
+								<!--申请额度之后显示-->
+								<div class="credit-limit-show">
+									<!--授信额度信息-->
+									<div class="credit-limit-intro">
+										<div class="limitTitle">
+											<h3>授信额度</h3>
+										</div>
+										<div class="limit-table">
+											<ul>
+												<li>
+													<div class="limit-table-title credit-title">
+														<ul class="clear">
+															<li>币种</li>
+															<li>授信额度</li>
+															<li>已用额度</li>
+															<li>剩余额度</li>
+														</ul>
+													</div>
+												</li>
+												<li>
+													<div class="limit-table-cont credit-cont">
+														<ul class="clear">
+															<li>
+																<p>人民币</p>
+															</li>
+															<li>
+																<p>5000.00</p>
+															</li>
+															<li>
+																<p>23654.12</p>
+															</li>
+															<li>
+																<p>45821.23</p>
+															</li>
+														</ul>
+														<!--授信记录-->
+														<div id="limitRrcord-detail">
+															<div id="limitRrcord-cont">
+																<ul>
+																	<li>
+																		<div class="limitRrcord-cont-head">
+																			<ul class="clear">
+																				<li>日期</li>
+																				<li>授信额度</li>
+																				<li>备注</li>
+																			</ul>
+																		</div>
+																	</li>
+																	<li>
+																		<div class="limitRrcord-cont-list">
+																			<ul class="clear">
+																				<li>
+																					<p>2018.12.21</p>
+																				</li>
+																				<li>
+																					<p>23654.12</p>
+																				</li>
+																				<li>
+																					<p>新增授信额度</p>
+																				</li>
+																			</ul>
+																		</div>
+																	</li>
+																	<li></li>
+																</ul>
+																<div class="limitRrcord-cont-button">
+																	<button type="button">关闭</button>
+																</div>
+															</div>
+														</div>
+														<!--提高额度-->
+														<div id="inLimit-form">
+															<div id="inLimit-form-detail">
+																<div class="lineHead">
+																	<h3>额度申请：</h3>
+																</div>
+																<form action="" method="post">
+																	<div class="line-apply-increse">
+																		<div class="invoform-box">
+																			<span>申请日期：</span>
+																			<div class="invo-group lineBorNone">
+																				<input type="text" name="" id="" value="2018-12-25" class="invo-input" readonly />
+																			</div>
+																		</div>
+																		<div class="invoform-box">
+																			<span>币种：</span>
+																			<div class="invo-group">
+																				<select name="currency" class="currency">
+																					<option value="0">人民币</option>
+																				</select>
+																			</div>
+																		</div>
+																		<div class="invoform-box">
+																			<span>已有授信额度：</span>
+																			<div class="invo-group lineBorNone">
+																				<span class="linered">￥0.00</span>
+																			</div>
+																		</div>
+																		<div class="invoform-box">
+																			<p>申请额度：</p>
+																			<div class="invo-group">
+																				<input type="text" name="" id="" value="" class="invo-input" />
+																			</div>
+																		</div>
+																		<div class="invoform-box">
+																			<p>近三个月已采购金额：</p>
+																			<div class="invo-group">
+																				<input type="text" name="" id="" value="" class="invo-input" />
+																			</div>
+																		</div>
+																		<div class="invoform-box">
+																			<p>未来预计月平均采购金额：</p>
+																			<div class="invo-group">
+																				<input type="text" name="" id="" value="" class="invo-input" />
+																			</div>
+																		</div>
+																		<div class="invoform-box">
+																			<div class="invo-check">
+																				<input type="checkbox" name="" id="" value="" checked="checked" />
+																				<span>我已经阅读并同意</span>
+																				<a href="invoice-xuzhi.html">《发票须知》</a>
+																			</div>
+																		</div>
+																		<p class="info-tip"></p>
+																		<div class="invoform-button">
+																			<div class="invo-group">
+																				<input type="submit" name="" id="" value="保存" class="invo-button" />
+																				<a href="javascript:;" class="invo-cancel">取消</a>
+																			</div>
+																		</div>
+																		<!---->
+																	</div>
+																</form>
+															</div>
+														</div>
+														<!---->
+													</div>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<!--账单流水-->
+									<div class="credit-limit-bill">
+										<div class="limitTitle">
+											<h3>信用还款</h3>
+										</div>
+										<!--列表-->
+										<div class="limit-bill-detail">
+											<ul class="clear">
+												<li>
+													<div class="limit-bill-title payment-title">
+														<ul class="clear">
+															<li>还款期号</li>
+															<li>币种</li>
+															<li>本期应还总额</li>
+															<li>本期实还总额</li>
+															<li>操作</li>
+														</ul>
+													</div>
+												</li>
+												<li>
+													<div class="limit-bill-cont payment-cont">
+														<ul class="clear">
+															<li>
+																<p>2018.10.12</p>
+															</li>
+															<li>
+																<p>人民币</p>
+															</li>
+															<li>
+																<p>￥3654.12</p>
+															</li>
+															<li>
+																<p>￥23124.12</p>
+															</li>
+															<li>
+																<a href="payment-detail.html" class="paymentClick">还款</a>
+																<a href="payment-detail.html" class="paymentDetail">详情</a>
+															</li>
+														</ul>
+													</div>
+												</li>
+											</ul>
+										
+											<div class="limit-page">
+												<!--分页-->
+												<div class="page">
+													<div class="p-wrap" id="j_bottomPage">
+														<span class="p-num">
+															<a class="pn-prev disabled">
+																<i><</i>
+															</a>
+															<a href="javascript:void(0);" class="num curr">1</a>
+															<a href="javascript:void(0);" class="num">2</a>
+															<a href="javascript:void(0);" class="num">3</a>
+															<a href="javascript:void(0);" class="num">4</a>
+															<a href="javascript:void(0);" class="num">5</a>
+															<a href="javascript:void(0);" class="num">6</a>
+															<a href="javascript:void(0);" class="pn-next ">
+																<i>></i>	
+															</a>
+														</span>
+														<span class="p-skip">
+															<a href="javascript:void(0);">共  <i>10</i>页</a>
+														</span>
+														<span class="page_jump">
+															<i>第</i>
+															<input class="pageInput" type="text" value="1" onkeyup="value=value.replace(/[^\d]/g,'')" onblur="value=value.replace(/[^\d]/g,'')" name="pageNo" id="pageInput">
+															<i>页</i>
+														</span>
+														<span class="page_btn">
+															<button type="button" id="pagebtn" class="btn btn-default">确定</button>
+														</span>
+													</div>
+												</div>
+												<!---->	
+											</div>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div id="bottomFooter"></div>
+			<!---->
+		</div>
+		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+	    <script src="../js/jquery-1.12.1.min.js"></script>
+	    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+	    <script src="../js/bootstrap.min.js"></script>
+	  	<script type="text/javascript" src="../js/person.js"></script>
+	  	<script type="text/javascript" src="../js/laydate.js"></script>
+	  	<script type="text/javascript">
+	  		//日期范围限制
+		       var start = {
+		           elem: '#start',
+		           format: 'YYYY-MM-DD',
+		           min: laydate.now(), //设定最小日期为当前日期
+		           max:'', //最大日期
+		           istime: false,
+		           istoday: true,
+		           choose: function(datas){
+		           		end.min = datas; //开始日选好后，重置结束日的最小日期
+                		end.start = datas; //将结束日的初始值设定为开始日
+		           }
+		       };
+		
+		    laydate(start);  
+		    var end = {
+		           elem: '#end',
+		           format: 'YYYY-MM-DD',
+		           min: laydate.now(), //设定最小日期为当前日期
+		           max:'', //最大日期
+		           istime: false,
+		            istoday: false,
+		           choose: function(datas){ 
+		                start.max = datas; //结束日选好后，重置开始日的最大日期   
+		           }
+		       };
+		    laydate(end);  
+	  		$("#invo-file").change(function(){
+	  			$(".invo-group .invo-label").html("已上传");
+	  		});
+	  		
+	  		$(".add-invo a").click(function(){
+	  			$(this).parents(".invo-exhibiting").hide();
+	  			$(".invoceForm").show();
+	  		});
+	  		$(".check-box>div").click(function(){
+	  			var index = $(this).index();
+	  			$(this).addClass("checkActive").siblings().removeClass("checkActive");
+	  			$(".invoceForm-display .invoceForm-list").eq(index).removeClass("checkCate").siblings().addClass("checkCate");
+	  		});
+	  		
+	  		
+	  	</script>
+	  	
+	</body>
+</html>

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	   	<!-- <meta name="viewport" content="width=device-width, initial-scale=1">-->
+	    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+	    <title>退货订单</title>
+		<meta name="applicable-device" content="pc">
+	    <!-- Bootstrap -->
+	   	<link href="../css/bootstrap.min.css" rel="stylesheet">
+	    <link rel="stylesheet" type="text/css" href="../css/comm.css"/>
+	   	<link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
+	    <link rel="stylesheet" type="text/css" href="../css/person_style.css"/>
+	    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+	    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+	    <!--[if lt IE 9]>
+	      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+	      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+	</head>
+	<body>
+		<div class="perPart">
+			<div class="site-nav clear">
+				<div class="site-nav-bd">
+				  	<ul class="site-nav-bd-l">
+				  		<li class="site-nav-menu">
+				  			<div class="site-nav-menu-hd">
+				  				<span>您好！欢迎来到器械商城!</span>
+				  			</div>
+				  			<!--登录之后显示begin-->
+				  			<div class="sign_index" style="display: none;">
+				  				<a href="../index.html">
+				  					<i class="glyphicon glyphicon-home"></i>
+				  					首页
+				  				</a>
+				  			</div>
+						<!--登录之后显示end-->
+				  		</li>
+				  		<li class="site-nav-menu">
+				  			<div class="site-nav-menu-hd">
+				  				<div class="site-nav-sign">
+				  					<a href="../login.html" target="_top">登录</a>
+				  					<a href="../register.html" target="_top">注册</a>
+				  				</div>
+				  				<!--登录之后显示begin-->
+				  				<div class="sign_after" style="display: none;">
+				  					<p>
+				  						<i class="iconfont icon-logout-user"></i>
+				  						<span><a href="member_center.html">151****2316</a></span>
+				  					</p>
+				  				</div>
+				  				<!--登录之后显示end-->
+				  			</div>
+				  		</li>
+				  		<li class="site-nav-menu">
+				  			<div class="site-nav-menu-hd">	
+				  				<div class="site-nav-bom">
+				  					<a href="../copy.html" target="_blank">BOM批量导入型号</a>
+				  				</div>								
+				  			</div>
+				  		</li>
+				  	</ul>
+				  	<ul class="site-nav-bd-r">
+				  		<li class="site-nav-menu">
+				  			<div class="site-nav-menu-hd">
+				  				<div class="site-nav-menu-order">
+				  					<a href="purchase-order.html" target="_top">
+				  						<span class="site-nav-icon site-nav-myorder"></span>
+				  						<span>我的订单</span>
+				  					</a>
+				  				</div>
+				  			</div>					
+				  		</li>
+				  		<li class="site-nav-menu">
+				  			<div class="site-nav-menu-hd">
+				  				<div class="site-nav-member">
+				  					<a href="member_center.html" target="_top">
+				  						<span class="site-nav-icon site-nav-center"></span>
+				  						<span>会员中心</span>
+				  					</a>
+				  				</div>
+				  			</div>			
+				  		</li>
+				  		<li class="site-nav-menu">
+				  			<div class="site-nav-menu-hd">
+				  				<div class="site-nav-phone">
+				  					<a href="tel:0551-8888888">
+				  						<span class="site-nav-icon site-nav-tel"></span>
+				  						<span>: 0551-8888888</span>
+				  					</a>
+				  				</div>
+				  			</div>				
+				  		</li>
+				  	</ul>
+				</div>
+			</div>
+			<!--头部-->
+			<div class="person-head">
+				<div class="wraper">
+					<div class="person-head-list">
+						<a href="../index.html">
+							<div class="person-logo">
+								<img src="../images/logo.png" alt="" />
+							</div>
+						</a>
+						<div class="person-title">
+							<h3>会员中心</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--主要内容-->
+			<div class="person-content">
+				<div class="wraper row totalback">
+					<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+						<div class="person-left-nav">
+							<ul class="person-left-ul">
+								<li>
+									<div class="person-left-nav-list">
+										<h3>订单管理</h3>
+										<ul>
+											<li><a href="purchase-order.html"><i></i>采购订单</a></li>
+											<li><a href="sampling-order.html"><i></i>样品订单</a></li>
+										</ul>
+									</div>
+								</li>
+								<li>
+									<div class="person-left-nav-list">
+										<h3>询价管理</h3>
+										<ul>
+											<li><a href="bominquiry-list.html"><i></i>BOM单询价</a></li>
+											<li><a href="cominquiry-list.html"><i></i>元器件询价</a></li>
+										</ul>
+									</div>
+								</li>
+								<li>
+									<div class="person-left-nav-list">
+										<h3>发票管理</h3>
+										<ul>
+											<li><a href="invoice-process.html"><i></i>开票进程</a></li>
+											<li><a href="invoice-information.html"><i></i>开票资料</a></li>
+										</ul>
+									</div>
+								</li>
+								<li>
+									<div class="person-left-nav-list">
+										<h3>资产管理</h3>
+										<ul>
+											<li><a href="line-credit.html"><i></i>授信额度</a></li>
+											<li><a href="credit-payment.html"><i></i>信用还款</a></li>
+											<li><a href="credit-statement.html"><i></i>对账单</a></li>
+											<li><a href="credit-discount.html"><i></i>优惠券</a></li>
+										</ul>
+									</div>
+								</li>
+								<li>
+									<div class="person-left-nav-list">
+										<h3>会员信息</h3>
+										<ul>
+											<li><a href="basic-information.html"><i></i>基本信息</a></li>
+											<li><a href="receiver-address.html"><i></i>收货地址</a></li>
+											<li><a href="change-password.html"><i></i>修改密码</a></li>
+										</ul>
+									</div>
+								</li>
+								<li>
+									<div class="person-left-nav-list">
+										<h3>礼品中心</h3>
+										<ul>
+											<li><a href="credits-exchange.html"><i></i>积分兑换</a></li>
+											<li><a href="exchange-record.html"><i></i>兑换记录</a></li>
+										</ul>
+									</div>
+								</li>
+								<li>
+									<div class="person-left-nav-list">
+										<h3>售后服务</h3>
+										<ul>
+											<li><a class="per-active" href="device-back-info.html"><i></i>元器件售后</a></li>
+											<li><a href="complaint-advice.html"><i></i>投诉建议</a></li>
+										</ul>
+									</div>
+								</li>
+							</ul>	
+						</div>
+					</div>
+					<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10" style="padding: 0;">
+						<div class="person-right">
+							<div class="person-right-head">
+								<p class="perpadding">
+									<span>售后服务</span>
+									<i class="iconfont icon-jiantoudown"></i>
+									<a href="device-back-info.html">元器件售后</a>
+								</p>
+							</div>
+							<div class="person-right-content">
+								<div class="invoce-title clear">
+									<ul>
+										<li><a href="device-back-info.html">退换货</a></li>
+										<li class="sampling-active"><a href="back-info-order.html">退货订单</a></li>
+									</ul>
+								</div>
+								<div class="backSear mt20">
+									<form action="" method="post">
+										<div class="row">
+											<div class="col-sm-4 col-md-4">
+												<div class="backOrderNum">
+													<span>订单号：</span>
+													<input type="text" name="" id="" value="" class="back-input" />
+												</div>
+											</div>
+											<div class="col-sm-4 col-md-4">
+												<div class="backOrderXin">
+													<span>产品型号：</span>
+													<input type="text" name="" id="" value="" class="back-input" />
+												</div>
+											</div>
+											<div class="col-sm-4 col-md-4">
+												<div class="backOrderBtn">
+													<button type="button" class="backOrderSub">查询</button>
+													<button type="button" class="backOrderRe">重置</button>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+								<div class="back-swap-list">
+									<table class="table tableBom swapTable">
+										<tr>
+											<th width="10%">申请日期</th>
+											<th width="10%">订单号</th>
+											<th width="11%">售后单号</th>
+											<th width="10%">问题类型</th>
+											<th width="10%">型号</th>
+											<th width="10%">品牌</th>
+											<th width="10%">数量</th>
+											<th width="10%">处理状态</th>
+											<th width="9%">处理方式</th>
+											<th width="10%">操作</th>
+										</tr>
+										<tr>
+											<td>
+												<p>2018.5.6 14:21:31</p>
+											</td>
+											<td>
+												<p>1234565443</p>
+											</td>
+											<td>
+												<p>35462534254</p>
+											</td>
+											<td>
+												<p>拍错了</p>
+											</td>
+											<td>
+												<p>HPRI</p>
+											</td>
+											<td>
+												<p>科技</p>
+											</td>
+											<td>
+												<p>20</p>
+											</td>
+											<td>
+												<p>正在处理</p>
+											</td>
+											<td>
+												<p>正在解决</p>
+											</td>
+											<td>
+												<p>
+													<a href="device-order-detail.html">查看详情</a>
+												</p>
+											</td>
+										</tr>
+									</table>
+								</div>
+								
+							</div>
+						
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div id="bottomFooter"></div>
+			<!---->
+		</div>
+		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+	    <script src="../js/jquery-1.12.1.min.js"></script>
+	    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+	    <script src="../js/bootstrap.min.js"></script>
+	  	<script type="text/javascript" src="../js/person.js"></script>
+	  	<script type="text/javascript" src="../js/laydate.js"></script>
+	  	<script type="text/javascript">
+		       //日期范围限制
+		       var start = {
+		           elem: '#start',
+		           format: 'YYYY-MM-DD',
+		           min: laydate.now(), //设定最小日期为当前日期
+		           max:'', //最大日期
+		           istime: false,
+		           istoday: true,
+		           choose: function(datas){
+		           		end.min = datas; //开始日选好后，重置结束日的最小日期
+                		end.start = datas; //将结束日的初始值设定为开始日
+		           }
+		       };
+		
+		    laydate(start);  
+		    var end = {
+		           elem: '#end',
+		           format: 'YYYY-MM-DD',
+		           min: laydate.now(), //设定最小日期为当前日期
+		           max:'', //最大日期
+		           istime: false,
+		            istoday: false,
+		           choose: function(datas){ 
+		                start.max = datas; //结束日选好后，重置开始日的最大日期   
+		           }
+		       };
+		    laydate(end);  
+		    //取消订单
+		    $(".canaelOrder").click(function(){
+		    	$("#cancel-order").fadeIn();
+		    });
+		    $("#cancel-order .cancel-close i").click(function(){
+		    	$("#cancel-order").fadeOut();
+		    });
+		    
+		    
+		   // 选择处理方式
+		   $(".backtd-select div").click(function(){
+		   		$(this).addClass("choice-select").siblings().removeClass("choice-select");
+		   });
+		
+		    
+		    
+	  	</script>
+	  	
+	</body>
+</html>

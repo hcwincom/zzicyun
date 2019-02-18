@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	   	<!-- <meta name="viewport" content="width=device-width, initial-scale=1">-->
+	    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+	    <title>智能BOM单配货详情页</title>
+		<meta name="applicable-device" content="pc">
+	    <!-- Bootstrap -->
+	    <link href="css/bootstrap.min.css" rel="stylesheet">
+	    <link rel="stylesheet" type="text/css" href="css/comm.css"/>
+	    <link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
+	    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+	</head>
+	<body>
+		<div class="topBanner">
+			<div class="site-nav clear">
+	  			<div class="site-nav-bd">
+	  				<ul class="site-nav-bd-l">
+	  					<li class="site-nav-menu">
+	  						<div class="site-nav-menu-hd">
+	  							<span>您好！欢迎来到器械商城!</span>
+	  						</div>
+	  						<!--登录之后显示begin-->
+	  						<div class="sign_index" style="display: none;">
+	  							<a href="index.html">
+	  								<i class="glyphicon glyphicon-home"></i>
+	  								首页
+	  							</a>
+	  						</div>
+						<!--登录之后显示end-->
+	  					</li>
+	  					<li class="site-nav-menu">
+	  						<div class="site-nav-menu-hd">
+	  							<div class="site-nav-sign">
+	  								
+	  								<a href="login.html" target="_top">登录</a>
+	  								<a href="register.html" target="_top">注册</a>
+	  							</div>
+	  							<!--登录之后显示begin-->
+	  							<div class="sign_after" style="display: none;">
+	  								<p>
+	  									<i class="iconfont icon-logout-user"></i>
+	  									<span>151****2316</span>
+	  								</p>
+	  							</div>
+	  							<!--登录之后显示end-->
+	  						</div>
+	  						
+	  					</li>
+	  					<li class="site-nav-menu">
+	  						<div class="site-nav-menu-hd">	
+	  							<div class="site-nav-bom">
+	  								<a href="copy.html" target="_blank">BOM批量导入型号</a>
+	  							</div>								
+	  						</div>
+	  					</li>
+	  				</ul>
+	  				<ul class="site-nav-bd-r">
+	  					<li class="site-nav-menu">
+	  						<div class="site-nav-menu-hd">
+	  							<div class="site-nav-menu-order">
+	  								<a href="memberCenter/purchase-order.html" target="_top">
+	  									<span class="site-nav-icon site-nav-myorder"></span>
+	  									<span>我的订单</span>
+	  								</a>
+	  							</div>
+	  						</div>					
+	  					</li>
+	  					<li class="site-nav-menu">
+	  						<div class="site-nav-menu-hd">
+	  							<div class="site-nav-member">
+	  								<a href="memberCenter/member_center.html" target="_top">
+	  									<span class="site-nav-icon site-nav-center"></span>
+	  									<span>会员中心</span>
+	  								</a>
+	  							</div>
+	  						</div>			
+	  					</li>
+	  					<li class="site-nav-menu">
+	  						<div class="site-nav-menu-hd">
+	  							<div class="site-nav-phone">
+	  								<a href="tel:0551-8888888">
+	  									<span class="site-nav-icon site-nav-tel"></span>
+	  									<span>: 0551-8888888</span>
+	  								</a>
+	  							</div>
+	  						</div>				
+	  					</li>
+	  				</ul>
+	  			</div>
+	  		</div>
+			<!--搜索部分-->
+			<div class="search_banner">
+				<div class="top_wraper">	
+					<div class="row">
+						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+							<div class="logo">
+								<a href="index.html">
+									<img class="logo_img" src="images/logo.png" alt="器械商城" />
+								</a>
+							</div>
+						</div>
+						<div class="col-xs-5 col-sm-5 col-md-6 col-lg-6">
+							<div class="top_search">
+								<form action="" method="post">
+									<div class="search_bor clear">
+										<input class="srinp fl" id="nav-keyword" value="" name="keyword" autocomplete="off" placeholder="请输入型号或产品相关信息" type="text">		
+										<button class="srsub fl" value="" type="button" id="subser"><i class="iconfont icon-sousuo"></i>搜索</button>
+									</div>
+									<div class="search_text">
+										<span>热门产品：</span>
+								        <a class="text-warning" href="" rel="nofollow">TAJD226K035NDJ</a>
+								        <a href="javascript:void(0)" class="searchKeyword" keyword="TAJD226K035RNJ">TAJD226K035RNJ</a>
+								        <a href="javascript:void(0)" class="searchKeyword" keyword="传感器 100V">传感器 100V</a> 
+									</div>
+								</form>
+							</div>
+						</div>
+						<div class="col-xs-4 col-sm-4 col-md-3 col-lg-3">
+							<div class="scart">
+								<div class="row">
+									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+										<a href="pairing.html" class="scart_list">
+											<i class="bomd">BOM配单</i>
+											<span id="bomNum">0</span>
+										</a>
+									</div>
+									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+										<a href="scart.html" class="scart_go">
+											<i class="iconfont icon-gouwuche"></i>
+											<span id="shopCartNum">3</span>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>			
+			</div>			
+			<!--导航-->
+			<div class="l-nav l_proNav">
+				<div class="nav">
+					<div class="clear">
+						<div id="allNav" class="allNav allNav_list fl"></div>							
+						<div class="nav_menu">
+							<ul>
+								<li><a class="navItem" href="index.html">首页</a></li>
+								<li><a class="navItem " href="product.html">被动选型</a></li>
+								<li class="drop_menu">
+									<a class="navItem" href="javascript:void(0);">
+										<span>制造商&目录</span>
+										<i class="glyphicon glyphicon-triangle-bottom"></i>
+									</a>
+									<div class="item_lists">
+										<a class="menu_list" href="product_category.html">商品目录</a>
+										<a class="menu_list" href="branded.html">品牌制造商</a>
+									</div>
+								</li>
+								<li><a class="navItem active" href="copy.html">智能BOM</a></li>
+								<li><a class="navItem" href="product_list.html">样品申请</a></li>
+								<li><a class="navItem" href="original_agent.html" rel="nofollow">原厂代理专营</a></li>
+								<li><a class="navItem" href="strength_distributor.html" rel="nofollow">实力分销商</a></li>
+								<li><a class="navItem" href="recruiting_suppliers.html" rel="nofollow">招募供应商</a></li>
+							</ul>	
+						</div>				           	
+					</div>
+				</div>
+			</div>	
+			<!--智能BOM详情页主要内容-->
+			<div class="bomMain" id="bomResult">
+				<div class="wraper totalback">
+					<div class="_headtop">
+	            		系统自动判断你的型号参数和数量列，你点击&nbsp;&nbsp;
+	            		<button type="button" tabindex="-1" class="_headtopBtn">重新指定</button> 
+	            		<a href="/bom/copy" class="_headtopBtn fr">
+	            			<i class="iconfont icon-shuaxin1"></i>
+	            			&nbsp;重新导入BOM
+	            		</a>
+					</div>
+					<div class="_headmain clear" style="position: relative;">
+						<div class="match-filter clear">
+							<form action="" method="post" class="form form-label">
+								<div class="form-item">
+									<label class="form-item-label" style="width: 50px;">交货地</label>
+									<div class="form-item-content" style="margin-left: 60px;">
+										<div class="ivu-radio-group">
+											<label class="ivu-radio-wrapper ivu-radio-group-item ivu-radio-wrapper-checked">
+												<span class="ivu-radio ivu-radio-checked">
+													<span class="ivu-radio-inner"></span>
+													<input type="radio" class="ivu-radio-input">
+												</span>
+												大陆
+											</label>
+											<label class="ivu-radio-wrapper ivu-radio-group-item" style="margin-left: 20px;">
+												<span class="ivu-radio">
+													<span class="ivu-radio-inner"></span>
+													<input type="radio" class="ivu-radio-input">
+												</span>
+												香港
+											</label>
+										</div>
+									</div>
+								</div>
+								<div class="form-item">
+									<label class="form-item-label" style="width: 50px;">交期</label>
+									<div class="form-item-content" style="margin-left: 60px;">
+										<div class="ivu-radio-group">
+											<label class="ivu-radio-wrapper ivu-radio-group-item">
+												<span class="ivu-radio">
+													<span class="ivu-radio-inner"></span>
+													<input type="radio" class="ivu-radio-input">
+												</span>
+												2周以内
+											</label>
+											<label class="ivu-radio-wrapper ivu-radio-group-item">
+												<span class="ivu-radio">
+													<span class="ivu-radio-inner"></span>
+													<input type="radio" class="ivu-radio-input">
+												</span>
+												4周以内
+											</label>
+											<label class="ivu-radio-wrapper ivu-radio-group-item">
+												<span class="ivu-radio">
+													<span class="ivu-radio-inner"></span>
+													<input type="radio" class="ivu-radio-input">
+												</span>
+												6周以内
+											</label>
+											<label class="ivu-radio-wrapper ivu-radio-group-item">
+												<span class="ivu-radio">
+													<span class="ivu-radio-inner"></span>
+													<input type="radio" class="ivu-radio-input">
+												</span>
+												8周以内
+											</label>
+											<label class="ivu-radio-wrapper ivu-radio-group-item">
+												<span class="ivu-radio">
+													<span class="ivu-radio-inner"></span>
+													<input type="radio" class="ivu-radio-input">
+												</span>
+												10周以内
+											</label>
+											<label class="ivu-radio-wrapper ivu-radio-group-item ivu-radio-wrapper-checked">
+												<span class="ivu-radio ivu-radio-checked">
+													<span class="ivu-radio-inner"></span>
+													<input type="radio" class="ivu-radio-input">
+												</span>
+												交期不限
+											</label>
+										</div>
+									</div>
+									<div class="addwlmodal" style="position: relative;">
+										<ul id="matchTab" class="black-tab clearfix">
+											<li class="on"><span>全部<i class="num">(1)</i></span></li>
+											<li class=""><span>完全匹配<i class="num">(1)</i></span></li>
+											<li class=""><span>无法匹配<i class="num">(1)</i></span></li>
+										</ul>
+										<div class="fr tab-buttons">
+											<input type="text" name="" id="wlname" value="" placeholder="物料号"/>
+											<button class="btn btn-sm btn-smg" type="button">添加物料</button>
+											<button class="btn btn-sm" type="button">导出excel</button>
+										</div>
+										<!--添加物料弹窗modal框-->
+										<div id="addModal">
+											<div class="addwl">
+												<table class="addTable">
+													<thead>
+														<tr>
+															<th width="23%">型号/参数</th>
+															<th width="22%">包装数量</th>
+															<th width="20%">库存</th>
+															<th width="20%">采购数量</th>
+															<th width="15%">操作 </th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>SFV20R-3STBE1HLF</td>
+															<td>
+																<div class="packageNum">
+																	<p>包装：100 </p>
+																	<p>起订：100</p>
+																	<p>倍数：100</p>
+																</div>
+															</td>
+															<td>1000</td>
+															<td>
+																<div class="addetail addwltc  clear">
+																	<p class="btn-add omin" onclick="minus(this,'9.9','100');">
+																		<span class="glyphicon glyphicon-minus"></span>
+																	</p>
+																	<input type="text" class="btn-num onum" value="56" name="count" />
+																	<p class="btn-add oplus" onclick="plus(this,'9.9}','100}');">
+																		<span class="glyphicon glyphicon-plus"></span>
+																	</p>
+																</div>
+															</td>
+															<td class="addButton">
+																<button type="button">添加</button>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+												
+											</div>
+										</div>
+										<!---->
+									</div>
+									<div id="listTblBox" class="list-tbl-box rel">
+										<table class="list-tbl">
+											<colgroup>
+												<col width="240">
+												<col width="140">
+												<col width="120">
+												<col width="110">
+												<col width="110">
+												<col width="100">
+												<col width="190">
+												<col width="130">
+												<col width="150">
+											</colgroup>
+											<thead>
+												<tr>
+													<th class="cthead"><span>全选 </span>型号/参数</th>
+													<th class="ct">匹配商品</th>
+													<th class="ct">包装数量</th>
+													<th class="ct">推荐数量</th>
+													<th class="ct">库存 </th>
+													<th class="ct">采购数量</th>
+													<th class="ct">价格（人 民  币）</th>
+													<th class="ct">交期</th>
+													<th class="ct">操作 </th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>
+														<div class="checked-box">
+															<span class="checkbox-inner">
+																<input type="checkbox" class="checkbox-input" />
+															</span>
+															<span>SFV20R-3STBE1HLF</span>
+														</div>
+													</td>
+													<td>
+														<div class="match_pro padLeft">
+															<p><span>型号：</span>MCU32BIT</p>
+															<p><span>品牌：</span>Yagen</p>
+														</div>
+													</td>
+													<td>
+														<div class="match_pro padLeft">
+															<p><span>包装：</span>1500</p>
+															<p><span>起订：</span>1500</p>
+															<p><span>倍数：</span>1500</p>
+														</div>
+													</td>
+													<td>
+														<div class="padLeft textCen">
+															<p>10000</p>
+														</div>
+													</td>
+													<td>
+														<div class="padLeft textCen">
+															<p>500</p>
+														</div>
+													</td>
+													<td>
+														<div class="padLeft mum_td textCen">
+															<input type="text" name="" id="" value="500" />
+														</div>
+													</td>
+													<td>
+														<div class="padLeft textCen">
+															<p class="redColor">￥<span>10000</span></p>
+														</div>
+													</td>
+													<td>
+														<div class="padLeft">
+															<p><span>1-5</span>个工作日</p>
+														</div>
+													</td>
+													<td>
+														<div class="padLeft operate">
+															<button type="button" class="btn" data-toggle="modal" data-target="#myModal">对比</button>
+															<a href="javascript:void(0);" class="text-primary">删除</a>
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</form>
+						</div>
+						<!---->
+						<div class="add-cart-box">
+							<div class="add-cart-price">
+								<p class="light">
+									<em>总价</em>
+            						￥<b>0.00</b>
+								</p>
+								<p class="count">
+									已选择商品
+									<strong class="light">0</strong>
+									件
+								</p>
+							</div>
+							<button type="button" class="add-cart-btn btn">
+								<span>加入购物车</span>
+							</button>
+						</div>
+					</div>
+				
+				</div>
+				<!--指示图标-->
+				<div class="mt20 panel_list clear">
+					<div class="wraper">
+						<div class="fl charts charts-status">
+							<div id="chartsStatus" class="chartsStatus clear">
+								<div class="fl statusBox">
+									<p class="statusTop"></p>
+								</div>
+								<div class="fl status-list">
+									<p class="status-list_p">
+										<b class="stat1"></b>
+										<span>已停产:</span>
+										<i>1</i>
+										
+									</p>
+									<p class="status-list_p">
+										<b class="stat2"></b>
+										<span>正常:</span>
+										<i>3</i>
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="fl charts">
+							<div id="chartsRohs" class="chartsRohs clear">
+								<div class="fl rohsBox">
+									<p class="rohsBoxTop"></p>
+								</div>
+								<div class="fl rohsBox_list">
+									<p class="rohsBox_list_p">
+										<b class="rohs1"></b>
+										<span>不符合ROHS:</span>
+										<i>1</i>
+									</p>
+									<p class="rohsBox_list_p">
+										<b class="rohs2"></b>
+										<span>符合ROHS:</span>
+										<i>3</i>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			<!--对比弹出的模态框-->
+			<!-- Modal -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			        	<span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			      	<div class="bodyhead">
+			      		<p>
+			      			<span>需求型号:GCM1555C1H180FA16D</span>
+			      			<span>需求数量:1000</span>
+			      		</p>
+			      	</div>
+			      	<table border="1" cellspacing="" cellpadding="" class="modal_tab">
+			      		<thead>
+			      			<tr>
+			      				<th width="150">匹配型号</th>
+			      				<th width="130">品牌</th>
+			      				<th width="115">包装数量</th>
+			      				<th width="130">库存 </th>
+			      				<th width="150">价格（人民币）</th>
+			      				<th width="130">交期 </th>
+			      				<th width="120">供应商</th>
+			      				<th width="100">操作</th>
+			      			</tr>
+			      		</thead>
+			      		<tbody>
+			      			<tr>
+			      				<td class="mtd">RCO402JR-0710KL</td>
+			      				<td class="mtd">村田</td>
+			      				<td class="mtdp">
+			      					<p>包装:1500</p>
+			      					<p>起订:1500</p>
+			      					<p>倍数:1500</p>
+			      				</td>
+			      				<td class="mtd">200</td>
+			      				<td class="mtd">0.22</td>
+			      				<td class="mtd">1-5个工作日</td>
+			      				<td class="mtd">自营</td>
+			      				<td class="mtd">当前选择</td>
+			      			</tr>
+			      			<tr>
+			      				<td class="mtd">RCO402JR-0710KL</td>
+			      				<td class="mtd">村田</td>
+			      				<td class="mtdp">
+			      					<p>包装:1500</p>
+			      					<p>起订:1500</p>
+			      					<p>倍数:1500</p>
+			      				</td>
+			      				<td class="mtd">200</td>
+			      				<td class="mtd">0.22</td>
+			      				<td class="mtd">1-5个工作日</td>
+			      				<td class="mtd">自营</td>
+			      				<td class="mtd"><button type="button">替换报价</button></td>
+			      			</tr>
+			      		</tbody>
+			      	</table>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			<!--底部-->
+			<div id="footer"></div>
+		</div>
+		
+		<!--bom单数据超过三天显示 -->
+		<div id="surpass">
+			<div id="passAround">
+				<span>本BOM单数据已超过3天，为了给您提供更精准的服务，请刷新全部</span>
+				<button type="button">
+					<i class="iconfont icon-shuaxin1"></i>
+					<span>刷新全部</span>
+				</button>
+			</div>
+		</div>
+		
+		
+		
+		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+	    <script src="js/jquery-1.12.1.min.js"></script>
+	    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+	    <script src="js/bootstrap.min.js"></script>
+	    <script type="text/javascript" src="js/slider.js"></script>
+	    <script type="text/javascript" src="js/index.js"></script>	
+	   	<script type="text/javascript">
+	   		$(".btn-smg").click(function(){
+	   			$("#addModal").toggle();
+	   		});   
+	   	</script>
+	</body>
+</html>

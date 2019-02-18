@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	   	<!-- <meta name="viewport" content="width=device-width, initial-scale=1">-->
+	    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+	    <title>招募供应商</title>
+		<meta name="applicable-device" content="pc">
+	    <!-- Bootstrap -->
+	    <link href="css/bootstrap.min.css" rel="stylesheet">
+	    <link rel="stylesheet" type="text/css" href="css/comm.css"/>
+	    <link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
+	    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+	</head>
+	<body>
+		<div class="topBanner">
+			<div class="site-nav clear">
+	  			<div class="site-nav-bd">
+	  				<ul class="site-nav-bd-l">
+	  					<li class="site-nav-menu">
+	  						<div class="site-nav-menu-hd">
+	  							<span>您好！欢迎来到器械商城!</span>
+	  						</div>
+	  						<!--登录之后显示begin-->
+	  						<div class="sign_index" style="display: none;">
+	  							<a href="index.html">
+	  								<i class="glyphicon glyphicon-home"></i>
+	  								首页
+	  							</a>
+	  						</div>
+						<!--登录之后显示end-->
+	  					</li>
+	  					<li class="site-nav-menu">
+	  						<div class="site-nav-menu-hd">
+	  							<div class="site-nav-sign">
+	  								
+	  								<a href="login.html" target="_top">登录</a>
+	  								<a href="register.html" target="_top">注册</a>
+	  							</div>
+	  							<!--登录之后显示begin-->
+	  							<div class="sign_after" style="display: none;">
+	  								<p>
+	  									<i class="iconfont icon-logout-user"></i>
+	  									<span>151****2316</span>
+	  								</p>
+	  							</div>
+	  							<!--登录之后显示end-->
+	  						</div>
+	  						
+	  					</li>
+	  					<li class="site-nav-menu">
+	  						<div class="site-nav-menu-hd">	
+	  							<div class="site-nav-bom">
+	  								<a href="copy.html" target="_blank">BOM批量导入型号</a>
+	  							</div>								
+	  						</div>
+	  					</li>
+	  				</ul>
+	  				<ul class="site-nav-bd-r">
+	  					<li class="site-nav-menu">
+	  						<div class="site-nav-menu-hd">
+	  							<div class="site-nav-menu-order">
+	  								<a href="memberCenter/purchase-order.html" target="_top">
+	  									<span class="site-nav-icon site-nav-myorder"></span>
+	  									<span>我的订单</span>
+	  								</a>
+	  							</div>
+	  						</div>					
+	  					</li>
+	  					<li class="site-nav-menu">
+	  						<div class="site-nav-menu-hd">
+	  							<div class="site-nav-member">
+	  								<a href="memberCenter/member_center.html" target="_top">
+	  									<span class="site-nav-icon site-nav-center"></span>
+	  									<span>会员中心</span>
+	  								</a>
+	  							</div>
+	  						</div>			
+	  					</li>
+	  					<li class="site-nav-menu">
+	  						<div class="site-nav-menu-hd">
+	  							<div class="site-nav-phone">
+	  								<a href="tel:0551-8888888">
+	  									<span class="site-nav-icon site-nav-tel"></span>
+	  									<span>: 0551-8888888</span>
+	  								</a>
+	  							</div>
+	  						</div>				
+	  					</li>
+	  				</ul>
+	  			</div>
+	  		</div>
+			<!--搜索部分-->
+			<div class="search_banner">
+				<div class="top_wraper">	
+					<div class="row">
+						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+							<div class="logo">
+								<a href="index.html">
+									<img class="logo_img" src="images/logo.png" alt="器械商城" />
+								</a>
+							</div>
+						</div>
+						<div class="col-xs-5 col-sm-5 col-md-6 col-lg-6">
+							<div class="top_search">
+								<form action="" method="post">
+									<div class="search_bor clear">
+										<input class="srinp fl" id="nav-keyword" value="" name="keyword" autocomplete="off" placeholder="请输入型号或产品相关信息" type="text">		
+										<button class="srsub fl" value="" type="button" id="subser"><i class="iconfont icon-sousuo"></i>搜索</button>
+									</div>
+									<div class="search_text">
+										<span>热门产品：</span>
+								        <a class="text-warning" href="" rel="nofollow">TAJD226K035NDJ</a>
+								        <a href="javascript:void(0)" class="searchKeyword" keyword="TAJD226K035RNJ">TAJD226K035RNJ</a>
+								        <a href="javascript:void(0)" class="searchKeyword" keyword="传感器 100V">传感器 100V</a> 
+									</div>
+								</form>
+							</div>
+						</div>
+						<div class="col-xs-4 col-sm-4 col-md-3 col-lg-3">
+							<div class="scart">
+								<div class="row">
+									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+										<a href="pairing.html" class="scart_list">
+											<i class="bomd">BOM配单</i>
+											<span id="bomNum">0</span>
+										</a>
+									</div>
+									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+										<a href="scart.html" class="scart_go">
+											<i class="iconfont icon-gouwuche"></i>
+											<span id="shopCartNum">3</span>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>			
+			</div>			
+			<!--导航-->
+			<div class="l-nav l_proNav">
+				<div class="nav">
+					<div class="clear">
+						<div id="allNav" class="allNav allNav_list fl"></div>							
+						<div class="nav_menu">
+							<ul>
+								<li><a class="navItem" href="index.html">首页</a></li>
+								<li><a class="navItem " href="product.html">被动选型</a></li>
+								<li class="drop_menu">
+									<a class="navItem" href="javascript:void(0);">
+										<span>制造商&目录</span>
+										<i class="glyphicon glyphicon-triangle-bottom"></i>
+									</a>
+									<div class="item_lists">
+										<a class="menu_list" href="product_category.html">商品目录</a>
+										<a class="menu_list" href="branded.html">品牌制造商</a>
+									</div>
+								</li>
+								<li><a class="navItem" href="copy.html">智能BOM</a></li>
+								<li><a class="navItem" href="product_list.html">样品申请</a></li>
+								<li><a class="navItem " href="original_agent.html" rel="nofollow">原厂代理专营</a></li>
+								<li><a class="navItem" href="strength_distributor.html" rel="nofollow">实力分销商</a></li>
+								<li><a class="navItem active" href="recruiting_suppliers.html" rel="nofollow">招募供应商</a></li>
+							</ul>	
+						</div>				           	
+					</div>
+				</div>
+			</div>	
+			<!--招募供应商主要内容-->
+			<div class="partMain">
+				<div class="supBack" style="background: url(images/supper.png) no-repeat;background-size: cover;">
+					<div class="wraper">
+						<div class="supback_con">
+							<h1>诚邀入驻供应商 </h1>
+							<p>共享平台资源</p>
+							<a href="#applicationIn">申请入驻</a>
+						</div>
+					</div>
+				</div>
+				<div class="wraper mt10">
+					<!--入驻流程-->
+					<div class="sup_process clear">
+						<div class="sup_title">
+							<h3>入驻ICYUN平台</h3>
+						</div>
+						<div class="sup_title_line clear">
+							<div class="sup_line_three"><p>原厂代理</p></div>	
+							<div class="sup_line_three"><p>库存寄售</p></div>	
+							<div class="sup_line_three"><p>原装分销商</p></div>	
+						</div>
+						<ul class="sup_img clear">
+							<li>
+								<img src="images/sup.png" alt="" />
+								<p>品牌推广</p>
+							</li>
+							<li>
+								<img src="images/sup1.png" alt="" />
+								<p>提升业绩  </p>
+							</li>
+							<li>
+								<img src="images/sup2.png" alt="" />
+								<p>呆料清仓</p>
+							</li>
+							<li>
+								<img src="images/sup3.png" alt="" />
+								<p>资金速回</p>
+							</li>
+							<li>
+								<img src="images/sup4.png" alt="" />
+								<p>免费仓储</p>
+							</li>
+							<li>
+								<img src="images/sup5.png" alt="" />
+								<p>节约成本</p>
+							</li>
+							<li>
+								<img src="images/sup6.png" alt="" />
+								<p>大客户导流</p>
+							</li>
+						</ul>	
+					</div>
+				</div>
+				<!--入驻申请-->
+				<div class="sup_apply_group">
+					<div class="wraper">
+						<div class="sup_apply">
+							<div class="sup_title">
+								<h3>申请流程</h3>
+							</div>
+							<div class="hd">
+								<div class="hd_img">
+									<img src="images/step_index_line.png" alt="" />
+								</div>
+								<ul class="apply_line clear">
+									<li>
+										<span>提交申请</span>
+									</li>
+									<li>
+										<span>专属客服联系</span>
+									</li>
+									<li>
+										<span>提交资料</span>
+									</li>
+									<li>
+										<span>审核资质签订协议</span>
+									</li>
+									<li>
+										<span>物料入仓</span>
+									</li>
+									<li>
+										<span>产品上架</span>
+									</li>
+									<li>
+										<span>销售回款</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				<!--申请入驻-->
+				<div id="applicationIn" class="applicationIn clear">
+					<div class="wraper">
+						<div class="sup_title">
+							<h3>入驻申请</h3>
+						</div>
+						<div class="apply_form">
+							<form action="" method="post" onsubmit="return verify();">
+								<div class="form form-width clear">
+									<span class="form_span"><i>*</i>联系人：</span>
+									<div class="form_div">
+										<input type="text" name="aname" id="aname" class="form-control" value="" />
+									</div>
+								</div>
+								<p class="ml apmsg"></p>
+								<div class="form form-width clear">
+									<span class="form_span"><i>*</i>手机号码：</span>
+									<div class="form_div">
+										<input type="text" name="aiphone" id="aiphone" class="form-control" value="" />
+									</div>
+								</div>
+								<p class="ml apmsg1"></p>
+								<div class="form form-width clear">
+									<span class="form_span"><i>*</i>公司名称：</span>
+									<div class="form_div">
+										<input type="text" name="apname" id="apname" class="form-control" value="" />
+									</div>
+								</div>
+								<p class="ml apmsg2"></p>
+								<div class="form form-width clear">
+									<span class="form_span"><i>*</i>邮箱：</span>
+									<div class="form_div">
+										<input type="email" name="aemail" id="aemail" class="form-control" value="" />
+									</div>
+								</div>
+								<p class="ml apmsg3"></p>
+								<div class="form form-width clear">
+									<span class="form_span">申请类型:</span>
+									<div class="form_div1">
+										<input type="radio" name="appli_type" id="choice1" value="" class="hideinp" checked/>
+										<label for="choice1">库存代售</label>
+										<input type="radio" name="appli_type" id="choice2" value="" class="hideinp" />
+										<label for="choice2">原厂代理</label>
+										<input type="radio" name="appli_type" id="choice3" value="" class="hideinp"/>
+										<label for="choice3">实力经销商</label>
+									</div>
+								</div>
+								<div class="form form-width clear">
+									<span class="form_span">营业执照:</span>
+									<div class="form_div2">
+										<input type="file" name="apic" id="trading" accept="image/*" class="hideinp" />
+										<label for="trading">上传照片</label>
+										<p>支持jpq，qif,png格式，不超过10m</p>
+									</div>
+								</div>
+								<p class="ml fileMsg"></p>
+								<div class="form form-width clear">
+									<span class="form_span">代理证书:</span>
+									<div class="form_div2">
+										<input type="file" name="apic1" id="agency" accept="image/*" class="hideinp" />
+										<label for="agency">上传照片</label>
+										<p>支持jpq，qif,png格式，不超过10m</p>
+									</div>
+								</div>
+								<p class="ml file1Msg"></p>
+								<div class="form form-width clear">
+									<div class="form_check">
+										<input type="checkbox" name="acheck" id="acheck" value="" />
+										<span>同意ICYUN商城</span>
+										<a href="xieyi.html">《入驻协议》</a>
+									</div>
+								</div> 
+								<p class="ml apmsg4"></p>
+								<div class="form form-width clear">
+									<div class="form_btn">
+										<input type="submit" value="提交申请" class="formBtn"/>
+									</div>
+								</div>
+								<div class="form form-width">
+									<div class="form_kefu">
+										<p>客服电话：400-800-5383  QQ：237297643</p>
+										<p>工作时间：周一至周五9:00-18:00   我们将在24小时内联系您！</p>
+									</div>
+								</div>
+							</form>
+							
+						</div>
+						<!--入驻条件-->
+						<div class="apply_condition" style="margin-top: 5px;">
+							<h3>入驻条件</h3>
+							<p>1.有正式注册的电子元器件生产企业、原厂授权代理商和原装正品经销商</p>
+							<p>2.有完善的质量管理和质量控制体系</p>
+							<p>3.对所售产品能提供良好的售后服务保障</p>
+							<p>4.拥有较强的电子商务能力和共同理念</p>
+						</div>
+					</div>	
+				</div>	
+			</div>
+			
+			<!--底部-->
+			<div id="footer"></div>
+			<!---->
+		</div>
+		
+		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+	    <script src="js/jquery-1.12.1.min.js"></script>
+	    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+	    <script src="js/bootstrap.min.js"></script>
+	    <script type="text/javascript" src="js/index.js"></script>
+	    <script type="text/javascript" src="js/form.js"></script>
+	</body>
+</html>

@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	   	<!-- <meta name="viewport" content="width=device-width, initial-scale=1">-->
+	    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+	    <title>香港购物订单</title>
+		<meta name="applicable-device" content="pc">
+	    <!-- Bootstrap -->
+	   	<link href="css/bootstrap.min.css" rel="stylesheet">
+	    <link rel="stylesheet" type="text/css" href="css/comm.css"/>
+	   	<link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
+	    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+	    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+	    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+	    <!--[if lt IE 9]>
+	      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+	      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+	</head>
+	<body>
+		<div class="perPart">
+			<div class="site-nav clear">
+				<div class="site-nav-bd">
+				  	<ul class="site-nav-bd-l">
+				  		<li class="site-nav-menu">
+				  			<div class="site-nav-menu-hd">
+				  				<span>您好！欢迎来到器械商城!</span>
+				  			</div>
+				  			<!--登录之后显示begin-->
+				  			<div class="sign_index" style="display: none;">
+				  				<a href="index.html">
+				  					<i class="glyphicon glyphicon-home"></i>
+				  					首页
+				  				</a>
+				  			</div>
+						<!--登录之后显示end-->
+				  		</li>
+				  		<li class="site-nav-menu">
+				  			<div class="site-nav-menu-hd">
+				  				<div class="site-nav-sign">
+				  					<a href="login.html" target="_top">登录</a>
+				  					<a href="register.html" target="_top">注册</a>
+				  				</div>
+				  				<!--登录之后显示begin-->
+				  				<div class="sign_after" style="display: none;">
+				  					<p>
+				  						<i class="iconfont icon-logout-user"></i>
+				  						<span><a href="member_center.html">151****2316</a></span>
+				  					</p>
+				  				</div>
+				  				<!--登录之后显示end-->
+				  			</div>
+				  		</li>
+				  		<li class="site-nav-menu">
+				  			<div class="site-nav-menu-hd">	
+				  				<div class="site-nav-bom">
+				  					<a href="../copy.html" target="_blank">BOM批量导入型号</a>
+				  				</div>								
+				  			</div>
+				  		</li>
+				  	</ul>
+				  	<ul class="site-nav-bd-r">
+				  		<li class="site-nav-menu">
+				  			<div class="site-nav-menu-hd">
+				  				<div class="site-nav-menu-order">
+				  					<a href="memberCenter/mepurchase-order.html" target="_top">
+				  						<span class="site-nav-icon site-nav-myorder"></span>
+				  						<span>我的订单</span>
+				  					</a>
+				  				</div>
+				  			</div>					
+				  		</li>
+				  		<li class="site-nav-menu">
+				  			<div class="site-nav-menu-hd">
+				  				<div class="site-nav-member">
+				  					<a href="memberCenter/member_center.html" target="_top">
+				  						<span class="site-nav-icon site-nav-center"></span>
+				  						<span>会员中心</span>
+				  					</a>
+				  				</div>
+				  			</div>			
+				  		</li>
+				  		<li class="site-nav-menu">
+				  			<div class="site-nav-menu-hd">
+				  				<div class="site-nav-phone">
+				  					<a href="tel:0551-8888888">
+				  						<span class="site-nav-icon site-nav-tel"></span>
+				  						<span>: 0551-8888888</span>
+				  					</a>
+				  				</div>
+				  			</div>				
+				  		</li>
+				  	</ul>
+				</div>
+			</div>
+			<!--头部-->
+			<div class="shopping-part">
+				<div class="wraper">
+					<div class="shopping-head-cont clear">
+						<div class="shopping-head-left fl">
+							<a href="index.html">
+								<div class="shopping-logo">
+									<img src="images/logo.png" alt="" />
+								</div>
+							</a>
+						</div>
+						<div class="shopping-head-txt fl">
+							<p>订单信息填写及核实</p>
+						</div>
+						<div class="shopping-head-right fr">
+							<div class="shopping-bg">
+								<span id="trapezium-right">我的购物车</span>
+								<span id="parallelogram">订单填写及核实</span>
+								<span id="trapezium-left">提交成功</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="wraper totalback mtop">
+					<div class="shopOrderCont">
+						<div class="shopOrderCont-group">
+							<form action="" method="post">
+								<div class="shopOrder-groupList">
+									<div class="groupList-head">
+										<h3>收货地址</h3>
+									</div>
+									<div class="groupList-list">
+										<div class="groupList-grid">
+											<form action="" method="post">
+												<div class="groupInput">
+													<div class="groupInput-box clear">
+														<p class="fl">收货人：</p>
+														<div class="box-input fl">
+															<input type="text" name="" value="" class="orderbox-input" placeholder="请输入全名" />
+														</div>
+													</div>
+													<div class="groupInput-box clear">
+														<p class="fl">联系电话：</p>
+														<div class="box-input fl">
+															<input type="text" name="" value="" class="orderbox-input" />
+														</div>
+													</div>
+													<div class="groupInput-box clear">
+														<p class="fl">固定电话：</p>
+														<div class="box-input fl">
+															<input type="text" name="" value="" class="orderbox-input" placeholder="请填写区号、电话号码，分机号，用“-”隔开" />
+														</div>
+													</div>
+													<div class="groupInput-box clear">
+														<p class="fl">所在地区：</p>
+														<div class="box-input fl">
+															<select name="provice">
+																<option value="0">选择地区</option>
+															</select>
+															<select name="city">
+																<option value="0">请选择城市</option>
+															</select>
+															<select name="country">
+																<option value="0">请选择县/区</option>
+															</select>
+														</div>
+													</div>
+													<div class="groupInput-box clear">
+														<p class="fl">详细地址：</p>
+														<div class="box-input fl">
+															<textarea name="shopAddr" class="shop-area"></textarea>
+														</div>
+													</div>
+													<div class="groupInput-box clear">
+														<p class="fl"></p>
+														<div class="box-input fl">
+															<p class="redColor">温馨提醒：  如指定发货地址属货仓、机场、等偏远特殊地区，客户需按照所在地
+																快递公司的收费标准缴纳附加费。</p>
+														</div>
+													</div>
+													<div class="groupInput-box clear">
+														<p class="fl"></p>
+														<div class="box-input fl">
+															<input type="checkbox" name="" value="" class="orcheck"/>
+															<span>设为默认</span>
+														</div>
+													</div>
+													<div class="groupInput-box clear">
+														<p class="fl"></p>
+														<div class="box-input fl">
+															<button type="submit" class="keepaddr">保存</button>
+															<button type="button" class="callOff">取消</button>
+														</div>
+													</div>
+												</div>
+											</form>
+										</div>
+										<div class="groupList-dsc">
+											<form action="" method="post">
+												<div class="groupList-dscont">
+													<div class="groupInput-box clear">
+														<p class="fl">收货人：</p>
+														<div>莱迪</div>
+													</div>
+													<div class="groupInput-box clear">
+														<p class="fl">联系电话：</p>
+														<div>15156256545</div>
+													</div>
+													<div class="groupInput-box clear">
+														<p class="fl">固定电话：</p>
+														<div>+852-856921</div>
+													</div>
+													<div class="groupInput-box  clear">
+														<p class="fl">收货地址：</p>
+														<div>香港九龙区某某路某某大厦</div>
+													</div>
+													<div class="groupBtn-order">
+														<button type="submit" class="addr-approve">默认</button>
+														<button type="button" class="addr-amend">修改</button>
+													</div>
+												</div>
+											</form>
+											<div class="groupList-newBtn">
+												<button type="button" class="newBtn">新增地址</button>
+											</div>
+										</div>
+										
+									</div>
+								</div>
+								<div class="shopOrder-groupList">
+									<div class="groupList-head">
+										<h3>配送方式</h3>
+									</div>
+									<div class="groupList-list">
+										<div class="orderdelive clear">
+											<div class="orderdelive-div fl ordeliveCurrt">快递配送</div>
+											<div class="orderdelive-div fl">门店自提</div>
+										</div>
+										<div class="orderdelive-cont">
+											<div class="orderdelive-expre storeCurrent">
+												<div class="orderdelive-expre-box">
+													<p class="redColor">默认发货方式为顺丰快递配送(如有特殊要求请备注)</p>
+												</div>
+												<div class="orderdelive-expre-box clear">
+													<p class="fl">可选条件：</p>
+													<div class="expre-list fl">
+														<span><input type="radio" name="condition" class="condition" value="" />货到付款</span>
+														<span><input type="radio" name="condition" class="condition" value="" />运费寄付</span>
+													</div>
+												</div>
+												<div class="orderdelive-expre-box clear">
+													<p><span>优惠：</span>订单金额≥100美金，可免基本运费5美金，超重另补</p>
+												</div>
+											</div>
+											<div class="orderdelive-pickup">
+												<div class="orderdeliveTip">温馨提示：请收到商城短信通知后，盖章合同复印件取货。</div>
+												<div class="orderdelive-store">
+													<ul class="storeAddfr">
+														<li class="storeActive">
+															<div class="storeTxt">
+																<p>香港地址：香港某某街道某某大厦A栋505</p>
+																<p>联系电话：15156873652</p>
+																<p>提货之间：10:00-17:00（周一至周五）</p>
+															</div>
+														</li>
+														<li>
+															<div class="storeTxt">
+																<p>香港地址：香港某某街道某某大厦A栋505</p>
+																<p>联系电话：15156873652</p>
+																<p>提货之间：10:00-17:00（周一至周五）</p>
+															</div>
+														</li>
+													</ul>
+												</div>
+												<div class="storeInfo">
+													<span>自提信息：</span>
+													<span class="storeleft">联系人<input type="text" name="lname" value="" class="storeInput" /></span>
+													<span class="storeleft">联系电话<input type="text" name="lphone" value="" class="storeInput" /></span>
+													<span><button type="submit" class="keepInfo">保存</button></span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="shopOrder-groupList">
+									<div class="groupList-head">
+										<h3>支付方式</h3>
+									</div>
+									<div class="groupList-list">
+										<div class="groupList-pay">
+											<div class="groupList-paylimit clear">
+												<h3>付款金额：</h3>
+												<ul class="clear">
+													<li class="shopchoice">
+														<p>全额付款</p>
+													</li>
+													<li>
+														<p>预付30%</p>
+													</li>
+												</ul>
+											</div>
+											<div class="groupList-payway clear">
+												<h3>付款方式：</h3>
+												<div class="fl hkbankway">
+													<input type="radio" name="hkbank" id="hkbank" value=""  checked="checked" />
+													<span>电汇 ( 银行转账）</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="shopOrder-groupList">
+									<div class="groupList-head">
+										<h3>发票信息</h3>
+									</div>
+									<div class="groupList-list">
+										
+										<div class="orderinvo-group">
+										<!--专用发票-->
+											<div class="orderinvo-group-list cateinvocurrent">
+												<div class="excultxt">
+													<ul class="excultxt-list">
+														<li class="excultxtaddr">
+															<div class="excultxt-list-top">
+																<span> 绿之意网络科技有限公司&nbsp;&nbsp;</span>
+																<span>香港某某区某某路某某大厦&nbsp;&nbsp;</span>
+    															<span>赖鹏飞&nbsp;&nbsp;</span>
+																<span> 0086+121121326556</span>
+															</div>
+															<div class="excultxt-list-btn">
+																<button type="button" class="exculdafult">默认</button>
+																<button type="button" class="excultxtbtn">修改</button>
+															</div>
+														</li>
+														<li>
+															<div class="excultxt-list-top">
+																<span>谢谢，我不用发票</span>
+															</div>
+														</li>
+													</ul>
+													<div class="exaddinvo">
+														<button type="button">添加发票</button>
+													</div>
+												</div>
+												<div class="exculform" style="display: none;">
+													<form action="" method="post">
+														<div class="shopexclu-form">
+															<div class="groupInput-box clear">
+																<p class="fl">公司名称：</p>
+																<div class="box-input fl">
+																	<input type="text" name="intitle" id="intitle" value="" class="orderbox-input" placeholder="公司名称必须和美金付款的账号信息一致" />
+																</div>
+															</div>
+															
+															<div class="groupInput-box clear">
+																<p class="fl">联系人：</p>
+																<div class="box-input fl">
+																	<input type="text" name="sphone" id="sphone" value="" class="orderbox-input" />
+																</div>
+															</div>
+															<div class="groupInput-box clear">
+																<p class="fl">联系电话：</p>
+																<div class="box-input fl">
+																	<input type="text" name="comtel" id="comtel" value="" class="orderbox-input" placeholder="区号和号码用“-”隔开，区号填写清楚" />
+																</div>
+															</div>
+															<div class="groupInput-box clear">
+																<p class="fl">公司地址：</p>
+																<div class="box-input fl">
+																	<textarea name="addrdetail" id="addrdetail" class="shop-area" placeholder="请填写清楚详细地址"></textarea>
+																</div>
+															</div>
+															<div class="groupInput-box clear">
+																<p class="fl"></p>
+																<div class="box-input fl">
+																	<input type="checkbox" name="tolecheck" id="tolecheck" value="" class="orcheck"/>
+																	<span>我已阅读并同意 <a href="memberCenter/invoice-xuzhi.html">《发票须知》</a></span>
+																</div>
+															</div>
+															<p class="deml tipMsg"></p>
+															<div class="groupInput-box clear">
+																<p class="fl"></p>
+																<div class="box-input fl">
+																	<button type="submit" class="keepaddr">保存</button>
+																	<button type="button" class="callOff">取消</button>
+																</div>
+															</div>
+															<!---->
+														</div>
+													</form>
+													
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="shopOrder-groupList">
+									<div class="groupList-head">
+										<h3>订单信息</h3>
+										<p class="backup"><a href="scart.html">返回购物车</a></p>
+									</div>
+									<div class="groupList-list">
+										<div class="orderInfo-beizhu clear">
+											<p class="fl">备注留言：</p>
+											<div class="fl">
+												<input type="tex" name="beizhu" id="beizhu" value="" placeholder="请填写批次要求或者特殊要求，如18年，如无备注则按商城系统发货。" />
+											</div>
+										</div>
+										<div class="orderInfo-detail mt10 ">
+											<table class="table orderInfo-table">
+												<tr>
+													<th width="4%">序号</th>
+													<th width="16%">商品名称</th>
+													<th width="10%">封装规格</th>
+													<th width="10%">品牌</th>
+													<th width="10%">库存编码</th>
+													<th width="10%">含税单价</th>
+													<th width="10%">数量</th>
+													<th width="10%">小计</th>
+													<th width="10%">货期（工作日）</th>
+													<th width="10%">客户物料编码</th>
+												</tr>
+												<tr>
+													<td>
+														<p>1</p>
+													</td>
+													<td>
+														<p>ADP3331ARTZ-REEL7</p>
+													</td>
+													<td>
+														<p>0401</p>
+													</td>
+													<td>
+														<p>maxim</p>
+													</td>
+													<td>
+														<p>AB12356</p>
+													</td>
+													<td>
+														<p>￥10.9277</p>
+													</td>
+													<td>
+														<p>10</p>
+													</td>
+													<td>
+														<p>￥10.9.27</p>
+													</td>
+													<td>
+														<p>3-5工作日</p>
+													</td>
+													<td>
+														<p>
+															<input type="text" name="" id="" value="" placeholder="自由输入"/>
+														</p>
+													</td>
+												</tr>
+											</table>
+										</div>
+										<!--优惠券-->
+										<div class="orderInfo-discount-cont">
+											<div class="orderInfo-discount">
+												<p class="infotext">使用优惠/礼品卡/抵用 <i class="iconfont icon-icon"></i></p>
+												<p class="redColor mt10 infotext">优惠券</p>
+												<div class="infodivtxt"><i class="iconfont icon-weibiaoti"></i>优惠组合推荐，共抵用300.00元：使用优惠券一张</div>
+												<div class="orderInfodis-list">
+													<ul class="clear">
+														<li class="onfodisactive">
+															<div class="discount-cont">
+																<div class="discountTxt">
+																	<h2><b>￥300</b><span>满4000元</span></h2>
+																	<p>有效期至2018-11-01</p>
+																	<h3>【东券】 适用于自营商品</h3>
+																</div>
+															</div>
+														</li>
+														<li>
+															<div class="discount-cont">
+																<div class="discountTxt">
+																	<h2><b>￥300</b><span>满4000元</span></h2>
+																	<p>有效期至2018-11-01</p>
+																	<h3>【东券】 适用于自营商品</h3>
+																</div>
+																<div class="discounttxt-notip">
+																	<i class="iconfont icon-warning1"></i><span>所结算商品中没有符合条件的商品</span>
+																</div>
+															</div>
+															
+														</li>
+														<li>
+															<div class="discount-cont">
+																<div class="discountTxt">
+																	<h2><b>￥300</b><span>满4000元</span></h2>
+																	<p>有效期至2018-11-01</p>
+																	<h3>【东券】 适用于自营商品</h3>
+																</div>
+																<div class="discounttxt-notip">
+																	<i class="iconfont icon-warning1"></i><span>所结算商品中没有符合条件的商品</span>
+																</div>
+															</div>
+														</li>
+														<li>
+															<div class="discount-cont">
+																<div class="discountTxt">
+																	<h2><b>￥300</b><span>满4000元</span></h2>
+																	<p>有效期至2018-11-01</p>
+																	<h3>【东券】 适用于自营商品</h3>
+																</div>
+																<div class="discounttxt-notip">
+																	<i class="iconfont icon-warning1"></i><span>所结算商品中没有符合条件的商品</span>
+																</div>
+															</div>
+														</li>
+														<li>
+															<div class="discount-cont">
+																<div class="discountTxt">
+																	<h2><b>￥300</b><span>满4000元</span></h2>
+																	<p>有效期至2018-11-01</p>
+																	<h3>【东券】 适用于自营商品</h3>
+																</div>
+																<div class="discounttxt-notip">
+																	<i class="iconfont icon-warning1"></i><span>所结算商品中没有符合条件的商品</span>
+																</div>
+															</div>
+														</li>
+													</ul>
+												</div>
+											</div>
+											<div class="dicounttotal">
+												<p>金额抵用<span class="redColor">￥300.00 </span>  使用优惠券1张，优惠300.00元</p>
+											</div>
+											
+											<!---->
+										</div>
+										
+									</div>
+									
+ 								</div>
+								<div class="shopOrder-groupList">
+									<form action="" method="post">
+										<div class="shopOrderTotal">
+											<table class="table shopOrderTotalTable">
+												<tr>
+													<td class="shopLeftwidth"><p><span class="shopOrange">2</span>件商品，商品总金额：</p></td>
+													<td class="shopRightwidth"><p>￥666.60 </p></td>
+												</tr>
+												<tr>
+													<td class="shopLeftwidth"><p> 运费：</p></td>
+													<td class="shopRightwidth"><p><b class="shopOrange">￥50.00</b></p></td>
+												</tr>
+												<tr>
+													<td class="shopLeftwidth"><p> 返现：</p></td>
+													<td class="shopRightwidth"><p>-￥0.00</p></td>
+												</tr>
+												<tr>
+													<td class="shopLeftwidth"><p> 商品优惠：</p></td>
+													<td class="shopRightwidth"><p>-￥300.00</p></td>
+												</tr>
+												<tr>
+													<td class="shopLeftwidth"><p>应付金额：</p></td>
+													<td class="shopRightwidth"><p class="shoplarge"><b class="redColor">￥ 616.60</b></p></td>
+												</tr>
+												
+											</table>
+											<div class="shoptotalbtn">
+												<button type="submit" class="pickBtn">提交订单</button>
+											</div>
+										</div>
+										
+									</form>
+									
+								</div>
+								
+							</form>
+						
+						
+						
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			<div id="footer"></div>
+			<!---->
+		</div>
+		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+	    <script src="js/jquery-1.12.1.min.js"></script>
+	    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+	    <script src="js/bootstrap.min.js"></script>
+	    <script type="text/javascript" src="js/index.js"></script>
+	  	<script type="text/javascript">
+	  		$("#invo-file").change(function(){
+				$(".box-input .invo-label").html("已上传");
+			});
+			$(".orderInfo-discount .infotext").click(function(){
+				$(".orderInfodis-list").toggle();
+				$(this).children("i").toggleClass("icon-icon icon-jiantou-copy");
+			});
+			
+	  	</script>
+	</body>
+</html>
+
