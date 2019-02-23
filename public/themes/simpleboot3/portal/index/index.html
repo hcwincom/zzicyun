@@ -1,0 +1,269 @@
+ <include file="public@head"/> 
+  </head>
+  <body>
+  	<div class="topBanner">
+  		<!--公共头部-->		
+  		 <include file="public@header"/> 		
+		  					 
+					<!--导航部分-->
+					<div class="l-nav">
+						<div class="nav">
+							<div class="clear">
+								<div id="allNav" class="allNav fl">
+									<h3 class="allNav__cap">{$notice.index.goods_cate}</h3>
+									<div class="allNav__con">
+									<present name="cate['cate1']">
+									<foreach name="cate['cate1']" item="v1" key="k1">
+										<div class="allNav-lv1">
+											<a href="product.html" class="allNav-lv1__cap"><span class="capSpan span1">{$v1.name}</span></a>
+											<div class="allNav-lv2">
+												<div class="lv2_con">
+													<present name="cate['cate2'][$k1]">
+													<foreach name="cate['cate2'][$k1]" item="v2" key="k2">
+													<div class="lv2_list clear">
+														<h3>{$v2.name}：</h3>
+														<ul class="lv2_ul">
+															<present name="cate['cate3'][$k2]">
+															<foreach name="cate['cate3'][$k2]" item="v3" key="k3">
+															<li><a href="product.html">{$v3.name}</a></li>
+															</foreach>
+															</present>
+														</ul>
+													</div>
+													</foreach>
+													</present>
+													 	
+												</div>				
+											</div>
+										</div>
+										</foreach>
+										</present>
+										 
+										<a class="allNav-more" href="product_category.html"><i class="iconfont icon-right"></i>查看全部{$notice.index.goods_cate}</a>
+									</div>	
+								</div>	
+								<!--导航菜单-->						
+								 <include file="public@nav"/>
+								
+							</div>
+						</div>
+					</div>	
+					<!--轮播-->
+					<div style="width:100%;overflow: hidden;">
+						<div class="floor-slider">
+							<div class="l-center">
+								<div class="slider fl">
+									<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+										<ol class="carousel-indicators">
+										<present name="banners['index_x']">
+										<foreach name="banners['index_x']" item="vo">
+										  <li data-target="#carousel-example-generic" data-slide-to="{$key}" class="<eq name='key' value='active'></eq>"></li> 
+										  </foreach>
+										</present> 
+										</ol>
+										<div class="carousel-inner slider-con" role="listbox">
+										<present name="banners['index_x']">
+										<foreach name="banners['index_x']" item="vo">
+											<div class="item active">
+										    <a href="{$vo.url}" target="_blank" title="">
+													<img src="{:cmf_get_image_url($vo.pic)}" alt="" />
+												</a>
+										  </div>
+										</foreach>
+										</present>
+										  
+										</div>
+									</div>
+								</div>												
+							<div class="inx-uBox fr">
+								<div class="login_right">
+									<div class="login-center">
+										<a href="login.html">请登录</a>
+										<a href="register.html">免费注册</a>
+									</div>
+									<!--登录之后显示begin-->
+									<div class="login-after" style="display: none;">
+										<div class="login_img">
+											<div class="row">
+												<div class="col-lg-3 col-md-3 col-sm-3">
+													<span class="pic"><img src="images/客服.png" alt="头像" /></span>
+												</div>
+												<div class="col-lg-9 col-md-9 col-sm-9">
+													<div class="memName">
+														<p class="mName">Hi~<span>据工行卡i</span></p>
+														<p class="memCenter">
+															<a href="memberCenter/member_center.html">会员中心</a>
+														</p>
+													</div>	
+												</div>
+											</div>
+											
+										</div>
+									</div>
+									<!--登录之后显示end-->
+									<div class="links clear">
+										<a href="copy.html"><span>智能BOM</span></a>
+										<a href="memberCenter/purchase-order.html"><span>订单状态</span></a>
+										<a href="memberCenter/credit-discount.html"><span>优惠券</span></a>
+										<a href="memberCenter/purchase-order.html"><span>待付款</span></a>
+										<a href="memberCenter/cominquiry-list.html"><span>人工-报价(<i>0</i>)</span></a>
+									</div>
+								 
+									<div class="news">
+									 
+										<div class="news_title">
+											{$articel_cates['notice']['lan_name']}
+											<a href="proclamation-more.html">更多</a>
+										</div>
+										<foreach name="article_notice" item="vo">
+											<a href="proclamation-detail.html" class="newsItem" target="_blank">{$vo.name}</a>
+										</foreach>
+									 
+									</div>
+								</div>
+							</div>
+							<!--图片-->
+							<div class="quickLnk">
+							<present name="banners['index_m4']">
+							<foreach name="banners['index_m4']" item="vo">
+								<a href="{$vo.url}" class="quickLnkItm" target="_blank">
+									<img src="{:cmf_get_image_url($vo.pic)}" alt="" />
+									<span>点击</span>
+								</a>
+								
+							</foreach>
+							</present>
+								 
+							</div>
+										
+						</div>
+						
+					</div>
+							
+				</div>
+		<!--主要内容-->	
+				<div class="inbrand clear">
+					<div class="wraper">		
+						<div class="totalback">
+								<div class="list1">
+									<!--合作品牌-->
+									<div class="inxSecCap">
+										<span class="ag_mod">合作品牌</span>
+										<span class="ag_mod2">海量商品 &nbsp;正品低价</span>
+										<a href="branded.html">更多<i class="glyphicon glyphicon-menu-right"></i></a>
+									</div>
+									<ul class="inx-agList clear">
+										<foreach name="brands" item="vo">
+										<li><a href="branded_detail.html"><img src="{$image_url}/{$vo.pic}" alt="" /></a></li>
+										</foreach>
+										 
+									</ul>								
+								</div>	
+								<!--海量商品-->
+								<div class="lists2 clear">
+									<div class="inxSecCap">
+										<span class="ag_mod">海量商品</span>
+										<span class="ag_mod2">海量商品 &nbsp;正品低价</span>
+										<a href="product_category.html">更多<i class="glyphicon glyphicon-menu-right"></i></a>
+									</div>	
+									<ul class="inx-goods">
+									<foreach name="goods" item="vo">
+										<li><a href="{:url('goods/Goods/detail',['id'=>$key])}"><img src="{$image_url}/{$vo.pic}" alt="" /><h3 class="goods-title">{$vo.name}</h3></a></li>
+									</foreach>
+									 
+									</ul>		
+								</div>
+								<div class="inx_ad clear mt10">
+									<div class="ad_left">
+										<img src="images/ad_left.png" alt="" />
+									</div>
+									<div class="ad_right">
+										<img src="images/ad_right.png" alt="" />
+									</div>
+								</div>
+								<div class="lists3 clear mt10 container-fluid">
+									<div class="inxSecCap">
+										<span class="ag_mod">{$articel_cates['news']['lan_name']}</span>
+										<span class="ag_mod2">{$articel_cates['news']['dsc']}</span>
+										<a href="information_center.html">更多<i class="iconfont icon-enter"></i></a>
+									</div>	
+									<div class="inx-zixun">
+										<div class="row">
+											<div class="zx-left col-lg-4 col-md-4 col-sm-4">
+											<volist name="article_news" id="vo" offset="0" length="1">
+											 
+												<a href="information_detail.html">
+													<div class="zxImg">
+														<img src="{:cmf_get_image_url($vo.pic)}" alt="" />
+													</div>
+														<p>{$vo.name}</p>
+													
+												</a>
+											</volist>
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4">
+												<ul class="zixun">
+												<volist name="article_news" id="vo" offset="1" length="10">
+													<li class="zixun_hot">
+														<a href="information_detail.html">
+															{$vo.name}
+														</a>
+														
+														<if condition="(time()-$vo.ctime) lt 86000">
+															<p style="display:none">new</p>
+															<p> new</p>
+														<else/>
+															<gt name="vo.clicked" value="100">
+																<p style="display:none">new</p>
+																<p> hot</p> 
+															</gt> 
+														</if>
+														 
+													</li>
+												</volist>
+													 
+												</ul>
+											</div>
+											<div class="zx-right col-lg-4 col-md-4 col-sm-4">
+												<div class="zxRight">
+													<div class="zxtitle">
+														<p>数据手册</p>
+													</div>
+													<div class="zxSearch">
+														<div class="search_input">
+															<input type="text" class="inputSer" name="inputSer" id="inputSer" value=""/>
+															<button type="submit"><i class="iconfont icon-enter"></i></button>
+														</div>
+														<label for="inputSer" style="color: rgb(102, 102, 102); visibility: visible;">
+															<i class="glyphicon glyphicon-search"></i>
+															<b>搜索</b>
+															<span>超过百万个产品的数据手册</span>
+														</label>
+													</div>
+													<div class="zxshuju">
+														<h3>推荐数据手册</h3>
+														<div class="zxshuju_p">
+														<foreach name="pdfs" item="vo">
+															<p>{$vo.name}</p>
+														</foreach>
+														 
+														</div>
+													</div>									
+												</div>								
+											</div>
+										</div>
+									</div>					
+								</div>
+							<!---->
+						</div>
+					</div>			
+				</div>
+		<!--底部-->
+		
+		<div id="footer"></div>
+			<!---->
+  	</div>
+  
+  <include file="public@foot"/> 
+  </body>
+</html>

@@ -1,0 +1,105 @@
+<!-- 点击放大的图片 -->
+<div id="clickImg">
+	<div class="btnImg">
+		<span class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+	<div id="btnPrev">
+		<span class="glyphicon glyphicon-upload"></span>
+	</div>
+	<div id="btnNext">
+		<span class="glyphicon glyphicon-download"></span>
+	</div>
+	<div id="bigImg" style="background-size: contain;"></div>	
+	<img src="" alt="" class="srcImg" style="display: none;">
+</div>
+
+<script>
+$(function(){
+//  点击放大图片
+
+	var img_url="{:cmf_get_image_url('')}"+'/';
+	var zj_li_index;
+	var picLen = $("#pic_jm li").length;
+	console.log(picLen);
+	var zj_li = $("#pic_jm").eq(0);
+	$(document).on("click",'.pic1',function () {
+	 	zj_li_index = $(this).parents('li').index();
+
+		zj_li = $(this).parents("#pic_jm");
+	
+		var backgroundImg=$(this).parents('li').find('.file0').val();	
+		$(".srcImg").attr("src",img_url+backgroundImg);
+
+		$("<img />").attr("src", img_url + backgroundImg).load(function () {
+				var imgWidth = this.width,
+				imgHeight = this.height;
+				
+			 $("#bigImg").css({
+				"width": imgWidth,
+				"height": imgHeight,
+				"background-image": "url(" + img_url + backgroundImg + ")"
+			});	
+		});
+				
+		$("#clickImg").fadeIn(); 
+	});
+
+	$(".btnImg .glyphicon-remove-circle").click(function () {
+		$("#clickImg").fadeOut();
+	});
+
+
+
+	//上一张
+	$("#clickImg #btnPrev span").click(function () {
+		if (zj_li_index != 0) {
+			zj_li_index--;
+			console.log(zj_li_index);
+			var inputImg = zj_li.find("li").eq(zj_li_index).find('.file0').val();
+
+			$(".srcImg").attr("src", img_url +inputImg);
+
+			$("<img />").attr("src", img_url + inputImg).load(function () {
+				var imgWidth = this.width,
+					imgHeight = this.height;
+				$("#bigImg").css({
+					"width": imgWidth,
+					"height": imgHeight,
+					"background-image": "url(" + img_url + inputImg + ")"
+				});
+			});
+		}
+	});
+
+	// 下一张
+	$("#clickImg #btnNext span").click(function () {
+		if (zj_li_index < picLen-1) {
+			zj_li_index++;
+			console.log(zj_li_index);
+			var inputImg = zj_li.find("li").eq(zj_li_index).find('.file0').val();
+			$(".srcImg").attr("src", img_url + inputImg);
+
+			$("<img />").attr("src", img_url + inputImg).load(function () {
+				var imgWidth = this.width,
+					imgHeight = this.height;
+				$("#bigImg").css({
+					"width": imgWidth,
+					"height": imgHeight,
+					"background-image": "url(" + img_url + inputImg + ")"
+				});
+			});
+		}else{
+			return false;
+		}
+	});
+
+
+
+});
+
+
+
+
+</script>
+	
+	

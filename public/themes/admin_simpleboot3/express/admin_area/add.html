@@ -1,0 +1,81 @@
+<include file="public@header" />
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs"> 
+			<include file="public@nav" />
+		</ul>
+		<form class="form-horizontal js-ajax-form{$zzajax} margin-top-20" role="form" method="post" action="{:url('add_do')}">
+			<include file="express@admin_area:base"/>
+			 
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-primary js-ajax-submit">{:lang('SAVE')}</button>
+					 
+				</div>
+			</div>
+		</form>
+	</div>
+	<script src="__STATIC__/js/admin.js"></script>
+<script>
+var city_url="{:url('admin/public/city')}";
+$('#type1').click(function(){
+	$('#city2').hide();
+	$('#city1').html('<option value="1">作为省</option>');
+	$('#city1').val(1);
+	$('#city1').val(1);
+});
+$('#type2').click(function(){
+	$('#city2').hide();
+	var options='';
+	$.post(city_url,{'fid':1},function(data){
+		if(data.code!=1){
+			return false;
+		}
+		list=data.data.list;
+		for(var i in list){
+			options+='<option value="'+i+'">'+list[i]+'</option>';
+		}
+		$('#city1').html(options);
+	},'json');
+	 
+});
+$('#type3').click(function(){
+	$('#city2').show();
+	var options='<option value="0">选择省</option>';
+	$.post(city_url,{'fid':1},function(data){
+		if(data.code!=1){
+			return false;
+		}
+		list=data.data.list;
+		for(var i in list){
+			options+='<option value="'+i+'">'+list[i]+'</option>';
+		}
+		$('#city1').html(options);
+		$('#city1').val(0);
+	},'json');
+	$('#city2').html('<option value="0">选择市</option>');
+});
+$('#city1').change(function(){
+	var city1=parseInt($(this).val());
+	if(city1==0){
+		$('#city2').html('<option value="0">选择市</option>');
+		return false;
+	}else if(city1==1){
+		return false;
+	}
+	var options='';
+	$.post(city_url,{'fid':city1},function(data){
+		if(data.code!=1){
+			return false;
+		}
+		list=data.data.list;
+		for(var i in list){
+			options+='<option value="'+i+'">'+list[i]+'</option>';
+		}
+		$('#city2').html(options); 
+	},'json');
+});
+</script>	 
+</body>
+</html>

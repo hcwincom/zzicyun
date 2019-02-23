@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	   <!-- <meta name="viewport" content="width=device-width, initial-scale=1">-->
+	    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+	    <title>商品详情页</title>
+			<meta name="applicable-device" content="pc">
+	    <!-- Bootstrap -->
+	    <link href="css/bootstrap.min.css" rel="stylesheet">
+	    <link rel="stylesheet" type="text/css" href="css/comm.css"/>
+	    <link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
+	    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/share.css" />
+	</head>
+	<body>
+		<div class="topBanner">
+			<div class="site-nav clear">
+	  			<div class="site-nav-bd">
+	  				<ul class="site-nav-bd-l">
+	  					<li class="site-nav-menu">
+	  						<div class="site-nav-menu-hd">
+	  							<span>您好！欢迎来到器械商城!</span>
+	  						</div>
+	  						<!--登录之后显示begin-->
+	  						<div class="sign_index" style="display: none;">
+	  							<a href="index.html">
+	  								<i class="glyphicon glyphicon-home"></i>
+	  								首页
+	  							</a>
+	  						</div>
+						<!--登录之后显示end-->
+	  					</li>
+	  					<li class="site-nav-menu">
+	  						<div class="site-nav-menu-hd">
+	  							<div class="site-nav-sign">
+	  								
+	  								<a href="login.html" target="_top">登录</a>
+	  								<a href="register.html" target="_top">注册</a>
+	  							</div>
+	  							<!--登录之后显示begin-->
+	  							<div class="sign_after" style="display: none;">
+	  								<p>
+	  									<i class="iconfont icon-logout-user"></i>
+	  									<span>151****2316</span>
+	  								</p>
+	  							</div>
+	  							<!--登录之后显示end-->
+	  						</div>
+	  						
+	  					</li>
+	  					<li class="site-nav-menu">
+	  						<div class="site-nav-menu-hd">	
+	  							<div class="site-nav-bom">
+	  								<a href="copy.html" target="_blank">BOM批量导入型号</a>
+	  							</div>								
+	  						</div>
+	  					</li>
+	  				</ul>
+	  				<ul class="site-nav-bd-r">
+	  					<li class="site-nav-menu">
+	  						<div class="site-nav-menu-hd">
+	  							<div class="site-nav-menu-order">
+	  								<a href="memberCenter/purchase-order.html" target="_top">
+	  									<span class="site-nav-icon site-nav-myorder"></span>
+	  									<span>我的订单</span>
+	  								</a>
+	  							</div>
+	  						</div>					
+	  					</li>
+	  					<li class="site-nav-menu">
+	  						<div class="site-nav-menu-hd">
+	  							<div class="site-nav-member">
+	  								<a href="memberCenter/member_center.html" target="_top">
+	  									<span class="site-nav-icon site-nav-center"></span>
+	  									<span>会员中心</span>
+	  								</a>
+	  							</div>
+	  						</div>			
+	  					</li>
+	  					<li class="site-nav-menu">
+	  						<div class="site-nav-menu-hd">
+	  							<div class="site-nav-phone">
+	  								<a href="tel:0551-8888888">
+	  									<span class="site-nav-icon site-nav-tel"></span>
+	  									<span>: 0551-8888888</span>
+	  								</a>
+	  							</div>
+	  						</div>				
+	  					</li>
+	  				</ul>
+	  			</div>
+	  		</div>
+			<!--搜索部分-->
+			<div class="search_banner">
+				<div class="top_wraper">	
+					<div class="row">
+						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+							<div class="logo">
+								<a href="index.html">
+									<img class="logo_img" src="images/logo.png" alt="器械商城" />
+								</a>
+							</div>
+						</div>
+						<div class="col-xs-5 col-sm-5 col-md-6 col-lg-6">
+							<div class="top_search">
+								<form action="" method="post">
+									<div class="search_bor clear">
+										<input class="srinp fl" id="nav-keyword" value="" name="keyword" autocomplete="off" placeholder="请输入型号或产品相关信息" type="text">		
+										<button class="srsub fl" value="" type="button" id="subser"><i class="iconfont icon-sousuo"></i>搜索</button>
+									</div>
+									<div class="search_text">
+										<span>热门产品：</span>
+								        <a class="text-warning" href="" rel="nofollow">TAJD226K035NDJ</a>
+								        <a href="javascript:void(0)" class="searchKeyword" keyword="TAJD226K035RNJ">TAJD226K035RNJ</a>
+								        <a href="javascript:void(0)" class="searchKeyword" keyword="传感器 100V">传感器 100V</a> 
+									</div>
+								</form>
+							</div>
+						</div>
+						<div class="col-xs-4 col-sm-4 col-md-3 col-lg-3">
+							<div class="scart">
+								<div class="row">
+									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+										<a href="pairing.html" class="scart_list">
+											<i class="bomd">BOM配单</i>
+											<span id="bomNum">0</span>
+										</a>
+									</div>
+									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+										<a href="scart.html" class="scart_go">
+											<i class="iconfont icon-gouwuche"></i>
+											<span id="shopCartNum">3</span>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>			
+			</div>			
+			<!--导航-->
+			<div class="l-nav l_proNav">
+				<div class="nav">
+					<div class="clear">
+						<div id="allNav" class="allNav allNav_list fl"></div>							
+						<div class="nav_menu">
+							<ul>
+								<li><a class="navItem" href="index.html">首页</a></li>
+								<li><a class="navItem active" href="product.html">被动选型</a></li>
+								<li class="drop_menu">
+									<a class="navItem" href="javascript:void(0);">
+										<span>制造商&目录</span>
+										<i class="glyphicon glyphicon-triangle-bottom"></i>
+									</a>
+									<div class="item_lists">
+										<a class="menu_list" href="product_category.html">商品目录</a>
+										<a class="menu_list" href="branded.html">品牌制造商</a>
+									</div>
+								</li>
+								<li><a class="navItem" href="copy.html">智能BOM</a></li>
+								<li><a class="navItem" href="product_list.html">样品申请</a></li>
+								<li><a class="navItem" href="original_agent.html" rel="nofollow">原厂代理专营</a></li>
+								<li><a class="navItem" href="strength_distributor.html" rel="nofollow">实力分销商</a></li>
+								<li><a class="navItem" href="recruiting_suppliers.html" rel="nofollow">招募供应商</a></li>
+							</ul>	
+						</div>				           	
+					</div>
+				</div>
+			</div>	
+			<!--商品详情主要内容-->
+			<div class="wraper clear" id="productDetail">
+				<div class="totalback">
+					<div class="row">
+						<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+							<div class="left_detail">
+								<div class="detail_h3">
+									<h3>STM32F103C8T6</h3>
+								</div>
+								<div class="detail_cont">
+									<div class="row">
+										<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+											<div class="detail_pro_img">
+												<div class="detail_logo">
+													<img src="images/detail_logo.png" alt="" />
+												</div>
+												<div class="detail_img">
+													<img src="images/pro.jpg" alt="" />
+												</div>
+											</div>
+											<div class="detail_img_big">
+												<a class="bigImg" href="javascript:viod(0);">
+													<i class="iconfont icon-kuoda"></i>
+													<span>扩大</span>
+												</a>
+												<p class="shop_text">图像仅供参考</p>
+												<p class="shop_text">请参阅产品规格</p>
+											</div>
+											<!--点击放大的图片-->
+											<div class="outDiv">
+												<div class="innerdiv">
+													<div class="big"><img src="" alt="" /></div>
+												</div>
+											</div>
+											<div class="detail_share" id="socialShare">
+												<!--<a href="javascript:viod(0);">
+													<i class="iconfont icon-fenxiang"></i>
+													<span>共享</span>
+												</a>-->
+											</div>
+										</div>
+										<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+											<div class="detail_pro_info">
+												<ul class="detail_ul">
+													<li>
+														<span>型号： </span>
+														<div>
+															<span>511-STM32F103C8T6</span>
+														</div>
+													</li>
+													<li>
+														<span>生产批次：</span>
+														<div>
+															<span>1235656444</span>
+														</div>
+													</li>
+													<li>
+														<span>制造商：</span>
+														<div class="supplier_za">
+															<a href="">STM32F103C8T6</a>
+														</div>
+													</li>
+													<li>
+														<span>库存编号：</span>
+														<div class="stock_num">
+															<span>STMICROELECTRCS</span>
+														</div>
+													</li>
+													<li>
+														<span>供应商：</span>
+														<div class="supplier">
+															<p><a href="">广诺科技有限公司</a></p>
+															<p>所售物料由icyun商城管理发货</p>
+														</div>
+													</li>
+													<li>
+														<span>产品说明：</span>
+														<div>
+															<p>ARM微控制器-MCU32BIT CortexM3 64KB 20KB RMB 2X12 ADC</p>
+														</div>
+													</li>
+													<li>
+														<span>PDF数据：</span>
+														<div class="pdf_load">
+															<p><a href="javascript:;">ARM微控制器-MCU32BIT CortexM3 64KB 20KB RMB 2X12 ADC</a></p>
+														</div>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<div class="detail_cont_bottom">
+										<div class="row">
+											<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+												<div class="detail_contrast">
+													<button id="addCompare" class="addCompare" data-toggle="modal" data-target="#myModal">
+														<i class="iconfont icon-duibi"></i>
+														&nbsp;加入对比
+													</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!--规格-->
+								<div class="detail_norms mt10">
+									<div class="detail_norms_h3">
+										<h3>规格信息</h3>
+									</div>
+										<table class="table table-grayth">
+									<tbody>
+										<tr>
+											<th class="text-right" width="30%">系列</th>
+											<td>RC</td>
+										</tr>
+										<tr>
+											<th class="text-right" width="30%">工厂包装数量</th>
+											<td>10000</td>
+										</tr>
+										<tr>
+											<th class="text-right" width="30%">外壳代码-mm</th>
+											<td>1005</td>
+										</tr>
+										<tr>
+											<th class="text-right" width="30%">功率额定值</th>
+											<td>62.5 mW (1/16 W)</td>
+										</tr>
+										<tr>
+											<th class="text-right" width="30%">电压额定值</th>
+											<td>50 V</td>
+										</tr>
+										<tr>
+											<th class="text-right" width="30%">高度</th>
+											<td>0.35 mm</td>
+										</tr>
+										<tr>
+											<th class="text-right" width="30%">长度</th>
+											<td>1mm</td>
+										</tr>
+										<tr>
+											<th class="text-right" width="30%">产品</th>
+											<td>Thick Film Resistors General Purpose</td>
+										</tr>
+										<tr>
+											<th class="text-right" width="30%">端接类型</th>
+											<td>SMD/SMT</td>
+										</tr>
+										<tr>
+											<th class="text-right" width="30%">类型</th>
+											<td>General Purpose Resistor</td>
+										</tr>
+										<tr>
+											<th class="text-right" width="30%">宽度</th>
+											<td>0.5 mm</td>
+										</tr>
+										<tr>
+											<th class="text-right" width="30%">特点</th>
+											<td>RC0402 series chip resistors with lead-free terminations</td>
+										</tr>
+										<tr>
+											<th class="text-right" width="30%">功率（W）</th>
+											<td>0.063W，1/16W</td>
+										</tr>
+										<tr>
+											<th class="text-right" width="30%">成分</th>
+											<td>厚膜</td>
+										</tr>
+										<tr>
+											<th class="text-right" width="30%">特性</th>
+											<td>防潮</td>
+										</tr>
+										<tr>
+											<th class="text-right" width="30%">工作温度</th>
+											<td>-55°C ~ 155°C</td>
+										</tr>
+										<tr>
+											<th class="text-right" width="30%">封装/外壳</th>
+											<td>0402</td>
+										</tr>
+										<tr>
+											<th class="text-right" width="30%">高度-安装（最大值）</th>
+											<td>0.016"（0.40mm）</td>
+										</tr>
+										<tr>
+											<th class="text-right" width="30%">端子数</th>
+											<td>2</td>
+										</tr>
+										<tr>
+											<th class="text-right" width="30%">电阻</th>
+											<td>10KOhms</td>
+										</tr>
+										<tr>
+											<th class="text-right" width="30%">偏差</th>
+											<td>±5%</td>
+										</tr>
+										<tr>
+											<th class="text-right" width="30%">尺寸</th>
+											<td>0402/1.0*0.5mm</td>
+										</tr>
+										<tr>
+											<th class="text-right" width="30%">卷带</th>
+											<td>7 inch dia. Reel</td>
+										</tr>
+									</tbody>
+								</table>
+								
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="padding-left: 0;">
+							<div class="right_detail">
+								<div class="detail_h3">
+									<h3>有库存：<span>9895<i>需确认</i></span></h3>
+								</div>
+								<div class="detail_form" style="background: #fff;">
+									<form action="" method="post">
+										<table class="table table_right">
+											<tbody>
+												<tr>
+													<th width="28%">发货时间：</th>
+													<td class="qred">15:00前付款订单当天发货</td>
+												</tr>
+												<tr>
+													<th width="28%">在途货物：</th>
+													<td>0</td>
+												</tr>
+												<tr>
+													<th width="28%">交货地：</th>
+													<td class="detail_radio">
+														<label for="checkra">
+															<input type="radio" name="checkra" id="checkra" value="" checked="checked"/>
+															内地
+														</label>
+														<label for="checkrad">
+															<input type="radio" name="checkra" id="checkrad" value="" />
+															香港
+														</label>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+										<div class="detail_check">
+											<div class="row">
+												<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="padding-right: 0;">
+													<div class="addetail clear">
+														<p class="btn-add omin" onclick="minus(this,'9.9','100');">
+															<span class="glyphicon glyphicon-minus"></span>
+														</p>
+														<input type="text" class="btn-num onum" value="56" name="count" />
+														<p class="btn-add oplus" onclick="plus(this,'9.9}','100}');">
+															<span class="glyphicon glyphicon-plus"></span>
+														</p>
+													</div>
+												</div>
+												<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding: 0;">
+													<div class="detail_pri">
+														<p>单价：<span>¥<i>123456</i></span></p>
+													</div>
+												</div>
+												<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5" style="padding-left: 0;">
+													<div class="detail_total">
+														<p>合计：<span>¥<i>123</i></span></p>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="detail_bei clear">
+											<div class="row">
+												<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="padding-right: 0;">
+													<div class="detail_benum">
+														<p>最少：<span>10000</span></p>
+													</div>
+												</div>
+												<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="padding: 0;">
+													<div class="detail_benum">
+														<p>倍数：<span>100000</span></p>
+													</div>
+												</div>
+												<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="padding-left: 0;">
+													<div class="detail_buy">
+														<p><a href="">购买</a></p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+								<div class="detail_view clear">
+									<table class="table table-condensed table-bordered tabble_view table-search">
+										<thead>
+											<tr>
+												<th width="30%">阶梯数量</th>
+												<th width="35%"><p>人民币单价</p><p>（16%增值税）</p></th>
+												<th width="35%"><p>美元单价</p> <p>（USD）</p></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td><p>1+</p></td>
+												<td><p>￥8.56829</p></td>
+												<td><p>$8.56829</p></td>
+											</tr>
+											<tr>
+												<td><p>10+</p></td>
+												<td><p>￥8.56829</p></td>
+												<td><p>$8.56829</p></td>
+											</tr>
+											<tr>
+												<td><p>100+</p></td>
+												<td><p>￥8.56829</p></td>
+												<td><p>$8.56829</p></td>
+											</tr>
+											<tr>
+												<td><p>250+</p></td>
+												<td><p>￥8.56829</p></td>
+												<td><p>$8.56829</p></td>
+											</tr>
+											<tr>
+												<td><p>5000+</p></td>
+												<td colspan="2" class="bjbtn">
+													<a class="offerPop" href="javascript:void(0);">报价</a>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								
+							</div>
+							<!--其他资源-->
+							<div class="detail_other mt10">
+								<h4 class="other_titke">其他资源</h4>
+								<table class="table table-grayth">
+									<tbody>
+										<tr>
+											<td width="40%" class="text-center">最小包装</td>
+											<td>1000</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<!--替代品-->
+							<div class="detail_subgoods">
+								<h4 class="subgoods_titke">可能的替代商品 <span>请根据实际的需求谨慎选择替代商品</span></h4>
+								<table class="table table-subgoods">
+									<thead>
+										<tr>
+											<th>产品编号</th>
+											<th>制造商</th>
+											<th>库存</th>
+										</tr>
+										<tbody>
+											<tr>
+												<td>RM04JTN103</td>
+												<td>小河 TH</td>
+												<td>10000</td>
+											</tr>
+											<tr>
+												<td>RM04JTN103</td>
+												<td>小河 TH</td>
+												<td>10000</td>
+											</tr>
+											<tr>
+												<td>RM04JTN103</td>
+												<td>小河 TH</td>
+												<td>10000</td>
+											</tr>
+											<tr>
+												<td>RM04JTN103</td>
+												<td>小河 TH</td>
+												<td>10000</td>
+											</tr>
+											<tr>
+												<td>RM04JTN103</td>
+												<td>小河 TH</td>
+												<td>10000</td>
+											</tr>
+										</tbody>
+									</thead>
+								</table>
+							</div>
+						</div>
+					</div>
+					<!---->
+				</div>
+			</div>
+			<!--对比弹出的模态框-->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header proCompa-head">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			        	<span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body proCompa">
+			      	<form action="" method="post">
+			      		<div class="bodyhead">
+				      		<p>
+				      			<span>需求型号:GCM1555C1H180FA16D</span>
+				      			<span>需求数量:1000</span>
+				      		</p>
+				      	</div>
+				      	<div class="procompa-table">
+				      		<table class="table modalTab">
+					      		<tr>
+					      			<th width="8%">加入对比</th>
+					      			<th width="16%">对比类型</th>
+					      			<th width="12.6%">品牌</th>
+					      			<th width="12.6%">封装参数 </th>
+					      			<th width="12.6%">库存</th>
+					      			<th width="12.6%">价格（人民币）</th>
+					      			<th width="12.6%">交期</th>
+					      			<th width="12.6%">供应商</th>
+					      		</tr>
+					      		<tr>
+					      			<td>
+					      				<p>
+					      					<input type="checkbox" name="" value="" />
+					      				</p>
+					      			</td>
+					      			<td>
+					      				<p>RCO402JR-0710KL</p>
+					      			</td>
+					      			<td>
+					      				<p>村田</p>
+					      			</td>
+					      			<td>
+					      				<p>倍数：1500</p>
+					      			</td>
+					      			<td>
+					      				<p>200</p>
+					      			</td>
+					      			<td>
+					      				<p>0.11</p>
+					      			</td>
+					      			<td>
+					      				<p>7-10天工作日</p>
+					      			</td>
+					      			<td>
+					      				<p>海外仓1</p>
+					      			</td>
+					      		</tr>
+					      		<tr>
+					      			<td>
+					      				<p>
+					      					<input type="checkbox" name="" value="" />
+					      				</p>
+					      			</td>
+					      			<td>
+					      				<p>RCO402JR-0710KL</p>
+					      			</td>
+					      			<td>
+					      				<p>村田</p>
+					      			</td>
+					      			<td>
+					      				<p>倍数：1500</p>
+					      			</td>
+					      			<td>
+					      				<p>200</p>
+					      			</td>
+					      			<td>
+					      				<p>0.11</p>
+					      			</td>
+					      			<td>
+					      				<p>7-10天工作日</p>
+					      			</td>
+					      			<td>
+					      				<p>海外仓1</p>
+					      			</td>
+					      		</tr>
+					      	</table>
+				      	</div>
+			      		<div class="procompa-btn">
+			      			<button type="submit" class="comInput">确认对比</button>
+			      			<a href=""></a>
+			      		</div>
+			      	</form>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			<!--报价弹窗-->
+			<div id="pop-up" class="pop-up">
+				<div id="pop-cont">
+					<div class="pop-close">
+						<i class="iconfont icon-guanbi"></i>
+					</div>
+					<div class="offer-pop-up">
+						<form action="" method="post">
+							<div class="pop-up-box">
+								<div class="offer-box clear">
+									<div class="col-xs-4 col-md-4 offerbox-text">
+										<p><span>*</span>联系人：</p>
+									</div>
+									<div class="col-xs-8 col-md-8 offerbox-input">
+										<input type="text" name="offer-input" value="" class="offer-input" />
+									</div>
+								</div>
+								<div class="offer-box clear">
+									<div class="col-xs-4 col-md-4 offerbox-text">
+										<p><span>*</span>联系电话：</p>
+									</div>
+									<div class="col-xs-8 col-md-8 offerbox-input">
+										<input type="text" name="offer-input" value="" class="offer-input" />
+									</div>
+								</div>
+								<div class="offer-box clear">
+									<div class="col-xs-4 col-md-4 offerbox-text">
+										<p>QQ：</p>
+									</div>
+									<div class="col-xs-8 col-md-8 offerbox-input">
+										<input type="text" name="offer-input" value="" class="offer-input" />
+									</div>
+								</div>
+								<div class="offer-box clear">
+									<div class="col-xs-4 col-md-4 offerbox-text">
+										<p><span>*</span>电子邮件地址：</p>
+									</div>
+									<div class="col-xs-8 col-md-8 offerbox-input">
+										<input type="text" name="offer-input" value="" class="offer-input" />
+									</div>
+								</div>
+								<div class="offer-box clear">
+									<div class="col-xs-4 col-md-4 offerbox-text">
+										<p><span>*</span>发货目的地国家：</p>
+									</div>
+									<div class="col-xs-8 col-md-8 offerbox-input">
+										<input type="text" name="offer-input" value="" class="offer-input" />
+									</div>
+								</div>
+								<div class="offer-box clear">
+									<div class="col-xs-4 col-md-4 offerbox-text">
+										<p><span>*</span>货币：</p>
+									</div>
+									<div class="col-xs-8 col-md-8 offerbox-input">
+										<input type="text" name="offer-input" value="" class="offer-input" />
+									</div>
+								</div>
+							</div>
+							<p class="ml tipMsg">对的滴v个</p>
+							<div class="pop-up-table">
+								<table class="table popTable">
+									<tr class="popHead">
+										<th width="26%">商品</th>
+										<th width="20%">品牌</th>
+										<th width="17%">需求数量</th>
+										<th width="17%">目标价格</th>
+										<th width="20%">备注</th>
+									</tr>
+									<tr>
+										<td>
+											<div class="product_list">
+												<p class="tblue"><a href="product_detail.html">RCO402JR-0710KL</a></p>
+												<p>封装规格:0402</p>
+												<p>库存编号:402-279</p>
+												<p class="sorange">供应商:<a href="">广诺科技</a></p>
+											</div>
+										</td>
+										<td>
+											<p>ST Microelectronics（自动生成）</p>
+										</td>
+										<td>
+											<div class="popNum">
+												<input type="text" name="xqnum" id="xqnum" value="" placeholder="请输入购买数量" />
+											</div>
+										</td>
+										<td>
+											<div class="popPrice">
+												<input type="text" name="mbprice" id="mbprice" value="" placeholder="请输入价格" />
+											</div>
+										</td>
+										<td>
+											<div class="popArea">
+												<textarea name="beizhu" class="popbz" placeholder="输入备注"></textarea>
+											</div>
+										</td>
+									</tr>
+								</table>
+							</div>
+							<div class="popTip">
+								<p>如果了解您的报价信息，请访问我们的 <span>会员中心-元器件询价</span> 查看报价</p>
+							</div>
+							<div class="popBtn">
+								<button type="submit" class="popsub">提交报价请求</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>	
+			<!--pdf 数据手册下载-->
+			<div id="pdf-pop">
+				<div id="pdf-cont">
+					<div class="pdf-head">
+						<h3>C32349数据手册/封装库下载</h3>
+						<i class="iconfont icon-guanbi1 pdf-close"></i>
+					</div>
+					<div class="pdf-unload">
+						<div class="pdf-text clear">
+							<div class="fl pdf-left">数据手册：</div>
+							<div class="fl pdf-right">
+								<span><i class="iconfont icon-wenjianjia"></i>FC-135 34.12KHz ± 20ppm 12.5df 编带-PDF-c323发发发</span>
+								<a href="">直接下载PDF</a>
+							</div>
+						</div>
+						<div class="pdf-text clear">
+							<div class="fl pdf-left">AD封装库文件： </div>
+							<div class="fl pdf-right">
+								<span>暂无文件</span>
+								<a style="display: none;" href="">直接下载PDF</a>
+							</div>
+						</div>
+						<div class="pdf-text clear">
+							<div class="fl pdf-left">PADS封装库文件：  </div>
+							<div class="fl pdf-right">
+								<span>暂无文件</span>
+								<a style="display: none;" href="">直接下载PDF</a>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			<!--底部 -->
+			<div id="footer"></div>		
+			
+		</div>
+		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+	    <script src="js/jquery-1.12.1.min.js"></script>
+	    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+	    <script src="js/bootstrap.min.js"></script>
+	    <script type="text/javascript" src="js/index.js"></script>
+	    <script type="text/javascript" src="js/share.js"></script>
+		<script type="text/javascript">
+			$(".detail_view table tr td.bjbtn").click(function(){
+				$("#pop-up").fadeIn();
+			});
+			$(".pop-close").click(function(){
+				$("#pop-up").fadeOut();
+			});
+			$(".pdf_load p a").click(function(){
+				$("#pdf-pop").fadeIn();
+			});
+			$(".pdf-close").click(function(){
+				$("#pdf-pop").fadeOut();
+			});
+			
+			 $("#socialShare").socialShare({
+                content: '',
+				url:'',
+				titile:''
+            });
+			
+			function stopPropagation(e) {
+		        var ev = e || window.event;
+		        if (ev.stopPropagation) {
+		            ev.stopPropagation();
+		        }
+		        else if (window.event) {
+		            window.event.cancelBubble = true;//兼容IE
+		        }
+		    }
+		</script>
+	</body>
+</html>

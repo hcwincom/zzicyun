@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	   	<!-- <meta name="viewport" content="width=device-width, initial-scale=1">-->
+	    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+	    <title>微信支付</title>
+		<meta name="applicable-device" content="pc">
+	    <!-- Bootstrap -->
+	   	<link href="../css/bootstrap.min.css" rel="stylesheet">
+	    <link rel="stylesheet" type="text/css" href="../css/comm.css"/>
+	   	<link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
+	    <link rel="stylesheet" type="text/css" href="../css/person_style.css"/>
+	    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+	    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+	    <!--[if lt IE 9]>
+	      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+	      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+	</head>
+	<body style="background: #fff;">
+		<div class="perPart">
+			<div class="site-nav clear">
+				<div class="site-nav-bd">
+				  	<ul class="site-nav-bd-l">
+				  		<li class="site-nav-menu">
+				  			<div class="site-nav-menu-hd">
+				  				<span>您好！欢迎来到器械商城!</span>
+				  			</div>
+				  			<!--登录之后显示begin-->
+				  			<div class="sign_index" style="display: none;">
+				  				<a href="../index.html">
+				  					<i class="glyphicon glyphicon-home"></i>
+				  					首页
+				  				</a>
+				  			</div>
+						<!--登录之后显示end-->
+				  		</li>
+				  		<li class="site-nav-menu">
+				  			<div class="site-nav-menu-hd">
+				  				<div class="site-nav-sign">
+				  					<a href="../login.html" target="_top">登录</a>
+				  					<a href="../register.html" target="_top">注册</a>
+				  				</div>
+				  				<!--登录之后显示begin-->
+				  				<div class="sign_after" style="display: none;">
+				  					<p>
+				  						<i class="iconfont icon-logout-user"></i>
+				  						<span><a href="member_center.html">151****2316</a></span>
+				  					</p>
+				  				</div>
+				  				<!--登录之后显示end-->
+				  			</div>
+				  		</li>
+				  		<li class="site-nav-menu">
+				  			<div class="site-nav-menu-hd">	
+				  				<div class="site-nav-bom">
+				  					<a href="../copy.html" target="_blank">BOM批量导入型号</a>
+				  				</div>								
+				  			</div>
+				  		</li>
+				  	</ul>
+				  	<ul class="site-nav-bd-r">
+				  		<li class="site-nav-menu">
+				  			<div class="site-nav-menu-hd">
+				  				<div class="site-nav-menu-order">
+				  					<a href="purchase-order.html" target="_top">
+				  						<span class="site-nav-icon site-nav-myorder"></span>
+				  						<span>我的订单</span>
+				  					</a>
+				  				</div>
+				  			</div>					
+				  		</li>
+				  		<li class="site-nav-menu">
+				  			<div class="site-nav-menu-hd">
+				  				<div class="site-nav-member">
+				  					<a href="member_center.html" target="_top">
+				  						<span class="site-nav-icon site-nav-center"></span>
+				  						<span>会员中心</span>
+				  					</a>
+				  				</div>
+				  			</div>			
+				  		</li>
+				  		<li class="site-nav-menu">
+				  			<div class="site-nav-menu-hd">
+				  				<div class="site-nav-phone">
+				  					<a href="tel:0551-8888888">
+				  						<span class="site-nav-icon site-nav-tel"></span>
+				  						<span>: 0551-8888888</span>
+				  					</a>
+				  				</div>
+				  			</div>				
+				  		</li>
+				  	</ul>
+				</div>
+			</div>
+			<!--头部-->
+			<div class="person-head wxAlipay-head">
+				<div class="wraper">
+					<div class="person-head-list">
+						<a href="../index.html">
+							<div class="person-logo">
+								<img src="../images/logo.png" alt="" />
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+			<!--主要内容-->
+			<div class="person-content">
+				<div class="wraper">
+					<div class="wxAlipay-cont">
+						<div class="wx-head">
+							<div class="wx-head-top clear">
+								<div class="wx-head-top-left fl">
+									<p><span>微信支付</span>请您及时付款，以便订单尽快处理！</p>
+								</div>
+								<div class="wx-head-top-right fr">
+									<span>￥520.0  元</span>
+								</div>
+							</div>
+							<div class="wx-head-cont clear">
+								<div class="wx-head-cont-left fl">
+									<span>订单号：   SO1038329473</span>
+									<span> 收款方： 广诺科技（深圳）</span>
+								</div>
+								<div class="wx-head-cont-right fr">
+									<p><a href="purchase-order-detail.html">订单详情</a></p>
+								</div>
+							</div>
+						</div>
+						<div class="wx-code">
+							<div class="wx-code-top">
+								<p>扫一扫 付款（元）</p>
+								<span>520.00</span>
+							</div>
+							<div class="wx-code-head clear">
+								<div class="wx-code-img fl clear">
+									<p>
+										<img src="../img/wxcode.png" alt="" />
+									</p>
+								</div>
+								<div class="wx-code-imgright fl">
+									<p>
+										<img src="../img/wx-img.png" alt="" />
+									</p>
+								</div>
+							</div>
+							<div class="wx-code-text clear">
+								<span>请尽快打开微信使用扫一扫付款，二维码将在1分钟之内刷新</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div id="bottomFooter"></div>
+			<!---->
+		</div>
+		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+	    <script src="../js/jquery-1.12.1.min.js"></script>
+	    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+	    <script src="../js/bootstrap.min.js"></script>
+	  	<script type="text/javascript" src="../js/person.js"></script>
+	  	<script type="text/javascript" src="../js/laydate.js"></script>
+	  	<script type="text/javascript">
+	  		$("#invo-file").change(function(){
+	  			$(".invo-group .invo-label").html("已上传");
+	  		});
+	  		$(".discount-title ul li").click(function(){
+	  			var index = $(this).index();
+	  			$(this).addClass("disActive").siblings().removeClass("disActive");
+	  			$(".disco-cont .disco-cont-list").eq(index).removeClass("overduActive").siblings().addClass("overduActive");
+	  		});
+	  		
+	  		
+	  		
+	  		
+	  	</script>
+	  	
+	</body>
+</html>

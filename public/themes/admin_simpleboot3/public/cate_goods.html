@@ -1,0 +1,34 @@
+ <include file="public@cate" />  
+
+ <select class="goods form-control short-auto" name="goods">
+	 <option value="0"> 产品编码,名称</option>
+</select> &nbsp;&nbsp; 
+<script>
+ 
+$(function(){ 
+ 	 
+ 	var url="{:url('goods/Goodsajax/goods')}";
+	 
+	$('#cate2').change(function(){
+		var cid=parseInt($(this).val()); 
+		 if(cid<=0){ 
+			 return false;
+		 }
+		 $.post(url,{'cid':cid},function(data){
+			 
+			 if(data.code!=1){
+				 return false;
+			 }
+			 var list=data.data;
+			 var options='<option value="0"> 产品编码,名称</option>';
+			 for(var i in list){
+				 options+='<option value="'+i+'">'+list[i]['code']+','+list[i]['name']+'</option>';
+			 }
+			 $('.goods').html(options);
+		 },'json');
+	});
+	 
+});
+
+
+</script>

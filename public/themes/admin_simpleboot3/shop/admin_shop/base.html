@@ -1,0 +1,120 @@
+ 
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">{$flag}名称</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="text" class="form-control" name="name" value="{$info.name}" />
+
+        <present name='change.name'>
+            <input type="text" class="red form-control" value="{$change.name}" />
+        </present>
+
+    </div>
+</div>
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">{$flag}编号</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="text" class="form-control" name="code" value="{$info.code}" /> 
+        <present name='change.code'>
+            <input type="text" class="red form-control" value="{$change.code}" />
+        </present> 
+    </div>
+</div>
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">加盟类型</label>
+    <div class="col-md-6 col-sm-10">
+        <select name="type" class="form-control">
+        <foreach name="shop_types" item="vo">
+        	<option value="{$key}" <if condition="$key eq $info.type">selected</if>>{$vo}</option>
+        </foreach>
+        </select>
+
+        <present name='change.name'>
+            <input type="text" class="red form-control" value="{$shop_types[$change.type]|default=$change.type}" />
+        </present>
+
+    </div>
+</div>
+ <foreach name="vals" item="vo" key="key">
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">{$vo}</label>
+    <div class="col-md-6 col-sm-10">
+    <foreach name="lans" item="vv" key="kk"> 
+   		{$vv}
+	       <input type="text" class="form-control " name="lan-{$key}[{$kk}]" value="{$lans_info[$kk][$key]|default=''}" />
+	       <present name="change['lans'][$kk][$key]">
+	      	 <input type="text" class="form-control  red"  value="{$change['lans'][$kk][$key]}" /> 
+	       </present>   
+    </foreach> 
+    </div>
+</div>
+</foreach>
+ <div class="form-group">
+    <label for="" class="col-sm-2 control-label">联系电话</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="text" class="form-control" name="tel" value="{$info.tel}" /> 
+        <present name='change.tel'>
+            <input type="text" class="red form-control" value="{$change.tel}" />
+        </present> 
+    </div>
+</div>
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">联系地址</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="text" class="form-control" name="address" value="{$info.address}" />
+
+        <present name='change.address'>
+            <input type="text" class="red form-control" value="{$change.address}" />
+        </present>
+
+    </div>
+</div>
+ 
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">店铺logo</label>
+    <div class="col-md-6 col-sm-10">
+     	<input type="hidden" class="form-control" id="logo" name="logo" value="{$info.logo}">
+        <a href="javascript:uploadOneImage('图片上传','#logo');">上传图片</a>
+        <img id="logo-preview" src="{:cmf_get_image_url($info.logo)}" width="214" height="140">
+         
+        <present name='change.logo'>
+            更改图片 <img  src="{:cmf_get_image_url($change.logo)}"  width="214" height="140">
+        </present> 
+		<p class="notice">网站不压缩该图片，请注意上传尺寸大小，建议尺寸为214*140</p> 
+    </div>
+</div>
+ 
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">审核模式</label>
+    <div class="col-md-6 col-sm-10">
+    <foreach name="is_review" item="vo">
+ 		<label class="radio-inline"> 
+		 <input type="radio" name="is_review" value="{$key}" <if condition="$key eq $info.is_review">checked</if>/>{$vo} 
+		</label>
+	</foreach>
+	  <present name='change.is_review'>
+           <span class="red">{$is_review[$info.is_review]|default=$info.is_review}</span>
+        </present>
+	 <p class="notice">审核模式由商家在我的店铺修改</p>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-sm-2 control-label">简介</label>
+    <div class="col-md-6 col-sm-10">
+        <textarea class="form-control" name="dsc" rows="5" >{$info.dsc}</textarea>
+        <present name='change.dsc'>
+            <textarea class="red form-control" rows="5" >{$change.dsc}</textarea>
+        </present>
+    </div>
+</div>
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">排序</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="text" class="form-control" name="sort" value="{$info.sort|default=1000}" />
+        <present name='change.sort'>
+            <input type="text" class="red form-control" value="{$change.sort}" />
+        </present>
+    </div>
+</div>
+
+<include file="public@adsc" />

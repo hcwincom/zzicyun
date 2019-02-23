@@ -1,0 +1,60 @@
+@CHARSET "UTF-8";
+	.tableImg{position: relative;}
+    .listposi{position:absolute;top:-160px;left:-100px;right:0;margin:auto;z-index: 10;display: none;width: 650px;background: #f5f5f5;}
+	.imgGroup{position: relative;width: 550px;height:150px;padding: 0 20px;margin: 0 auto;overflow: hidden;}
+	.imgList{height: 80px;position: absolute;z-index: 2;left: 20px;top: 23%;transition: all 0.4s linear;margin: 0;padding: 0;}
+	.imgList li{list-style: none;float: left;width: 80px;height: 100%;margin-left: 5px;overflow: hidden;background-size: contain;}
+	/* .imgList li img{width: 100%;height: 100%;} */
+	.imgGroup>span{position: absolute;top:17%;z-index: 30;background-color: black;display: inline-block;width: 20px;height: 100px;cursor: pointer;opacity: 0.8;}
+	.prev{left: 0;}
+	.next{right: 0;}
+	.imgGroup span i{ float: left;margin-top: 45px;margin-left: 3px; width: 0; height: 0;content: ''; border-top: 10px solid transparent; border-bottom: 10px solid transparent;}
+	.imgGroup span .left {border-right: 10px solid #fff;}
+	.imgGroup span .right {border-left: 10px solid #fff;}
+	.imglunclose{position: absolute;top:0;right: 5px;width: 40px;height: 40px;text-align: center;line-height: 40px;cursor: pointer;}
+	.imglunclose>span{font-size: 30px;}
+	.tdImg{padding: 0;margin: 0;cursor: pointer;height: 30px;background-repeat: no-repeat;}
+	/* .tdImg img{width: 110%;height: 100%;} */
+	/* 点击放大图片 */
+	#outdiv{position:fixed;top:0;right: 0;left: 0;bottom: 0;margin: auto;background: rgba(0, 0, 0, .9);display: none;z-index: 100;}
+	#innerdiv{position: relative;}
+	#imgClose{text-align: right;padding-right: 20px;padding-top: 10px;}
+	#imgClose span.glyphicon{font-size: 40px;color: #fff;cursor: pointer;}
+	#backBigImg{margin: 0 auto;background-repeat: no-repeat;background-position: center center;max-width: 90%;max-height: 60%;}
+	#imgPrev,#imgNext{position: absolute;right: 5%;top:30%;z-index: 200;}
+	#imgNext{top:50%;}
+	#imgPrev span.glyphicon,#imgNext span.glyphicon{font-size: 80px;color: #fff;cursor: pointer;}
+	.html_overflow{overflow-x: hidden;overflow-y: hidden;}
+
+.status1{
+	background-color: #d0d21b;
+}
+.status3{
+	background-color: chocolate;
+	color: #fff;
+}
+
+.status4{
+	background-color:#a9adad;
+}
+
+.table-hover>tbody>tr:hover {
+	background-color: #f0f7f7;
+	color: #333;
+}
+
+/* 订单详细分类 */
+.goInfo{
+	width: 100%;
+	height: 100%;
+}
+.goodsInfo{
+		position: absolute;
+		z-index: 40;
+		background: #fff;
+		border: 1px solid #f5f5f5;
+		box-shadow:-1px -1px 5px #999;
+		display: none;
+		margin-top: 10px;
+		padding: 10px;
+	}

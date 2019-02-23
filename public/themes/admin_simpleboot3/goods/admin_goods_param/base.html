@@ -1,0 +1,77 @@
+
+<div style="clear:both"></div>
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">{$flag}是否多语言</label>
+    <div class="col-md-6 col-sm-10">
+   		<label class="radio-inline">
+	 		<input type="radio" value="1" name="is_lan" <eq name="info.is_lan" value="1">checked</eq>/>是
+	 	</label>
+	 	<label class="radio-inline">
+	 		<input type="radio" value="2" name="is_lan" <eq name="info.is_lan" value="2">checked</eq>/>否
+	 	</label>
+       
+	  <present name="change.is_lan">
+      	 <input type="text" class="form-control red"  value="<eq name='info.is_lan' value='1'>是<else/>否</eq>" /> 
+      </present>  
+    </div>
+</div>
+ 
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">名称</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="text" class="form-control" name="name" value="{$info.name}" /> 
+      <present name="change.name">
+      	 <input type="text" class="form-control red"  value="{$change.name}" /> 
+      </present>  
+    </div>
+</div>
+  
+<foreach name="vals" item="vo" key="key">
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">{$vo}</label>
+    <div class="col-md-6 col-sm-10">
+   <eq name="key" value="char">
+    <foreach name="lans" item="vv" key="kk"> 
+   		{$vv} 
+   		 <select class=" form-control" name="lan-{$key}[{$kk}]"> 
+			<foreach name="chars" item="vchar" key="kchar">
+			<option value="{$vchar}" <if condition="$vchar eq $lans_info[$kk][$key]">selected</if>>{$vchar}</option>
+			</foreach>
+		</select>  
+	       <present name="change['lans'][$kk][$key]">
+	      	 <input type="text" class="form-control  red"  value="{$change['lans'][$kk][$key]}" /> 
+	       </present>   
+    </foreach> 
+   <else/> 
+    <foreach name="lans" item="vv" key="kk"> 
+   		{$vv}
+	       <input type="text" class="form-control " name="lan-{$key}[{$kk}]" value="{$lans_info[$kk][$key]|default=''}" />
+	       <present name="change['lans'][$kk][$key]">
+	      	 <input type="text" class="form-control  red"  value="{$change['lans'][$kk][$key]}" /> 
+	       </present>   
+    </foreach> 
+      </eq>
+    </div>
+</div>
+</foreach>
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">排序</label>
+    <div class="col-md-6 col-sm-10">
+       <input type="text" class="form-control" name="sort" value="{$info.sort|default=1000}" />
+       <present name="change.sort">
+      	 <input type="text" class="form-control red"  value="{$change.sort}" /> 
+       </present>    
+    </div>
+</div>
+
+<div class="form-group "  >
+    <label class="col-sm-2 control-label">备注</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="text" class="form-control" name="dsc" value="{$info.dsc}"  />
+      <present name="change.dsc">
+      	 <input type="text" class="form-control red"  value="{$change.dsc}" /> 
+       </present>    
+    </div>
+</div>
+
+<include file="public@adsc" />

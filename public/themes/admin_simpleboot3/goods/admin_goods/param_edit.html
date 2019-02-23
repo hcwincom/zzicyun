@@ -1,0 +1,82 @@
+<include file="public@header" />
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs"> 
+			 <include file="goods@admin_goods/nav" />
+			<li><a href="{:url('edit',['id'=>$info.id])}">编辑{$flag}</a></li>  
+		 	<li  class="active" ><a href="{:url('param_edit',['id'=>$info.id])}">{$flag}规格信息</a></li>  
+		 
+		</ul>
+		<form class="form-horizontal js-ajax-form{$zzajax} margin-top-20" role="form" method="post" action="{:url('param_edit_do')}">
+			  <div class="form-group">
+				<label  class="col-sm-2 control-label">产品id</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control" value="{$info.id}" readonly/>
+				 
+					&nbsp;&nbsp;&nbsp;
+					 <a href="{:url('edit_list',['type1'=>1,'name'=>$info.id,'type2'=>1])}" target="{$zztarget['edit']}">编辑记录</a>
+				</div>
+			</div>
+			  <include file="goods@admin_goods/param_base" />
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10"> 
+			 		<input type="hidden" value="{$info.id}" name="id"/>
+					 
+					<button type="submit" class="save btn btn-primary js-ajax-submit" >提交编辑信息</button>
+					 
+					 <p> </p>
+				</div>
+				
+			</div>
+		</form>
+	 
+	</div>
+	<script src="__STATIC__/js/admin.js"></script> 
+ 
+</body>
+</html>
+<script>
+var url_template_set="{:url('goods/Goodsajax/template_set')}";
+var lans_json={$lans_json};
+ $('#set_template').click(function(){
+	 var t_id=$('#template').val();
+	 
+	$.post(url_template_set,{'template':t_id},function(data){
+	  
+		if(data.code!=1){
+			alert(data.msg);
+			return false;
+		}
+		if(data.msg=='no'){
+			alert('该模板还没有参数');
+			return false;
+		}
+		 
+		var list=data.data;
+		 
+		var tr=''; 
+	 
+		for(var i in list){
+			 tr+='<input type="hidden" name="sorts['+list[i]['param']+']" value="'+list[i]['sort']+'"/>';
+			 if(list[i]['is_lan']==2){
+				 tr+='<tr>'+ 
+					'<td >'+list[i]['param_name']+'</td>'+
+					'<td ><input type="text" class="form-control" name="param0['+list[i]['param']+']" /></td>'+ 
+					'</tr>';
+			 } else{
+				 tr+='<input type="hidden" name="param00['+list[i]['param']+']" value="'+list[i]['param']+'"/>';
+				 for(var j in lans_json){
+					 tr+='<tr>'+ 
+						'<td >'+list[i]['param_name']+'-'+lans_json[j]['name']+'</td>'+
+						'<td ><input type="text"  class="form-control" name="param'+list[i]['param']+'['+lans_json[j]['id']+']"/></td>'+ 
+						'</tr>';
+				 }
+			 }
+		 
+		}
+		 
+		$('#param_tbody').html(tr);
+	},'json');
+ });
+</script>

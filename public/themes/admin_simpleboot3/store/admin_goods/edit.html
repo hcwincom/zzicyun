@@ -1,0 +1,55 @@
+<include file="public@header" />
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs"> 
+			<include file="store@admin_goods:nav" />
+			<li class="active"><a >安全库存调整</a></li>  
+		 
+		</ul>
+		<form class="form-horizontal js-ajax-form{$zzajax} margin-top-20" role="form" method="post" action="{:url('edit_do')}">
+		
+		  <table class="table table-hover table-bordered table-list">
+		 	<tr>
+		 	<td>产品名称</td>
+		 	<td>产品编码</td>
+		 	<td>产品图片</td>
+		 	<foreach name="stores" item="vo">
+		 	<td>{$vo}安全库存<br/>新-旧-理论-最大</td>
+		 	</foreach>
+		 	</tr>
+		 <foreach name="goods" item="vv" key="kk">
+		 	<tr class="">
+		 		<td>{$vv.name}</td>
+		 		<td>{$vv.code}</td>
+		 		<td><img src="{$url_img}/{$vv.pic}" alt="" /></td>
+		 	<foreach name="stores" item="v" key="k">
+		 		 
+		 		 <empty name="res[$kk][$k]">
+		 		  <td>--</td>
+		 		 <else/>
+		 		  <td>
+		 		  <input type="text" name="safe[{$res[$kk][$k]['id']}]" style="width:50px;"/>
+		 		  -{$res[$kk][$k]['safe']}- {$res[$kk][$k]['safe_count']}- {$res[$kk][$k]['safe_max']}
+		 		  </td>
+		 		 </empty>
+		 	</foreach>
+		 	</tr>
+		 </foreach>
+		 </table>
+		 <div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10"> 
+				 
+					<button type="submit" class="save btn btn-primary js-ajax-submit" >确认保存</button>
+					 <p class="notice">	新指可以填入更新的安全库存，不填表示不修改。旧为原安全库存，理论安全库存数是根据库存进出数据，按公式算得，最大是指该产品在一定期间内单个订单最大订购数。</p>
+		 			 <p class="notice">	确认后安全库存更新，无需审核。</p>
+				</div>
+				
+			</div>
+		</form>
+		
+	</div>
+	<script src="__STATIC__/js/admin.js"></script> 
+</body>
+</html>
+ 

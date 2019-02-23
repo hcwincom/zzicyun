@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	   	<!-- <meta name="viewport" content="width=device-width, initial-scale=1">-->
+	    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+	    <title>积分兑换更多</title>
+		<meta name="applicable-device" content="pc">
+	    <!-- Bootstrap -->
+	   	<link href="../css/bootstrap.min.css" rel="stylesheet">
+	    <link rel="stylesheet" type="text/css" href="../css/comm.css"/>
+	   	<link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
+	    <link rel="stylesheet" type="text/css" href="../css/person_style.css"/>
+	    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+	    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+	    <!--[if lt IE 9]>
+	      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+	      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+	</head>
+	<body>
+		<div class="perPart">
+			<div class="site-nav clear">
+				<div class="site-nav-bd">
+				  	<ul class="site-nav-bd-l">
+				  		<li class="site-nav-menu">
+				  			<div class="site-nav-menu-hd">
+				  				<span>您好！欢迎来到器械商城!</span>
+				  			</div>
+				  			<!--登录之后显示begin-->
+				  			<div class="sign_index" style="display: none;">
+				  				<a href="../index.html">
+				  					<i class="glyphicon glyphicon-home"></i>
+				  					首页
+				  				</a>
+				  			</div>
+						<!--登录之后显示end-->
+				  		</li>
+				  		<li class="site-nav-menu">
+				  			<div class="site-nav-menu-hd">
+				  				<div class="site-nav-sign">
+				  					<a href="../login.html" target="_top">登录</a>
+				  					<a href="../register.html" target="_top">注册</a>
+				  				</div>
+				  				<!--登录之后显示begin-->
+				  				<div class="sign_after" style="display: none;">
+				  					<p>
+				  						<i class="iconfont icon-logout-user"></i>
+				  						<span><a href="member_center.html">151****2316</a></span>
+				  					</p>
+				  				</div>
+				  				<!--登录之后显示end-->
+				  			</div>
+				  		</li>
+				  		<li class="site-nav-menu">
+				  			<div class="site-nav-menu-hd">	
+				  				<div class="site-nav-bom">
+				  					<a href="../copy.html" target="_blank">BOM批量导入型号</a>
+				  				</div>								
+				  			</div>
+				  		</li>
+				  	</ul>
+				  	<ul class="site-nav-bd-r">
+				  		<li class="site-nav-menu">
+				  			<div class="site-nav-menu-hd">
+				  				<div class="site-nav-menu-order">
+				  					<a href="purchase-order.html" target="_top">
+				  						<span class="site-nav-icon site-nav-myorder"></span>
+				  						<span>我的订单</span>
+				  					</a>
+				  				</div>
+				  			</div>					
+				  		</li>
+				  		<li class="site-nav-menu">
+				  			<div class="site-nav-menu-hd">
+				  				<div class="site-nav-member">
+				  					<a href="member_center.html" target="_top">
+				  						<span class="site-nav-icon site-nav-center"></span>
+				  						<span>会员中心</span>
+				  					</a>
+				  				</div>
+				  			</div>			
+				  		</li>
+				  		<li class="site-nav-menu">
+				  			<div class="site-nav-menu-hd">
+				  				<div class="site-nav-phone">
+				  					<a href="tel:0551-8888888">
+				  						<span class="site-nav-icon site-nav-tel"></span>
+				  						<span>: 0551-8888888</span>
+				  					</a>
+				  				</div>
+				  			</div>				
+				  		</li>
+				  	</ul>
+				</div>
+			</div>
+			<!--头部-->
+			<div class="person-head">
+				<div class="wraper">
+					<div class="person-head-list">
+						<a href="../index.html">
+							<div class="person-logo">
+								<img src="../images/logo.png" alt="" />
+							</div>
+						</a>
+						<div class="person-title">
+							<h3>会员中心</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--主要内容-->
+			<div class="person-comm">
+				<div class="wraper row totalback padbot">
+					<div class="exchange-head">
+						<div class="col-md-3 col-sm-3 exchange-head-left">
+							<h3>积分兑换</h3>
+						</div>
+						<div class="col-md-7 col-sm-7 exchange-fr">
+							<div class="exchange-fr-input">
+								<input type="text" name="exInput" />
+								<button type="button">查询</button>
+							</div>
+						</div>
+					</div>
+					<!--主要内容-->
+					<div class="exchange-cont mt10">
+						<div class="exchange-cont-title">
+							<h2>家用电器</h2>
+						</div>
+						<div class="exchange-sear">
+							<form action="" method="post" class="exForm">
+								<div class="exForm-list clear">
+									<p class="fl">积分范畴：</p>
+									<ul class="fl exform-select">
+										<li class="redColor">不限</li>
+										<li>0-1000</li>
+										<li>1000-2000</li>
+										<li>2000-3000</li>
+										<li>3000-4000</li>
+									</ul>
+								</div>
+								
+							</form>
+						</div>
+						<div class="exchange-more-cont mt20 row">
+							<div class="col-xs-2 col-md-2 exmore-list">
+								<div class="exmore-group">
+									<a href="credits-exchange-detail.html">
+										<div class="expro-img">
+											<img src="../img/eximg.png" alt="" />
+										</div>
+										<div class="expro-intro mt20">
+											<p>高支高密四件套</p>
+											<p><span>32500 </span>积分</p>
+											<p>已有60人领取</p>
+										</div>
+									</a>
+													
+									<div class="expro-btn">
+										<a href="immed-change.html">立即兑换</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-2 col-md-2 exmore-list">
+								<div class="exmore-group">
+									<a href="credits-exchange-detail.html">
+										<div class="expro-img">
+											<img src="../img/eximg.png" alt="" />
+										</div>
+										<div class="expro-intro mt20">
+											<p>高支高密四件套</p>
+											<p><span>32500 </span>积分</p>
+											<p>已有60人领取</p>
+										</div>
+									</a>
+													
+									<div class="expro-btn">
+										<a href="immed-change.html">立即兑换</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-2 col-md-2 exmore-list">
+								<div class="exmore-group">
+									<a href="credits-exchange-detail.html">
+										<div class="expro-img">
+											<img src="../img/eximg.png" alt="" />
+										</div>
+										<div class="expro-intro mt20">
+											<p>高支高密四件套</p>
+											<p><span>32500 </span>积分</p>
+											<p>已有60人领取</p>
+										</div>
+									</a>
+													
+									<div class="expro-btn">
+										<a href="immed-change.html">立即兑换</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-2 col-md-2 exmore-list">
+								<div class="exmore-group">
+									<a href="credits-exchange-detail.html">
+										<div class="expro-img">
+											<img src="../img/eximg.png" alt="" />
+										</div>
+										<div class="expro-intro mt20">
+											<p>高支高密四件套</p>
+											<p><span>32500 </span>积分</p>
+											<p>已有60人领取</p>
+										</div>
+									</a>
+													
+									<div class="expro-btn">
+										<a href="immed-change.html">立即兑换</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-2 col-md-2 exmore-list">
+								<div class="exmore-group">
+									<a href="credits-exchange-detail.html">
+										<div class="expro-img">
+											<img src="../img/eximg.png" alt="" />
+										</div>
+										<div class="expro-intro mt20">
+											<p>高支高密四件套</p>
+											<p><span>32500 </span>积分</p>
+											<p>已有60人领取</p>
+										</div>
+									</a>
+													
+									<div class="expro-btn">
+										<a href="immed-change.html">立即兑换</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-2 col-md-2 exmore-list">
+								<div class="exmore-group">
+									<a href="credits-exchange-detail.html">
+										<div class="expro-img">
+											<img src="../img/eximg.png" alt="" />
+										</div>
+										<div class="expro-intro mt20">
+											<p>高支高密四件套</p>
+											<p><span>32500 </span>积分</p>
+											<p>已有60人领取</p>
+										</div>
+									</a>
+													
+									<div class="expro-btn">
+										<a href="immed-change.html">立即兑换</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-2 col-md-2 exmore-list">
+								<div class="exmore-group">
+									<a href="credits-exchange-detail.html">
+										<div class="expro-img">
+											<img src="../img/eximg.png" alt="" />
+										</div>
+										<div class="expro-intro mt20">
+											<p>高支高密四件套</p>
+											<p><span>32500 </span>积分</p>
+											<p>已有60人领取</p>
+										</div>
+									</a>
+													
+									<div class="expro-btn">
+										<a href="immed-change.html">立即兑换</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-2 col-md-2 exmore-list">
+								<div class="exmore-group">
+									<a href="credits-exchange-detail.html">
+										<div class="expro-img">
+											<img src="../img/eximg.png" alt="" />
+										</div>
+										<div class="expro-intro mt20">
+											<p>高支高密四件套</p>
+											<p><span>32500 </span>积分</p>
+											<p>已有60人领取</p>
+										</div>
+									</a>
+													
+									<div class="expro-btn">
+										<a href="immed-change.html">立即兑换</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="expage clear">
+							<!--分页-->
+							<div class="page">
+								<div class="p-wrap" id="j_bottomPage">
+									<span class="p-num">
+										<a class="pn-prev disabled">
+											<i><</i>
+										</a>
+										<a href="javascript:void(0);" class="num curr">1</a>
+										<a href="javascript:void(0);" class="num">2</a>
+										<a href="javascript:void(0);" class="num">3</a>
+										<a href="javascript:void(0);" class="num">4</a>
+										<a href="javascript:void(0);" class="num">5</a>
+										<a href="javascript:void(0);" class="num">6</a>
+										<a href="javascript:void(0);" class="pn-next ">
+											<i>></i>	
+										</a>
+									</span>
+									<span class="p-skip">
+										<a href="javascript:void(0);">共  <i>10</i>页</a>
+									</span>
+									<span class="page_jump">
+										<i>第</i>
+										<input class="pageInput" type="text" value="1" onkeyup="value=value.replace(/[^\d]/g,'')" onblur="value=value.replace(/[^\d]/g,'')" name="pageNo" id="pageInput">
+										<i>页</i>
+									</span>
+									<span class="page_btn">
+										<button type="button" id="pagebtn" class="btn btn-default">确定</button>
+									</span>
+								</div>
+							</div>
+							<!---->	
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div id="bottomFooter"></div>
+			<!---->
+		</div>
+		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+	    <script src="../js/jquery-1.12.1.min.js"></script>
+	    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+	    <script src="../js/bootstrap.min.js"></script>
+	  	<script type="text/javascript" src="../js/person.js"></script>
+	  	<script type="text/javascript" src="../js/laydate.js"></script>
+	  	<script type="text/javascript">
+	  		$(".exform-select li").click(function(){
+	  			$(this).addClass("redColor").siblings().removeClass("redColor");
+	  		});
+	  	</script>
+	  	
+	</body>
+</html>

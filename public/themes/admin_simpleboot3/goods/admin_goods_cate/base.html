@@ -1,0 +1,69 @@
+
+<div style="clear:both"></div>
+ 
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">父级分类</label>
+    <div class="col-md-6 col-sm-10">
+        <include file="goods@admin_goods_cate:goods_cate" />
+      <present name="change.fid">
+      	 <input type="text" class="form-control red"  value="{$fname}" /> 
+      </present>  
+    </div>
+</div>
+ 
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">名称</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="text" class="form-control" name="name" value="{$info.name}" /> 
+      <present name="change.name">
+      	 <input type="text" class="form-control red"  value="{$change.name}" /> 
+      </present>  
+    </div>
+</div>
+  <div class="form-group">
+    <label for="" class="col-sm-2 control-label">分类图片</label>
+    <div class="col-md-6 col-sm-10">
+     	<input type="hidden" class="form-control" id="photo" name="pic" value="{$info.pic}">
+        <a href="javascript:uploadOneImage('图片上传','#photo');">上传图片</a>
+        <img id="photo-preview" src="{:cmf_get_image_url($info.pic)}" width="{$pic_conf.width}" height="{$pic_conf.height}" >
+         
+      <present name="change.pic">
+      	<p class="red">新图片<img id="photo-preview" src="{:cmf_get_image_url($change.pic)}" width="{$pic_conf.width}" height="{$pic_conf.height}" ></p>
+      </present>  
+    </div>
+</div>
+<foreach name="vals" item="vo" key="key">
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">{$vo}</label>
+    <div class="col-md-6 col-sm-10">
+    <foreach name="lans" item="vv" key="kk"> 
+   		{$vv}
+	       <input type="text" class="form-control " name="lan-{$key}[{$kk}]" value="{$lans_info[$kk][$key]|default=''}" />
+	       <present name="change['lans'][$kk][$key]">
+	      	 <input type="text" class="form-control  red"  value="{$change['lans'][$kk][$key]}" /> 
+	       </present>   
+    </foreach> 
+    </div>
+</div>
+</foreach>
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">排序</label>
+    <div class="col-md-6 col-sm-10">
+       <input type="text" class="form-control" name="sort" value="{$info.sort|default=1000}" />
+       <present name="change.sort">
+      	 <input type="text" class="form-control red"  value="{$change.sort}" /> 
+       </present>    
+    </div>
+</div>
+
+<div class="form-group "  >
+    <label class="col-sm-2 control-label">备注</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="text" class="form-control" name="dsc" value="{$info.dsc}"  />
+      <present name="change.dsc">
+      	 <input type="text" class="form-control red"  value="{$change.dsc}" /> 
+       </present>    
+    </div>
+</div>
+
+<include file="public@adsc" />

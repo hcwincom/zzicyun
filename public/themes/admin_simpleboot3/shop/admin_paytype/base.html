@@ -1,0 +1,113 @@
+
+<div style="clear:both"></div>
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">名称</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="text" class="form-control" name="name" value="{$info.name}" required/>
+    </div>
+</div>
+<div class="form-group ">
+	<label  class="col-sm-2 control-label">银行</label>
+	<div class="col-md-6 col-sm-10">
+	   <select  class="form-control" name="bank" id="">
+	     
+		<foreach name="banks" item="vo">
+			<option value="{$key}" <if condition="$key eq $info.bank" >selected</if>>{$vo}</option>
+		</foreach>
+		</select>
+	 <present name="change.bank">
+		<select  class="form-control red"  >
+	   	  <option value="0">请选择</option>
+		<foreach name="banks" item="vo">
+			<option value="{$key}" <if condition="$key eq $change.bank" >selected</if>>{$vo}</option>
+		</foreach>
+		</select>
+	</present>  
+	</div>
+</div>
+  <div class="form-group ">
+	<label class="col-sm-2 control-label">账户名</label>
+	<div class="col-md-6 col-sm-10">
+		<input type="text" class="form-control" name="account" value="{$info.account}" />
+	<present name="change.account">
+		<input type="text" class="form-control red"  value="{$change.account}" />
+	</present> 
+	</div>
+</div>
+  <div class="form-group ">
+	<label class="col-sm-2 control-label">账号</label>
+	<div class="col-md-6 col-sm-10">
+		<input type="text" class="form-control" name="num" value="{$info.num}" />
+	<present name="change.num">
+		<input type="text" class="form-control red"  value="{$change.num}" />
+	</present> 
+	</div>
+</div>
+  <div class="form-group ">
+	<label class="col-sm-2 control-label">开户行</label>
+	<div class="col-md-6 col-sm-10">
+		<input type="text" class="form-control" name="location" value="{$info.location}" />
+	<present name="change.location">
+		<input type="text" class="form-control red"  value="{$change.location}" />
+	</present> 
+	</div>
+</div>
+<div class="form-group ">
+	<label class="col-sm-2 control-label">发票地址</label>
+	<div class="col-md-6 col-sm-10">
+		<input type="text" class="form-control" name="address" value="{$info.address}" />
+	<present name="change.address">
+		<input type="text" class="form-control red"  value="{$change.address}" />
+	</present> 
+	</div>
+</div>
+<div class="form-group ">
+	<label class="col-sm-2 control-label">发票电话</label>
+	<div class="col-md-6 col-sm-10">
+		<input type="text" class="form-control" name="tel" value="{$info.tel}" />
+	<present name="change.tel">
+		<input type="text" class="form-control red"  value="{$change.tel}" />
+	</present> 
+	</div>
+</div>
+<div class="form-group ">
+	<label class="col-sm-2 control-label">发票公司名</label>
+	<div class="col-md-6 col-sm-10">
+		<input type="text" class="form-control" name="company_name" value="{$info.company_name}" />
+	<present name="change.company_name">
+		<input type="text" class="form-control red"  value="{$change.company_name}" />
+	</present> 
+	</div>
+</div>
+<div class="form-group ">
+	<label class="col-sm-2 control-label">发票税号</label>
+	<div class="col-md-6 col-sm-10">
+		<input type="text" class="form-control" name="feenum" value="{$info.feenum}" />
+	<present name="change.feenum">
+		<input type="text" class="form-control red"  value="{$change.feenum}" />
+	</present> 
+	</div>
+</div>
+  
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">简介</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="text" class="form-control" name="dsc" value="{$info.dsc}" />
+        
+        <present name='change.dsc'>
+            <input type="text" class="form-control" name="dsc" value="{$info.dsc}" />
+        </present>
+    </div>
+</div>
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">排序</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="text" class="form-control" name="sort" value="{$info.sort|default=1000}" />
+        <present name='change.sort'>
+            <input type="text" class="red form-control" name="sort"  value="{$change.sort}" />
+        </present>
+    </div>
+</div>
+ 
+
+<include file="public@adsc" />

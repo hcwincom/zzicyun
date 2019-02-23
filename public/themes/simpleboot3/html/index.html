@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <!-- <meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>器械商城首页</title>
+		<meta name="applicable-device" content="pc">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/comm.css"/>
+    <link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+
+    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+  	<div class="topBanner">
+  				<div class="banner-wrap">
+		  			<a href="" target="_blank">
+		  				<img src="images/topad.png" alt="" />
+		  			</a>
+		  			<span class="glyphicon glyphicon-remove"></span>
+		  		</div>
+		  		<div class="site-nav clear">
+		  			<div class="site-nav-bd">
+		  				<ul class="site-nav-bd-l">
+		  					<li class="site-nav-menu">
+		  						<div class="site-nav-menu-hd">
+		  							<span>您好！欢迎来到器械商城!</span>
+		  						</div>
+		  						<!--登录之后显示begin-->
+		  						<div class="sign_index" style="display: none;">
+		  							<a href="index.html">
+		  								<i class="glyphicon glyphicon-home"></i>
+		  								首页
+		  							</a>
+		  						</div>
+									<!--登录之后显示end-->
+		  					</li>
+		  					<li class="site-nav-menu">
+		  						<div class="site-nav-menu-hd">
+		  							<div class="site-nav-sign">
+		  								
+		  								<a href="login.html" target="_top">登录</a>
+		  								<a href="register.html" target="_top">注册</a>
+		  							</div>
+		  							<!--登录之后显示begin-->
+		  							<div class="sign_after" style="display: none;">
+		  								<p>
+		  									<i class="iconfont icon-logout-user"></i>
+		  									<span>151****2316</span>
+		  								</p>
+		  							</div>
+		  							<!--登录之后显示end-->
+		  						</div>
+		  						
+		  					</li>
+		  					<li class="site-nav-menu">
+		  						<div class="site-nav-menu-hd">	
+		  							<div class="site-nav-bom">
+		  								<a href="copy.html" target="_blank">BOM批量导入型号</a>
+		  							</div>								
+		  						</div>
+		  					</li>
+		  				</ul>
+		  				<ul class="site-nav-bd-r">
+		  					<li class="site-nav-menu">
+		  						<div class="site-nav-menu-hd">
+		  							<div class="site-nav-menu-order">
+		  								<a href="memberCenter/purchase-order.html" target="_top">
+		  									<span class="site-nav-icon site-nav-myorder"></span>
+		  									<span>我的订单</span>
+		  								</a>
+		  							</div>
+		  						</div>					
+		  					</li>
+		  					<li class="site-nav-menu">
+		  						<div class="site-nav-menu-hd">
+		  							<div class="site-nav-member">
+		  								<a href="memberCenter/member_center.html" target="_top">
+		  									<span class="site-nav-icon site-nav-center"></span>
+		  									<span>会员中心</span>
+		  								</a>
+		  							</div>
+		  						</div>
+		  						
+		  					</li>
+		  					<li class="site-nav-menu">
+		  						<div class="site-nav-menu-hd">
+		  							<div class="site-nav-phone">
+		  								<a href="tel:0551-8888888">
+		  									<span class="site-nav-icon site-nav-tel"></span>
+		  									<span>: 0551-8888888</span>
+		  								</a>
+		  							</div>
+		  						</div>				
+		  					</li>
+		  				</ul>
+		  			</div>
+		  		</div>				
+					<!--搜索部分-->
+					<div class="search_banner">
+						<div class="top_wraper">	
+								<div class="row">
+									<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+										<div class="logo">
+											<a href="index.html">
+												<img class="logo_img" src="images/logo.png" alt="器械商城" />
+											</a>
+										</div>
+									</div>
+									<div class="col-xs-5 col-sm-5 col-md-6 col-lg-6">
+										<div class="top_search">
+											<form action="" method="post">
+												<div class="search_bor clear">
+													<input class="srinp fl" id="nav-keyword" value="" name="keyword" autocomplete="off" placeholder="请输入型号或产品相关信息" type="text">		
+													<button class="srsub fl" value="" type="button" id="subser"><i class="iconfont icon-sousuo"></i>搜索</button>
+												</div>
+												<div class="search_text">
+													<span>热门产品：</span>
+								          <a class="text-warning" href="" rel="nofollow">TAJD226K035NDJ</a>
+								          <a href="javascript:void(0)" class="searchKeyword" keyword="TAJD226K035RNJ">TAJD226K035RNJ</a>
+								          <a href="javascript:void(0)" class="searchKeyword" keyword="传感器 100V">传感器 100V</a> 
+												</div>
+											</form>
+										</div>
+									</div>
+									<div class="col-xs-4 col-sm-4 col-md-3 col-lg-3">
+										<div class="scart">
+											<div class="row">
+												<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+													<a href="pairing.html" class="scart_list">
+														<i class="bomd">BOM配单</i>
+														<span id="bomNum">0</span>
+													</a>
+												</div>
+												<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+													<a href="scart.html" class="scart_go">
+															<i class="iconfont icon-gouwuche"></i>
+															<span id="shopCartNum">3</span>
+													</a>
+												</div>
+											</div>
+										</div>
+									</div>
+						</div>
+					</div>
+						
+					</div>
+					<!--导航部分-->
+					<div class="l-nav">
+						<div class="nav">
+							<div class="clear">
+								<div id="allNav" class="allNav fl">
+									<h3 class="allNav__cap">产品分类</h3>
+									<div class="allNav__con">
+										<div class="allNav-lv1">
+											<a href="product.html" class="allNav-lv1__cap"><span class="capSpan span1">电阻</span></a>
+											<div class="allNav-lv2">
+												<div class="lv2_con">
+													<div class="lv2_list clear">
+														<h3>车规电阻 ：</h3>
+														<ul class="lv2_ul">
+															<li><a href="product.html">内容编辑1</a></li>
+														</ul>
+													</div>
+													<div class="lv2_list clear">
+														<h3>车规电阻 ：</h3>
+														<ul class="lv2_ul">
+															<li><a href="product.html">内容编辑1</a></li>									
+														</ul>
+													</div>
+													<div class="lv2_list clear">
+														<h3>车规电阻 ：</h3>
+														<ul class="lv2_ul">
+															<li><a href="product.html">内容编辑1</a></li>
+														</ul>
+													</div>				
+												</div>				
+											</div>
+										</div>
+										<div class="allNav-lv1">
+											<a href="product.html" class="allNav-lv1__cap"><span class="capSpan span2">电容</span></a>
+											<div class="allNav-lv2">
+												<div class="lv2_con">
+													<div class="lv2_list clear">
+														<h3>车规电阻 ：</h3>
+														<ul class="lv2_ul">
+															<li><a href="product.html">内容编辑1</a></li>
+														</ul>
+													</div>
+													<div class="lv2_list clear">
+														<h3>车规电阻 ：</h3>
+														<ul class="lv2_ul">
+															<li><a href="product.html">内容编辑1</a></li>
+														</ul>
+													</div>
+													<div class="lv2_list clear">
+														<h3>车规电阻 ：</h3>
+														<ul class="lv2_ul">
+															<li><a href="product.html">内容编辑1</a></li>
+														</ul>
+													</div>
+															
+												</div>
+											
+											</div>
+										</div>
+										<div class="allNav-lv1">
+											<a href="product.html" class="allNav-lv1__cap"><span class="capSpan span3">晶振</span></a>
+											<div class="allNav-lv2">
+												<div class="lv2_con">
+													<div class="lv2_list clear">
+														<h3>车规电阻 ：</h3>
+														<ul class="lv2_ul">
+															<li><a href="product.html">内容编辑1</a></li>
+														</ul>
+													</div>
+													<div class="lv2_list clear">
+														<h3>车规电阻 ：</h3>
+														<ul class="lv2_ul">
+															<li><a href="product.html">内容编辑1</a></li>
+														</ul>
+													</div>
+													<div class="lv2_list clear">
+														<h3>车规电阻 ：</h3>
+														<ul class="lv2_ul">
+															<li><a href="product.html">内容编辑1</a></li>
+														</ul>
+													</div>								
+												</div>				
+											</div>
+										</div>
+										<div class="allNav-lv1">
+											<a href="product.html" class="allNav-lv1__cap"><span class="capSpan span4">电源</span></a>
+											<div class="allNav-lv2">
+												<div class="lv2_con">
+													<div class="lv2_list clear">
+														<h3>车规电阻 ：</h3>
+														<ul class="lv2_ul">
+															<li><a href="product.html">内容编辑1</a></li>
+														</ul>
+													</div>
+													<div class="lv2_list clear">
+														<h3>车规电阻 ：</h3>
+														<ul class="lv2_ul">
+															<li><a href="product.html">内容编辑1</a></li>
+														</ul>
+													</div>
+													<div class="lv2_list clear">
+														<h3>车规电阻 ：</h3>
+														<ul class="lv2_ul">
+															<li><a href="product.html">内容编辑1</a></li>
+														</ul>
+													</div>
+															
+												</div>
+											
+											</div>
+										</div>
+										<div class="allNav-lv1">
+											<a href="product.html" class="allNav-lv1__cap"><span class="capSpan span5">连接器</span></a>
+											<div class="allNav-lv2">
+												<div class="lv2_con">
+													<div class="lv2_list clear">
+														<h3>车规电阻 ：</h3>
+														<ul class="lv2_ul">
+															<li><a href="product.html">内容编辑1</a></li>
+														</ul>
+													</div>
+													<div class="lv2_list clear">
+														<h3>车规电阻 ：</h3>
+														<ul class="lv2_ul">
+															<li><a href="product.html">内容编辑1</a></li>
+														</ul>
+													</div>
+													<div class="lv2_list clear">
+														<h3>车规电阻 ：</h3>
+														<ul class="lv2_ul">
+															<li><a href="product.html">内容编辑1</a></li>
+														</ul>
+													</div>
+															
+												</div>
+											
+											</div>
+										</div>
+										<div class="allNav-lv1">
+											<a href="product.html" class="allNav-lv1__cap"><span class="capSpan span6">传感器</span></a>
+											<div class="allNav-lv2">
+												<div class="lv2_con">
+													<div class="lv2_list clear">
+														<h3>车规电阻 ：</h3>
+														<ul class="lv2_ul">
+															<li><a href="product.html">内容编辑1</a></li>
+														</ul>
+													</div>
+													<div class="lv2_list clear">
+														<h3>车规电阻 ：</h3>
+														<ul class="lv2_ul">
+															<li><a href="product.html">内容编辑1</a></li>
+														</ul>
+													</div>
+													<div class="lv2_list clear">
+														<h3>车规电阻 ：</h3>
+														<ul class="lv2_ul">
+															<li><a href="product.html">内容编辑1</a></li>
+														</ul>
+													</div>
+															
+												</div>
+											
+											</div>
+										</div>
+										<div class="allNav-lv1">
+											<a href="product.html" class="allNav-lv1__cap"><span class="capSpan span7">电感磁珠</span></a>
+											<div class="allNav-lv2">
+												<div class="lv2_con">
+													<div class="lv2_list clear">
+														<h3>车规电阻 ：</h3>
+														<ul class="lv2_ul">
+															<li><a href="product.html">内容编辑1</a></li>
+														</ul>
+													</div>
+													<div class="lv2_list clear">
+														<h3>车规电阻 ：</h3>
+														<ul class="lv2_ul">
+															<li><a href="product.html">内容编辑1</a></li>
+														</ul>
+													</div>
+													<div class="lv2_list clear">
+														<h3>车规电阻 ：</h3>
+														<ul class="lv2_ul">
+															<li><a href="product.html">内容编辑1</a></li>
+														</ul>
+													</div>
+															
+												</div>
+											
+											</div>
+										</div>
+										<div class="allNav-lv1">
+											<a href="product.html" class="allNav-lv1__cap"><span class="capSpan span8">二三级管</span></a>
+											<div class="allNav-lv2">
+												<div class="lv2_con">
+													<div class="lv2_list clear">
+														<h3>车规电阻 ：</h3>
+														<ul class="lv2_ul">
+															<li><a href="product.html">内容编辑</a></li>
+														</ul>
+													</div>
+													<div class="lv2_list clear">
+														<h3>车规电阻 ：</h3>
+														<ul class="lv2_ul">
+															<li><a href="product.html">内容编辑1</a></li>
+														</ul>
+													</div>
+													<div class="lv2_list clear">
+														<h3>车规电阻 ：</h3>
+														<ul class="lv2_ul">
+															<li><a href="product.html">内容编辑1</a></li>
+														</ul>
+													</div>
+															
+												</div>
+											
+											</div>
+										</div>
+										<div class="allNav-lv1">
+											<a href="product.html" class="allNav-lv1__cap"><span class="capSpan span9">电路保护</span></a>
+											<div class="allNav-lv2">
+												<div class="lv2_con">
+													<div class="lv2_list clear">
+														<h3>车规电阻 ：</h3>
+														<ul class="lv2_ul">
+															<li><a href="product.html">内容编辑1</a></li>
+														</ul>
+													</div>
+													<div class="lv2_list clear">
+														<h3>车规电阻 ：</h3>
+														<ul class="lv2_ul">
+															<li><a href="product.html">内容编辑1</a></li>
+														</ul>
+													</div>
+													<div class="lv2_list clear">
+														<h3>车规电阻 ：</h3>
+														<ul class="lv2_ul">
+															<li><a href="product.html">内容编辑1</a></li>
+														</ul>
+													</div>
+															
+												</div>
+											
+											</div>
+										</div>
+										<div class="allNav-lv1">
+											<a href="product.html" class="allNav-lv1__cap"><span class="capSpan span10">LED照明</span></a>
+											<div class="allNav-lv2">
+												<div class="lv2_con">
+													<div class="lv2_list clear">
+														<h3>车规电阻 ：</h3>
+														<ul class="lv2_ul">
+															<li><a href="product.html">内容编辑1</a></li>
+														</ul>
+													</div>
+													<div class="lv2_list clear">
+														<h3>车规电阻 ：</h3>
+														<ul class="lv2_ul">
+															<li><a href="product.html">内容编辑1</a></li>
+														</ul>
+													</div>
+													<div class="lv2_list clear">
+														<h3>车规电阻 ：</h3>
+														<ul class="lv2_ul">
+															<li><a href="product.html">内容编辑1</a></li>
+														</ul>
+													</div>
+															
+												</div>
+											
+											</div>
+										</div>
+										<div class="allNav-lv1">
+											<a href="product.html" class="allNav-lv1__cap"><span class="capSpan span11">工业自动化</span></a>
+											<div class="allNav-lv2">
+												<div class="lv2_con">
+													<div class="lv2_list clear">
+														<h3>车规电阻 ：</h3>
+														<ul class="lv2_ul">
+															<li><a href="product.html">内容编辑1</a></li>
+														</ul>
+													</div>
+													<div class="lv2_list clear">
+														<h3>车规电阻 ：</h3>
+														<ul class="lv2_ul">
+															<li><a href="product.html">内容编辑1</a></li>
+														</ul>
+													</div>
+													<div class="lv2_list clear">
+														<h3>车规电阻 ：</h3>
+														<ul class="lv2_ul">
+															<li><a href="product.html">内容编辑1</a></li>
+														</ul>
+													</div>
+															
+												</div>
+											
+											</div>
+										</div>
+										<div class="allNav-lv1">
+											<a href="product.html" class="allNav-lv1__cap"><span class="capSpan span12">光电子产品</span></a>
+											<div class="allNav-lv2">
+												<div class="lv2_con">
+													<div class="lv2_list clear">
+														<h3>车规电阻 ：</h3>
+														<ul class="lv2_ul">
+															<li><a href="product.html">内容编辑1</a></li>
+														</ul>
+													</div>
+													<div class="lv2_list clear">
+														<h3>车规电阻 ：</h3>
+														<ul class="lv2_ul">
+															<li><a href="product.html">内容编辑1</a></li>
+														</ul>
+													</div>
+													<div class="lv2_list clear">
+														<h3>车规电阻 ：</h3>
+														<ul class="lv2_ul">
+															<li><a href="product.html">内容编辑1</a></li>
+														</ul>
+													</div>													
+												</div>									
+											</div>
+										</div>
+										<div class="allNav-lv1">
+											<a href="product.html" class="allNav-lv1__cap"><span class="capSpan span13">嵌入式解决方案</span></a>
+											<div class="allNav-lv2">
+												<div class="lv2_con">
+													<div class="lv2_list clear">
+														<h3>车规电阻 ：</h3>
+														<ul class="lv2_ul">
+															<li><a href="product.html">内容编辑1</a></li>
+														</ul>
+													</div>
+													<div class="lv2_list clear">
+														<h3>车规电阻 ：</h3>
+														<ul class="lv2_ul">
+															<li><a href="product.html">内容编辑1</a></li>
+														</ul>
+													</div>
+													<div class="lv2_list clear">
+														<h3>车规电阻 ：</h3>
+														<ul class="lv2_ul">
+															<li><a href="product.html">内容编辑1</a></li>
+														</ul>
+													</div>													
+												</div>								
+											</div>
+										</div>
+										<a class="allNav-more" href="product_category.html"><i class="iconfont icon-right"></i>查看全部分类</a>
+									</div>	
+								</div>							
+								<div class="nav_menu">
+									<ul>
+										<li><a class="navItem active" href="/">首页</a></li>
+										<li><a class="navItem" href="product.html">被动选型</a></li>
+										<li class="drop_menu">
+											<a class="navItem" href="javascript:void(0);">
+												<span>制造商&目录</span>
+												<i class="glyphicon glyphicon-triangle-bottom"></i>
+											</a>
+											<div class="item_lists">
+												<a class="menu_list" href="product_category.html">商品目录</a>
+												<a class="menu_list" href="branded.html">品牌制造商</a>
+											</div>
+										</li>
+										<li><a class="navItem" href="copy.html">智能BOM</a></li>
+										<li><a class="navItem" href="product_list.html">样品申请</a></li>
+										<li><a class="navItem" href="original_agent.html" rel="nofollow">原厂代理专营</a></li>
+										<li><a class="navItem" href="strength_distributor.html" rel="nofollow">实力分销商</a></li>
+										<li><a class="navItem" href="recruiting_suppliers.html" rel="nofollow">招募供应商</a></li>
+									</ul>	
+								</div>		
+								
+							</div>
+						</div>
+					</div>	
+					<!--轮播-->
+					<div style="width:100%;overflow: hidden;">
+						<div class="floor-slider">
+							<div class="l-center">
+								<div class="slider fl">
+									<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+										<ol class="carousel-indicators">
+										  <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+										  <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+										  <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+										</ol>
+										<div class="carousel-inner slider-con" role="listbox">
+										  <div class="item active">
+										    <a href="" target="_blank" title="">
+													<img src="images/banner.png" alt="" />
+												</a>
+										  </div>
+										  <div class="item">
+										    <a href="" target="_blank" title="">
+													<img src="images/banner.png" alt="" />
+												</a>
+										  </div>
+										  <div class="item">
+										    <a href="" target="_blank" title="">
+													<img src="images/banner.png" alt="" />
+												</a>
+										  </div>
+										</div>
+									</div>
+								</div>												
+							<div class="inx-uBox fr">
+								<div class="login_right">
+									<div class="login-center">
+										<a href="login.html">请登录</a>
+										<a href="register.html">免费注册</a>
+									</div>
+									<!--登录之后显示begin-->
+									<div class="login-after" style="display: none;">
+										<div class="login_img">
+											<div class="row">
+												<div class="col-lg-3 col-md-3 col-sm-3">
+													<span class="pic"><img src="images/客服.png" alt="头像" /></span>
+												</div>
+												<div class="col-lg-9 col-md-9 col-sm-9">
+													<div class="memName">
+														<p class="mName">Hi~<span>据工行卡i</span></p>
+														<p class="memCenter">
+															<a href="memberCenter/member_center.html">会员中心</a>
+														</p>
+													</div>	
+												</div>
+											</div>
+											
+										</div>
+									</div>
+									<!--登录之后显示end-->
+									<div class="links clear">
+										<a href="copy.html"><span>智能BOM</span></a>
+										<a href="memberCenter/purchase-order.html"><span>订单状态</span></a>
+										<a href="memberCenter/credit-discount.html"><span>优惠券</span></a>
+										<a href="memberCenter/purchase-order.html"><span>待付款</span></a>
+										<a href="memberCenter/cominquiry-list.html"><span>人工-报价(<i>0</i>)</span></a>
+									</div>
+									<div class="news">
+										<div class="news_title">
+											商城公告
+											<a href="proclamation-more.html">更多</a>
+										</div>
+										<a href="proclamation-detail.html" class="newsItem" target="_blank"><span>【活动】</span>推荐新会员送大礼优惠送大礼优惠</a>
+										<a href="proclamation-detail.html" class="newsItem" target="_blank"><span>【活动】</span>推荐新会员送大礼优惠</a>
+										<a href="proclamation-detail.html" class="newsItem" target="_blank"><span>【活动】</span>推荐新会员送大礼优惠</a>
+										<a href="proclamation-detail.html" class="newsItem" target="_blank"><span>【活动】</span>推荐新会员送大礼优惠</a>
+										<a href="proclamation-detail.html" class="newsItem" target="_blank"><span>【活动】</span>推荐新会员送大礼优惠</a>
+									</div>
+								</div>
+							</div>
+							<!--图片-->
+							<div class="quickLnk">
+								<a href="" class="quickLnkItm" target="_blank">
+									<img src="images/ad_ad.png" alt="" />
+									<span>点击</span>
+								</a>
+								<a href="" class="quickLnkItm" target="_blank">
+									<img src="images/ad_ad1.png" alt="" />
+									<span>点击</span>
+								</a>
+								<a href="" class="quickLnkItm" target="_blank">
+									<img src="images/ad_ad3.png" alt="" />
+									<span>点击</span>
+								</a>
+								<a href="" class="quickLnkItm" target="_blank">
+									<img src="images/ad_ad3.png" alt="" />
+									<span>点击</span>
+								</a>		
+							</div>
+										
+						</div>
+						
+					</div>
+							
+				</div>
+		<!--主要内容-->	
+				<div class="inbrand clear">
+					<div class="wraper">		
+						<div class="totalback">
+								<div class="list1">
+									<!--合作品牌-->
+									<div class="inxSecCap">
+										<span class="ag_mod">合作品牌</span>
+										<span class="ag_mod2">海量商品 &nbsp;正品低价</span>
+										<a href="branded.html">更多<i class="glyphicon glyphicon-menu-right"></i></a>
+									</div>
+									<ul class="inx-agList clear">
+										<li><a href="branded_detail.html"><img src="images/ad_ad4.png" alt="" /></a></li>
+										<li><a href="branded_detail.html"><img src="images/ad_ad5.png" alt="" /></a></li>
+										<li><a href="branded_detail.html"><img src="images/ad_ad6.png" alt="" /></a></li>
+										<li><a href="branded_detail.html"><img src="images/ad_ad7.png" alt="" /></a></li>
+										<li><a href="branded_detail.html"><img src="images/ad_ad8.png" alt="" /></a></li>
+										<li><a href="branded_detail.html"><img src="images/ad_ad6.png" alt="" /></a></li>
+										<li><a href="branded_detail.html"><img src="images/ad_ad7.png" alt="" /></a></li>
+										<li><a href="branded_detail.html"><img src="images/ad_ad8.png" alt="" /></a></li>
+										<li><a href="branded_detail.html"><img src="images/ad_ad6.png" alt="" /></a></li>
+									</ul>								
+								</div>	
+								<!--海量商品-->
+								<div class="lists2 clear">
+									<div class="inxSecCap">
+										<span class="ag_mod">海量商品</span>
+										<span class="ag_mod2">海量商品 &nbsp;正品低价</span>
+										<a href="product_category.html">更多<i class="glyphicon glyphicon-menu-right"></i></a>
+									</div>	
+									<ul class="inx-goods">
+										<li><a href="product_detail.html"><img src="images/pro.jpg" alt="" /><h3 class="goods-title">半导体原件</h3></a></li>
+										<li><a href="product_detail.html"><img src="images/pro.jpg" alt="" /><h3 class="goods-title">半导体原件</h3></a></li>
+										<li><a href="product_detail.html"><img src="images/pro.jpg" alt="" /><h3 class="goods-title">半导体原件</h3></a></li>
+										<li><a href="product_detail.html"><img src="images/pro.jpg" alt="" /><h3 class="goods-title">半导体原件</h3></a></li>
+										<li><a href="product_detail.html"><img src="images/pro.jpg" alt="" /><h3 class="goods-title">半导体原件</h3></a></li>
+									</ul>		
+								</div>
+								<div class="inx_ad clear mt10">
+									<div class="ad_left">
+										<img src="images/ad_left.png" alt="" />
+									</div>
+									<div class="ad_right">
+										<img src="images/ad_right.png" alt="" />
+									</div>
+								</div>
+								<div class="lists3 clear mt10 container-fluid">
+									<div class="inxSecCap">
+										<span class="ag_mod">资讯中心</span>
+										<span class="ag_mod2">独特的视角，带您领略电子行业的新鲜快讯</span>
+										<a href="information_center.html">更多<i class="iconfont icon-enter"></i></a>
+									</div>	
+									<div class="inx-zixun">
+										<div class="row">
+											<div class="zx-left col-lg-4 col-md-4 col-sm-4">
+												<a href="information_detail.html">
+													<div class="zxImg">
+														<img src="images/news.png" alt="" />
+													</div>
+														<p>芯片行业政策红利 !工红正在改个阶段！芯片实施地方工红正在改个阶段！工信部加大对汽   芯片实施地方工红正在改个阶段！工信部加大对汽  </p>
+													</div>
+												</a>
+											<div class="col-lg-4 col-md-4 col-sm-4">
+												<ul class="zixun">
+													<li class="zixun_hot">
+														<a href="information_detail.html">
+															芯片行业政策红利！工信部加大对汽 ,芯片行业政策红利！工信部加大对汽 . . .
+														</a>
+														<p style="display:none">new</p>
+														<p>new</p>
+													</li>
+													<li>
+														<a href="information_detail.html">
+															芯片行业政策红利！工信部加大对汽 ,芯片行业政策红利！工信部加大对汽 . . .
+														</a>
+														<p style="display:none">new</p>
+														<p>hot</p>
+													</li>
+													<li>
+														<a href="information_detail.html">
+															芯片行业政策红利！工信部加大对汽 ,芯片行业政策红利！工信部加大对汽 . . .
+														</a>
+													</li>
+													<li>
+														<a href="information_detail.html">
+															芯片行业政策红利！工信部加大对汽 . . . 
+														</a>
+													</li>
+													<li>
+														<a href="information_detail.html">
+															芯片行业政策红利！工信部加大对汽 . . . 
+														</a>
+													</li>
+													<li>
+														<a href="information_detail.html">
+															芯片行业政策红利！工信部加大对汽 ,芯片行业政策红利！工信部加大对汽 . . .
+														</a>
+													</li>
+												</ul>
+											</div>
+											<div class="zx-right col-lg-4 col-md-4 col-sm-4">
+												<div class="zxRight">
+													<div class="zxtitle">
+														<p>数据手册</p>
+													</div>
+													<div class="zxSearch">
+														<div class="search_input">
+															<input type="text" class="inputSer" name="inputSer" id="inputSer" value=""/>
+															<button type="submit"><i class="iconfont icon-enter"></i></button>
+														</div>
+														<label for="inputSer" style="color: rgb(102, 102, 102); visibility: visible;">
+															<i class="glyphicon glyphicon-search"></i>
+															<b>搜索</b>
+															<span>超过百万个产品的数据手册</span>
+														</label>
+													</div>
+													<div class="zxshuju">
+														<h3>推荐数据手册</h3>
+														<div class="zxshuju_p">
+															<p>VY2 Sample Kit Ac Line Rated-Ceramic .....</p>
+															<p>VY2 Sample Kit Ac Line Rated-Ceramic .....</p>
+															<p>VY2 Sample Kit Ac Line Rated-Ceramic .....</p>
+															<p>VY2 Sample Kit Ac Line Rated-Ceramic .....</p>
+															<p>VY2 Sample Kit Ac Line Rated-Ceramic .....</p>
+															<p>VY2 Sample Kit Ac Line Rated-Ceramic .....</p>
+															<p>VY2 Sample Kit Ac Line Rated-Ceramic .....</p>
+															<p>VY2 Sample Kit Ac Line Rated-Ceramic .....</p>
+														</div>
+													</div>									
+												</div>								
+											</div>
+										</div>
+									</div>					
+								</div>
+							<!---->
+						</div>
+					</div>			
+				</div>
+		<!--底部-->
+		
+		<div id="footer"></div>
+			<!---->
+  	</div>
+  
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="js/jquery-1.12.1.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+  </body>
+</html>

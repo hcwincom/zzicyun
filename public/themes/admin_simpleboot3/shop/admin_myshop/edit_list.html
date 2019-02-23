@@ -1,0 +1,26 @@
+<include file="public@header" />
+
+</head>
+<body>
+
+<div class="wrap js-check-wrap">
+	<ul class="nav nav-tabs">
+		<include file="shop@admin_myshop:nav" />
+	</ul>
+		 
+	 <include file="public@edit_list_base" />
+	 	<div class="pagination">{$page}</div>
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+<script>
+
+$('.del_all').click(function(){
+	$(this).parents('form').attr('action',"{:url('edit_del_all')}");
+});
+ 
+</script>
+
+
+
+</body>
+</html>

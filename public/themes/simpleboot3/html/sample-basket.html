@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	   	<!-- <meta name="viewport" content="width=device-width, initial-scale=1">-->
+	    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+	    <title>样品篮子</title>
+		<meta name="applicable-device" content="pc">
+	    <!-- Bootstrap -->
+	   	<link href="css/bootstrap.min.css" rel="stylesheet">
+	    <link rel="stylesheet" type="text/css" href="css/comm.css"/>
+	   	<link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
+	    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+	    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+	    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+	    <!--[if lt IE 9]>
+	      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+	      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+	</head>
+	<body>
+		<div class="perPart">
+			<div class="site-nav clear">
+				<div class="site-nav-bd">
+				  	<ul class="site-nav-bd-l">
+				  		<li class="site-nav-menu">
+				  			<div class="site-nav-menu-hd">
+				  				<span>您好！欢迎来到器械商城!</span>
+				  			</div>
+				  			<!--登录之后显示begin-->
+				  			<div class="sign_index" style="display: none;">
+				  				<a href="index.html">
+				  					<i class="glyphicon glyphicon-home"></i>
+				  					首页
+				  				</a>
+				  			</div>
+						<!--登录之后显示end-->
+				  		</li>
+				  		<li class="site-nav-menu">
+				  			<div class="site-nav-menu-hd">
+				  				<div class="site-nav-sign">
+				  					<a href="login.html" target="_top">登录</a>
+				  					<a href="register.html" target="_top">注册</a>
+				  				</div>
+				  				<!--登录之后显示begin-->
+				  				<div class="sign_after" style="display: none;">
+				  					<p>
+				  						<i class="iconfont icon-logout-user"></i>
+				  						<span><a href="member_center.html">151****2316</a></span>
+				  					</p>
+				  				</div>
+				  				<!--登录之后显示end-->
+				  			</div>
+				  		</li>
+				  		<li class="site-nav-menu">
+				  			<div class="site-nav-menu-hd">	
+				  				<div class="site-nav-bom">
+				  					<a href="../copy.html" target="_blank">BOM批量导入型号</a>
+				  				</div>								
+				  			</div>
+				  		</li>
+				  	</ul>
+				  	<ul class="site-nav-bd-r">
+				  		<li class="site-nav-menu">
+				  			<div class="site-nav-menu-hd">
+				  				<div class="site-nav-menu-order">
+				  					<a href="memberCenter/mepurchase-order.html" target="_top">
+				  						<span class="site-nav-icon site-nav-myorder"></span>
+				  						<span>我的订单</span>
+				  					</a>
+				  				</div>
+				  			</div>					
+				  		</li>
+				  		<li class="site-nav-menu">
+				  			<div class="site-nav-menu-hd">
+				  				<div class="site-nav-member">
+				  					<a href="memberCenter/member_center.html" target="_top">
+				  						<span class="site-nav-icon site-nav-center"></span>
+				  						<span>会员中心</span>
+				  					</a>
+				  				</div>
+				  			</div>			
+				  		</li>
+				  		<li class="site-nav-menu">
+				  			<div class="site-nav-menu-hd">
+				  				<div class="site-nav-phone">
+				  					<a href="tel:0551-8888888">
+				  						<span class="site-nav-icon site-nav-tel"></span>
+				  						<span>: 0551-8888888</span>
+				  					</a>
+				  				</div>
+				  			</div>				
+				  		</li>
+				  	</ul>
+				</div>
+			</div>
+			<!--头部-->
+			<div class="shopping-part">
+				<div class="wraper">
+					<div class="shopping-head-cont clear">
+						<div class="shopping-head-logo fl">
+							<a href="index.html">
+								<div class="shopping-logo">
+									<img src="images/logo.png" alt="" />
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="wraper totalback mtop">
+					<div class="shopping-zycont">
+						<div class="shop-order mt20">
+							<div class="shopOrder-head clear">
+								<ul class="clear col-xs-6 col-md-6">
+									<li class="shopActive">样品订单</li>
+								</ul>
+							</div>
+							
+							<div class="shopOrder-cont">
+								<div class="shopOrder-list shopOrder-active">
+									<form action="" method="post">
+										<div class="shopOrder-table">
+											<table class="table table-striped shopTable">
+												<tr>
+												  <th width="18%">
+												  	<p>商品名称</p>
+												  </th>
+												  <th width="13%">
+												  	<p>详情</p>
+												  </th>
+												  <th width="13%">
+												  	<p>包装/起订量</p>
+												  </th>
+												  <th width="12%">
+												  	<p>合同单价</p>
+												  	<span>（含税）</span>
+												  </th>
+												  <th width="12.5%">
+												  	<p>数量（pcs）</p>
+												  </th>
+												  <th width="12.5%">
+												  	<p>小计</p>
+												  </th>
+												  <th width="11%">
+												  	<p>货期</p>
+												  </th>
+												  <th width="8%">
+												  	<p>操作</p>
+												  </th>                                                                                                                                
+												</tr>
+												<tr>
+													<td>
+														<div class="shopName clear">
+															<div class="shopName-left fl">
+																<input type="checkbox" name="shopChose" value="" class="shop-check" />
+															</div>
+															<div class="shopName-right fl">
+																<p>
+																	<a href="proclamation-detail.html">ADP3331ARTZ-REEL7</a>
+																</p>
+																<span>封装规格：0402</span>
+															</div>
+														</div>
+													</td>
+													<td>
+														<div class="shopList-left">
+															<p>品牌 :  ST</p>
+															<p>库存编码 : 12345</p>
+															<p>供应商：代售</p>
+														</div>
+													</td>
+													<td>
+														<div class="shopList-left">
+															<p>整包:1500pcs</p>
+															<p>起订:1500pcs</p>
+															<p>倍数：1500pcs</p>
+														</div>
+													</td>
+													<td>
+														<div class="shopList">
+															<p>￥2.1</p>
+														</div>
+													</td>
+													<td>
+														<div class="shopList shopNum">
+															<div class="addBtn clear">
+																<p class="btn-add omin" onclick="minus(this,'9.9','100');">
+																	<span class="glyphicon glyphicon-minus"></span>
+																</p>
+																<input type="text" class="btn-num onum" value="56" name="count" />
+																<p class="btn-add oplus" onclick="plus(this,'9.9}','100}');">
+																	<span class="glyphicon glyphicon-plus"></span>
+																</p>
+															</div>
+															<p class="qred">库存：  <span>10000</span></p>
+														</div>	
+													</td>
+													<td>
+														<div class="shopList">
+															<p>￥1024.00</p>
+														</div>
+													</td>
+													<td>
+														<div class="shopList shopdate">
+															<span>2-3天</span>
+														</div>
+													</td>
+													<td>
+														<div class="shopList">
+															<button type="submit" class="del-shop">删除</button>
+															<button type="submit" class="chose-addr">更改交货地</button>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<div class="shopName clear">
+															<div class="shopName-left fl">
+																<input type="checkbox" name="shopChose" value="" class="shop-check" />
+															</div>
+															<div class="shopName-right fl">
+																<p>
+																	<a href="proclamation-detail.html">ADP3331ARTZ-REEL7</a>
+																</p>
+																<span>封装规格：0402</span>
+															</div>
+														</div>
+													</td>
+													<td>
+														<div class="shopList-left">
+															<p>品牌 :  ST</p>
+															<p>库存编码 : 12345</p>
+															<p>供应商：代售</p>
+														</div>
+													</td>
+													<td>
+														<div class="shopList-left">
+															<p>整包:1500pcs</p>
+															<p>起订:1500pcs</p>
+															<p>倍数：1500pcs</p>
+														</div>
+													</td>
+													<td>
+														<div class="shopList">
+															<p>￥2.1</p>
+														</div>
+													</td>
+													<td>
+														<div class="shopList shopNum">
+															<div class="addBtn clear">
+																<p class="btn-add omin" onclick="minus(this,'9.9','100');">
+																	<span class="glyphicon glyphicon-minus"></span>
+																</p>
+																<input type="text" class="btn-num onum" value="56" name="count" />
+																<p class="btn-add oplus" onclick="plus(this,'9.9}','100}');">
+																	<span class="glyphicon glyphicon-plus"></span>
+																</p>
+															</div>
+															<p class="qred">库存：  <span>10000</span></p>
+														</div>	
+													</td>
+													<td>
+														<div class="shopList">
+															<p>￥1024.00</p>
+														</div>
+													</td>
+													<td>
+														<div class="shopList shopdate">
+															<span>2-3天</span>
+														</div>
+													</td>
+													<td>
+														<div class="shopList">
+															<button type="submit" class="del-shop">删除</button>
+															<button type="submit" class="chose-addr">更改交货地</button>
+														</div>
+													</td>
+												</tr>
+											</table>
+										</div>
+										<div class="shopOrder-bot">
+											<div class="shop-action col-xs-4 col-md-4">
+												<span><input type="checkbox" name="check-all" id="" value="" class="check-all" />全选</span>
+												<button type="submit" class="del-all"><i class="iconfont icon-lajixiang"></i>批量删除</button>
+												<button type="submit" class="chose-all"><i class="iconfont icon-piliangguanli"></i>批量更改交货地</button>
+											</div>
+											<div class="shop-action-right col-xs-8 col-md-8">
+												<p class="shopqu">优惠券</p>
+												<p>已选<span>2</span>个型号</p>
+												<p class="shopjs">总金额（不含运费）：<b class="redColor">￥ 666.60</b></p>
+												<button type="submit" class="jsBtn">结算</button>
+												<div class="shopPop">
+													<i class="iconfont icon-icon"></i>
+													<div class="shopPop-part">
+														<ul>
+															<li class="clear">
+																<div class="col-xs-3 col-md-3 shopPrice">
+																	<p><span>￥</span>100</p>
+																</div>
+																<div class="col-xs-6 col-md-6 shopLeft">
+																	<p>东券，满￥199减￥80</p>
+																	<span>2018.09.18—2018.10.20</span>
+																</div>
+																<div class="col-xs-3 col-md-3 shopHerf">
+																	<button type="submit">领取</button>
+																</div>
+															</li>
+															<li class="clear">
+																<div class="col-xs-3 col-md-3 shopPrice">
+																	<p><span>￥</span>100</p>
+																</div>
+																<div class="col-xs-6 col-md-6 shopLeft">
+																	<p>东券，满￥199减￥80</p>
+																	<span>2018.09.18—2018.10.20</span>
+																</div>
+																<div class="col-xs-3 col-md-3 shopHerf">
+																	<button type="submit">领取</button>
+																</div>
+															</li>
+														</ul>
+													</div>
+												</div>
+											
+											</div>
+										</div>
+									</form>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			<div id="footer"></div>
+			<!---->
+		</div>
+		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+	    <script src="js/jquery-1.12.1.min.js"></script>
+	    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+	    <script src="js/bootstrap.min.js"></script>
+	    <script type="text/javascript" src="js/index.js"></script>
+	  	<script type="text/javascript">
+	  		$(".shopOrder-head ul li").click(function(){
+	  			var index = $(this).index();
+	  			$(this).addClass("shopActive").siblings().removeClass("shopActive");
+	  			$(".shopOrder-cont .shopOrder-list").eq(index).addClass("shopOrder-active").siblings().removeClass("shopOrder-active");
+	  		});
+	  		$(".shopqu").click(function(){
+	  			$(".shopPop").toggle();
+	  		});
+	  	</script>
+	</body>
+</html>

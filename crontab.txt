@@ -1,0 +1,24 @@
+#极敏商城
+#淘宝订单同步，30分钟一次 
+21,51 * * * * curl http://zzjm.wincomtech.cn/order/task/tabao_get
+
+#每天0点1分,生成当天的考勤规则 
+1 0 * * * curl http://zzjm.wincomtech.cn/attendance/task/attendance_date_set
+ 
+#每天0点10分,统计昨天的考勤
+10 0 * * * curl http://zzjm.wincomtech.cn/attendance/task/attendance_day_count
+    
+#每天2点1分,历史库存和安全库存更新
+1 2 * * * curl http://zzjm.wincomtech.cn/store/task/store_history
+ 
+#每天2点10分,仓库货架空间
+10 2 * * * curl http://zzjm.wincomtech.cn/store/task/space_count
+
+#每天2点20分,仓库租金
+20 2 * * * curl http://zzjm.wincomtech.cn/store/task/store_fee
+
+#每天3点1,物流结算信息同步
+1 3 * * * curl http://zzjm.wincomtech.cn/money/task/freight_update
+
+#每天3点11,每月费用更新,3点11
+11 3 * * * curl http://zzjm.wincomtech.cn/money/task/fee_month

@@ -1,0 +1,120 @@
+
+<div style="clear:both"></div>
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">所属分类</label>
+    <div class="col-md-6 col-sm-10">
+        <include file="goods@admin_goods_cate:goods_cate" />
+      <present name="change.cid">
+      	 <input type="text" class="form-control red"  value="{$cname}" /> 
+      </present>  
+    </div>
+</div>
+ 
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">名称</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="text" class="form-control" name="name" value="{$info.name}" /> 
+      <present name="change.name">
+      	 <input type="text" class="form-control red"  value="{$change.name}" /> 
+      </present>  
+    </div>
+</div>
+ 
+<div class="form-group">
+	<label for="" class="col-sm-2 control-label">参数项</label>
+	<div class="col-md-6 col-sm-10">
+		<table class="table table-hover table-bordered table-list">
+			<thead>
+				<tr>
+				  
+					<th >参数id-名</th>
+					<th >多语言</th>
+					<th >可搜索</th>
+					<th >排序</th>
+					<th >备注</th>
+				</tr>
+			</thead>
+			<tbody>
+		   <foreach name="params" item="vo" key="key">
+		   		<tr>
+		   			<td>
+		   			 	<label class="checkbox-inline">
+						<input type="checkbox" class="js-check"
+						data-yid="js-check-y" data-xid="js-check-x" name="ids[{$key}]"
+						value="{$key}" <present name="params_ids[$key]">checked</present> />  
+						{$key}-{$vo['name']}
+						<present name="change['param']['del'][$key]">
+						<span class="red">删除</span>
+						</present>
+						<present name="change['param']['add'][$key]">
+						<span class="red">新增</span>
+						</present>
+						<present name="change['param']['edit'][$key]">
+						<span class="red">编辑</span>
+						</present>
+						</label>
+					</td> 
+				 
+					<td><eq name="vo.is_lan" value="1">是<else/>否</eq></td> 
+					<td>
+					<select name="is_searchs[{$key}]" id="">
+						<option value="1">可</option>
+						<option value="2" <if condition="isset($params_ids[$key]) && $params_ids[$key]['is_search'] eq 2">selected</if>>不可</option>
+					</select>
+					<present name="change['param']['add'][$key]['is_search']">
+						<span class="red">
+						<eq name="change['param']['add'][$key]['is_search']" value="1">可<else/>否</eq>
+						</span>
+					</present>
+					<present name="change['param']['edit'][$key]['is_search']">
+						<span class="red">
+						<eq name="change['param']['edit'][$key]['is_search']" value="1">可<else/>否</eq>
+						</span>
+					</present>
+					</td>
+					<td><input type="text" class="input-order" name="sorts[{$key}]" value="{$params_ids[$key]['sort']|default=$vo.sort}" />
+					<present name="change['param']['add'][$key]['sort']">
+						<span class="red">
+						{$change['param']['add'][$key]['sort']}
+						</span>
+					</present>
+					<present name="change['param']['edit'][$key]['sort']">
+						<span class="red">
+						{$change['param']['edit'][$key]['sort']}
+						</span>
+					</present>
+					</td>
+					<td>{$vo.dsc}</td>
+				</tr>	 
+		   
+		   </foreach>
+			 	 
+			 
+			</tbody>
+			
+		</table>
+		  
+	</div>
+</div>
+ 
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">排序</label>
+    <div class="col-md-6 col-sm-10">
+       <input type="text" class="form-control" name="sort" value="{$info.sort|default=1000}" />
+       <present name="change.sort">
+      	 <input type="text" class="form-control red"  value="{$change.sort}" /> 
+       </present>    
+    </div>
+</div>
+
+<div class="form-group "  >
+    <label class="col-sm-2 control-label">备注</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="text" class="form-control" name="dsc" value="{$info.dsc}"  />
+      <present name="change.dsc">
+      	 <input type="text" class="form-control red"  value="{$change.dsc}" /> 
+       </present>    
+    </div>
+</div>
+
+<include file="public@adsc" />

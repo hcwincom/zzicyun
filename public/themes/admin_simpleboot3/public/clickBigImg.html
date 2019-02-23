@@ -1,0 +1,92 @@
+<!--图片列表 轮播点击放大图片 -->
+<div id="outdiv">
+    <div id="innerdiv">
+        <div id="imgClose">
+            <span class="glyphicon glyphicon-remove-circle"></span>
+        </div>
+        <div id="imgPrev">
+            <span class="glyphicon glyphicon-upload"></span>
+        </div>
+        <div id="imgNext">
+            <span class="glyphicon glyphicon-download"></span>
+        </div>
+        <div id="backBigImg" style="background-size: contain;"></div>
+        <img class="lbigImg" src="" alt="" style="display: none;">
+    </div>
+</div>
+<script>
+$(function () {
+     // 点击轮播弹出大图
+    var zj_pic_index;
+    var divLen = $(".imgList li").length;
+    var zj_pic = $(".imgList").eq(0);
+
+    $(document).on("click", '.imgList li', function () {
+        zj_pic = $(this).parents(".imgList");
+        zj_pic_index = $(this).index();
+        var inbigimgUrl = $(this).find("input").val();
+        $(".lbigImg").attr("src", inbigimgUrl);
+
+        $("<img />").attr("src", inbigimgUrl).load(function () {
+            var imgWidth = this.width,
+                imgHeight = this.height;
+            $("#backBigImg").css({
+                "width": imgWidth,
+                "height": imgHeight,
+                "background-image": "url(" + inbigimgUrl + ")"
+            });
+        });
+        $("#outdiv").fadeIn();
+        $(document.body).toggleClass("html_overflow");
+    });
+
+    $("#innerdiv #imgClose").click(function () {
+        $("#outdiv").fadeOut();
+        $(document.body).toggleClass("html_overflow");
+    });
+
+    //上一张
+    $("#innerdiv #imgPrev span").click(function () {
+
+        if (zj_pic_index != 0) {
+            zj_pic_index--;
+
+            var inputImg = zj_pic.find('input').eq(zj_pic_index).val();
+
+            $(".lbigImg").attr("src", inputImg);
+
+            $("<img />").attr("src", inputImg).load(function () {
+                var imgWidth = this.width,
+                    imgHeight = this.height;
+                $("#backBigImg").css({
+                    "width": imgWidth,
+                    "height": imgHeight,
+                    "background-image": "url(" + inputImg + ")"
+                });
+            });
+        }
+    });
+
+    $("#innerdiv #imgNext span").click(function () {
+        if (zj_pic_index < divLen-1) {
+            zj_pic_index++;
+
+            var inputImg = zj_pic.find('input').eq(zj_pic_index).val();
+            $(".lbigImg").attr("src", inputImg);
+
+            $("<img />").attr("src", inputImg).load(function () {
+                var imgWidth = this.width,
+                    imgHeight = this.height;
+                $("#backBigImg").css({
+                    "width": imgWidth,
+                    "height": imgHeight,
+                    "background-image": "url(" + inputImg + ")"
+                });
+            });
+        }
+    });
+
+});
+
+
+</script>

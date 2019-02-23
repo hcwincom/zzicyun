@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	   <!-- <meta name="viewport" content="width=device-width, initial-scale=1">-->
+	    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+	    <title>登录</title>
+			<meta name="applicable-device" content="pc">
+	    <!-- Bootstrap -->
+	    <link href="css/bootstrap.min.css" rel="stylesheet">
+	    <link rel="stylesheet" type="text/css" href="css/comm.css"/>
+	    <link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
+	    <link rel="stylesheet" type="text/css" href="css/person_style.css"/>
+	    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+	    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+	    <!--[if lt IE 9]>
+	      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+	      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+	    <![endif]-->
+	</head>
+	<body style="background: #ffffff;">
+		<div class="topBanner">
+			<div class="site-nav clear">
+		  		<div class="site-nav-bd">
+		  			<ul class="site-nav-bd-l">
+		  				<li class="site-nav-menu">
+		  					<div class="site-nav-menu-hd">
+		  						<span>您好！欢迎来到器械商城!</span>
+		  					</div>
+		  					<!--登录之后显示begin-->
+		  					<div class="sign_index" style="display: none;">
+		  						<a href="index.html">
+		  							<i class="glyphicon glyphicon-home"></i>
+		  							首页
+		  						</a>
+		  					</div>
+						<!--登录之后显示end-->
+		  				</li>
+		  				<li class="site-nav-menu">
+		  					<div class="site-nav-menu-hd">
+		  						<div class="site-nav-sign">
+		  								
+		  							<a href="login.html" target="_top">登录</a>
+		  							<a href="register.html" target="_top">注册</a>
+		  						</div>
+		  						<!--登录之后显示begin-->
+		  						<div class="sign_after" style="display: none;">
+		  							<p>
+		  								<i class="iconfont icon-logout-user"></i>
+		  								<span>151****2316</span>
+		  							</p>
+		  						</div>
+		  							<!--登录之后显示end-->
+		  					</div>
+		  						
+		  				</li>
+		  				<li class="site-nav-menu">
+		  					<div class="site-nav-menu-hd">	
+		  						<div class="site-nav-bom">
+		  							<a href="copy.html" target="_blank">BOM批量导入型号</a>
+		  						</div>								
+		  					</div>
+		  				</li>
+		  			</ul>
+		  			<ul class="site-nav-bd-r">
+		  				<li class="site-nav-menu">
+		  					<div class="site-nav-menu-hd">
+		  						<div class="site-nav-menu-order">
+		  							<a href="memberCenter/purchase-order.html" target="_top">
+		  								<span class="site-nav-icon site-nav-myorder"></span>
+		  								<span>我的订单</span>
+		  							</a>
+		  						</div>
+		  					</div>					
+		  				</li>
+		  				<li class="site-nav-menu">
+		  					<div class="site-nav-menu-hd">
+		  						<div class="site-nav-member">
+		  							<a href="memberCenter/member_center.html" target="_top">
+		  								<span class="site-nav-icon site-nav-center"></span>
+		  								<span>会员中心</span>
+		  							</a>
+		  						</div>
+		  					</div>
+		  				</li>
+		  				<li class="site-nav-menu">
+		  					<div class="site-nav-menu-hd">
+		  						<div class="site-nav-phone">
+		  							<a href="tel:0551-8888888">
+		  								<span class="site-nav-icon site-nav-tel"></span>
+		  								<span>: 0551-8888888</span>
+		  							</a>
+		  						</div>
+		  					</div>				
+		  				</li>
+		  			</ul>
+		  		</div>
+		  	</div>				
+			<!--搜索部分-->
+			<div class="search_banner">
+				<div class="top_wraper">	
+					<div class="row">
+						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+							<div class="logo">
+								<a href="index.html">
+									<img class="logo_img" src="images/logo.png" alt="器械商城" />
+								</a>
+							</div>
+						</div>
+						<div class="col-xs-5 col-sm-5 col-md-6 col-lg-6">
+							<div class="top_search">
+								<form action="" method="post">
+									<div class="search_bor clear">
+										<input class="srinp fl" id="nav-keyword" value="" name="keyword" autocomplete="off" placeholder="请输入型号或产品相关信息" type="text">		
+										<button class="srsub fl" value="" type="button" id="subser"><i class="iconfont icon-sousuo"></i>搜索</button>
+									</div>
+									<div class="search_text">
+										<span>热门产品：</span>
+								        <a class="text-warning" href="" rel="nofollow">TAJD226K035NDJ</a>
+								        <a href="javascript:void(0)" class="searchKeyword" keyword="TAJD226K035RNJ">TAJD226K035RNJ</a>
+								        <a href="javascript:void(0)" class="searchKeyword" keyword="传感器 100V">传感器 100V</a> 
+									</div>
+								</form>
+							</div>
+						</div>
+						<div class="col-xs-4 col-sm-4 col-md-3 col-lg-3">
+							<div class="scart">
+								<div class="row">
+									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+										<a href="pairing.html" class="scart_list">
+											<i class="bomd">BOM配单</i>
+											<span id="bomNum">0</span>
+										</a>
+									</div>
+									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+										<a href="scart.html" class="scart_go">
+											<i class="iconfont icon-gouwuche"></i>
+											<span id="shopCartNum">3</span>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+				
+			<!--登录主要内容-->
+			<div class="login_content">
+				<div class="login_back">
+					<div class="wraper">
+						<div class="row">
+							<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+								<div class="loginImg">
+									<a href="" title="优惠券">
+										<img src="images/login_left.png" alt="" />
+									</a>
+								</div>
+							</div>
+							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+								<div class="title-nav">
+									<ul class="login_type clear">
+										<li class="active">账号密码登录</li>
+										<li>手机免密登录</li>
+									</ul>
+								</div>
+								<!---->
+								<div class="normal-login">
+									<div class="login_type_list">
+										<div class="input-content clear">
+											<div class="pwd-login login-view login-active">
+												<form action="" method="post">
+													<div class="input-box">
+														<span>账号</span>
+	            										<input type="text" class="phone-input long-input" placeholder="用户名/手机号码" id="pwdPhontInput" autocomplete="off">
+													</div>
+													<div class="input-box">
+											            <span>密码</span>
+											            <input type="password" class="password-input long-input" placeholder="请输入密码" autocomplete="off">
+											        </div>
+											        <div class="input-box">
+											        	<div class="outer">
+													        <div class="filter-box"></div>
+													        <span>拖动方块到右边</span>
+													        <div class="inner">&gt;&gt;</div>
+													    </div>
+											        </div>
+											        
+											        <div class="input-boxBtn">
+											        	<button type="submit" class="lg-subicn mt15" href="javascript:void(0);">登录</button>
+											        </div>
+											        
+												</form>
+											</div>
+											<div class="phone-login login-view">
+												<form action="" method="post">
+													<div class="input-box">
+												        <select name="area">
+												            <option value="">中国大陆0086</option>
+												        </select>
+												        <input type="text" class="phone-input short-input" placeholder="请输入手机号码" id="codePhoneInput" autocomplete="off">
+												    </div>
+												    <div class="input-box input-box-none clear">
+												        <div class="fl" style="width: 60%;">
+												            <input type="text" class="code-input" placeholder="请输入动态密码" autocomplete="off">
+												        </div>
+												        <a href="javascript:;" class="fr get-code not" id="loginMnote">获取验证码</a>
+												    </div>
+													<div class="input-boxBtn">
+											        	<button type="submit" class="lg-subicn mt15" href="javascript:void(0);">登录</button>
+											        </div>
+												</form>
+											</div>
+											
+										</div>
+										<div class="other-forget clear">
+										    <p class="fl noAccount">
+										        <span>没有账号</span>
+										        <a href="register.html">立即注册</a>
+										    </p>
+										    <p class="fl forget-pwd">
+										        <a href="password.html">忘记密码</a>
+										    </p>
+										</div>
+									<!---->
+									</div>
+									<div class="error-info"></div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!--底部-->
+			<div class="footer_bottom clear">
+				<div class="wraper">
+					<div class="row">
+						<div class="col-lg-7 col-md-7 col-sm-7">
+							<div class="footer_left">
+								<div class="row">
+									<div class="col-lg-3 col-md-3 col-sm-3">
+										<div class="footList">
+											<h3>新手入门</h3>
+											<div class="list_title">
+												<p><a href="bottomOperation/login_register.html" target="_blank">注册登录</a></p>
+												<p><a href="bottomOperation/shopping_guide.html" target="_blank">下单流程</a></p>
+												<p><a href="bottomOperation/familiar_question.html" target="_blank">常见问题</a></p>
+												<p><a href="bottomOperation/responsibility.html" target="_blank">责任说明</a></p>	
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-3 col-md-3 col-sm-3">
+										<div class="footList">
+											<h3>购物指南</h3>
+											<div class="list_title">
+												<p><a href="bottomOperation/alipay_way.html" target="_blank">支付方式</a></p>
+												<p><a href="bottomOperation/deliver_way.html" target="_blank">配送方式</a></p>
+												<p><a href="bottomOperation/back_serve.html" target="_blank">售后服务</a></p>
+												<p><a href="bottomOperation/invoice.html" target="_blank">发票问题</a></p>												
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-3 col-md-3 col-sm-3">
+										<div class="footList">
+											<h3>特色服务</h3>
+											<div class="list_title">
+												<p><a href="product_list.html" target="_blank">样品申请</a></p>
+												<p><a href="bottomOperation/overseas_shopping.html" target="_blank">海外代购</a></p>
+												<p><a href="recruiting_suppliers.html" target="_blank">库存代售</a></p>
+												<p><a href="recruiting_suppliers.html" target="_blank">厂家入驻</a></p>												
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-3 col-md-3 col-sm-3">
+										<div class="footList">
+											<h3>商城介绍</h3>
+											<div class="list_title"> 
+												<p><a href="bottomOperation/enterprise_intro.html" target="_blank">企业简介</a></p>
+												<p><a href="bottomOperation/superior_resources.html" target="_blank">优势资源</a></p>
+												<p><a href="bottomOperation/contact_us.html" target="_blank">联系我们</a></p>
+												<p><a href="bottomOperation/join_us.html" target="_blank">加入我们</a></p>		
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-1 col-md-1 col-sm-1"></div>
+						<div class="col-lg-4 col-md-4 col-sm-4">
+							<div class="footer_right">
+								<div class="row">
+									<div class="col-lg-8 col-md-8 col-sm-8">
+										<div class="row">
+											<div class="col-lg-6 col-md-6 col-sm-6" style="padding: 3px;">
+												<div class="rt_img">
+													<p><img src="images/footer3.png" alt="" /></p>
+													<p><img src="images/footer1.png" alt="" /></p>
+													<p><img src="images/footer.png" alt="" /></p>
+												</div>												
+											</div>
+											<div class="col-lg-6 col-md-6 col-sm-6" style="padding: 3px;">
+												<div class="rt_img">
+													<p><img src="images/footer5.png" alt="" /></p>
+													<p><img src="images/footer2.png" alt="" /></p>
+												</div>												
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-4 col-md-4 col-sm-4">
+										<div class="code_img"><img src="images/code.png" alt="微信二维码" /></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="footer_copy">
+						<a href="/">Copyright©2009 http://www.gc-zb.com All Rights Reserved </a>
+					</div>
+				</div>
+			</div>
+		<!---->			
+		</div>
+		
+		 <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+	    <script src="js/jquery-1.12.1.min.js"></script>
+	    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+	    <script src="js/bootstrap.min.js"></script>
+	    <script type="text/javascript" src="js/index.js"></script>
+	    <script type="text/javascript" src="js/slideUnlock.js"></script>
+		
+	    <script type="text/javascript">
+	    	$(".login_type li").click(function(){
+	    		var index = $(this).index();
+	    		
+	    		$(this).addClass("active").siblings("li").removeClass("active");
+				$(".input-content .login-view").eq(index).addClass("login-active").siblings(".login-view").removeClass("login-active")
+	    	});
+	    	
+	    	var spanH = $(".outer>span").text();
+	    	console.log(spanH);
+	    	
+	    </script>
+	    
+	    
+	</body>
+</html>

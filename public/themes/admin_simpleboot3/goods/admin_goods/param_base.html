@@ -1,0 +1,94 @@
+
+<div style="clear:both"></div>
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">参数模板</label>
+    <div class="col-md-6 col-sm-10">
+        <select name="template" id="template" class="short-auto">
+        <foreach name="templates" item="vo">
+        	<option value="{$key}" <if condition="$key eq $info.template">selected</if>>{$vo}</option>
+        </foreach>
+        </select>
+          <button type="button" id="set_template">确认匹配模板</button>
+      <present name="change.template">
+      	 <input type="text" class="form-control red"  value="{$template_name}" /> 
+      </present>  
+    </div>
+</div>
+ 
+<div class="form-group" id="param">
+	<label for="" class="col-sm-2 control-label">技术参数</label>
+	<div class="col-md-6 col-sm-10">
+		<table class="table table-hover table-bordered table-list">
+		 
+			<thead>
+				<tr> 
+					<th width="18%">参数</th>
+					<th width="80%">值</th> 
+				</tr>
+			</thead>
+			<tbody id="param_tbody"> 
+			 
+			<foreach name="params" item="vo" key="key">
+			<input type="hidden" name="sorts[{$vo.param}]" value="{$vo.sort}"/>
+			 <tr> 
+			 <eq name="vo.lid" value="0">
+			 	<td>{$vo.param_name}</td>
+			  	<td>
+		  		<input type="text" class="form-control" name="param0[{$vo.param}]" value="{$vo.val}"/>
+		  		<present name="change['edit'][$key]">
+		  			<input type="text" class="form-control red"  value="{$change['edit'][$key]}"/>
+		  		</present>
+			  	</td>
+			 <else/>
+			 	<input type="hidden" name="param00[{$vo.param}]" value="{$vo.param}"/>
+			 	<td>{$vo.param_name}{$vo.lan_name}</td>
+			  	<td>
+		  		<input type="text" class="form-control" name="param{$vo.param}[{$vo.lid}]" value="{$vo.val}"/>
+		  		<present name="change['edit'][$key]">
+		  			<input type="text" class="form-control red"  value="{$change['edit'][$key]}"/>
+		  		</present>
+			  	</td>
+			 </eq>
+			 	 
+			    
+			 </tr>
+			</foreach> 
+			</tbody>
+			 
+		</table>
+		 
+	</div>
+</div>
+<present name="change.add">
+<div class="form-group red" >
+	<label for="" class="col-sm-2 control-label">新参数</label>
+	<div class="col-md-6 col-sm-10">
+		<table class="table table-hover table-bordered table-list">
+		 
+			<thead>
+				<tr> 
+					<th width="18%">参数</th>
+					<th width="80%">值</th> 
+				</tr>
+			</thead>
+			<tbody id="param_tbody"> 
+			 
+			<foreach name="change.add" item="vo" key="key">
+		 
+			 <tr> 
+			 
+			 	<td>{$param_names[$vo.param]}{$lan_names[$vo.lid]|default=''}</td>
+			  	<td>
+		  		<input type="text" class="form-control"  value="{$vo.val}"/>
+		  	 
+			  	</td>
+			  
+			 </tr>
+			</foreach> 
+			</tbody>
+			 
+		</table>
+		 
+	</div>
+</div>
+</present>
