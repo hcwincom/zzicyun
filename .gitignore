@@ -1,0 +1,15 @@
+.buildpath
+.DS_Store
+.project
+.settings
+.idea
+/api
+/public/api
+/public/assets/dist
+/node_modules
+/data
+!/data/conf/config.php
+/public/data
+/public/log
+/public/upload
+
