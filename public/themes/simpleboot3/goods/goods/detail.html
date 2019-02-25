@@ -9,7 +9,7 @@
 				<div class="nav">
 					<div class="clear">
 						<div id="allNav" class="allNav allNav_list fl"></div>							
-						 	<include file="public@nav"/> 		          	
+						 	<include file="public@nav"/>   	
 					</div>
 				</div>
 			</div>	
@@ -525,45 +525,35 @@
 			<div id="pdf-pop">
 				<div id="pdf-cont">
 					<div class="pdf-head">
-						<h3>C32349数据手册/封装库下载</h3>
+						<h3>{$info.name}{$notice[$html]['pdf1']}{$notice[$html]['download']}</h3>
 						<i class="iconfont icon-guanbi1 pdf-close"></i>
 					</div>
 					<div class="pdf-unload">
+					<foreach name="pdf_cates" item="vo" key="key">
 						<div class="pdf-text clear">
-							<div class="fl pdf-left">数据手册：</div>
+							<div class="fl pdf-left">{$notice[$html]['pdf'.$key]}：</div>
 							<div class="fl pdf-right">
-								<span><i class="iconfont icon-wenjianjia"></i>FC-135 34.12KHz ± 20ppm 12.5df 编带-PDF-c323发发发</span>
-								<a href="">直接下载PDF</a>
-							</div>
-						</div>
-						<div class="pdf-text clear">
-							<div class="fl pdf-left">AD封装库文件： </div>
-							<div class="fl pdf-right">
+							<empty name="info['files'][$key]">
 								<span>暂无文件</span>
-								<a style="display: none;" href="">直接下载PDF</a>
+							<else/>
+								<span><i class="iconfont icon-wenjianjia"></i>{$info['files'][$key]['name']}</span>
+								<a href="{:url('goods/Goods/file_load',['id'=>$info['files'][$key]['id']])}">{$notice[$html]['download']}</a>
+							</empty>
+								 
 							</div>
 						</div>
-						<div class="pdf-text clear">
-							<div class="fl pdf-left">PADS封装库文件：  </div>
-							<div class="fl pdf-right">
-								<span>暂无文件</span>
-								<a style="display: none;" href="">直接下载PDF</a>
-							</div>
-						</div>
+					
+					</foreach>
+					 
 					</div>
 					
 				</div>
 			</div>
 			<!--底部 -->
-			<div id="footer"></div>		
+		 <include file="public@footer"/> 
 			
 		</div>
-		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
-	    <script src="js/jquery-1.12.1.min.js"></script>
-	    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
-	    <script src="js/bootstrap.min.js"></script>
-	    <script type="text/javascript" src="js/index.js"></script>
-	    <script type="text/javascript" src="js/share.js"></script>
+		 	 <include file="public@foot"/> 
 		<script type="text/javascript">
 			$(".detail_view table tr td.bjbtn").click(function(){
 				$("#pop-up").fadeIn();

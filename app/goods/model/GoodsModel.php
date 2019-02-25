@@ -44,8 +44,8 @@ class GoodsModel extends Model
      */
     public function get_one($id,$lan=1,$lan1=1){
         
-        $field='p.id,p.code,p.pic,p.pic0,p.store_num,p.store_code,p.brand,p.price1,p.price2,p.shop'.
-        ',p.num_min,p.num_times,val.name as name,val.dsc as dsc,val.production_code as production_code,val.production_factory as production_factory';
+        $field='p.id,p.code,p.pic,p.pic0,p.store_num,p.store_code,p.brand,p.price1,p.price2,p.goods_time1,p.goods_time2,p.shop'.
+        ',p.num_min,p.num_times,p.num_one,val.name as name,val.dsc as dsc,val.production_code as production_code,val.production_factory as production_factory';
         $where=['p.id'=>$id];
         $info=$this
         ->alias('p')

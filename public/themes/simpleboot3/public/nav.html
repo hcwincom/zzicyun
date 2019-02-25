@@ -1,16 +1,16 @@
 	<!--导航菜单-->		
 <div class="nav_menu">
 	<ul>
-		<li><a class="navItem active" href="/">{$notice.index.index}</a></li>
-		<li><a class="navItem" href="product.html">{$notice.index.index}</a></li>
+		<li><a class="navItem active" href="/">{$notice.index.index|default='index'}</a></li>
+		 
 		<li class="drop_menu">
 			<a class="navItem" href="javascript:void(0);">
-				<span>{$notice.index.manufacturer}&{$notice.index.catalogue}</span>
+				<span>{$notice.index.manufacturer|default='manufacturer'}&{$notice.index.catalogue|default='catalogue'}</span>
 				<i class="glyphicon glyphicon-triangle-bottom"></i>
 			</a>
 			<div class="item_lists">
-				<a class="menu_list" href="product_category.html">{$notice.index.catalogue}</a>
-				<a class="menu_list" href="branded.html">{$notice.index.manufacturer}</a>
+				<a class="menu_list" href="{:url('goods/Goods/cate_list')}">{$notice.index.catalogue|default='catalogue'}</a>
+				<a class="menu_list" href="branded.html">{$notice.index.manufacturer|default='manufacturer'}</a>
 			</div>
 		</li>
 		<li><a class="navItem" href="copy.html">智能BOM</a></li>

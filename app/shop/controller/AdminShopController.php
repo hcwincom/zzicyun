@@ -32,6 +32,7 @@ class AdminShopController extends AdminInfoController
         $this->islan=1;
         $this->vals=[
             'name'=>'多语言名称',
+            'char'=>'名称首字母',
             'dsc'=>'多语言说明',
             'pros'=>'产品线', 
             'brands'=>'主营产品', 
@@ -548,6 +549,7 @@ class AdminShopController extends AdminInfoController
     public function cates($type=3){
         parent::cates($type);
         $this->assign('shop_types',config('shop_types'));
+        $this->assign('chars',config('chars'));
     }
     
 }

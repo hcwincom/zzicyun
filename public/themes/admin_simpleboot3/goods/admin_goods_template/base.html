@@ -58,8 +58,8 @@
 					<td><eq name="vo.is_lan" value="1">是<else/>否</eq></td> 
 					<td>
 					<select name="is_searchs[{$key}]" id="">
-						<option value="1">可</option>
-						<option value="2" <if condition="isset($params_ids[$key]) && $params_ids[$key]['is_search'] eq 2">selected</if>>不可</option>
+						<option value="2">不可</option>
+						<option value="1" <if condition="isset($params_ids[$key]) && $params_ids[$key]['is_search'] eq 1">selected</if>>可</option>
 					</select>
 					<present name="change['param']['add'][$key]['is_search']">
 						<span class="red">

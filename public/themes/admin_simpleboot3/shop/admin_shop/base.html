@@ -38,6 +38,22 @@
 <div class="form-group">
     <label for="" class="col-sm-2 control-label">{$vo}</label>
     <div class="col-md-6 col-sm-10">
+    <eq name="key" value="char">
+    <foreach name="lans" item="vv" key="kk"> 
+	    <if condition="empty($lans_info[$kk][$key])">
+	    	<assign name="lans_info[$kk][$key]" value="#"/>
+	    </if>
+   		{$vv} 
+   		 <select class=" form-control" name="lan-{$key}[{$kk}]"> 
+			<foreach name="chars" item="vchar" key="kchar">
+			<option value="{$vchar}" <if condition="$vchar eq $lans_info[$kk][$key]">selected</if>>{$vchar}</option>
+			</foreach>
+		</select>  
+	       <present name="change['lans'][$kk][$key]">
+	      	 <input type="text" class="form-control  red"  value="{$change['lans'][$kk][$key]}" /> 
+	       </present>   
+    </foreach> 
+   <else/> 
     <foreach name="lans" item="vv" key="kk"> 
    		{$vv}
 	       <input type="text" class="form-control " name="lan-{$key}[{$kk}]" value="{$lans_info[$kk][$key]|default=''}" />
@@ -45,6 +61,8 @@
 	      	 <input type="text" class="form-control  red"  value="{$change['lans'][$kk][$key]}" /> 
 	       </present>   
     </foreach> 
+      </eq>
+     
     </div>
 </div>
 </foreach>

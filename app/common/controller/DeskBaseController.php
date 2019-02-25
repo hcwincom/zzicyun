@@ -8,7 +8,8 @@ use think\View;
  
 class DeskBaseController extends HomeBaseController
 {
-
+    protected $lan1;
+    protected $lan2;
     public function _initialize()
     {
         parent::_initialize();
@@ -21,6 +22,8 @@ class DeskBaseController extends HomeBaseController
         $lan2=1;
         session('lan1',$lan1);
         session('lan2',$lan2);
+        $this->lan1=$lan1;
+        $this->lan2=$lan2;
         $notice_json=session('notice'.$lan1);
         if(empty($notice_json) || 1){ 
             //获取所有信息 
@@ -56,6 +59,7 @@ class DeskBaseController extends HomeBaseController
         View::share('company',$company);
         View::share('notice',$notice);
         View::share('notice_json',$notice_json);
+        $this->assign('html',$this->request->action());
     }
 
 

@@ -126,4 +126,30 @@ class GoodsCateModel extends Model
         $this->where('id',$cid1)->setField('num',$nums1);
         return 1;
     }
+    /**
+     * 获取分类下所有子类
+     * @param number $cid分类id
+     * @return array
+     */
+    public function get_cids_by_fid($cid){
+        //获取最新产品数
+        
+        $rate=$this->where('id',$cid)->value('rate');
+        $ids=[];
+        switch($rate){ 
+            case 2:
+                $ids=$this->where('fid',$cid)->column('id'); 
+                break;
+            case 1:
+                $ids=$this->where('fid',$cid)->column('id'); 
+                if(!empty($ids)){
+                    $ids3=$this->where('fid','in',$ids)->column('id'); 
+                    $ids=array_merge($ids,$ids3);
+                } 
+                break;
+        }
+        $ids[]=$cid;
+         
+        return $ids;
+    }
 }

@@ -68,19 +68,40 @@
     </div>
 </div>
 <div class="form-group">
-    <label for="" class="col-sm-2 control-label">发货时间</label>
+    <label for="" class="col-sm-2 control-label">大陆发货时间</label>
     <div class="col-md-6 col-sm-10">
-       <select name="goods_time" class="form-control">
+       <select name="goods_time1" class="form-control">
        		<foreach name="goods_times" item="vo">
-       		<option value="{$key}" <if condition="$key eq $info.goods_time">selected</if>>{$vo}</option>
+       		<option value="{$key}" <if condition="$key eq $info.goods_time1">selected</if>>{$vo}</option>
        		</foreach>
        </select>
-      <present name="change.goods_time">
-      	 <input type="text" class="form-control red"  value="{$goods_times[$change.goods_time]|default=$change.goods_time}" /> 
+      <present name="change.goods_time1">
+      	 <input type="text" class="form-control red"  value="{$goods_times[$change.goods_time1]|default=$change.goods_time1}" /> 
       </present>  
     </div>
 </div>
- 
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">香港发货时间</label>
+    <div class="col-md-6 col-sm-10">
+       <select name="goods_time2" class="form-control">
+       		<foreach name="goods_times" item="vo">
+       		<option value="{$key}" <if condition="$key eq $info.goods_time2">selected</if>>{$vo}</option>
+       		</foreach>
+       </select>
+      <present name="change.goods_time2">
+      	 <input type="text" class="form-control red"  value="{$goods_times[$change.goods_time2]|default=$change.goods_time2}" /> 
+      </present>  
+    </div>
+</div>
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">包装数</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="number" class="form-control" name="num_one" value="{$info.num_one}" /> 
+      <present name="change.num_one">
+      	 <input type="number" class="form-control red"  value="{$change.num_one}" /> 
+      </present>  
+    </div>
+</div> 
 <div class="form-group">
     <label for="" class="col-sm-2 control-label">最少订购数</label>
     <div class="col-md-6 col-sm-10">

@@ -1,0 +1,792 @@
+ 	 <include file="public@head"/> 
+  </head>
+  <body>
+  	<div class="topBanner">
+  		<!--公共头部-->		
+  		 <include file="public@header"/> 			
+			<!--导航-->
+			<div class="l-nav l_proNav">
+				<div class="nav proNav_nav">
+					<div class="clear">
+						<div id="allNav" class="allNav allNav_list fl">
+							<h3 class="allNav__cap">产品分类</h3>
+							<div class="proAllNav">
+							<foreach name="list['cate1']" item="v1" key="k1">
+							
+								<foreach name="list['cate2'][$k1]" item="v2" key="k2">
+								 
+								<div class="proNav">
+									<a href="javascript:void(0)" class="proNav_cap"><i class="iconfont icon-icon"></i><span>{$v2.name}({$v2.num})</span></a>
+									<div class="proNav_div">
+										<ul>
+										<foreach name="list['cate3'][$k2]" item="v3" key="k3">
+											<li><a href="">{$v3.name}</a></li>
+											 
+										</foreach>
+											 
+										</ul>
+									</div>
+								</div>
+								</foreach>
+							</foreach>
+								 
+							</div>	
+						</div>							
+						 	<include file="public@nav"/>   		           	
+					</div>
+				</div>
+			</div>	
+			<!--导航搜索框-->
+			<div class="fl_search" style="width: 100%;overflow: hidden;">
+				<div class="proSear">
+					<div class="pro-center">
+						<form action="" method="post">
+							<div class="pro-filter">
+								<p class="breadcrumb">
+									当前位置:
+									<a href="index.html">首页</a>
+								</p>
+								<div class="filter-s-wrp clear">
+									<div id="filter-select-box" class="filter-s-box is-folded fl">
+										<!--提交的筛选条件-->
+										<div id="brand-selected-filter" style="display: none"></div>
+										<div id="selected-filter-itme" style="display: none"></div>
+										<!--筛选过滤条件-->
+										<div id="selected_filter">
+											<div class="filter-s-item" style="width: 167px;">
+												<div class="filter-s-srh mt5">
+													<label>品牌</label>
+													<input class="select-srh" id="" type="text">
+													<i class="iconfont icon-sousuo"></i>
+												</div>
+												<div class="filter-select">
+													<ul class="select-ul">
+														<li class="">KEMET</li>
+														<li>YAGEO</li>
+														<li>EPCOS / TDK</li>
+													</ul>
+												</div>
+											</div>
+											<div class="filter-s-item" style="width: 290px;">
+												<div class="filter-s-srh mt5">
+													<label>封装/外壳</label>
+													<input class="select-srh" id="" type="text">
+													<i class="iconfont icon-sousuo"></i>
+												</div>
+												<div class="filter-select">
+													<ul class="select-ul">
+														<li class="">KEMET</li>
+														<li>YAGEO</li>
+														<li>EPCOS / TDK</li>
+													</ul>
+												</div>
+											</div>
+											<div class="filter-s-item" style="width: 167px;">
+												<div class="filter-s-srh mt5">
+													<label>电阻</label>
+													<input class="select-srh" id="" type="text">
+													<i class="iconfont icon-sousuo"></i>
+												</div>
+												<div class="filter-select">
+													<ul class="select-ul">
+														<li class="">KEMET</li>
+														<li>YAGEO</li>
+														<li>EPCOS / TDK</li>
+													</ul>
+												</div>
+											</div>
+											<div class="filter-s-item" style="width: 167px;">
+												<div class="filter-s-srh mt5">
+													<label>偏差</label>
+													<input class="select-srh" id="" type="text">
+													<i class="iconfont icon-sousuo"></i>
+												</div>
+												<div class="filter-select">
+													<ul class="select-ul">
+														<li class="">KEMET</li>
+														<li>YAGEO</li>
+														<li>EPCOS / TDK</li>
+													</ul>
+												</div>
+											</div>
+											<div class="filter-s-item" style="width: 167px;">
+												<div class="filter-s-srh mt5">
+													<label>电压</label>
+													<input class="select-srh" id="" type="text">
+													<i class="iconfont icon-sousuo"></i>
+												</div>
+												<div class="filter-select">
+													<ul class="select-ul">
+														<li class="">KEMET</li>
+														<li>YAGEO</li>
+														<li>EPCOS / TDK</li>
+													</ul>
+												</div>
+											</div>
+											<div class="filter-s-item" style="width: 205px;">
+												<div class="filter-s-srh mt5">
+													<label>功率W</label>
+													<input class="select-srh" id="" type="text">
+													<i class="iconfont icon-sousuo"></i>
+												</div>
+												<div class="filter-select">
+													<ul class="select-ul">
+														<li class="">KEMET</li>
+														<li>YAGEO</li>
+														<li>EPCOS / TDK</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</div>
+									
+								</div>
+								<div id="keyWrds" class="mt10"></div>
+								<div class="mt10">
+				                    <label class="checkbox-inline">
+				                        <input name="isInventory" value="1" type="checkbox" class="checkbox-item" id="filter-isInventory-input">
+				                        	有库存
+				                    </label>
+				                    <label class="checkbox-inline">
+				                        <input name="isRosh" value="1" type="checkbox" class="checkbox-item" id="filter-isRosh-input">
+				                        	符合RoHS
+				                    </label>
+				                </div>
+				                <!---->
+				                <div class="mt10">
+				                	<button>清楚筛选</button>
+				                	<button>开始搜索</button>
+				                	<span>符合条件记录数：<i>666</i></span>
+				                </div>
+							</div>
+						</form>
+					</div>
+				</div>
+					
+			</div>
+			<!--搜索内容-->
+			<div id="pro_main" class="pro_main clear">
+				<div class="proWraper">
+					<form action="" id="filterForm" method="post" role="form">
+						<div class="proList-srh">
+							<div class="row">
+								<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+									<div class="form-inline form-border">
+										<a href="javascript:void(0);" class="sear_select">综合排序</a>
+										<a href="javascript:void(0);">价格排序</a>
+										<a href="javascript:void(0);">库存排序</a>
+										<div class="form-group">
+											<div  class="checkbox-inline">
+												<label>
+							                        <input name="isInventory" type="checkbox" class="checkbox-item" id="filter-iselected">仅显有库存					                        	
+							                    </label>
+											</div>
+											
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+									<div class="form-inline form-sear">
+										<div class="input-group">
+											<input type="text" name="control" id="control" value="" class="form-control" placeholder="在结果中搜索"/>
+										</div>
+										<button type="submit" class="btn_sub">搜索</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+					<!--自营产品-->
+					<div class="self-support">
+						<div class="port_title">
+							<h3>自营<span>(1)</span></h3>
+						</div>
+						<div class="table-responsive">
+							<table class="table table-condensed table-bordered">
+								<thead>
+									<tr>
+										<th width="14%">商品</th>
+										<th width="8%">品牌</th>
+										<th width="8%">参数描述</th>
+										<th width="8%">包装数量</th>
+										<th width="8%">库存</th>
+										<th width="6%">阶梯数量</th>
+										<th width="9%"><p>大陆价格 </p><p>（含税）</p></th>
+										<th width="9%"><p>香港价格 </p><p>（USD）</p></th>
+										<th width="11%">交期</th>
+										<th width="10%">购买数量</th>
+										<th width="9%">操作</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<div class="product_list">
+												<p class="tblue"><a href="product_detail.html">RCO402JR-0710KL</a></p>
+												<p>封装规格:0402</p>
+												<p>库存编号:402-279</p>
+												<p class="sorange">供应商:<a href="">广诺科技</a></p>
+											</div>
+										</td>
+										<td>
+											<p>ST Microele ctronics </p>
+											<p class="pgreen">中高端品牌</p>
+										</td>
+										<td>
+											<p>IC MCU 32BIT 64 KB FLASH 48L QF P</p>
+											<p class="pdfdown"><a href=""><i class="iconfont icon-PDF"></i></a></p>
+										</td>
+										<td>
+											<div class="number">
+												<p>包装:1500  </p>
+												<p>起订:1500</p>
+												<p>倍数:1500</p>
+											</div>
+										</td>
+										<td>
+											<div class="fuGoods">
+												<p>期货</p>
+												<p><span>需确认</span></p>
+												<p class="rohs"><img src="images/rohs.jpg" alt="" /></p>
+											</div>
+										</td>
+										<td>
+											<div class="steps_num">
+												<p>1500+</p>
+												<p>7500+</p>
+												<p>15000+</p>
+											</div>
+										</td>
+										<td>
+											<div class="steps_num">
+												<p class="ayellow">￥ 8.91102</p>
+												<p>￥ 8.73965</p>
+												<p>￥ 8.56829</p>
+											</div>
+										</td>
+										<td>
+											<div class="steps_num">
+												<p class="">$ 1.12112 </p>
+												<p>$ 1.09995</p>
+												<p>$ 1.078</p>
+											</div>
+										</td>
+										<td>
+											<div class="steps_num-choice">
+												 <div class="cn-delivery delivery-cell selected" data-value="CN" data-min="2" data-max="4">
+											        	大陆：2-4周
+											     </div>
+												<div class="hk-delivery delivery-cell" data-value="HK" data-min="2" data-max="4">
+											        	香港：2-4周
+											    </div>
+											</div>
+										</td>
+										<td>
+											<div class="steps_num">
+												<div class="addBtn clear">
+													<p class="btn-add omin" onclick="minus(this,'9.9','100');">
+														<span class="glyphicon glyphicon-minus"></span>
+													</p>
+													<input type="text" class="btn-num onum" value="56" name="count" />
+													<p class="btn-add oplus" onclick="plus(this,'9.9}','100}');">
+														<span class="glyphicon glyphicon-plus"></span>
+													</p>
+												</div>
+												<p class="qred">计:￥ 66</p>
+											</div>		
+										</td>
+										<td>
+											<div class="steps_num">
+												<p><button id="shopGoods" class="btn-list-buy mt5">加入购物车</button></p>
+												<p class="purBuy"><a href="">购买</a></p>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						
+					</div>
+					<!--代售-->
+					<div class="merchant">
+						<div class="port_title">
+							<h3>代售<span>(12)</span></h3>
+						</div>
+						<div class="table-responsive">
+							<table class="table table-condensed table-bordered table-search">
+								<thead>
+									<tr>
+										<th width="14%">商品</th>
+										<th width="8%">品牌</th>
+										<th width="8%">参数描述</th>
+										<th width="8%">包装数量</th>
+										<th width="8%">库存</th>
+										<th width="6%">阶梯数量</th>
+										<th width="9%"><p>大陆价格 </p><p>（含税）</p></th>
+										<th width="9%"><p>香港价格 </p><p>（USD）</p></th>
+										<th width="11%">交期</th>
+										<th width="10%">购买数量</th>
+										<th width="9%">操作</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<div class="product_list">
+												<p class="tblue"><a href="product_detail.html">RCO402JR-0710KL</a></p>
+												<p>封装规格:0402</p>
+												<p>库存编号:402-279</p>
+												<p class="sorange">供应商:<a href="">广诺科技</a></p>
+											</div>
+										</td>
+										<td>
+											<p>ST Microele ctronics </p>
+											<p class="pgreen">中高端品牌</p>
+										</td>
+										<td>
+											<p>IC MCU 32BIT 64 KB FLASH 48L QF P</p>
+											<p class="pdfdown"><a href=""><i class="iconfont icon-PDF"></i></a></p>
+										</td>
+										<td>
+											<div class="number">
+												<p>包装:1500  </p>
+												<p>起订:1500</p>
+												<p>倍数:1500</p>
+											</div>
+										</td>
+										<td>
+											<div class="fuGoods">
+												<p>期货</p>
+												<p><span>需确认</span></p>
+												<p class="rohs"><img src="images/rohs.jpg" alt="" /></p>
+											</div>
+										</td>
+										<td>
+											<div class="steps_num">
+												<p>1500+</p>
+												<p>7500+</p>
+												<p>15000+</p>
+											</div>
+										</td>
+										<td>
+											<div class="steps_num">
+												<p class="ayellow">￥ 8.91102</p>
+												<p>￥ 8.73965</p>
+												<p>￥ 8.56829</p>
+											</div>
+										</td>
+										<td>
+											<div class="steps_num">
+												<p class="">$ 1.12112 </p>
+												<p>$ 1.09995</p>
+												<p>$ 1.078</p>
+											</div>
+										</td>
+										<td>
+											<div class="steps_num-choice">
+												 <div class="cn-delivery delivery-cell selected" data-value="CN" data-min="2" data-max="4">
+											        	大陆：2-4周
+											     </div>
+												<div class="hk-delivery delivery-cell" data-value="HK" data-min="2" data-max="4">
+											        	香港：2-4周
+											    </div>
+											</div>
+										</td>
+										<td>
+											<div class="steps_num">
+												<div class="addBtn clear">
+													<p class="btn-add omin" onclick="minus(this,'9.9','100');">
+														<span class="glyphicon glyphicon-minus"></span>
+													</p>
+													<input type="text" class="btn-num onum" value="56" name="count" />
+													<p class="btn-add oplus" onclick="plus(this,'9.9}','100}');">
+														<span class="glyphicon glyphicon-plus"></span>
+													</p>
+												</div>
+												<p class="qred">计:￥ 66</p>
+											</div>
+											
+										</td>
+										<td>
+											<div class="steps_num">
+												<p><button id="shopGoods" class="btn-list-buy mt5">加入购物车</button></p>
+												<p class="purBuy"><a href="">购买</a></p>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<!--原厂代理-->
+					<div class="agent">
+						<div class="port_title">
+							<h3>原厂代理<span>(15)</span></h3>
+						</div>
+						<div class="table-responsive">
+							<table class="table table-condensed table-bordered">
+								<thead>
+									<tr>
+										<th width="14%">商品</th>
+										<th width="8%">品牌</th>
+										<th width="8%">参数描述</th>
+										<th width="8%">包装数量</th>
+										<th width="8%">库存</th>
+										<th width="6%">阶梯数量</th>
+										<th width="9%"><p>大陆价格 </p><p>（含税）</p></th>
+										<th width="9%"><p>香港价格 </p><p>（USD）</p></th>
+										<th width="11%">交期</th>
+										<th width="10%">购买数量</th>
+										<th width="9%">操作</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<div class="product_list">
+												<p class="tblue"><a href="product_detail.html">RCO402JR-0710KL</a></p>
+												<p>封装规格:0402</p>
+												<p>库存编号:402-279</p>
+												<p class="sorange">供应商:<a href="">广诺科技</a></p>
+											</div>
+										</td>
+										<td>
+											<p>ST Microele ctronics </p>
+											<p class="pgreen">中高端品牌</p>
+										</td>
+										<td>
+											<p>IC MCU 32BIT 64 KB FLASH 48L QF P</p>
+											<p class="pdfdown"><a href=""><i class="iconfont icon-PDF"></i></a></p>
+										</td>
+										<td>
+											<div class="number">
+												<p>包装:1500  </p>
+												<p>起订:1500</p>
+												<p>倍数:1500</p>
+											</div>
+										</td>
+										<td>
+											<div class="fuGoods">
+												<p>期货</p>
+												<p><span>需确认</span></p>
+												<p class="rohs"><img src="images/rohs.jpg" alt="" /></p>
+											</div>
+										</td>
+										<td>
+											<div class="steps_num">
+												<p>1500+</p>
+												<p>7500+</p>
+												<p>15000+</p>
+											</div>
+										</td>
+										<td>
+											<div class="steps_num">
+												<p class="ayellow">￥ 8.91102</p>
+												<p>￥ 8.73965</p>
+												<p>￥ 8.56829</p>
+											</div>
+										</td>
+										<td>
+											<div class="steps_num">
+												<p class="">$ 1.12112 </p>
+												<p>$ 1.09995</p>
+												<p>$ 1.078</p>
+											</div>
+										</td>
+										<td>
+											<div class="steps_num-choice">
+												 <div class="cn-delivery delivery-cell selected" data-value="CN" data-min="2" data-max="4">
+											        	大陆：2-4周
+											     </div>
+												<div class="hk-delivery delivery-cell" data-value="HK" data-min="2" data-max="4">
+											        	香港：2-4周
+											    </div>
+											</div>
+										</td>
+										<td>
+											<div class="steps_num">
+												<div class="addBtn clear">
+													<p class="btn-add omin" onclick="minus(this,'9.9','100');">
+														<span class="glyphicon glyphicon-minus"></span>
+													</p>
+													<input type="text" class="btn-num onum" value="56" name="count" />
+													<p class="btn-add oplus" onclick="plus(this,'9.9}','100}');">
+														<span class="glyphicon glyphicon-plus"></span>
+													</p>
+												</div>
+												<p class="qred">计:￥ 66</p>
+											</div>										
+										</td>
+										<td>
+											<div class="steps_num">
+												<p><button id="shopGoods" class="btn-list-buy mt5">加入购物车</button></p>
+												<p class="purBuy"><a href="">购买</a></p>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<!--实力分销商-->
+					<div class="distributor">
+						<div class="port_title">
+							<h3>实力分销商<span>(19)</span></h3>
+						</div>
+						<div class="table-responsive">
+							<table class="table table-condensed table-bordered">
+								<thead>
+									<tr>
+										<th width="14%">商品</th>
+										<th width="8%">品牌</th>
+										<th width="8%">参数描述</th>
+										<th width="8%">包装数量</th>
+										<th width="8%">库存</th>
+										<th width="6%">阶梯数量</th>
+										<th width="9%"><p>大陆价格 </p><p>（含税）</p></th>
+										<th width="9%"><p>香港价格 </p><p>（USD）</p></th>
+										<th width="11%">交期</th>
+										<th width="10%">购买数量</th>
+										<th width="9%">操作</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<div class="product_list">
+												<p class="tblue"><a href="product_detail.html">RCO402JR-0710KL</a></p>
+												<p>封装规格:0402</p>
+												<p>库存编号:402-279</p>
+												<p class="sorange">供应商:<a href="">广诺科技</a></p>
+											</div>
+										</td>
+										<td>
+											<p>ST Microele ctronics </p>
+											<p class="pgreen">中高端品牌</p>
+										</td>
+										<td>
+											<p>IC MCU 32BIT 64 KB FLASH 48L QF P</p>
+											<p class="pdfdown"><a href=""><i class="iconfont icon-PDF"></i></a></p>
+										</td>
+										<td>
+											<div class="number">
+												<p>包装:1500  </p>
+												<p>起订:1500</p>
+												<p>倍数:1500</p>
+											</div>
+										</td>
+										<td>
+											<div class="fuGoods">
+												<p>期货</p>
+												<p><span>需确认</span></p>
+												<p class="rohs"><img src="images/rohs.jpg" alt="" /></p>
+											</div>
+										</td>
+										<td>
+											<div class="steps_num">
+												<p>1500+</p>
+												<p>7500+</p>
+												<p>15000+</p>
+											</div>
+										</td>
+										<td>
+											<div class="steps_num">
+												<p class="ayellow">￥ 8.91102</p>
+												<p>￥ 8.73965</p>
+												<p>￥ 8.56829</p>
+											</div>
+										</td>
+										<td>
+											<div class="steps_num">
+												<p class="">$ 1.12112 </p>
+												<p>$ 1.09995</p>
+												<p>$ 1.078</p>
+											</div>
+										</td>
+										<td>
+											<div class="steps_num-choice">
+												 <div class="cn-delivery delivery-cell selected" data-value="CN" data-min="2" data-max="4">
+											        	大陆：2-4周
+											     </div>
+												<div class="hk-delivery delivery-cell" data-value="HK" data-min="2" data-max="4">
+											        	香港：2-4周
+											    </div>
+											</div>
+										</td>
+										<td>
+											<div class="steps_num">
+												<div class="addBtn clear">
+													<p class="btn-add omin" onclick="minus(this,'9.9','100');">
+														<span class="glyphicon glyphicon-minus"></span>
+													</p>
+													<input type="text" class="btn-num onum" value="56" name="count" />
+													<p class="btn-add oplus" onclick="plus(this,'9.9}','100}');">
+														<span class="glyphicon glyphicon-plus"></span>
+													</p>
+												</div>
+												<p class="qred">计:￥ 66</p>
+											</div>
+											
+										</td>
+										<td>
+											<div class="steps_num">
+												<p><button id="shopGoods" class="btn-list-buy mt5">加入购物车</button></p>
+												<p class="purBuy"><a href="">购买</a></p>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<!--海外代购-->
+					<div class="shop_repre">
+						<div class="port_title">
+							<h3>海外代购<span>(10)</span></h3>
+						</div>
+						<div class="table-responsive">
+							<table class="table table-condensed table-bordered">
+								<thead>
+									<tr>
+										<th width="14%">商品</th>
+										<th width="8%">品牌</th>
+										<th width="8%">参数描述</th>
+										<th width="8%">包装数量</th>
+										<th width="8%">库存</th>
+										<th width="6%">阶梯数量</th>
+										<th width="9%"><p>大陆价格 </p><p>（含税）</p></th>
+										<th width="9%"><p>香港价格 </p><p>（USD）</p></th>
+										<th width="11%">交期</th>
+										<th width="10%">购买数量</th>
+										<th width="9%">操作</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<div class="product_list">
+												<p class="tblue"><a href="product_detail.html">RCO402JR-0710KL</a></p>
+												<p>封装规格:0402</p>
+												<p>库存编号:402-279</p>
+												<p class="sorange">供应商:<a href="">广诺科技</a></p>
+											</div>
+										</td>
+										<td>
+											<p>ST Microele ctronics </p>
+											<p class="pgreen">中高端品牌</p>
+										</td>
+										<td>
+											<p>IC MCU 32BIT 64 KB FLASH 48L QF P</p>
+											<p class="pdfdown"><a href=""><i class="iconfont icon-PDF"></i></a></p>
+										</td>
+										<td>
+											<div class="number">
+												<p>包装:1500</p>
+												<p>起订:1500</p>
+												<p>倍数:1500</p>
+											</div>
+										</td>
+										<td>
+											<div class="fuGoods">
+												<p>期货</p>
+												<p><span>需确认</span></p>
+												<p class="rohs"><img src="images/rohs.jpg" alt="" /></p>
+											</div>
+										</td>
+										<td>
+											<div class="steps_num">
+												<p>1500+</p>
+												<p>7500+</p>
+												<p>15000+</p>
+											</div>
+										</td>
+										<td>
+											<div class="steps_num">
+												<p class="ayellow">￥ 8.91102</p>
+												<p>￥ 8.73965</p>
+												<p>￥ 8.56829</p>
+											</div>
+										</td>
+										<td>
+											<div class="steps_num">
+												<p class="">$ 1.12112 </p>
+												<p>$ 1.09995</p>
+												<p>$ 1.078</p>
+											</div>
+										</td>
+										<td>
+											<div class="steps_num-choice">
+												 <div class="cn-delivery delivery-cell selected" data-value="CN" data-min="2" data-max="4">
+											        	大陆：2-4周
+											     </div>
+												<div class="hk-delivery delivery-cell" data-value="HK" data-min="2" data-max="4">
+											        	香港：2-4周
+											    </div>
+											</div>
+										</td>
+										<td>
+											<div class="steps_num">
+												<div class="addBtn clear">
+													<p class="btn-add omin" onclick="minus(this,'9.9','100');">
+														<span class="glyphicon glyphicon-minus"></span>
+													</p>
+													<input type="text" class="btn-num onum" value="56" name="count" />
+													<p class="btn-add oplus" onclick="plus(this,'9.9}','100}');">
+														<span class="glyphicon glyphicon-plus"></span>
+													</p>
+												</div>
+												<p class="qred">计:￥ 66</p>
+											</div>
+											
+										</td>
+										<td>
+											<div class="steps_num">
+												<p><button id="shopGoods" class="btn-list-buy mt5">加入购物车</button></p>
+												<p class="purBuy"><a href="">购买</a></p>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>										
+				</div>
+			</div>			
+			<!--底部 -->
+			<div id="footer"></div>
+		</div>
+				
+		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+	    <script src="js/jquery-1.12.1.min.js"></script>
+	    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+	    <script src="js/bootstrap.min.js"></script>
+	    <script type="text/javascript" src="js/slider.js"></script>
+	    <script type="text/javascript" src="js/index.js"></script>
+	    <script type="text/javascript">
+	    	$(function(){
+	    		var span;
+	    		var spani;
+	    		$(".filter-select ul li").click(function(){
+	    			var len = $(this).parent().children("li").length;
+	    			$(this).addClass("is-selected");
+	    			var litext = $(this).text();	
+	    			console.log(litext);
+	    			
+	    			span = "<span class='filter-kwBtn'>"+litext+"</span>";
+	    		
+	    			console.log(span);
+	    			$("#keyWrds").append(span);
+	    			spani = "<i class='js-del'>x</i>";
+	    			$("#keyWrds span").append(spani);
+	    			
+	    			$(".filter-kwBtn .js-del").click(function(){
+		    			$(this).parent(".filter-kwBtn").remove();
+		    		});
+	    		});
+	    		
+	    		
+	    		
+	    	});
+	    </script>
+	</body>
+</html>

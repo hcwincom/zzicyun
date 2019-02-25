@@ -24,7 +24,7 @@ class AdminGoodsController extends AdminInfoController
         $this->m=new GoodsModel();
         $this->base=['name'=>'str','sort'=>'int','dsc'=>'str','cid'=>'int','num_min'=>'int','brand'=>'int',
             'num_times'=>'int','price1'=>'round5','price2'=>'round5','store_code'=>'str','pic'=>'str','pic0'=>'str',
-            'goods_time'=>'int','store_sure'=>'int'
+            'goods_time1'=>'int','goods_time2'=>'int','store_sure'=>'int','shop_type'=>'int',
         ];
          
         $this->isshop=1;
@@ -406,7 +406,13 @@ class AdminGoodsController extends AdminInfoController
         if(!($res>0)){
             return $res;
         }
-        //得到级别
+        $admin=$this->admin;
+        //判断供应商级别
+        if(empty($data['shop'])){
+            $data['shop']=$admin['shop'];
+        }
+        $data['shop_type']=Db::name('shop')->where('id',$data['shop'])->value('type');
+        //得到分类
         if(empty($data['cid3'])){
             return '分类必须选择';
         }else{
@@ -431,7 +437,8 @@ class AdminGoodsController extends AdminInfoController
                     $ext=substr($data['pic'], strrpos($data['pic'],'.'));
                     //原图
                     $data_update['pic0']=$pathid.date('Ymd-His').'pic0'.$ext;
-                    copy($path.$data_update['pic0'], $path.$data['pic']);
+                   
+                    copy($path.$data['pic'],$path.$data_update['pic0']);
                     //缩略图
                     $pic_conf=config('pic_'.$table);
                     $data_update['pic']=zz_set_file($data['pic'],$pathid,$pic_conf);
@@ -472,7 +479,7 @@ class AdminGoodsController extends AdminInfoController
             $ext=substr($data['pic'], strrpos($data['pic'],'.'));
             //原图
             $data_update['pic0']=$pathid.date('Ymd-His').'pic0'.$ext;
-            copy($path.$data_update['pic0'], $path.$data['pic']);
+            copy($path.$data['pic'],$path.$data_update['pic0']);
             //缩略图
             $pic_conf=config('pic_'.$table);
             $data_update['pic']=zz_set_file($data['pic'],$pathid,$pic_conf);
