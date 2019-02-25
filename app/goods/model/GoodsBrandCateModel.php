@@ -17,16 +17,16 @@ class GoodsBrandCateModel extends Model
         
         
         //品牌分类  
-        $field='p.id,val.name as name';
+        $field='p.id,val.val as name';
         $order='p.sort asc';
-        $brand_cates=Db::name('brand_cate')
+        $brand_cates=$this
         ->alias('p')
         ->join('cmf_goods_brand_cate_val val','val.pid=p.id and val.lid='.$lan) 
         ->where($where)
         ->order($order)
         ->column($field);
         if(empty($brand_cates)){
-            $brand_cates=Db::name('brand_cate')
+            $brand_cates=$this
             ->alias('p')
             ->join('cmf_goods_brand_cate_val val','val.pid=p.id and val.lid='.$lan1)
             ->where($where)

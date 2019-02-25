@@ -20,7 +20,7 @@
 									<div class="proNav_div">
 										<ul>
 										<foreach name="list['cate3'][$k2]" item="v3" key="k3">
-											<li><a href="">{$v3.name}</a></li>
+											<li><a href="{:url('goods/Goods/goods_search',['cid'=>$k3])}">{$v3.name}</a></li>
 											 
 										</foreach>
 											 
@@ -61,82 +61,33 @@
 												</div>
 												<div class="filter-select">
 													<ul class="select-ul">
-														<li class="">KEMET</li>
-														<li>YAGEO</li>
-														<li>EPCOS / TDK</li>
+													<foreach name="brands" item="vo">
+														<li class="">{$vo.name}</li>
+													</foreach>
+													 
 													</ul>
 												</div>
 											</div>
+											<foreach name="params" item="vo">
+											
+											
 											<div class="filter-s-item" style="width: 290px;">
 												<div class="filter-s-srh mt5">
-													<label>封装/外壳</label>
+													<label>{$vo.name}</label>
 													<input class="select-srh" id="" type="text">
 													<i class="iconfont icon-sousuo"></i>
 												</div>
 												<div class="filter-select">
 													<ul class="select-ul">
-														<li class="">KEMET</li>
-														<li>YAGEO</li>
-														<li>EPCOS / TDK</li>
+													<foreach name="vo.vals" item="vv">
+														<li class="">{$vv}</li> 
+													</foreach>
 													</ul>
 												</div>
 											</div>
-											<div class="filter-s-item" style="width: 167px;">
-												<div class="filter-s-srh mt5">
-													<label>电阻</label>
-													<input class="select-srh" id="" type="text">
-													<i class="iconfont icon-sousuo"></i>
-												</div>
-												<div class="filter-select">
-													<ul class="select-ul">
-														<li class="">KEMET</li>
-														<li>YAGEO</li>
-														<li>EPCOS / TDK</li>
-													</ul>
-												</div>
-											</div>
-											<div class="filter-s-item" style="width: 167px;">
-												<div class="filter-s-srh mt5">
-													<label>偏差</label>
-													<input class="select-srh" id="" type="text">
-													<i class="iconfont icon-sousuo"></i>
-												</div>
-												<div class="filter-select">
-													<ul class="select-ul">
-														<li class="">KEMET</li>
-														<li>YAGEO</li>
-														<li>EPCOS / TDK</li>
-													</ul>
-												</div>
-											</div>
-											<div class="filter-s-item" style="width: 167px;">
-												<div class="filter-s-srh mt5">
-													<label>电压</label>
-													<input class="select-srh" id="" type="text">
-													<i class="iconfont icon-sousuo"></i>
-												</div>
-												<div class="filter-select">
-													<ul class="select-ul">
-														<li class="">KEMET</li>
-														<li>YAGEO</li>
-														<li>EPCOS / TDK</li>
-													</ul>
-												</div>
-											</div>
-											<div class="filter-s-item" style="width: 205px;">
-												<div class="filter-s-srh mt5">
-													<label>功率W</label>
-													<input class="select-srh" id="" type="text">
-													<i class="iconfont icon-sousuo"></i>
-												</div>
-												<div class="filter-select">
-													<ul class="select-ul">
-														<li class="">KEMET</li>
-														<li>YAGEO</li>
-														<li>EPCOS / TDK</li>
-													</ul>
-												</div>
-											</div>
+											</foreach>
+											 
+											 
 										</div>
 									</div>
 									

@@ -1,6 +1,6 @@
 <?php
  
-namespace app\goods\model;
+namespace app\shop\model;
 
 use think\Model;
 use think\Db;
@@ -16,7 +16,7 @@ class ShopModel extends Model
      */
     public function get_limit($lan=1,$lan1=1,$where=['p.status'=>2],$limit=0){
      
-        $field='p.id,p.pic,val.name as name,val.char';
+        $field='p.id,p.logo,val.name as name,val.char';
         $order='p.sort asc';
         if(empty($limit)){
             $list=$this

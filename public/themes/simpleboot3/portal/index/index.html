@@ -15,7 +15,7 @@
 									<present name="cate['cate1']">
 									<foreach name="cate['cate1']" item="v1" key="k1">
 										<div class="allNav-lv1">
-											<a href="product.html" class="allNav-lv1__cap"><span class="capSpan span1">{$v1.name}</span></a>
+											<a href="{:url('goods/Goods/goods_search',['cid'=>$k1])}" class="allNav-lv1__cap"><span class="capSpan span1">{$v1.name}</span></a>
 											<div class="allNav-lv2">
 												<div class="lv2_con">
 													<present name="cate['cate2'][$k1]">
@@ -25,7 +25,7 @@
 														<ul class="lv2_ul">
 															<present name="cate['cate3'][$k2]">
 															<foreach name="cate['cate3'][$k2]" item="v3" key="k3">
-															<li><a href="product.html">{$v3.name}</a></li>
+															<li><a href="{:url('goods/Goods/goods_search',['cid'=>$k3])}">{$v3.name}</a></li>
 															</foreach>
 															</present>
 														</ul>
@@ -39,7 +39,7 @@
 										</foreach>
 										</present>
 										 
-										<a class="allNav-more" href="product_category.html"><i class="iconfont icon-right"></i>查看全部{$notice.index.goods_cate}</a>
+										<a class="allNav-more" href="{:url('goods/Goods/cate_list')}"><i class="iconfont icon-right"></i>查看全部{$notice.index.goods_cate}</a>
 									</div>	
 								</div>	
 								<!--导航菜单-->						

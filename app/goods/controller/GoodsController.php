@@ -5,13 +5,12 @@ namespace app\goods\controller;
 use app\common\controller\DeskBaseController;
 use app\goods\model\GoodsCateModel;
 use think\Db; 
-use app\notice\model\ArticleModel;
-use app\notice\model\ArticleCateModel;
-use app\goods\model\GoodsFileModel;
+  
 use app\goods\model\GoodsBrandModel;
 use app\goods\model\GoodsModel;
-use app\goods\model\ShopModel;
+use app\shop\model\ShopModel;
 use app\goods\model\GoodsBrandCateModel;
+use app\goods\model\GoodsParamModel;
 class GoodsController extends DeskBaseController
 {
 
@@ -67,7 +66,8 @@ class GoodsController extends DeskBaseController
            ',p.num_min,p.num_times,p.num_one,val.name as name,val.dsc as dsc,val.production_code as production_code,val.production_factory as production_factory';
        $where=['p.status'=>2];
        $order='p.shop_type asc,p.sort asc';
-       //条件筛选
+       //条件筛选 
+       $params=[];
        if(!empty($data['cid'])){
            $cids=$m_cate->get_cids_by_fid($data['cid']);
            if(count($cids)>1){
@@ -78,8 +78,12 @@ class GoodsController extends DeskBaseController
            //获取模板和参数，用于查询
            $template_ids=Db::name('goods_template')->where('cid','in',$cids)->column('id');
            //查询参数
-           $where=['is_search'=>1];
-           $param_ids
+           if(!empty($template_ids)){
+               
+               $m_param=new GoodsParamModel();
+               $params=$m_param->get_params_by_templates($lan1,$lan2,$template_ids); 
+           }
+         
        }
        $list=Db::name('goods')
        ->alias('p')
@@ -109,6 +113,7 @@ class GoodsController extends DeskBaseController
        $this->assign('shop_names',$shop_names);
        $this->assign('brand_cates',$brand_cates);
        $this->assign('brands',$brands); 
+       $this->assign('params',$params); 
        return $this->fetch();
    }
    /**

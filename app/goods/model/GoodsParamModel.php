@@ -27,6 +27,58 @@ class GoodsParamModel extends Model
         return $res;
     }
     /**
+     * 获取模板关联的参数,前台
+     * @param number $tid
+     */
+    public function get_params_by_templates($lan1,$lan2,$tids){
+        //先获取参数
+        $field='tp.param,p.val as name,tp.sort';
+        $order='tp.sort asc';
+        $where=[
+            'tp.is_search'=>['eq',1], 
+            'tp.template'=>['in',$tids], 
+        ];
+        $lan=$lan1;
+        $res=Db::name('goods_template_param')
+        ->alias('tp')
+        ->join('cmf_goods_param_val p','p.pid=tp.param and lid='.$lan)
+        ->where($where)
+        ->order($order)
+        ->column($field);
+        if(empty($res)){
+            $lan=$lan2;
+            $res=Db::name('goods_template_param')
+            ->alias('tp')
+            ->join('cmf_goods_param_val p','p.pid=tp.param and lid='.$lan)
+            ->where($where)
+            ->order($order)
+            ->column($field);
+        }
+        if(empty($res)){
+            return [];
+        }
+        $param_ids=array_keys($res);
+        //各参数的待选值
+        $where=[
+            'param'=>['in',$param_ids],
+            'lid'=>['in',[1,$lan]],
+        ];
+        $vals0=Db::name('goods_param_goods')->where($where)->column('goods,param,val');
+        $vals=[];
+        foreach($vals0 as $k=>$v){
+            $vals[$v['param']][]=$v['val'];
+        }
+        foreach($res as $k=>$v){
+            if(isset($vals[$k])){
+                $res[$k]['vals']=$vals[$k];
+            }else{
+                $res[$k]['vals']=[];
+            }
+            
+        }
+        return $res; 
+    }
+    /**
      * 获取产品的规格参数
      * @param unknown $goods
      * @param number $lan
