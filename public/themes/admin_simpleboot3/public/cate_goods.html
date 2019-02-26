@@ -1,28 +1,32 @@
  <include file="public@cate" />  
 
  <select class="goods form-control short-auto" name="goods">
-	 <option value="0"> 产品编码,名称</option>
+	 <option value="0"> 产品名称-库存编码</option>
 </select> &nbsp;&nbsp; 
 <script>
  
 $(function(){ 
  	 
  	var url="{:url('goods/Goodsajax/goods')}";
-	 
-	$('#cate2').change(function(){
+	
+	$('#cate3').change(function(){
 		var cid=parseInt($(this).val()); 
+		var shop=parseInt($('#shop').val());
 		 if(cid<=0){ 
 			 return false;
 		 }
-		 $.post(url,{'cid':cid},function(data){
+		 if(shop<=0){ 
+			 shop=0;
+		 }
+		 $.post(url,{'cid':cid,'shop':shop},function(data){
 			 
 			 if(data.code!=1){
 				 return false;
 			 }
 			 var list=data.data;
-			 var options='<option value="0"> 产品编码,名称</option>';
+			 var options='<option value="0">产品名称-库存编码</option>';
 			 for(var i in list){
-				 options+='<option value="'+i+'">'+list[i]['code']+','+list[i]['name']+'</option>';
+				 options+='<option value="'+list[i]['id']+'">'+list[i]['name']+','+list[i]['store_code']+'</option>';
 			 }
 			 $('.goods').html(options);
 		 },'json');

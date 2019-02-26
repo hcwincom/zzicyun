@@ -258,23 +258,10 @@ class AdminGoodsTimeController extends AdminInfoController
     {
         parent::edit_del_all();
     }
-    /**
-     * 产品发货时间批量删除
-     * @adminMenu(
-     *     'name'   => '产品发货时间批量删除',
-     *     'parent' => 'index',
-     *     'display'=> false,
-     *     'hasView'=> false,
-     *     'order'  => 10,
-     *     'icon'   => '',
-     *     'remark' => '产品发货时间批量删除',
-     *     'param'  => ''
-     * )
-     */
+     
     public function del_all()
     {
-         
-        parent::del_all();
+         $this->error('发货时间不能删除，可以修改，可以禁用');
         
     }
      

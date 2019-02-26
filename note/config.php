@@ -45,8 +45,10 @@
   ),
     'shop_types'=>[
         1=>'自营',
-        2=>'原厂代理专营',
-        3=>'实力分销商', 
+        2=>'代售', 
+        3=>'原厂代理专营',
+        4=>'实力分销商', 
+        5=>'海外代购', 
     ],
     'pic_logo'=>[
         'width'=>214,
@@ -98,20 +100,18 @@
     'system' => '系统任务',
     'order' => '订单',
     'ordersup' => '采购单',
-    'orderq' => '询盘',
+   
     'orderback' => '售后',
     'store_goods' => '仓库库存',
-    'store_in' => '出入库',
-    'store_shelf' => '仓库货架',
-    'store_box' => '仓库料位',
+    'store_in' => '入库',
+    'store_out' => '出库',
+    
     'cate' => '产品分类',
     'goods' => '产品',
-    'brand' => '品牌',
-    'param' => '技术参数',
-    'template' => '参数模板',
-    'goods_fee' => '价格参数',
-    'goods_fee_cate' => '价格参数分类',
-    'price' => '价格模板',
+    'goods_brand' => '品牌',
+    'goods_param' => '技术参数',
+    'goods_template' => '参数模板',
+   
     'compare' => '产品对比',
     'bank' => '转账银行',
     'shop_fee' => '店铺费用',
@@ -125,15 +125,11 @@
     'area' => '地区',
     'store' => '仓库',
     'company' => '子公司',
-    'custom' => '客户',
-    'custom_cate' => '客户分类',
+   
     'supplier' => '供货商',
     'supplier_cate' => '供货商分类',
     'msg' => '消息',
-    'event' => '事件',
-    'attendance_day' => '考勤',
-    'attendance_rule' => '考勤规则',
-    'attendance_apply' => '考勤申请',
+    
      'department'=>'部门',
       'order_invoice'=>'发票',
   ),
@@ -186,46 +182,7 @@
     'atime' => '编辑时间',
     'rtime' => '审核时间',
   ),
-  'file_type' => 
-  array (
-    1 => '极敏商城图片',
-    2 => '产品实物图片',
-    3 => '极敏logo图片',
-    4 => '产品规格图',
-    5 => '产品原理图',
-    6 => '其他参考图片',
-    7 => '产品说明书',
-    8 => '其他文档',
-  ),
-  'image_type' => 
-  array (
-    0 => 1,
-    1 => 2,
-    2 => 3,
-  ),
-  'pic_size' => 
-  array (
-    1 => 
-    array (
-      0 => 70,
-      1 => 70,
-    ),
-    2 => 
-    array (
-      0 => 330,
-      1 => 330,
-    ),
-    3 => 
-    array (
-      0 => 800,
-      1 => 800,
-    ),
-    4 => 
-    array (
-      0 => 150,
-      1 => 150,
-    ),
-  ),
+   
   'pic_brand' => 
   array (
     0 => 150,
@@ -380,86 +337,53 @@
     'height' => 2,
     'floor' => 5,
   ),
+   
   'store_in_type' => 
   array (
-    1 => 
-    array (
-      0 => '供货商采购',
-      1 => '/ordersup/admin_ordersup/edit',
-    ),
     10 => 
     array (
-      0 => '客户订单',
-      1 => '/order/admin_order/edit',
+      0 => '供货商入库',
+      1 => '/ordersup/admin_ordersup/edit',
     ),
     20 => 
     array (
-      0 => '仓库调货',
-      1 => '/order/admin_order/edit',
-    ),
-    21 => 
-    array (
       0 => '售后入库',
-      1 => '/orderback/admin_orderback/edit',
-    ),
-    22 => 
-    array (
-      0 => '售后出库',
-      1 => '/order/admin_orderback/edit',
+      1 => '/order/admin_order/edit',
     ),
     30 => 
     array (
-      0 => '添加料位入库',
-      1 => '/store/admin_box/edit',
-    ),
-    31 => 
-    array (
-      0 => '手动入库',
-      1 => '',
-    ),
-  ),
-  'oid_type' => 
-  array (
-    1 => 
-    array (
-      0 => '客户订单',
+      0 => '库存调整',
       1 => '/order/admin_order/edit',
     ),
-    2 => 
-    array (
-      0 => '供货商采购',
-      1 => '/ordersup/admin_ordersup/edit',
-    ),
-    4 => 
-    array (
-      0 => '客户售后单',
-      1 => '/orderback/admin_orderback/edit',
-    ),
-    5 => 
-    array (
-      0 => '采购售后单',
-      1 => '/order/admin_orderback/edit',
-    ),
+     
   ),
-  'company_type' => 
-  array (
-    1 => '线下子公司',
-    2 => '淘宝店铺',
-  ),
+    'store_out_type' =>
+    array (
+        10 =>
+        array (
+            0 => '订单单发货',
+            1 => '/ordersup/admin_ordersup/edit',
+        ),
+        20 =>
+        array (
+            0 => '售后出库',
+            1 => '/order/admin_order/edit',
+        ),
+        30 =>
+        array (
+            0 => '库存调整',
+            1 => '/order/admin_order/edit',
+        ),
+        
+    ),
+   
   'store_in_status' => 
   array (
     1 => '待审核',
     2 => '通过',
-    3 => '不通过',
-    4 => '未提交',
-    5 => '废弃',
+    3 => '不通过',  
   ),
-  'order_type' => 
-  array (
-    1 => '线下订单',
-    2 => '商城订单',
-    3 => '淘宝订单',
-  ),
+  
   'order_time' => 
   array (
     1 => 

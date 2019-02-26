@@ -288,6 +288,11 @@ class AdminInfoController extends AdminBaseController
                 $this->error('不能审核其他店铺的信息');
             }
         }
+        //审核后的操作
+        $res=$this->review_before($info,$status);
+        if(!($res>0)){ 
+            $this->error($res);
+        }
         $time=time();
         $update=[
             'rid'=>$admin['id'],
@@ -295,7 +300,7 @@ class AdminInfoController extends AdminBaseController
             'status'=>$status,
             'time'=>$time,
         ];
-        
+        $m->startTrans();
         $row=$m->where('id',$id)->update($update);
          
         if($row!==1){
@@ -1010,7 +1015,7 @@ class AdminInfoController extends AdminBaseController
             ];
             if($isshop){
                 if($admin['shop']>1){
-                    $where_aid['shop']=$admin['shop'];
+                    $where_aid['shop']=['in',[1,$admin['shop']]];
                 }
             }else{
                 $where_aid['shop']=1;
@@ -1018,12 +1023,13 @@ class AdminInfoController extends AdminBaseController
            
             $aids=$m_user->where($where_aid)->order('shop asc')->column('id,user_nickname');
             //审核人
-            $where_rid=[
-                'user_type'=>1,
-                'shop'=>1,
-                'user_status'=>1,
-            ];
-            $rids=$m_user->where($where_rid)->order('shop asc')->column('id,user_nickname');
+            $rids=$aids;
+//             $where_rid=[
+//                 'user_type'=>1,
+//                 'shop'=>1,
+//                 'user_status'=>1,
+//             ];
+//             $rids=$m_user->where($where_rid)->order('shop asc')->column('id,user_nickname');
             $this->assign('aids',$aids);
             $this->assign('rids',$rids);
             
@@ -1103,6 +1109,11 @@ class AdminInfoController extends AdminBaseController
     }
     /* 编辑审核后的操作 */
     public function edit_review_after($info1){
+        return 1;
+    }
+    /* 审核前的操作 */
+    public function review_before($info,$status){
+        
         return 1;
     }
     /* 审核后的操作 */
