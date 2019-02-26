@@ -254,7 +254,7 @@
 							<!--搜索结果-->
 							<div class="bran_result">
 								<div class="table-responsive">
-									<table class="table table-condensed table-bordered">
+									<table class="table table-condensed table-bordered table-search">
 										<thead>
 											<tr>
 												<th width="14%">商品</th>
@@ -262,9 +262,19 @@
 												<th width="8%">参数描述</th>
 												<th width="8%">包装数量</th>
 												<th width="8%">库存</th>
-												<th width="6%">阶梯数量</th>
-												<th width="9%"><p>大陆价格 </p><p>（含税）</p></th>
-												<th width="9%"><p>香港价格 </p><p>（USD）</p></th>
+												<th width="24%" class="padTable">
+													<div class="titleTotal">
+														<ul class="clear ">
+															<li>阶梯数量</li>
+															<li>
+																<p>大陆价格 </p><p>（含税）</p>
+															</li>
+															<li>
+																<p>香港价格 </p><p>（USD）</p>
+															</li>
+														</ul>
+													</div>
+												</th>
 												<th width="11%">交期</th>
 												<th width="10%">购买数量</th>
 												<th width="9%">操作</th>
@@ -302,108 +312,25 @@
 														<p class="rohs"><img src="images/rohs.jpg" alt="" /></p>
 													</div>
 												</td>
-												<td>
-													<div class="steps_num">
-														<p>1500+</p>
-														<p>7500+</p>
-														<p>15000+</p>
-													</div>
-												</td>
-												<td>
-													<div class="steps_num">
-														<p>￥ 8.91102</p>
-														<p>￥ 8.73965</p>
-														<p>￥ 8.56829</p>
-													</div>
-												</td>
-												<td>
-													<div class="steps_num">
-														<p class="ayellow">$ 1.12112 </p>
-														<p>$ 1.09995</p>
-														<p>$ 1.078</p>
-													</div>
-												</td>
-												<td>
-													<div class="steps_num-choice">
-													 <div class="cn-delivery delivery-cell selected" data-value="CN" data-min="2" data-max="4">
-												        	大陆：2-4周
-												     </div>
-													<div class="hk-delivery delivery-cell" data-value="HK" data-min="2" data-max="4">
-												        	香港：2-4周
-												    </div>
-												</div>
-												</td>
-												<td>
-													<div class="steps_num">
-														<div class="addBtn clear">
-															<p class="btn-add omin" onclick="minus(this,'9.9','100');">
-																<span class="glyphicon glyphicon-minus"></span>
-															</p>
-															<input type="text" class="btn-num onum" value="56" name="count" />
-															<p class="btn-add oplus" onclick="plus(this,'9.9}','100}');">
-																<span class="glyphicon glyphicon-plus"></span>
-															</p>
-														</div>
-														<p class="qred">计:￥ 66</p>
-													</div>		
-												</td>
-												<td>
-													<div class="steps_num">
-														<p><button id="shopGoods" class="btn-list-buy mt5">加入购物车</button></p>
-														<p class="purBuy"><a href="">购买</a></p>
-													</div>
-												</td>
-											</tr>
-											<tr>
-												<td>
-													<div class="product_list">
-														<p class="tblue"><a href="product_detail.html">RCO402JR-0710KL</a></p>
-														<p>封装规格:0402</p>
-														<p>库存编号:402-279</p>
-														<p class="sorange">供应商:<a href="">广诺科技</a></p>
-													</div>
-												</td>
-												<td>
-													<p>ST Microele ctronics </p>
-													<p class="pgreen">中高端品牌</p>
-												</td>
-												<td>
-													<p>IC MCU 32BIT 64 KB FLASH 48L QF P</p>
-													<p class="pdfdown"><a href=""><i class="iconfont icon-PDF"></i></a></p>
-												</td>
-												<td>
-													<div class="number">
-														<p>包装:1500  </p>
-														<p>起订:1500</p>
-														<p>倍数:1500</p>
-													</div>
-												</td>
-												<td>
-													<div class="fuGoods">
-														<p>期货</p>
-														<p><span>需确认</span></p>
-														<p class="rohs"><img src="images/rohs.jpg" alt="" /></p>
-													</div>
-												</td>
-												<td>
-													<div class="steps_num">
-														<p>1500+</p>
-														<p>7500+</p>
-														<p>15000+</p>
-													</div>
-												</td>
-												<td>
-													<div class="steps_num">
-														<p>￥ 8.91102</p>
-														<p>￥ 8.73965</p>
-														<p>￥ 8.56829</p>
-													</div>
-												</td>
-												<td>
-													<div class="steps_num">
-														<p class="ayellow">$ 1.12112 </p>
-														<p>$ 1.09995</p>
-														<p>$ 1.078</p>
+												<td class="padStep">
+													<div class="totalStep">
+														<ul class="clear">
+															<li class="steps_num clear">
+																<p class="stepsNumber"><span>1</span>+</p>
+																<p class="ayellow steps_price">￥ <span>8.911</span></p>
+																<p class="steps_doller">$ <span>1.121</span></p>
+															</li>
+															<li class="steps_num clear">
+																<p class="stepsNumber"><span>750</span>+</p>
+																<p class="steps_price">￥ <span>8.739</span></p>
+																<p class="steps_doller">$ <span>1.099</span></p>
+															</li>
+															<li class="steps_num clear">
+																<p class="stepsNumber"><span>1500</span>+</p>
+																<p class="steps_price">￥ <span>8.568</span></p>
+																<p class="steps_doller">$ <span>1.078</span></p>
+															</li>
+														</ul>
 													</div>
 												</td>
 												<td>
@@ -416,28 +343,28 @@
 													    </div>
 													</div>
 												</td>
-												<td>
+												<td class="addUp">
 													<div class="steps_num">
 														<div class="addBtn clear">
-															<p class="btn-add omin" onclick="minus(this,'9.9','100');">
+															<p class="btn-add omin" onclick="minusOrder(this,'9.9','100');">
 																<span class="glyphicon glyphicon-minus"></span>
 															</p>
-															<input type="text" class="btn-num onum" value="56" name="count" />
-															<p class="btn-add oplus" onclick="plus(this,'9.9}','100}');">
+															<input type="text" class="btn-num onum orderNum" value="56" name="count" onblur='amount_input_order(this,"9.9","10000")' />
+															<p class="btn-add oplus" onclick="plusOrder(this,'9.9}','100}');">
 																<span class="glyphicon glyphicon-plus"></span>
 															</p>
 														</div>
-														<p class="qred">计:￥ 66</p>
-													</div>		
+														<p class="qred totalPrice">计:￥ <span>66</span></p>
+													</div>
+													
 												</td>
 												<td>
 													<div class="steps_num">
 														<p><button id="shopGoods" class="btn-list-buy mt5">加入购物车</button></p>
-														<p class="purBuy"><a href="">购买</a></p>
+														<p class="purBuy"><a href="shop-order.html">购买</a></p>
 													</div>
 												</td>
 											</tr>
-											
 										</tbody>
 									</table>
 								</div>
@@ -490,7 +417,6 @@
 	    <script src="js/jquery-1.12.1.min.js"></script>
 	    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
 	    <script src="js/bootstrap.min.js"></script>
-	    <script type="text/javascript" src="js/slider.js"></script>
 	    <script type="text/javascript" src="js/index.js"></script>	
 	</body>
 </html>

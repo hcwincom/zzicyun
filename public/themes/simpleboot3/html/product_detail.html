@@ -12,7 +12,6 @@
 	    <link rel="stylesheet" type="text/css" href="css/comm.css"/>
 	    <link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
 	    <link rel="stylesheet" type="text/css" href="css/style.css"/>
-		<link rel="stylesheet" type="text/css" href="css/share.css" />
 	</head>
 	<body>
 		<div class="topBanner">
@@ -180,7 +179,7 @@
 								</div>
 								<div class="detail_cont">
 									<div class="row">
-										<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+										<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="padding-right: 0;">
 											<div class="detail_pro_img">
 												<div class="detail_logo">
 													<img src="images/detail_logo.png" alt="" />
@@ -190,9 +189,9 @@
 												</div>
 											</div>
 											<div class="detail_img_big">
-												<a class="bigImg" href="javascript:viod(0);">
+												<a class="bigImg" href="javascript:void(0);">
 													<i class="iconfont icon-kuoda"></i>
-													<span>扩大</span>
+													<span>查看大图</span>
 												</a>
 												<p class="shop_text">图像仅供参考</p>
 												<p class="shop_text">请参阅产品规格</p>
@@ -200,14 +199,27 @@
 											<!--点击放大的图片-->
 											<div class="outDiv">
 												<div class="innerdiv">
-													<div class="big"><img src="" alt="" /></div>
+													<div class="innerClose">
+														<span class="iconfont icon-guanbi1"></span>
+													</div>
+													<div class="big"><img src="images/ad_ad.png" alt="" /></div>
 												</div>
 											</div>
-											<div class="detail_share" id="socialShare">
-												<!--<a href="javascript:viod(0);">
-													<i class="iconfont icon-fenxiang"></i>
-													<span>共享</span>
-												</a>-->
+											<div class="detail_share clear">
+												<span class="fl">分享到:</span>
+												<div class="bdsharebuttonbox fl">
+													<a href="#" class="bds_more" data-cmd="more"></a>
+													<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+													<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+													<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+												</div>
+												<script>window._bd_share_config={
+													"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"22"},
+													"share":{},"image":{"viewList":["tsina","weixin","qzone"],"viewText":"分享到：","viewSize":"24"},
+													"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["tsina","weixin","qzone"]}
+												};
+												with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+												<!-- share end -->
 											</div>
 										</div>
 										<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
@@ -414,11 +426,11 @@
 											<div class="row">
 												<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="padding-right: 0;">
 													<div class="addetail clear">
-														<p class="btn-add omin" onclick="minus(this,'9.9','100');">
+														<p class="btn-add omin" onclick="minus(this,'9.9','1000');">
 															<span class="glyphicon glyphicon-minus"></span>
 														</p>
-														<input type="text" class="btn-num onum" value="56" name="count" />
-														<p class="btn-add oplus" onclick="plus(this,'9.9}','100}');">
+														<input type="text" class="btn-num onum totalNum" value="1" name="count" onblur='amount_input(this,"9.9","1000")' />
+														<p class="btn-add oplus" onclick="plus(this,'9.9}','1000}');">
 															<span class="glyphicon glyphicon-plus"></span>
 														</p>
 													</div>
@@ -426,11 +438,13 @@
 												<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding: 0;">
 													<div class="detail_pri">
 														<p>单价：<span>¥<i>123456</i></span></p>
+														<p style="display: none;">单价：<span>$<i>123456</i></span></p>
 													</div>
 												</div>
 												<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5" style="padding-left: 0;">
 													<div class="detail_total">
-														<p>合计：<span>¥<i>123</i></span></p>
+														<p>合计：<span>¥<i class="allPrice">123</i></span></p>
+														<p class="greenback" style="display: none;">合计：<span>$<i>123</i></span></p>
 													</div>
 												</div>
 											</div>
@@ -439,12 +453,12 @@
 											<div class="row">
 												<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="padding-right: 0;">
 													<div class="detail_benum">
-														<p>最少：<span>10000</span></p>
+														<p>最少：<span>100</span></p>
 													</div>
 												</div>
 												<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="padding: 0;">
 													<div class="detail_benum">
-														<p>倍数：<span>100000</span></p>
+														<p>倍数：<span>100</span></p>
 													</div>
 												</div>
 												<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="padding-left: 0;">
@@ -467,27 +481,27 @@
 										</thead>
 										<tbody>
 											<tr>
-												<td><p>1+</p></td>
-												<td><p>￥8.56829</p></td>
-												<td><p>$8.56829</p></td>
+												<td class="stepNum1 stepItem"><p><span>1</span>+</p></td>
+												<td><p>￥<span>5.56829</span></p></td>
+												<td><p>$<span>8.56829</span></p></td>
 											</tr>
 											<tr>
-												<td><p>10+</p></td>
-												<td><p>￥8.56829</p></td>
-												<td><p>$8.56829</p></td>
+												<td class="stepNum2 stepItem"><p><span>10</span>+</p></td>
+												<td><p>￥<span>8.56829</span></p></td>
+												<td><p>$<span>8.56829</span></p></td>
 											</tr>
 											<tr>
-												<td><p>100+</p></td>
-												<td><p>￥8.56829</p></td>
-												<td><p>$8.56829</p></td>
+												<td class="stepNum3 stepItem"><p><span>100</span>+</p></td>
+												<td><p>￥<span>10.56829</span></p></td>
+												<td><p>$<span>8.56829</span></p></td>
 											</tr>
 											<tr>
-												<td><p>250+</p></td>
-												<td><p>￥8.56829</p></td>
-												<td><p>$8.56829</p></td>
+												<td class="stepNum4 stepItem"><p><span>250</span>+</p></td>
+												<td><p>￥<span>8.56829</span></p></td>
+												<td><p>$<span>8.56829</span></p></td>
 											</tr>
 											<tr>
-												<td><p>5000+</p></td>
+												<td class="stepNum5"><p><span>5000</span>+</p></td>
 												<td colspan="2" class="bjbtn">
 													<a class="offerPop" href="javascript:void(0);">报价</a>
 												</td>
@@ -800,7 +814,6 @@
 	    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
 	    <script src="js/bootstrap.min.js"></script>
 	    <script type="text/javascript" src="js/index.js"></script>
-	    <script type="text/javascript" src="js/share.js"></script>
 		<script type="text/javascript">
 			$(".detail_view table tr td.bjbtn").click(function(){
 				$("#pop-up").fadeIn();
@@ -815,12 +828,6 @@
 				$("#pdf-pop").fadeOut();
 			});
 			
-			 $("#socialShare").socialShare({
-                content: '',
-				url:'',
-				titile:''
-            });
-			
 			function stopPropagation(e) {
 		        var ev = e || window.event;
 		        if (ev.stopPropagation) {
@@ -830,6 +837,16 @@
 		            window.event.cancelBubble = true;//兼容IE
 		        }
 		    }
+			
+			//点击放大图片
+			$(".bigImg").click(function(){
+				$(".outDiv").show();
+			});
+			$(".innerClose>span").click(function(){
+				$(".outDiv").hide();
+			});
+			
+		
 		</script>
 	</body>
 </html>

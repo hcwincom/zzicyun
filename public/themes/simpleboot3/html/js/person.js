@@ -34,14 +34,9 @@ $(function(){
 	});
 	
 	
-	
-	
-	
-	
-	
-	
-	
 });
+
+
 function preview(file){
 	var reader = new FileReader();
 	reader.onload = function(e){
@@ -50,6 +45,13 @@ function preview(file){
 	}
 	reader.readAsDataURL(file);
 }
+
+
+
+
+
+
+
 
 // 购买数量加
 function plus(tag,sellprice,stock){
@@ -61,7 +63,7 @@ function plus(tag,sellprice,stock){
 	var amount=parseInt(input.val());
 	amount++;
 	if(amount>stock){
-		return layer.msg('购买数量不能大于库存');
+		return alert('购买数量不能大于库存');
 	}else{
 		input.val(amount);
 //		setTotal();
@@ -77,9 +79,13 @@ function plus(tag,sellprice,stock){
 	var amount=parseInt(input.val());
 		amount--;
 	if(amount<=0){
-		return layer.msg('购买数量不能小于1');
+		return alert('购买数量不能小于1');
 	}else{
 		input.val(amount);
 //	setTotal();
 	}
 }
+ 
+
+
+
