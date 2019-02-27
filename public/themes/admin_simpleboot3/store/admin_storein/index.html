@@ -23,7 +23,7 @@
 		状态：<select class="form-control" name="status" >
 				<option value='0'>全部</option> 
 			 
-				 <foreach name="review_status" item="vo" k="key">
+				 <foreach name="statuss" item="vo" k="key">
 				<option value="{$key}"  <if condition="$key eq $data.status">selected</if>> 
 				 {$vo}
 				</option>
@@ -33,7 +33,7 @@
           	<select class="form-control" name="type" >
 				<option value='0'>全部</option> 
 			 
-				 <foreach name="about_type" item="vo" k="key">
+				 <foreach name="about_types" item="vo" k="key">
 				<option value="{$key}"  <if condition="$key eq $data.type">selected</if>> 
 				 {$vo[0]}
 				</option>
@@ -56,34 +56,18 @@
             <input type="text" class="form-control" name="name" style="width: 120px;" value="{$data.name}">
             
             <br/>
-              	仓库：
-              <select class="form-control" id="store" name="store" >
-				<option value='0'>全部</option> 
-				<option value='-1' <eq name="data.store" value="-1">selected</eq>>店铺总库存</option> 
-				 <foreach name="stores" item="vo" k="key">
-				<option value="{$key}" class="store store{$vo.shop}" <if condition="$key eq $data.store">selected</if>> 
-				 {$vo.name}
-				</option>
-				</foreach>
-			</select> &nbsp;&nbsp; 
+               
          	 
-            <select class="form-control" name="time" id="">
+           
+			  <select class="form-control" name="time" id="">
 	        <foreach name="times" item="vo">
-	        	<option value="{$key}" <if condition="$key eq $data.time">selected</if>>{$vo}</option>
+	        	<option value="{$key}" <if condition="$key eq $data.time">selected</if>>{$vo[1]}</option>
 	        </foreach> 
 	        </select>
 			<input class="js-datetime form-control" type="text" id="datetime1" name="datetime1" value="{$data.datetime1}">
 			--
 			<input class="js-datetime form-control" type="text" id="datetime2" name="datetime2" value="{$data.datetime2}">
 			
-			<select class="form-control" name="num" id="">
-	        <foreach name="nums" item="vo">
-	        	<option value="{$key}" <if condition="$key eq $data.num">selected</if>>{$vo}</option>
-	        </foreach> 
-	        </select>
-			<input class=" form-control" type="number" name="num1" value="{$data.num1}">
-			--
-			<input class=" form-control" type="number" name="num2" value="{$data.num2}">
 		 
 			<input type="submit" class="btn btn-primary" value="搜索" />
 				 
@@ -108,8 +92,9 @@
 						</label>
 						</th>
 						<th>{$flag}ID-备注</th>
+						 <notempty name="shops"> 
 						<th>店铺</th> 
-						<th>仓库</th>  
+					 </notempty>
 						<th>下单时间</th>  
 						<th>下单人</th> 
 						<th>下单类型</th>  
@@ -117,7 +102,7 @@
 						<th>下单名称</th> 
 						<th>产品名</th> 
 						<th>产品编号</th> 
-						<th>料位编号</th> 
+					 
 						<th>数量</th> 
 						<th>金额</th> 
 						<th>备注</th>
@@ -135,31 +120,32 @@
 							value="{$vo.id}">
 						</td>
 						<td class='id'> 
-						<a href="{:url('edit',['id'=>$vo.id])}" target="{$zztarget.list}">{$vo.id}-{$vo.adsc}</a>
+						<a href="{:url('edit',['id'=>$vo.id])}" target="{$zztarget.list}">{$vo.id}-{$vo.dsc}</a>
 						</td>
-						<td > {$vo.sname}</td>
-						<td> {$stores[$vo['store']]['name']|default=$vo['store']}</td>
+						 <notempty name="shops"> 
+						<td > {$shops[$vo.shop]}</td>
+					 </notempty>
 						<td>{$vo.atime|date='Y-m-d H:i',###}</td> 
-						<td>{$vo.aname|default=$vo['aid']}</td> 
-						<td>{$about_type[$vo['type']][0]}</td> 
+						<td>{$aids[$vo.aid]|default=$vo['aid']}</td> 
+						<td>{$about_types[$vo['type']][0]}</td> 
 						<td >
-						<empty name="about_type[$vo['type']][1]">
+						<empty name="about_types[$vo['type']][1]">
 							{$vo.about}
 						<else/>
-							<a href="{$about_type[$vo['type']][1]}/id/{$vo.about}" target="{$zztarget.other}">{$vo.about}</a>
+							<a href="{$about_types[$vo['type']][1]}/id/{$vo.about}" target="{$zztarget.other}">{$vo.about}</a>
 						</empty>
 						 
 						</td>
 						<td >{$vo.about_name}</td>
 						<td><a href="{:url('goods/AdminGoods/edit',['id'=>$vo.goods])}"  target="{$zztarget['other']}">{$vo.goods_name}</a></td>
 					    <td>{$vo.goods_code}</td> 
-					    <td>{$vo.box_code}</td>
+					   
 						<td>{$vo.num}</td>
 						<td>{$vo.money|default=0}</td>
 						 
-						<td>{$vo.adsc}</td>
-						<td>{$review_status[$vo['rstatus']]}</td> 
-						<td><eq name="vo.rid" value="0">--<else/>{$vo.rname|default=$vo['rid']}--{$vo.rtime|date='Y-m-d H:i',###}</eq></td> 
+						<td>{$vo.dsc}</td>
+						<td>{$statuss[$vo['status']]}</td> 
+						<td><eq name="vo.rid" value="0">--<else/>{$vo.rid[$vo.rid]|default=$vo['rid']}--{$vo.rtime|date='Y-m-d H:i',###}</eq></td> 
 					</tr> 
 					</foreach>
 				</tbody> 
@@ -181,16 +167,7 @@ $('.review_all2').click(function(){
     $(this).parents('form').attr('action',"{:url('review_all')}");
     return is_check('批量驳回');
 });
-$('#shop').change(function(){
-	var shop=$(this).val();  
-	if(shop==0){
-		$('.store').show();
-	}else{
-		$('.store').hide();
-		$('.store'+shop).show();
-	}
-	$('#store').val(0); 
-});
+ 
  
  
 </script>

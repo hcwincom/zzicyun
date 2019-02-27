@@ -38,31 +38,7 @@ class GoodsajaxController extends AdminBase0Controller
     }
     
     
-    /**
-     * 产品价格模板确认 
-     */
-    public function price_set(){
-        $t_id=$this->request->param('t_id',0,'intval');
-        $price_in=$this->request->param('price_in',0);
-        if($t_id<=0 || $price_in<=0){
-            $this->success('no');
-        }
-        $price_in=round($price_in,2);
-        //按模板规则计算得到各种价格，暂时不写
-        $data=[];
-        $data['price_cost']=$price_in;
-        $data['price_min']=$price_in;
-        $data['price_range1']=$price_in;
-        $data['price_range2']=$price_in;
-        $data['price_range3']=$price_in;
-        $data['price_dealer1']=$price_in;
-        $data['price_dealer2']=$price_in;
-        $data['price_dealer3']=$price_in;
-        $data['price_trade']=$price_in;
-        $data['price_factory']=$price_in;
-        $this->success('ok','',$data);
-        
-    }
+    
      /*  
       * 收藏
       * */
@@ -136,15 +112,25 @@ class GoodsajaxController extends AdminBase0Controller
     }
     //获取分类下所有产品
     public function goods(){
-        $cid=$this->request->param('cid');
+        $cid=$this->request->param('cid',0,'intval');
+        $shop=$this->request->param('shop',0,'intval');
         $where=[
             'cid'=>$cid,
             'status'=>2,
         ];
         $admin=$this->admin; 
-        $where['shop']=($admin['shop']==1)?2:$admin['shop'];
+        if(empty($shop)){
+            $where['shop']=$admin['shop'];
+        }
+        if($admin['shop']==1 ){ 
+            if($shop>0){
+                $where['shop']=$shop;
+            }
+        }else{
+            $where['shop']=$admin['shop'];
+        }
         
-        $goods=Db::name('goods')->where($where)->column('id,name,code');
+        $goods=Db::name('goods')->where($where)->column('id,name,code,store_code,store_num');
         $this->success('ok','',$goods);
     }
     //获取产品的参数值

@@ -502,12 +502,12 @@ class AdminShopController extends AdminInfoController
        if(in_array(1,$ids) ){
            $this->error('总站不能修改');
        }
-       $where=['shop'=>['in',$ids]];
+       $where=['shop'=>['in',$ids],'status'=>2];
        $user=Db::name('user')->where($where)->find();
        if(!empty($user)){
-            $this->error('店铺'.$user['shop'].'下有用户，不能删除');
+            $this->error('店铺'.$user['shop'].'下有用户/管理员，不能删除');
         }
-      
+        $this->success('成功删除店铺');
        
         Db::name('goods')->where($where)->delete();
         Db::name('goods_label')->where($where)->delete();
@@ -525,13 +525,8 @@ class AdminShopController extends AdminInfoController
         Db::name('store_shelf')->where($where)->delete();
         Db::name('store')->where($where)->delete();
          
-        Db::name('attendance_day')->where($where)->delete();
-        Db::name('attendance_apply')->where($where)->delete();
-        Db::name('attendance_date')->where($where)->delete();
-        Db::name('attendance_rule')->where($where)->delete();
-        
         //有相关垃圾未删除，如event_uid ,role_user
-        Db::name('event')->where($where)->delete();
+      
         Db::name('user')->where($where)->delete();
         Db::name('order')->where($where)->delete();
         Db::name('ordersup')->where($where)->delete();

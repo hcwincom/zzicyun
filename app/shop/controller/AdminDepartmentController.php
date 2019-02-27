@@ -3,10 +3,10 @@
 namespace app\shop\controller;
 
  
-use app\common\controller\AdminInfo0Controller; 
+use app\common\controller\AdminInfoController; 
 use think\Db; 
   
-class AdminDepartmentController extends AdminInfo0Controller
+class AdminDepartmentController extends AdminInfoController
 {
     
     public function _initialize()
@@ -16,9 +16,14 @@ class AdminDepartmentController extends AdminInfo0Controller
         $this->flag='部门';
         $this->table='department';
         $this->m=Db::name('department');
-        
+        $this->base=['name'=>'str',
+            'sort'=>'int',
+            'dsc'=>'str', 
+            
+        ];
         //没有店铺区分
         $this->isshop=0;
+        $this->islan=0;
         $this->assign('flag',$this->flag);
         $this->assign('table',$this->table);
         
