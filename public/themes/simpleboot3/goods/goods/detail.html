@@ -36,10 +36,10 @@
 											<div class="detail_img_big">
 												<a class="bigImg" href="javascript:viod(0);">
 													<i class="iconfont icon-kuoda"></i>
-													<span>扩大</span>
+													<span>{$notice.detail.enlarge}</span>
 												</a>
-												<p class="shop_text">图像仅供参考</p>
-												<p class="shop_text">请参阅产品规格</p>
+												<p class="shop_text">{$notice.detail.enlarge_info}</p>
+												<p class="shop_text">{$notice.detail.enlarge_info_two}</p>
 											</div>
 											<!--点击放大的图片-->
 											<div class="outDiv">
@@ -48,7 +48,7 @@
 												</div>
 											</div>
 											<div class="detail_share">
-												<span class="fl">分享到:</span>
+												<span class="fl">{$notice.detail.share}:</span>
 												<div class="bdsharebuttonbox fl">
 													<a href="#" class="bds_more" data-cmd="more"></a>
 													<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
@@ -68,44 +68,44 @@
 											<div class="detail_pro_info">
 												<ul class="detail_ul">
 													<li>
-														<span>型号： </span>
+														<span>{$notice.detail.type}： </span>
 														<div>
 															<span>{$info.code}</span>
 														</div>
 													</li>
 													<li>
-														<span>生产批次：</span>
+														<span>{$notice.detail.batch}：</span>
 														<div>
 															<span>{$info.production_code}</span>
 														</div>
 													</li>
 													<li>
-														<span>制造商：</span>
+														<span>{$notice.detail.manufacturer}：</span>
 														<div class="supplier_za">
 															<a href="">{$info.production_factory}</a>
 														</div>
 													</li>
 													<li>
-														<span>库存编号：</span>
+														<span>{$notice.index.hand}{$notice.index.hand_num}：</span>
 														<div class="stock_num">
 															<span>{$info.store_code}</span>
 														</div>
 													</li>
 													<li>
-														<span>供应商：</span>
+														<span>{$notice.goods_search.supplier}：</span>
 														<div class="supplier">
 															<p><a href="">{$info.shop_name}</a></p>
-															<p>所售物料由icyun商城管理发货</p>
+															<p>{$notice.detail.material}</p>
 														</div>
 													</li>
 													<li>
-														<span>产品说明：</span>
+														<span>{$notice.detail.description}：</span>
 														<div>
 															<p>{$info.dsc}</p>
 														</div>
 													</li>
 													<li>
-														<span>PDF数据：</span>
+														<span>{$notice.detail.pdf}：</span>
 														<div class="pdf_load">
 															<p>
 															<notempty name="info['files'][1]">
@@ -124,7 +124,7 @@
 												<div class="detail_contrast">
 													<button id="addCompare" class="addCompare" data-toggle="modal" data-target="#myModal">
 														<i class="iconfont icon-duibi"></i>
-														&nbsp;加入对比
+														&nbsp;{$notice.detail.contrast}
 													</button>
 												</div>
 											</div>
@@ -134,7 +134,7 @@
 								<!--规格-->
 								<div class="detail_norms mt10">
 									<div class="detail_norms_h3">
-										<h3>规格信息</h3>
+										<h3>{$notice.detail.specification}</h3>
 									</div>
 										<table class="table table-grayth">
 									<tbody>
@@ -154,30 +154,30 @@
 						<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="padding-left: 0;">
 							<div class="right_detail">
 								<div class="detail_h3">
-									<h3>有库存：<span>{$info.store_num}<i>需确认</i></span></h3>
+									<h3>{$notice.index.inventory}：<span>{$info.store_num}<i>需确认</i></span></h3>
 								</div>
 								<div class="detail_form" style="background: #fff;">
 									<form action="" method="post">
 										<table class="table table_right">
 											<tbody>
 												<tr>
-													<th width="28%">发货时间：</th>
+													<th width="28%">{$notice.detail.delivery_time}：</th>
 													<td class="qred">15:00前付款订单当天发货</td>
 												</tr>
 												<tr>
-													<th width="28%">在途货物：</th>
+													<th width="28%">{$notice.detail.en_route}：</th>
 													<td>0</td>
 												</tr>
 												<tr>
-													<th width="28%">交货地：</th>
+													<th width="28%">{$notice.goods_search.ship}：</th>
 													<td class="detail_radio">
 														<label for="checkra">
 															<input type="radio" name="checkra" id="checkra" value="" checked="checked"/>
-															内地
+															{$notice.goods_search.mainland}
 														</label>
 														<label for="checkrad">
 															<input type="radio" name="checkra" id="checkrad" value="" />
-															香港
+															{$notice.goods_search.hongkong}
 														</label>
 													</td>
 												</tr>
@@ -198,12 +198,12 @@
 												</div>
 												<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding: 0;">
 													<div class="detail_pri">
-														<p>单价：<span>¥<i>123456</i></span></p>
+														<p>{$notice.goods_search.unit_price}：<span>¥<i>123456</i></span></p>
 													</div>
 												</div>
 												<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5" style="padding-left: 0;">
 													<div class="detail_total">
-														<p>合计：<span>¥<i>123</i></span></p>
+														<p>{$notice.detail.total}：<span>¥<i>123</i></span></p>
 													</div>
 												</div>
 											</div>
@@ -212,17 +212,17 @@
 											<div class="row">
 												<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="padding-right: 0;">
 													<div class="detail_benum">
-														<p>最少：<span>10000</span></p>
+														<p>{$notice.detail.least}：<span>10000</span></p>
 													</div>
 												</div>
 												<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="padding: 0;">
 													<div class="detail_benum">
-														<p>倍数：<span>100000</span></p>
+														<p>{$notice.goods_search.multiple}：<span>100000</span></p>
 													</div>
 												</div>
 												<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="padding-left: 0;">
 													<div class="detail_buy">
-														<p><a href="">购买</a></p>
+														<p><a href="">{$notice.goods_search.buy}</a></p>
 													</div>
 												</div>
 											</div>
@@ -233,9 +233,9 @@
 									<table class="table table-condensed table-bordered tabble_view table-search">
 										<thead>
 											<tr>
-												<th width="30%">阶梯数量</th>
-												<th width="35%"><p>人民币单价</p><p>（16%增值税）</p></th>
-												<th width="35%"><p>美元单价</p> <p>（USD）</p></th>
+												<th width="30%">{$notice.goods_search.ladder}{$notice.goods_search.buy_num}</th>
+												<th width="35%"><p>{$notice.goods_search.RMB}{$notice.goods_search.unit_price}</p><p>（16%{$notice.detail.added_value_tax}）</p></th>
+												<th width="35%"><p>{$notice.goods_search.US}{$notice.goods_search.unit_price}</p> <p>（USD）</p></th>
 											</tr>
 										</thead>
 										<tbody>
@@ -262,7 +262,7 @@
 											<tr>
 												<td><p>5000+</p></td>
 												<td colspan="2" class="bjbtn">
-													<a class="offerPop" href="javascript:void(0);">报价</a>
+													<a class="offerPop" href="javascript:void(0);">{$notice.detail.quote}</a>
 												</td>
 											</tr>
 										</tbody>
@@ -272,11 +272,11 @@
 							</div>
 							<!--其他资源-->
 							<div class="detail_other mt10">
-								<h4 class="other_titke">其他资源</h4>
+								<h4 class="other_titke">{$notice.detail.other}</h4>
 								<table class="table table-grayth">
 									<tbody>
 										<tr>
-											<td width="40%" class="text-center">最小包装</td>
+											<td width="40%" class="text-center">{$notice.detail.mini_package}</td>
 											<td>1000</td>
 										</tr>
 									</tbody>
@@ -284,13 +284,13 @@
 							</div>
 							<!--替代品-->
 							<div class="detail_subgoods">
-								<h4 class="subgoods_titke">可能的替代商品 <span>请根据实际的需求谨慎选择替代商品</span></h4>
+								<h4 class="subgoods_titke">{$notice.detail.replace} <span>{$notice.detail.replace_tip}</span></h4>
 								<table class="table table-subgoods">
 									<thead>
 										<tr>
-											<th>产品编号</th>
-											<th>制造商</th>
-											<th>库存</th>
+											<th>{$notice.detail.identification_product}</th>
+											<th>{$notice.goods_search.supplier}</th>
+											<th>{$notice.index.hand}</th>
 										</tr>
 										<tbody>
 											<tr>
@@ -340,21 +340,21 @@
 			      	<form action="" method="post">
 			      		<div class="bodyhead">
 				      		<p>
-				      			<span>需求型号:GCM1555C1H180FA16D</span>
-				      			<span>需求数量:1000</span>
+				      			<span>{$notice.detail.demand}{$notice.detail.type}:GCM1555C1H180FA16D</span>
+				      			<span>{$notice.detail.demand}{$notice.goods_search.buy_num}:1000</span>
 				      		</p>
 				      	</div>
 				      	<div class="procompa-table">
 				      		<table class="table modalTab">
 					      		<tr>
-					      			<th width="8%">加入对比</th>
-					      			<th width="16%">对比类型</th>
-					      			<th width="12.6%">品牌</th>
-					      			<th width="12.6%">封装参数 </th>
-					      			<th width="12.6%">库存</th>
-					      			<th width="12.6%">价格（人民币）</th>
-					      			<th width="12.6%">交期</th>
-					      			<th width="12.6%">供应商</th>
+					      			<th width="8%">{$notice.detail.contrast}</th>
+					      			<th width="16%">{$notice.detail.contrast_type}</th>
+					      			<th width="12.6%">{$notice.index.trademark}</th>
+					      			<th width="12.6%">{$notice.detail.packaging}</th>
+					      			<th width="12.6%">{$notice.index.hand}</th>
+					      			<th width="12.6%">{$notice.index.price}（{$notice.goods_search.RMB}）</th>
+					      			<th width="12.6%">{$notice.detail.delivery}</th>
+					      			<th width="12.6%">{$notice.goods_search.supplier}</th>
 					      		</tr>
 					      		<tr>
 					      			<td>
@@ -415,7 +415,7 @@
 					      	</table>
 				      	</div>
 			      		<div class="procompa-btn">
-			      			<button type="submit" class="comInput">确认对比</button>
+			      			<button type="submit" class="comInput">{$notice.detail.sure}</button>
 			      			<a href=""></a>
 			      		</div>
 			      	</form>
@@ -434,7 +434,7 @@
 							<div class="pop-up-box">
 								<div class="offer-box clear">
 									<div class="col-xs-4 col-md-4 offerbox-text">
-										<p><span>*</span>联系人：</p>
+										<p><span>*</span>{$notice.detail.name}：</p>
 									</div>
 									<div class="col-xs-8 col-md-8 offerbox-input">
 										<input type="text" name="offer-input" value="" class="offer-input" />
@@ -442,7 +442,7 @@
 								</div>
 								<div class="offer-box clear">
 									<div class="col-xs-4 col-md-4 offerbox-text">
-										<p><span>*</span>联系电话：</p>
+										<p><span>*</span>{$notice.detail.phone}：</p>
 									</div>
 									<div class="col-xs-8 col-md-8 offerbox-input">
 										<input type="text" name="offer-input" value="" class="offer-input" />
@@ -450,7 +450,7 @@
 								</div>
 								<div class="offer-box clear">
 									<div class="col-xs-4 col-md-4 offerbox-text">
-										<p>QQ：</p>
+										<p>{$notice.detail.qq}：</p>
 									</div>
 									<div class="col-xs-8 col-md-8 offerbox-input">
 										<input type="text" name="offer-input" value="" class="offer-input" />
@@ -458,7 +458,7 @@
 								</div>
 								<div class="offer-box clear">
 									<div class="col-xs-4 col-md-4 offerbox-text">
-										<p><span>*</span>电子邮件地址：</p>
+										<p><span>*</span>{$notice.detail.email}：</p>
 									</div>
 									<div class="col-xs-8 col-md-8 offerbox-input">
 										<input type="text" name="offer-input" value="" class="offer-input" />
@@ -466,7 +466,7 @@
 								</div>
 								<div class="offer-box clear">
 									<div class="col-xs-4 col-md-4 offerbox-text">
-										<p><span>*</span>发货目的地国家：</p>
+										<p><span>*</span>{$notice.detail.destination}：</p>
 									</div>
 									<div class="col-xs-8 col-md-8 offerbox-input">
 										<input type="text" name="offer-input" value="" class="offer-input" />
@@ -474,30 +474,30 @@
 								</div>
 								<div class="offer-box clear">
 									<div class="col-xs-4 col-md-4 offerbox-text">
-										<p><span>*</span>货币：</p>
+										<p><span>*</span>{$notice.detail.currency}：</p>
 									</div>
 									<div class="col-xs-8 col-md-8 offerbox-input">
 										<input type="text" name="offer-input" value="" class="offer-input" />
 									</div>
 								</div>
 							</div>
-							<p class="ml tipMsg">对的滴v个</p>
+							<p class="ml tipMsg"></p>
 							<div class="pop-up-table">
 								<table class="table popTable">
 									<tr class="popHead">
-										<th width="26%">商品</th>
-										<th width="20%">品牌</th>
-										<th width="17%">需求数量</th>
-										<th width="17%">目标价格</th>
-										<th width="20%">备注</th>
+										<th width="26%">{$notice.goods_search.commodity}</th>
+										<th width="20%">{$notice.index.trademark}</th>
+										<th width="17%">{$notice.detail.demand}{$notice.goods_search.buy_num}</th>
+										<th width="17%">{$notice.detail.target}{$notice.index.price}</th>
+										<th width="20%">{$notice.detail.beizhu}</th>
 									</tr>
 									<tr>
 										<td>
 											<div class="product_list">
 												<p class="tblue"><a href="product_detail.html">RCO402JR-0710KL</a></p>
-												<p>封装规格:0402</p>
-												<p>库存编号:402-279</p>
-												<p class="sorange">供应商:<a href="">广诺科技</a></p>
+												<p>{$notice.goods_search.standard}:0402</p>
+												<p>{$notice.index.hand}{$notice.index.hand_num}:402-279</p>
+												<p class="sorange">{$notice.goods_search.supplier}:<a href="">广诺科技</a></p>
 											</div>
 										</td>
 										<td>
@@ -522,10 +522,10 @@
 								</table>
 							</div>
 							<div class="popTip">
-								<p>如果了解您的报价信息，请访问我们的 <span>会员中心-元器件询价</span> 查看报价</p>
+								<p> {$notice.detail.intro}<span>{$notice.detail.intro_addr}</span> {$notice.detail.intro_addr_see}</p>
 							</div>
 							<div class="popBtn">
-								<button type="submit" class="popsub">提交报价请求</button>
+								<button type="submit" class="popsub">{$notice.detail.request}</button>
 							</div>
 						</form>
 					</div>
@@ -544,7 +544,7 @@
 							<div class="fl pdf-left">{$notice[$html]['pdf'.$key]}：</div>
 							<div class="fl pdf-right">
 							<empty name="info['files'][$key]">
-								<span>暂无文件</span>
+								<span>{$notice.detail.nofile}</span>
 							<else/>
 								<span><i class="iconfont icon-wenjianjia"></i>{$info['files'][$key]['name']}</span>
 								<a href="{:url('goods/Goods/file_load',['id'=>$info['files'][$key]['id']])}">{$notice[$html]['download']}</a>

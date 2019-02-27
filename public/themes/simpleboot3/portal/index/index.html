@@ -39,7 +39,7 @@
 										</foreach>
 										</present>
 										 
-										<a class="allNav-more" href="{:url('goods/Goods/cate_list')}"><i class="iconfont icon-right"></i>查看全部{$notice.index.goods_cate}</a>
+										<a class="allNav-more" href="{:url('goods/Goods/cate_list')}"><i class="iconfont icon-right"></i>{$notice.index.more}{$notice.index.goods_cate}</a>
 									</div>	
 								</div>	
 								<!--导航菜单-->						
@@ -102,18 +102,18 @@
 									</div>
 									<!--登录之后显示end-->
 									<div class="links clear">
-										<a href="copy.html"><span>智能BOM</span></a>
-										<a href="memberCenter/purchase-order.html"><span>订单状态</span></a>
-										<a href="memberCenter/credit-discount.html"><span>优惠券</span></a>
-										<a href="memberCenter/purchase-order.html"><span>待付款</span></a>
-										<a href="memberCenter/cominquiry-list.html"><span>人工-报价(<i>0</i>)</span></a>
+										<a href="copy.html"><span>{$notice.index.bom}</span></a>
+										<a href="memberCenter/purchase-order.html"><span>{$notice.index.order_status}</span></a>
+										<a href="memberCenter/credit-discount.html"><span>{$notice.index.discount}</span></a>
+										<a href="memberCenter/purchase-order.html"><span>{$notice.index.payment}</span></a>
+										<a href="memberCenter/cominquiry-list.html"><span>{$notice.index.offer}(<i>0</i>)</span></a>
 									</div>
 								 
 									<div class="news">
 									 
 										<div class="news_title">
 											{$articel_cates['notice']['lan_name']}
-											<a href="proclamation-more.html">更多</a>
+											<a href="proclamation-more.html">{$notice.index.more}</a>
 										</div>
 										<foreach name="article_notice" item="vo">
 											<a href="proclamation-detail.html" class="newsItem" target="_blank">{$vo.name}</a>
@@ -128,7 +128,7 @@
 							<foreach name="banners['index_m4']" item="vo">
 								<a href="{$vo.url}" class="quickLnkItm" target="_blank">
 									<img src="{:cmf_get_image_url($vo.pic)}" alt="" />
-									<span>点击</span>
+									<span>{$notice.index.click}</span>
 								</a>
 								
 							</foreach>
@@ -149,8 +149,8 @@
 									<!--合作品牌-->
 									<div class="inxSecCap">
 										<span class="ag_mod">{$notice.index.brand}</span>
-										<span class="ag_mod2">{$notice.index.product} &nbsp;正品低价</span>
-										<a href="branded.html">更多<i class="glyphicon glyphicon-menu-right"></i></a>
+										<span class="ag_mod2">{$notice.index.dscbefore} &nbsp;{$notice.index.dsc}</span>
+										<a href="branded.html">{$notice.index.more}<i class="glyphicon glyphicon-menu-right"></i></a>
 									</div>
 									<ul class="inx-agList clear">
 										<foreach name="brands" item="vo">
@@ -162,9 +162,9 @@
 								<!--海量商品-->
 								<div class="lists2 clear">
 									<div class="inxSecCap">
-										<span class="ag_mod">海量商品</span>
-										<span class="ag_mod2">海量商品 &nbsp;正品低价</span>
-										<a href="product_category.html">更多<i class="glyphicon glyphicon-menu-right"></i></a>
+										<span class="ag_mod">{$notice.index.product}</span>
+										<span class="ag_mod2">{$notice.index.dscbefore} &nbsp;{$notice.index.dsc}</span>
+										<a href="product_category.html">{$notice.index.more}<i class="glyphicon glyphicon-menu-right"></i></a>
 									</div>	
 									<ul class="inx-goods">
 									<foreach name="goods" item="vo">
@@ -185,7 +185,7 @@
 									<div class="inxSecCap" style="margin-left:-15px;margin-right:-15px;">
 										<span class="ag_mod">{$articel_cates['news']['lan_name']}</span>
 										<span class="ag_mod2">{$articel_cates['news']['dsc']}</span>
-										<a href="information_center.html">更多<i class="iconfont icon-enter"></i></a>
+										<a href="information_center.html">{$notice.index.more}<i class="iconfont icon-enter"></i></a>
 									</div>	
 									<div class="inx-zixun">
 										<div class="row">
@@ -227,21 +227,16 @@
 											<div class="zx-right col-lg-4 col-md-4 col-sm-4">
 												<div class="zxRight">
 													<div class="zxtitle">
-														<p>数据手册</p>
+														<p>{$notice.index.date}</p>
 													</div>
 													<div class="zxSearch">
 														<div class="search_input">
-															<input type="text" class="inputSer" name="inputSer" id="inputSer" value=""/>
+															<input type="text" class="inputSer" name="inputSer" id="inputSer" value="" placeholder="超过百万个产品的数据手册"/>
 															<button type="submit"><i class="iconfont icon-enter"></i></button>
 														</div>
-														<label for="inputSer" style="color: rgb(102, 102, 102); visibility: visible;">
-															<i class="glyphicon glyphicon-search"></i>
-															<b>搜索</b>
-															<span>超过百万个产品的数据手册</span>
-														</label>
 													</div>
 													<div class="zxshuju">
-														<h3>推荐数据手册</h3>
+														<h3>{$notice.index.recommend}{$notice.index.date}</h3>
 														<div class="zxshuju_p">
 														<foreach name="pdfs" item="vo">
 															<p>{$vo.name}</p>

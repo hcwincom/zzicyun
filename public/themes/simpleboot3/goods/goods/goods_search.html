@@ -9,7 +9,7 @@
 				<div class="nav proNav_nav">
 					<div class="clear">
 						<div id="allNav" class="allNav allNav_list fl">
-							<h3 class="allNav__cap">产品分类</h3>
+							<h3 class="allNav__cap">{$notice.index.goods_cate}</h3>
 							<div class="proAllNav">
 							<foreach name="list['cate1']" item="v1" key="k1">
 							
@@ -43,8 +43,8 @@
 						<form action="" method="post">
 							<div class="pro-filter">
 								<p class="breadcrumb">
-									当前位置:
-									<a href="index.html">首页</a>
+									{$notice.index.nowaddr}:
+									<a href="index.html">{$notice.index.index}</a>
 								</p>
 								<div class="filter-s-wrp clear">
 									<div id="filter-select-box" class="filter-s-box is-folded fl">
@@ -55,7 +55,7 @@
 										<div id="selected_filter">
 											<div class="filter-s-item" style="width: 167px;">
 												<div class="filter-s-srh mt5">
-													<label>品牌</label>
+													<label>{$notice.index.trademark}</label>
 													<input class="select-srh" id="" type="text">
 													<i class="iconfont icon-sousuo"></i>
 												</div>
@@ -96,18 +96,18 @@
 								<div class="mt10">
 				                    <label class="checkbox-inline">
 				                        <input name="isInventory" value="1" type="checkbox" class="checkbox-item" id="filter-isInventory-input">
-				                        	有库存
+											{$notice.index.inventory}
 				                    </label>
 				                    <label class="checkbox-inline">
 				                        <input name="isRosh" value="1" type="checkbox" class="checkbox-item" id="filter-isRosh-input">
-				                        	符合RoHS
+				                        	{$notice.index.rohs}
 				                    </label>
 				                </div>
 				                <!---->
 				                <div class="mt10">
-				                	<button>清楚筛选</button>
-				                	<button>开始搜索</button>
-				                	<span>符合条件记录数：<i>666</i></span>
+				                	<button>{$notice.index.clear}</button>
+				                	<button>{$notice.index.start}{$notice.index.search}</button>
+				                	<span>{$notice.index.conform}：<i>666</i></span>
 				                </div>
 							</div>
 						</form>
@@ -123,13 +123,13 @@
 							<div class="row">
 								<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 									<div class="form-inline form-border">
-										<a href="javascript:void(0);" class="sear_select">综合排序</a>
-										<a href="javascript:void(0);">价格排序</a>
-										<a href="javascript:void(0);">库存排序</a>
+										<a href="javascript:void(0);" class="sear_select">{$notice.index.synthesize}{$notice.index.sort}</a>
+										<a href="javascript:void(0);">{$notice.index.price}{$notice.index.sort}</a>
+										<a href="javascript:void(0);">{$notice.index.hand}{$notice.index.sort}</a>
 										<div class="form-group">
 											<div  class="checkbox-inline">
 												<label>
-							                        <input name="isInventory" type="checkbox" class="checkbox-item" id="filter-iselected">仅显有库存					                        	
+							                        <input name="isInventory" type="checkbox" class="checkbox-item" id="filter-iselected">{$notice.index.only}{$notice.index.inventory}
 							                    </label>
 											</div>
 											
@@ -141,7 +141,7 @@
 										<div class="input-group">
 											<input type="text" name="control" id="control" value="" class="form-control" placeholder="在结果中搜索"/>
 										</div>
-										<button type="submit" class="btn_sub">搜索</button>
+										<button type="submit" class="btn_sub">{$notice.index.search}</button>
 									</div>
 								</div>
 							</div>
@@ -150,35 +150,35 @@
 					<!--自营产品-->
 					<div class="self-support">
 						<div class="port_title">
-							<h3>自营<span>(1)</span></h3>
+							<h3>{$notice.goods_search.self}<span>(1)</span></h3>
 						</div>
 						<div class="table-responsive">
 							<table class="table table-condensed table-bordered table-search">
 								<thead>
 									<tr>
-										<th width="14%">商品</th>
-										<th width="8%">品牌</th>
-										<th width="8%">参数描述</th>
-										<th width="8%">包装数量</th>
-										<th width="8%">库存</th>
+										<th width="14%">{$notice.goods_search.commodity}</th>
+										<th width="8%">{$notice.index.trademark}</th>
+										<th width="8%">{$notice.goods_search.parameter}</th>
+										<th width="8%">{$notice.goods_search.package}{$notice.goods_search.buy_num}</th>
+										<th width="8%">{$notice.index.hand}</th>
 										<th width="24%" class="padTable">
 											<div class="titleTotal">
 												<ul class="clear ">
-													<li>阶梯数量</li>
+													<li>{$notice.goods_search.ladder}{$notice.goods_search.buy_num}</li>
 													<li>
-														<p>人民币单价</p>
-														<p>（含税）</p>
+														<p>{$notice.goods_search.RMB}{$notice.goods_search.unit_price}</p>
+														<p>（{$notice.goods_search.tax_inclusive}）</p>
 													</li>
 													<li>
-														<p>美元单价</p>
+														<p>{$notice.goods_search.US}{$notice.goods_search.unit_price}</p>
 														<p>（USD）</p>
 													</li>
 												</ul>
 											</div>
 										</th>
-										<th width="11%">交货地</th>
-										<th width="10%">购买数量</th>
-										<th width="9%">操作</th>
+										<th width="11%">{$notice.goods_search.ship}</th>
+										<th width="10%">{$notice.goods_search.buy}{$notice.goods_search.buy_num}</th>
+										<th width="9%">{$notice.goods_search.operation}</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -186,9 +186,9 @@
 										<td>
 											<div class="product_list">
 												<p class="tblue"><a href="product_detail.html">RCO402JR-0710KL</a></p>
-												<p>封装规格:0402</p>
-												<p>库存编号:402-279</p>
-												<p class="sorange">供应商:<a href="">广诺科技</a></p>
+												<p>{$notice.goods_search.standard}:0402</p>
+												<p>{$notice.index.hand}{$notice.index.hand_num}:402-279</p>
+												<p class="sorange">{$notice.goods_search.supplier}:<a href="">广诺科技</a></p>
 											</div>
 										</td>
 										<td>
@@ -201,9 +201,9 @@
 										</td>
 										<td>
 											<div class="number">
-												<p>包装:1500</p>
-												<p>起订:1500</p>
-												<p>倍数:1500</p>
+												<p>{$notice.goods_search.package}:1500</p>
+												<p>{$notice.goods_search.mininum}:1500</p>
+												<p>{$notice.goods_search.multiple}:1500</p>
 											</div>
 										</td>
 										<td>
@@ -236,10 +236,10 @@
 										<td>
 											<div class="steps_num-choice">
 												 <div class="cn-delivery delivery-cell selected" data-value="CN" data-min="2" data-max="4">
-											        	大陆&nbsp;<span>2-4周</span>
+											        	{$notice.goods_search.mainland}&nbsp;<span>2-4周</span>
 											     </div>
 												<div class="hk-delivery delivery-cell" data-value="HK" data-min="2" data-max="4">
-											        	香港&nbsp;<span>2-4周</span>
+														{$notice.goods_search.hongkong}&nbsp;<span>2-4周</span>
 											    </div>
 											</div>
 										</td>
@@ -259,8 +259,8 @@
 										</td>
 										<td>
 											<div class="steps_num">
-												<p><button id="shopGoods" class="btn-list-buy mt5">加入购物车</button></p>
-												<p class="purBuy"><a href="">购买</a></p>
+												<p><button id="shopGoods" class="btn-list-buy mt5">{$notice.goods_search.shopcar}</button></p>
+												<p class="purBuy"><a href="">{$notice.goods_search.buy}</a></p>
 											</div>
 										</td>
 									</tr>
@@ -272,35 +272,35 @@
 					<!--代售-->
 					<div class="merchant">
 						<div class="port_title">
-							<h3>代售<span>(12)</span></h3>
+							<h3>{$notice.goods_search.for_sale}<span>(12)</span></h3>
 						</div>
 						<div class="table-responsive">
 							<table class="table table-condensed table-bordered table-search">
 								<thead>
 									<tr>
-										<th width="14%">商品</th>
-										<th width="8%">品牌</th>
-										<th width="8%">参数描述</th>
-										<th width="8%">包装数量</th>
-										<th width="8%">库存</th>
+										<th width="14%">{$notice.goods_search.commodity}</th>
+										<th width="8%">{$notice.index.trademark}</th>
+										<th width="8%">{$notice.goods_search.parameter}</th>
+										<th width="8%">{$notice.goods_search.package}{$notice.goods_search.buy_num}</th>
+										<th width="8%">{$notice.index.hand}</th>
 										<th width="24%" class="padTable">
 											<div class="titleTotal">
 												<ul class="clear ">
-													<li>阶梯数量</li>
+													<li>{$notice.goods_search.ladder}{$notice.goods_search.buy_num}</li>
 													<li>
-														<p>人民币单价</p>
-														<p>（含税）</p>
+														<p>{$notice.goods_search.RMB}{$notice.goods_search.unit_price}</p>
+														<p>（{$notice.goods_search.tax_inclusive}）</p>
 													</li>
 													<li>
-														<p>美元单价</p>
+														<p>{$notice.goods_search.US}{$notice.goods_search.unit_price}</p>
 														<p>（USD）</p>
 													</li>
 												</ul>
 											</div>
 										</th>
-										<th width="11%">交货地</th>
-										<th width="10%">购买数量</th>
-										<th width="9%">操作</th>
+										<th width="11%">{$notice.goods_search.ship}</th>
+										<th width="10%">{$notice.goods_search.buy}{$notice.goods_search.buy_num}</th>
+										<th width="9%">{$notice.goods_search.operation}</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -308,9 +308,9 @@
 										<td>
 											<div class="product_list">
 												<p class="tblue"><a href="product_detail.html">RCO402JR-0710KL</a></p>
-												<p>封装规格:0402</p>
-												<p>库存编号:402-279</p>
-												<p class="sorange">供应商:<a href="">广诺科技</a></p>
+												<p>{$notice.goods_search.standard}:0402</p>
+												<p>{$notice.index.hand}{$notice.index.hand_num}:402-279</p>
+												<p class="sorange">{$notice.goods_search.supplier}:<a href="">广诺科技</a></p>
 											</div>
 										</td>
 										<td>
@@ -323,9 +323,9 @@
 										</td>
 										<td>
 											<div class="number">
-												<p>包装:1500</p>
-												<p>起订:1500</p>
-												<p>倍数:1500</p>
+												<p>{$notice.goods_search.package}:1500</p>
+												<p>{$notice.goods_search.mininum}:1500</p>
+												<p>{$notice.goods_search.multiple}:1500</p>
 											</div>
 										</td>
 										<td>
@@ -358,10 +358,10 @@
 										<td>
 											<div class="steps_num-choice">
 												<div class="cn-delivery delivery-cell selected" data-value="CN" data-min="2" data-max="4">
-													大陆&nbsp;<span>2-4周</span>
+													{$notice.goods_search.mainland}&nbsp;<span>2-4周</span>
 												</div>
 												<div class="hk-delivery delivery-cell" data-value="HK" data-min="2" data-max="4">
-													香港&nbsp;<span>2-4周</span>
+													{$notice.goods_search.hongkong}&nbsp;<span>2-4周</span>
 												</div>
 											</div>
 										</td>
@@ -381,8 +381,8 @@
 										</td>
 										<td>
 											<div class="steps_num">
-												<p><button id="shopGoods" class="btn-list-buy mt5">加入购物车</button></p>
-												<p class="purBuy"><a href="">购买</a></p>
+												<p><button id="shopGoods" class="btn-list-buy mt5">{$notice.goods_search.shopcar}</button></p>
+												<p class="purBuy"><a href="">{$notice.goods_search.buy}</a></p>
 											</div>
 										</td>
 									</tr>
@@ -393,35 +393,35 @@
 					<!--原厂代理-->
 					<div class="agent">
 						<div class="port_title">
-							<h3>原厂代理<span>(15)</span></h3>
+							<h3>{$notice.index.agency}<span>(15)</span></h3>
 						</div>
 						<div class="table-responsive">
 							<table class="table table-condensed table-bordered table-search">
 								<thead>
 									<tr>
-										<th width="14%">商品</th>
-										<th width="8%">品牌</th>
-										<th width="8%">参数描述</th>
-										<th width="8%">包装数量</th>
-										<th width="8%">库存</th>
+										<th width="14%">{$notice.goods_search.commodity}</th>
+										<th width="8%">{$notice.index.trademark}</th>
+										<th width="8%">{$notice.goods_search.parameter}</th>
+										<th width="8%">{$notice.goods_search.package}{$notice.goods_search.buy_num}</th>
+										<th width="8%">{$notice.index.hand}</th>
 										<th width="24%" class="padTable">
 											<div class="titleTotal">
 												<ul class="clear ">
-													<li>阶梯数量</li>
+													<li>{$notice.goods_search.ladder}{$notice.goods_search.buy_num}</li>
 													<li>
-														<p>人民币单价</p>
-														<p>（含税）</p>
+														<p>{$notice.goods_search.RMB}{$notice.goods_search.unit_price}</p>
+														<p>（{$notice.goods_search.tax_inclusive}）</p>
 													</li>
 													<li>
-														<p>美元单价</p>
+														<p>{$notice.goods_search.US}{$notice.goods_search.unit_price}</p>
 														<p>（USD）</p>
 													</li>
 												</ul>
 											</div>
 										</th>
-										<th width="11%">交货地</th>
-										<th width="10%">购买数量</th>
-										<th width="9%">操作</th>
+										<th width="11%">{$notice.goods_search.ship}</th>
+										<th width="10%">{$notice.goods_search.buy}{$notice.goods_search.buy_num}</th>
+										<th width="9%">{$notice.goods_search.operation}</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -429,9 +429,9 @@
 										<td>
 											<div class="product_list">
 												<p class="tblue"><a href="product_detail.html">RCO402JR-0710KL</a></p>
-												<p>封装规格:0402</p>
-												<p>库存编号:402-279</p>
-												<p class="sorange">供应商:<a href="">广诺科技</a></p>
+												<p>{$notice.goods_search.standard}:0402</p>
+												<p>{$notice.index.hand}{$notice.index.hand_num}:402-279</p>
+												<p class="sorange">{$notice.goods_search.supplier}:<a href="">广诺科技</a></p>
 											</div>
 										</td>
 										<td>
@@ -444,9 +444,9 @@
 										</td>
 										<td>
 											<div class="number">
-												<p>包装:1500</p>
-												<p>起订:1500</p>
-												<p>倍数:1500</p>
+												<p>{$notice.goods_search.package}:1500</p>
+												<p>{$notice.goods_search.mininum}:1500</p>
+												<p>{$notice.goods_search.multiple}:1500</p>
 											</div>
 										</td>
 										<td>
@@ -479,10 +479,10 @@
 										<td>
 											<div class="steps_num-choice">
 												<div class="cn-delivery delivery-cell selected" data-value="CN" data-min="2" data-max="4">
-													大陆&nbsp;<span>2-4周</span>
+													{$notice.goods_search.mainland}&nbsp;<span>2-4周</span>
 												</div>
 												<div class="hk-delivery delivery-cell" data-value="HK" data-min="2" data-max="4">
-													香港&nbsp;<span>2-4周</span>
+													{$notice.goods_search.hongkong}&nbsp;<span>2-4周</span>
 												</div>
 											</div>
 										</td>
@@ -502,8 +502,8 @@
 										</td>
 										<td>
 											<div class="steps_num">
-												<p><button id="shopGoods" class="btn-list-buy mt5">加入购物车</button></p>
-												<p class="purBuy"><a href="">购买</a></p>
+												<p><button id="shopGoods" class="btn-list-buy mt5">{$notice.goods_search.shopcar}</button></p>
+												<p class="purBuy"><a href="">{$notice.goods_search.buy}</a></p>
 											</div>
 										</td>
 									</tr>
@@ -514,35 +514,35 @@
 					<!--实力分销商-->
 					<div class="distributor">
 						<div class="port_title">
-							<h3>实力分销商<span>(19)</span></h3>
+							<h3>{$notice.index.distributor}<span>(19)</span></h3>
 						</div>
 						<div class="table-responsive">
 							<table class="table table-condensed table-bordered table-search">
 								<thead>
 									<tr>
-										<th width="14%">商品</th>
-										<th width="8%">品牌</th>
-										<th width="8%">参数描述</th>
-										<th width="8%">包装数量</th>
-										<th width="8%">库存</th>
+										<th width="14%">{$notice.goods_search.commodity}</th>
+										<th width="8%">{$notice.index.trademark}</th>
+										<th width="8%">{$notice.goods_search.parameter}</th>
+										<th width="8%">{$notice.goods_search.package}{$notice.goods_search.buy_num}</th>
+										<th width="8%">{$notice.index.hand}</th>
 										<th width="24%" class="padTable">
 											<div class="titleTotal">
 												<ul class="clear ">
-													<li>阶梯数量</li>
+													<li>{$notice.goods_search.ladder}{$notice.goods_search.buy_num}</li>
 													<li>
-														<p>人民币单价</p>
-														<p>（含税）</p>
+														<p>{$notice.goods_search.RMB}{$notice.goods_search.unit_price}</p>
+														<p>（{$notice.goods_search.tax_inclusive}）</p>
 													</li>
 													<li>
-														<p>美元单价</p>
+														<p>{$notice.goods_search.US}{$notice.goods_search.unit_price}</p>
 														<p>（USD）</p>
 													</li>
 												</ul>
 											</div>
 										</th>
-										<th width="11%">交货地</th>
-										<th width="10%">购买数量</th>
-										<th width="9%">操作</th>
+										<th width="11%">{$notice.goods_search.ship}</th>
+										<th width="10%">{$notice.goods_search.buy}{$notice.goods_search.buy_num}</th>
+										<th width="9%">{$notice.goods_search.operation}</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -550,9 +550,9 @@
 										<td>
 											<div class="product_list">
 												<p class="tblue"><a href="product_detail.html">RCO402JR-0710KL</a></p>
-												<p>封装规格:0402</p>
-												<p>库存编号:402-279</p>
-												<p class="sorange">供应商:<a href="">广诺科技</a></p>
+												<p>{$notice.goods_search.standard}:0402</p>
+												<p>{$notice.index.hand}{$notice.index.hand_num}:402-279</p>
+												<p class="sorange">{$notice.goods_search.supplier}:<a href="">广诺科技</a></p>
 											</div>
 										</td>
 										<td>
@@ -565,9 +565,9 @@
 										</td>
 										<td>
 											<div class="number">
-												<p>包装:1500</p>
-												<p>起订:1500</p>
-												<p>倍数:1500</p>
+												<p>{$notice.goods_search.package}:1500</p>
+												<p>{$notice.goods_search.mininum}:1500</p>
+												<p>{$notice.goods_search.multiple}:1500</p>
 											</div>
 										</td>
 										<td>
@@ -600,10 +600,10 @@
 										<td>
 											<div class="steps_num-choice">
 												<div class="cn-delivery delivery-cell selected" data-value="CN" data-min="2" data-max="4">
-													大陆&nbsp;<span>2-4周</span>
+													{$notice.goods_search.mainland}&nbsp;<span>2-4周</span>
 												</div>
 												<div class="hk-delivery delivery-cell" data-value="HK" data-min="2" data-max="4">
-													香港&nbsp;<span>2-4周</span>
+													{$notice.goods_search.hongkong}&nbsp;<span>2-4周</span>
 												</div>
 											</div>
 										</td>
@@ -623,8 +623,8 @@
 										</td>
 										<td>
 											<div class="steps_num">
-												<p><button id="shopGoods" class="btn-list-buy mt5">加入购物车</button></p>
-												<p class="purBuy"><a href="">购买</a></p>
+												<p><button id="shopGoods" class="btn-list-buy mt5">{$notice.goods_search.shopcar}</button></p>
+												<p class="purBuy"><a href="">{$notice.goods_search.buy}</a></p>
 											</div>
 										</td>
 									</tr>
@@ -635,35 +635,35 @@
 					<!--海外代购-->
 					<div class="shop_repre">
 						<div class="port_title">
-							<h3>海外代购<span>(10)</span></h3>
+							<h3>{$notice.goods_search.overseas}<span>(10)</span></h3>
 						</div>
 						<div class="table-responsive">
 							<table class="table table-condensed table-bordered table-search">
 								<thead>
 									<tr>
-										<th width="14%">商品</th>
-										<th width="8%">品牌</th>
-										<th width="8%">参数描述</th>
-										<th width="8%">包装数量</th>
-										<th width="8%">库存</th>
+										<th width="14%">{$notice.goods_search.commodity}</th>
+										<th width="8%">{$notice.index.trademark}</th>
+										<th width="8%">{$notice.goods_search.parameter}</th>
+										<th width="8%">{$notice.goods_search.package}{$notice.goods_search.buy_num}</th>
+										<th width="8%">{$notice.index.hand}</th>
 										<th width="24%" class="padTable">
 											<div class="titleTotal">
 												<ul class="clear ">
-													<li>阶梯数量</li>
+													<li>{$notice.goods_search.ladder}{$notice.goods_search.buy_num}</li>
 													<li>
-														<p>人民币单价</p>
-														<p>（含税）</p>
+														<p>{$notice.goods_search.RMB}{$notice.goods_search.unit_price}</p>
+														<p>（{$notice.goods_search.tax_inclusive}）</p>
 													</li>
 													<li>
-														<p>美元单价</p>
+														<p>{$notice.goods_search.US}{$notice.goods_search.unit_price}</p>
 														<p>（USD）</p>
 													</li>
 												</ul>
 											</div>
 										</th>
-										<th width="11%">交货地</th>
-										<th width="10%">购买数量</th>
-										<th width="9%">操作</th>
+										<th width="11%">{$notice.goods_search.ship}</th>
+										<th width="10%">{$notice.goods_search.buy}{$notice.goods_search.buy_num}</th>
+										<th width="9%">{$notice.goods_search.operation}</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -671,9 +671,9 @@
 										<td>
 											<div class="product_list">
 												<p class="tblue"><a href="product_detail.html">RCO402JR-0710KL</a></p>
-												<p>封装规格:0402</p>
-												<p>库存编号:402-279</p>
-												<p class="sorange">供应商:<a href="">广诺科技</a></p>
+												<p>{$notice.goods_search.standard}:0402</p>
+												<p>{$notice.index.hand}{$notice.index.hand_num}:402-279</p>
+												<p class="sorange">{$notice.goods_search.supplier}:<a href="">广诺科技</a></p>
 											</div>
 										</td>
 										<td>
@@ -686,9 +686,9 @@
 										</td>
 										<td>
 											<div class="number">
-												<p>包装:1500</p>
-												<p>起订:1500</p>
-												<p>倍数:1500</p>
+												<p>{$notice.goods_search.package}:1500</p>
+												<p>{$notice.goods_search.mininum}:1500</p>
+												<p>{$notice.goods_search.multiple}:1500</p>
 											</div>
 										</td>
 										<td>
@@ -721,10 +721,10 @@
 										<td>
 											<div class="steps_num-choice">
 												<div class="cn-delivery delivery-cell selected" data-value="CN" data-min="2" data-max="4">
-													大陆&nbsp;<span>2-4周</span>
+													{$notice.goods_search.mainland}&nbsp;<span>2-4周</span>
 												</div>
 												<div class="hk-delivery delivery-cell" data-value="HK" data-min="2" data-max="4">
-													香港&nbsp;<span>2-4周</span>
+													{$notice.goods_search.hongkong}&nbsp;<span>2-4周</span>
 												</div>
 											</div>
 										</td>
@@ -744,8 +744,8 @@
 										</td>
 										<td>
 											<div class="steps_num">
-												<p><button id="shopGoods" class="btn-list-buy mt5">加入购物车</button></p>
-												<p class="purBuy"><a href="">购买</a></p>
+												<p><button id="shopGoods" class="btn-list-buy mt5">{$notice.goods_search.shopcar}</button></p>
+												<p class="purBuy"><a href="">{$notice.goods_search.buy}</a></p>
 											</div>
 										</td>
 									</tr>
@@ -755,16 +755,12 @@
 					</div>										
 				</div>
 			</div>			
+		 
 			<!--底部 -->
-			<div id="footer"></div>
-		</div>
-				
-		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
-	    <script src="js/jquery-1.12.1.min.js"></script>
-	    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
-	    <script src="js/bootstrap.min.js"></script>
-	    <script type="text/javascript" src="js/slider.js"></script>
-	    <script type="text/javascript" src="js/index.js"></script>
+			<include file="public@footer" />
+			
+			</div>
+			<include file="public@foot" />
 	    <script type="text/javascript">
 	    	$(function(){
 	    		var span;
