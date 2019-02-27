@@ -2,35 +2,35 @@
  
 namespace app\store\controller;
  
-use app\store\model\StoreInModel;
+use app\store\model\StoreOutModel;
  
-/* 产品入库 */
-class AdminStoreInController extends StoreinBaseController
+/* 产品出库 */
+class AdminStoreOutController extends StoreinBaseController
 {
     
     public function _initialize()
     {
         parent::_initialize();
        
-        $this->flag='产品入库';
-        $this->table='store_in';
-        $this->m=new StoreInModel();
+        $this->flag='产品出库';
+        $this->table='store_out';
+        $this->m=new StoreOutModel();
        
         $this->assign('flag',$this->flag);
-        $this->about_type=config('store_in_type');
+        $this->about_type=config('store_out_type');
         $this->assign('about_types',$this->about_type);
          
     }
     /**
-     * 产品入库列表
+     * 产品出库列表
      * @adminMenu(
-     *     'name'   => '产品入库列表',
+     *     'name'   => '产品出库列表',
      *     'parent' => 'store/AdminIndex/default',
      *     'display'=> true,
      *     'hasView'=> true,
      *     'order'  => 81,
      *     'icon'   => '',
-     *     'remark' => '产品入库列表',
+     *     'remark' => '产品出库列表',
      *     'param'  => ''
      * )
      */
@@ -43,15 +43,15 @@ class AdminStoreInController extends StoreinBaseController
     
    
     /**
-     * 产品入库添加
+     * 产品出库添加
      * @adminMenu(
-     *     'name'   => '产品入库添加',
+     *     'name'   => '产品出库添加',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> true,
      *     'order'  => 10,
      *     'icon'   => '',
-     *     'remark' => '产品入库添加',
+     *     'remark' => '产品出库添加',
      *     'param'  => ''
      * )
      */
@@ -62,15 +62,15 @@ class AdminStoreInController extends StoreinBaseController
         return $this->fetch();
     }
     /**
-     * 产品入库添加do
+     * 产品出库添加do
      * @adminMenu(
-     *     'name'   => '产品入库添加do',
+     *     'name'   => '产品出库添加do',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> false,
      *     'order'  => 10,
      *     'icon'   => '',
-     *     'remark' => '产品入库添加do',
+     *     'remark' => '产品出库添加do',
      *     'param'  => ''
      * )
      */
@@ -80,15 +80,15 @@ class AdminStoreInController extends StoreinBaseController
     }
     
     /**
-     * 产品入库详情
+     * 产品出库详情
      * @adminMenu(
-     *     'name'   => '产品入库详情',
+     *     'name'   => '产品出库详情',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> true,
      *     'order'  => 10,
      *     'icon'   => '',
-     *     'remark' => '产品入库详情',
+     *     'remark' => '产品出库详情',
      *     'param'  => ''
      * )
      */
@@ -98,15 +98,15 @@ class AdminStoreInController extends StoreinBaseController
         return $this->fetch();
     }
     /**
-     * 产品入库状态审核
+     * 产品出库状态审核
      * @adminMenu(
-     *     'name'   => '产品入库状态审核',
+     *     'name'   => '产品出库状态审核',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> false,
      *     'order'  => 10,
      *     'icon'   => '',
-     *     'remark' => '产品入库状态审核',
+     *     'remark' => '产品出库状态审核',
      *     'param'  => ''
      * )
      */
@@ -115,15 +115,15 @@ class AdminStoreInController extends StoreinBaseController
         parent::review();
     }
     /**
-     * 产品入库状态还原
+     * 产品出库状态还原
      * @adminMenu(
-     *     'name'   => '产品入库状态还原',
+     *     'name'   => '产品出库状态还原',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> false,
      *     'order'  => 10,
      *     'icon'   => '',
-     *     'remark' => '产品入库状态还原',
+     *     'remark' => '产品出库状态还原',
      *     'param'  => ''
      * )
      */
@@ -132,15 +132,15 @@ class AdminStoreInController extends StoreinBaseController
         parent::review_back();
     }
     /**
-     * 产品入库状态批量审核
+     * 产品出库状态批量审核
      * @adminMenu(
-     *     'name'   => '产品入库状态批量审核',
+     *     'name'   => '产品出库状态批量审核',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> false,
      *     'order'  => 10,
      *     'icon'   => '',
-     *     'remark' => '产品入库状态批量审核',
+     *     'remark' => '产品出库状态批量审核',
      *     'param'  => ''
      * )
      */

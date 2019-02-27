@@ -41,6 +41,8 @@ class AdminMyshopController extends AdminInfoController
     {
         $m=$this->m;
         $id=session('shop');
+        $this->redirect(url('shop/AdminShop/edit',['id'=>$id]));
+        exit;
         $info=$m
         ->alias('p')
         ->field('p.*,a.user_nickname as aname,r.user_nickname as rname')

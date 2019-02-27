@@ -13,5 +13,13 @@ class GoodsFileModel extends Model
         $res=$this->where('pid',$pid)->column('*','type');
         return $res;
     }
+    public function get_all_by_ids($goods_ids){
+        $res=$this->where('pid','in',$goods_ids)->column('*');
+        $list=[];
+        foreach($res as $k=>$v){
+            $list[$v['pid']][$v['type']]=$v;
+        }
+        return $list;
+    }
      
 }

@@ -382,25 +382,13 @@ class AdminGoodsBrandController extends AdminInfoController
         }
         return 1;
     }
-    /**
-     * 参数值过滤
-     *   */
-    public function param_check(&$data){
-        $res=parent::param_check($data);
-        if(!($res>0)){
-            return $res;
-        }
-       
-        //判断是否级别错误
-        if(!empty($data['id'])){
-            $m=$this->m;
-            
-            $table=$this->table;
-            $path1=$table.'/'.$data['id'].'/';
-            $pic_conf=config('pic_'.$table);
-            $data['pic']=zz_set_file($data['pic'],$path1,$pic_conf); 
-        }
-        
+     
+    /* 编辑中的处理 */
+    public function edit_do_before(&$content,&$data){
+        $table=$this->table;
+        $path1=$table.'/'.$data['id'].'/';
+        $pic_conf=config('pic_'.$table);
+        $data['pic']=zz_set_file($data['pic'],$path1,$pic_conf); 
         return 1;
     }
     /*额外添加的信息，一般是图片文件 */

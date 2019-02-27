@@ -239,7 +239,7 @@
 														<h3>{$notice.index.recommend}{$notice.index.date}</h3>
 														<div class="zxshuju_p">
 														<foreach name="pdfs" item="vo">
-															<p>{$vo.name}</p>
+															<p><a href="{:url('goods/Goods/file_load',['id'=>$vo.id])}" blank="_blank">{$vo.name}</a></p>
 														</foreach>
 														 
 														</div>

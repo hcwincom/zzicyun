@@ -1,7 +1,7 @@
  <include file="public@cate" />  
 
  <select class="goods form-control short-auto" name="goods">
-	 <option value="0"> 产品名称-库存编码</option>
+	 <option value="0"> 产品名称-库存编码-数量</option>
 </select> &nbsp;&nbsp; 
 <script>
  
@@ -24,9 +24,9 @@ $(function(){
 				 return false;
 			 }
 			 var list=data.data;
-			 var options='<option value="0">产品名称-库存编码</option>';
+			 var options='<option value="0">产品名称-库存编码-数量</option>';
 			 for(var i in list){
-				 options+='<option value="'+list[i]['id']+'">'+list[i]['name']+','+list[i]['store_code']+'</option>';
+				 options+='<option value="'+list[i]['id']+'">'+list[i]['name']+','+list[i]['store_code']+','+list[i]['store_num']+'</option>';
 			 }
 			 $('.goods').html(options);
 		 },'json');

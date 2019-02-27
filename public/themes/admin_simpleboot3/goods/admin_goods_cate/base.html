@@ -25,6 +25,7 @@
     <div class="col-md-6 col-sm-10">
      	<input type="hidden" class="form-control" id="photo" name="pic" value="{$info.pic}">
         <a href="javascript:uploadOneImage('图片上传','#photo');">上传图片</a>
+          <notempty name="pic_conf"><span class="notice">建议尺寸{$pic_conf.width}*{$pic_conf.height}</span></notempty>
         <img id="photo-preview" src="{:cmf_get_image_url($info.pic)}" width="{$pic_conf.width}" height="{$pic_conf.height}" >
          
       <present name="change.pic">

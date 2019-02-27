@@ -148,9 +148,11 @@
 						</div>
 					</form>
 					<!--自营产品-->
-					<div class="self-support">
+					<foreach name="goods_list" item="vo" key="kshop_type">
 						<div class="port_title">
-							<h3>{$notice.goods_search.self}<span>(1)</span></h3>
+							<h3> 
+							{$notice['goods_search']['shop_type'.$kshop_type]|default='goods_search-shop_type'}
+							 <span>({$vo.num})</span></h3>
 						</div>
 						<div class="table-responsive">
 							<table class="table table-condensed table-bordered table-search">
@@ -182,34 +184,43 @@
 									</tr>
 								</thead>
 								<tbody>
+								<foreach name="vo.list" item="vgoods" key="kgoods">
 									<tr>
 										<td>
 											<div class="product_list">
-												<p class="tblue"><a href="product_detail.html">RCO402JR-0710KL</a></p>
-												<p>{$notice.goods_search.standard}:0402</p>
-												<p>{$notice.index.hand}{$notice.index.hand_num}:402-279</p>
-												<p class="sorange">{$notice.goods_search.supplier}:<a href="">广诺科技</a></p>
+												<p class="tblue"><a href="{:url('goods/Goods/detail',['id'=>$kgoods])}">{$kgoods}--{$vgoods.name}</a></p>
+												<p>{$notice.goods_search.standard}:{$vgoods.code}</p>
+												<p>{$notice.index.hand}{$notice.index.hand_num}:{$vgoods.store_code}</p>
+												<p class="sorange">{$notice.goods_search.supplier}:<a href="">{$shop_names[$vgoods['shop']]['name']|default=''}</a></p>
 											</div>
 										</td>
 										<td>
-											<p>ST Microele ctronics </p>
-											<p class="pgreen">中高端品牌</p>
+										<present name="brands[$vgoods['brand']]">
+											<p>{$brands[$vgoods['brand']]['name']}</p>
+											<p class="pgreen">{$brand_cates[$brands[$vgoods['brand']]['cid']]|default=''}</p>
+										</present>
 										</td>
 										<td>
-											<p>IC MCU 32BIT 64 KB FLASH 48L QF P</p>
-											<p class="pdfdown"><a href=""><i class="iconfont icon-PDF"></i></a></p>
+											<p>{$vgoods.dsc}</p>
+											<p class="pdfdown">
+											<present name="file_list[$kgoods]">
+											<foreach name="file_list[$kgoods]" item="vfile" key="kfile">
+												<a href="{:url('goods/Goods/file_load',['id'=>$vfile.id])}"><i class="iconfont icon-PDF"></i></a>
+											</foreach>
+											</present>
+											</p>
 										</td>
 										<td>
 											<div class="number">
-												<p>{$notice.goods_search.package}:1500</p>
-												<p>{$notice.goods_search.mininum}:1500</p>
-												<p>{$notice.goods_search.multiple}:1500</p>
+												<p>{$notice.goods_search.package}:{$vgoods.num_one}</p>
+												<p>{$notice.goods_search.mininum}:{$vgoods.num_min}</p>
+												<p>{$notice.goods_search.multiple}:{$vgoods.num_times}</p>
 											</div>
 										</td>
 										<td>
 											<div class="fuGoods">
-												<p>5000</p>
-												<p class="fuGoods_border"><span>当天发货</span></p>
+												<p>{$vgoods.store_num}</p>
+												<p class="fuGoods_border"><span></span></p>
 											</div>
 										</td>
 										<td class="padStep">
@@ -217,30 +228,33 @@
 												<ul class="clear">
 													<li class="steps_num clear">
 														<p class="stepsNumber"><span>1</span>+</p>
-														<p class="ayellow steps_price">￥ <span>8.911</span></p>
-														<p class="steps_doller">$ <span>1.121</span></p>
+														<p class="ayellow steps_price">￥ <span>{$vgoods.price1}</span></p>
+														<p class="steps_doller">$ <span>{$vgoods.price2}</span></p>
 													</li>
+												<present name="price_list[$kgoods]">
+												<foreach name="price_list[$kgoods]" item="vprice" key="kprice">
 													<li class="steps_num clear">
-														<p class="stepsNumber"><span>100</span>+</p>
-														<p class="steps_price">￥ <span>8.739</span></p>
-														<p class="steps_doller">$ <span>1.099</span></p>
+														<p class="stepsNumber"><span>{$vprice.num}</span>+</p>
+														<p class="steps_price">￥ <span>{$vprice.price1}</span></p>
+														<p class="steps_doller">$ <span>{$vprice.price2}</span></p>
 													</li>
-													<li class="steps_num clear">
-														<p class="stepsNumber"><span>1500</span>+</p>
-														<p class="steps_price">￥ <span>8.568</span></p>
-														<p class="steps_doller">$ <span>1.078</span></p>
-													</li>
+												</foreach>	 
+												</present>
 												</ul>
 											</div>
 										</td>
 										<td>
 											<div class="steps_num-choice">
+											<neq name="vgoods.goods_time1" value="100">
 												 <div class="cn-delivery delivery-cell selected" data-value="CN" data-min="2" data-max="4">
-											        	{$notice.goods_search.mainland}&nbsp;<span>2-4周</span>
+											        	{$notice.goods_search.mainland}&nbsp;<span>{$goods_times[$vgoods['goods_time1']]|default=''}</span>
 											     </div>
+											</neq>
+											<neq name="vgoods.goods_time2" value="100">
 												<div class="hk-delivery delivery-cell" data-value="HK" data-min="2" data-max="4">
-														{$notice.goods_search.hongkong}&nbsp;<span>2-4周</span>
+														{$notice.goods_search.hongkong}&nbsp;<span>{$goods_times[$vgoods['goods_time2']]|default=''}</span>
 											    </div>
+											</neq>
 											</div>
 										</td>
 										<td class="addUp">
@@ -264,495 +278,13 @@
 											</div>
 										</td>
 									</tr>
+									</foreach>
 								</tbody>
 							</table>
 						</div>
-						
-					</div>
-					<!--代售-->
-					<div class="merchant">
-						<div class="port_title">
-							<h3>{$notice.goods_search.for_sale}<span>(12)</span></h3>
-						</div>
-						<div class="table-responsive">
-							<table class="table table-condensed table-bordered table-search">
-								<thead>
-									<tr>
-										<th width="14%">{$notice.goods_search.commodity}</th>
-										<th width="8%">{$notice.index.trademark}</th>
-										<th width="8%">{$notice.goods_search.parameter}</th>
-										<th width="8%">{$notice.goods_search.package}{$notice.goods_search.buy_num}</th>
-										<th width="8%">{$notice.index.hand}</th>
-										<th width="24%" class="padTable">
-											<div class="titleTotal">
-												<ul class="clear ">
-													<li>{$notice.goods_search.ladder}{$notice.goods_search.buy_num}</li>
-													<li>
-														<p>{$notice.goods_search.RMB}{$notice.goods_search.unit_price}</p>
-														<p>（{$notice.goods_search.tax_inclusive}）</p>
-													</li>
-													<li>
-														<p>{$notice.goods_search.US}{$notice.goods_search.unit_price}</p>
-														<p>（USD）</p>
-													</li>
-												</ul>
-											</div>
-										</th>
-										<th width="11%">{$notice.goods_search.ship}</th>
-										<th width="10%">{$notice.goods_search.buy}{$notice.goods_search.buy_num}</th>
-										<th width="9%">{$notice.goods_search.operation}</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>
-											<div class="product_list">
-												<p class="tblue"><a href="product_detail.html">RCO402JR-0710KL</a></p>
-												<p>{$notice.goods_search.standard}:0402</p>
-												<p>{$notice.index.hand}{$notice.index.hand_num}:402-279</p>
-												<p class="sorange">{$notice.goods_search.supplier}:<a href="">广诺科技</a></p>
-											</div>
-										</td>
-										<td>
-											<p>ST Microele ctronics </p>
-											<p class="pgreen">中高端品牌</p>
-										</td>
-										<td>
-											<p>IC MCU 32BIT 64 KB FLASH 48L QF P</p>
-											<p class="pdfdown"><a href=""><i class="iconfont icon-PDF"></i></a></p>
-										</td>
-										<td>
-											<div class="number">
-												<p>{$notice.goods_search.package}:1500</p>
-												<p>{$notice.goods_search.mininum}:1500</p>
-												<p>{$notice.goods_search.multiple}:1500</p>
-											</div>
-										</td>
-										<td>
-											<div class="fuGoods">
-												<p>5000</p>
-												<p class="fuGoods_border"><span>当天发货</span></p>
-											</div>
-										</td>
-										<td class="padStep">
-											<div class="totalStep">
-												<ul class="clear">
-													<li class="steps_num clear">
-														<p class="stepsNumber"><span>1</span>+</p>
-														<p class="ayellow steps_price">￥ <span>8.911</span></p>
-														<p class="steps_doller">$ <span>1.121</span></p>
-													</li>
-													<li class="steps_num clear">
-														<p class="stepsNumber"><span>100</span>+</p>
-														<p class="steps_price">￥ <span>8.739</span></p>
-														<p class="steps_doller">$ <span>1.099</span></p>
-													</li>
-													<li class="steps_num clear">
-														<p class="stepsNumber"><span>1500</span>+</p>
-														<p class="steps_price">￥ <span>8.568</span></p>
-														<p class="steps_doller">$ <span>1.078</span></p>
-													</li>
-												</ul>
-											</div>
-										</td>
-										<td>
-											<div class="steps_num-choice">
-												<div class="cn-delivery delivery-cell selected" data-value="CN" data-min="2" data-max="4">
-													{$notice.goods_search.mainland}&nbsp;<span>2-4周</span>
-												</div>
-												<div class="hk-delivery delivery-cell" data-value="HK" data-min="2" data-max="4">
-													{$notice.goods_search.hongkong}&nbsp;<span>2-4周</span>
-												</div>
-											</div>
-										</td>
-										<td class="addUp">
-											<div class="steps_num">
-												<div class="addBtn clear">
-													<p class="btn-add omin" onclick="minusOrder(this,'9.9','100');">
-														<span class="glyphicon glyphicon-minus"></span>
-													</p>
-													<input type="text" class="btn-num onum orderNum" value="56" name="count" onblur='amount_input_order(this,"9.9","10000")' />
-													<p class="btn-add oplus" onclick="plusOrder(this,'9.9}','100}');">
-														<span class="glyphicon glyphicon-plus"></span>
-													</p>
-												</div>
-												<p class="qred totalPrice">计:￥ <span>66</span></p>
-											</div>
-										</td>
-										<td>
-											<div class="steps_num">
-												<p><button id="shopGoods" class="btn-list-buy mt5">{$notice.goods_search.shopcar}</button></p>
-												<p class="purBuy"><a href="">{$notice.goods_search.buy}</a></p>
-											</div>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-					<!--原厂代理-->
-					<div class="agent">
-						<div class="port_title">
-							<h3>{$notice.index.agency}<span>(15)</span></h3>
-						</div>
-						<div class="table-responsive">
-							<table class="table table-condensed table-bordered table-search">
-								<thead>
-									<tr>
-										<th width="14%">{$notice.goods_search.commodity}</th>
-										<th width="8%">{$notice.index.trademark}</th>
-										<th width="8%">{$notice.goods_search.parameter}</th>
-										<th width="8%">{$notice.goods_search.package}{$notice.goods_search.buy_num}</th>
-										<th width="8%">{$notice.index.hand}</th>
-										<th width="24%" class="padTable">
-											<div class="titleTotal">
-												<ul class="clear ">
-													<li>{$notice.goods_search.ladder}{$notice.goods_search.buy_num}</li>
-													<li>
-														<p>{$notice.goods_search.RMB}{$notice.goods_search.unit_price}</p>
-														<p>（{$notice.goods_search.tax_inclusive}）</p>
-													</li>
-													<li>
-														<p>{$notice.goods_search.US}{$notice.goods_search.unit_price}</p>
-														<p>（USD）</p>
-													</li>
-												</ul>
-											</div>
-										</th>
-										<th width="11%">{$notice.goods_search.ship}</th>
-										<th width="10%">{$notice.goods_search.buy}{$notice.goods_search.buy_num}</th>
-										<th width="9%">{$notice.goods_search.operation}</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>
-											<div class="product_list">
-												<p class="tblue"><a href="product_detail.html">RCO402JR-0710KL</a></p>
-												<p>{$notice.goods_search.standard}:0402</p>
-												<p>{$notice.index.hand}{$notice.index.hand_num}:402-279</p>
-												<p class="sorange">{$notice.goods_search.supplier}:<a href="">广诺科技</a></p>
-											</div>
-										</td>
-										<td>
-											<p>ST Microele ctronics </p>
-											<p class="pgreen">中高端品牌</p>
-										</td>
-										<td>
-											<p>IC MCU 32BIT 64 KB FLASH 48L QF P</p>
-											<p class="pdfdown"><a href=""><i class="iconfont icon-PDF"></i></a></p>
-										</td>
-										<td>
-											<div class="number">
-												<p>{$notice.goods_search.package}:1500</p>
-												<p>{$notice.goods_search.mininum}:1500</p>
-												<p>{$notice.goods_search.multiple}:1500</p>
-											</div>
-										</td>
-										<td>
-											<div class="fuGoods">
-												<p>5000</p>
-												<p class="fuGoods_border"><span>当天发货</span></p>
-											</div>
-										</td>
-										<td class="padStep">
-											<div class="totalStep">
-												<ul class="clear">
-													<li class="steps_num clear">
-														<p class="stepsNumber"><span>1</span>+</p>
-														<p class="ayellow steps_price">￥ <span>8.911</span></p>
-														<p class="steps_doller">$ <span>1.121</span></p>
-													</li>
-													<li class="steps_num clear">
-														<p class="stepsNumber"><span>100</span>+</p>
-														<p class="steps_price">￥ <span>8.739</span></p>
-														<p class="steps_doller">$ <span>1.099</span></p>
-													</li>
-													<li class="steps_num clear">
-														<p class="stepsNumber"><span>1500</span>+</p>
-														<p class="steps_price">￥ <span>8.568</span></p>
-														<p class="steps_doller">$ <span>1.078</span></p>
-													</li>
-												</ul>
-											</div>
-										</td>
-										<td>
-											<div class="steps_num-choice">
-												<div class="cn-delivery delivery-cell selected" data-value="CN" data-min="2" data-max="4">
-													{$notice.goods_search.mainland}&nbsp;<span>2-4周</span>
-												</div>
-												<div class="hk-delivery delivery-cell" data-value="HK" data-min="2" data-max="4">
-													{$notice.goods_search.hongkong}&nbsp;<span>2-4周</span>
-												</div>
-											</div>
-										</td>
-										<td class="addUp">
-											<div class="steps_num">
-												<div class="addBtn clear">
-													<p class="btn-add omin" onclick="minusOrder(this,'9.9','100');">
-														<span class="glyphicon glyphicon-minus"></span>
-													</p>
-													<input type="text" class="btn-num onum orderNum" value="56" name="count" onblur='amount_input_order(this,"9.9","10000")' />
-													<p class="btn-add oplus" onclick="plusOrder(this,'9.9}','100}');">
-														<span class="glyphicon glyphicon-plus"></span>
-													</p>
-												</div>
-												<p class="qred totalPrice">计:￥ <span>66</span></p>
-											</div>
-										</td>
-										<td>
-											<div class="steps_num">
-												<p><button id="shopGoods" class="btn-list-buy mt5">{$notice.goods_search.shopcar}</button></p>
-												<p class="purBuy"><a href="">{$notice.goods_search.buy}</a></p>
-											</div>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-					<!--实力分销商-->
-					<div class="distributor">
-						<div class="port_title">
-							<h3>{$notice.index.distributor}<span>(19)</span></h3>
-						</div>
-						<div class="table-responsive">
-							<table class="table table-condensed table-bordered table-search">
-								<thead>
-									<tr>
-										<th width="14%">{$notice.goods_search.commodity}</th>
-										<th width="8%">{$notice.index.trademark}</th>
-										<th width="8%">{$notice.goods_search.parameter}</th>
-										<th width="8%">{$notice.goods_search.package}{$notice.goods_search.buy_num}</th>
-										<th width="8%">{$notice.index.hand}</th>
-										<th width="24%" class="padTable">
-											<div class="titleTotal">
-												<ul class="clear ">
-													<li>{$notice.goods_search.ladder}{$notice.goods_search.buy_num}</li>
-													<li>
-														<p>{$notice.goods_search.RMB}{$notice.goods_search.unit_price}</p>
-														<p>（{$notice.goods_search.tax_inclusive}）</p>
-													</li>
-													<li>
-														<p>{$notice.goods_search.US}{$notice.goods_search.unit_price}</p>
-														<p>（USD）</p>
-													</li>
-												</ul>
-											</div>
-										</th>
-										<th width="11%">{$notice.goods_search.ship}</th>
-										<th width="10%">{$notice.goods_search.buy}{$notice.goods_search.buy_num}</th>
-										<th width="9%">{$notice.goods_search.operation}</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>
-											<div class="product_list">
-												<p class="tblue"><a href="product_detail.html">RCO402JR-0710KL</a></p>
-												<p>{$notice.goods_search.standard}:0402</p>
-												<p>{$notice.index.hand}{$notice.index.hand_num}:402-279</p>
-												<p class="sorange">{$notice.goods_search.supplier}:<a href="">广诺科技</a></p>
-											</div>
-										</td>
-										<td>
-											<p>ST Microele ctronics </p>
-											<p class="pgreen">中高端品牌</p>
-										</td>
-										<td>
-											<p>IC MCU 32BIT 64 KB FLASH 48L QF P</p>
-											<p class="pdfdown"><a href=""><i class="iconfont icon-PDF"></i></a></p>
-										</td>
-										<td>
-											<div class="number">
-												<p>{$notice.goods_search.package}:1500</p>
-												<p>{$notice.goods_search.mininum}:1500</p>
-												<p>{$notice.goods_search.multiple}:1500</p>
-											</div>
-										</td>
-										<td>
-											<div class="fuGoods">
-												<p>5000</p>
-												<p class="fuGoods_border"><span>当天发货</span></p>
-											</div>
-										</td>
-										<td class="padStep">
-											<div class="totalStep">
-												<ul class="clear">
-													<li class="steps_num clear">
-														<p class="stepsNumber"><span>1</span>+</p>
-														<p class="ayellow steps_price">￥ <span>8.911</span></p>
-														<p class="steps_doller">$ <span>1.121</span></p>
-													</li>
-													<li class="steps_num clear">
-														<p class="stepsNumber"><span>100</span>+</p>
-														<p class="steps_price">￥ <span>8.739</span></p>
-														<p class="steps_doller">$ <span>1.099</span></p>
-													</li>
-													<li class="steps_num clear">
-														<p class="stepsNumber"><span>1500</span>+</p>
-														<p class="steps_price">￥ <span>8.568</span></p>
-														<p class="steps_doller">$ <span>1.078</span></p>
-													</li>
-												</ul>
-											</div>
-										</td>
-										<td>
-											<div class="steps_num-choice">
-												<div class="cn-delivery delivery-cell selected" data-value="CN" data-min="2" data-max="4">
-													{$notice.goods_search.mainland}&nbsp;<span>2-4周</span>
-												</div>
-												<div class="hk-delivery delivery-cell" data-value="HK" data-min="2" data-max="4">
-													{$notice.goods_search.hongkong}&nbsp;<span>2-4周</span>
-												</div>
-											</div>
-										</td>
-										<td class="addUp">
-											<div class="steps_num">
-												<div class="addBtn clear">
-													<p class="btn-add omin" onclick="minusOrder(this,'9.9','100');">
-														<span class="glyphicon glyphicon-minus"></span>
-													</p>
-													<input type="text" class="btn-num onum orderNum" value="56" name="count" onblur='amount_input_order(this,"9.9","10000")' />
-													<p class="btn-add oplus" onclick="plusOrder(this,'9.9}','100}');">
-														<span class="glyphicon glyphicon-plus"></span>
-													</p>
-												</div>
-												<p class="qred totalPrice">计:￥ <span>66</span></p>
-											</div>
-										</td>
-										<td>
-											<div class="steps_num">
-												<p><button id="shopGoods" class="btn-list-buy mt5">{$notice.goods_search.shopcar}</button></p>
-												<p class="purBuy"><a href="">{$notice.goods_search.buy}</a></p>
-											</div>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-					<!--海外代购-->
-					<div class="shop_repre">
-						<div class="port_title">
-							<h3>{$notice.goods_search.overseas}<span>(10)</span></h3>
-						</div>
-						<div class="table-responsive">
-							<table class="table table-condensed table-bordered table-search">
-								<thead>
-									<tr>
-										<th width="14%">{$notice.goods_search.commodity}</th>
-										<th width="8%">{$notice.index.trademark}</th>
-										<th width="8%">{$notice.goods_search.parameter}</th>
-										<th width="8%">{$notice.goods_search.package}{$notice.goods_search.buy_num}</th>
-										<th width="8%">{$notice.index.hand}</th>
-										<th width="24%" class="padTable">
-											<div class="titleTotal">
-												<ul class="clear ">
-													<li>{$notice.goods_search.ladder}{$notice.goods_search.buy_num}</li>
-													<li>
-														<p>{$notice.goods_search.RMB}{$notice.goods_search.unit_price}</p>
-														<p>（{$notice.goods_search.tax_inclusive}）</p>
-													</li>
-													<li>
-														<p>{$notice.goods_search.US}{$notice.goods_search.unit_price}</p>
-														<p>（USD）</p>
-													</li>
-												</ul>
-											</div>
-										</th>
-										<th width="11%">{$notice.goods_search.ship}</th>
-										<th width="10%">{$notice.goods_search.buy}{$notice.goods_search.buy_num}</th>
-										<th width="9%">{$notice.goods_search.operation}</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>
-											<div class="product_list">
-												<p class="tblue"><a href="product_detail.html">RCO402JR-0710KL</a></p>
-												<p>{$notice.goods_search.standard}:0402</p>
-												<p>{$notice.index.hand}{$notice.index.hand_num}:402-279</p>
-												<p class="sorange">{$notice.goods_search.supplier}:<a href="">广诺科技</a></p>
-											</div>
-										</td>
-										<td>
-											<p>ST Microele ctronics </p>
-											<p class="pgreen">中高端品牌</p>
-										</td>
-										<td>
-											<p>IC MCU 32BIT 64 KB FLASH 48L QF P</p>
-											<p class="pdfdown"><a href=""><i class="iconfont icon-PDF"></i></a></p>
-										</td>
-										<td>
-											<div class="number">
-												<p>{$notice.goods_search.package}:1500</p>
-												<p>{$notice.goods_search.mininum}:1500</p>
-												<p>{$notice.goods_search.multiple}:1500</p>
-											</div>
-										</td>
-										<td>
-											<div class="fuGoods">
-												<p>5000</p>
-												<p class="fuGoods_border"><span>当天发货</span></p>
-											</div>
-										</td>
-										<td class="padStep">
-											<div class="totalStep">
-												<ul class="clear">
-													<li class="steps_num clear">
-														<p class="stepsNumber"><span>1</span>+</p>
-														<p class="ayellow steps_price">￥ <span>8.911</span></p>
-														<p class="steps_doller">$ <span>1.121</span></p>
-													</li>
-													<li class="steps_num clear">
-														<p class="stepsNumber"><span>100</span>+</p>
-														<p class="steps_price">￥ <span>8.739</span></p>
-														<p class="steps_doller">$ <span>1.099</span></p>
-													</li>
-													<li class="steps_num clear">
-														<p class="stepsNumber"><span>1500</span>+</p>
-														<p class="steps_price">￥ <span>8.568</span></p>
-														<p class="steps_doller">$ <span>1.078</span></p>
-													</li>
-												</ul>
-											</div>
-										</td>
-										<td>
-											<div class="steps_num-choice">
-												<div class="cn-delivery delivery-cell selected" data-value="CN" data-min="2" data-max="4">
-													{$notice.goods_search.mainland}&nbsp;<span>2-4周</span>
-												</div>
-												<div class="hk-delivery delivery-cell" data-value="HK" data-min="2" data-max="4">
-													{$notice.goods_search.hongkong}&nbsp;<span>2-4周</span>
-												</div>
-											</div>
-										</td>
-										<td class="addUp">
-											<div class="steps_num">
-												<div class="addBtn clear">
-													<p class="btn-add omin" onclick="minusOrder(this,'9.9','100');">
-														<span class="glyphicon glyphicon-minus"></span>
-													</p>
-													<input type="text" class="btn-num onum orderNum" value="56" name="count" onblur='amount_input_order(this,"9.9","10000")' />
-													<p class="btn-add oplus" onclick="plusOrder(this,'9.9}','100}');">
-														<span class="glyphicon glyphicon-plus"></span>
-													</p>
-												</div>
-												<p class="qred totalPrice">计:￥ <span>66</span></p>
-											</div>
-										</td>
-										<td>
-											<div class="steps_num">
-												<p><button id="shopGoods" class="btn-list-buy mt5">{$notice.goods_search.shopcar}</button></p>
-												<p class="purBuy"><a href="">{$notice.goods_search.buy}</a></p>
-											</div>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>										
+					</foreach>
+					 
+					 										
 				</div>
 			</div>			
 		 

@@ -1,0 +1,84 @@
+<include file="public@header" />
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs"> 
+			<include file="store@admin_store_in:nav" />
+			 
+		 
+		</ul>
+		<form class="form-horizontal js-ajax-form{$zzajax} margin-top-20" role="form" method="post" action="{:url('add_do')}">
+			 
+			
+			<div class="form-group  ">
+				<label for=" " class="col-sm-2 control-label">入库类型</label>
+				<div class="col-md-6 col-sm-10">  
+					<select  class="form-control" name="type" id="type">
+					<foreach name="about_types" item="vo">
+						<option value="{$key}" >{$vo[0]}</option>
+					</foreach> 
+					</select> 
+				</div>
+			</div> 
+			  <notempty name="shops" item="vo">
+			 <div class="form-group  ">
+				<label for="" class="col-sm-2 control-label">供应商</label>
+				<div class="col-md-6 col-sm-10">  
+					<select  class="form-control" name="shop" id="shop">
+					<foreach name="shops" item="vo">
+						<option value="{$key}" >{$vo}</option>
+					</foreach> 
+					</select> 
+					<span class="notice">只在入库类型为供应商入库时生效</span>
+				</div>
+			</div> 
+			 </notempty>
+			<div class="form-group ">
+				<label for=" " class="col-sm-2 control-label">入库产品</label>
+				<div class="col-md-6 col-sm-10">  
+					 <include file="public@cate_goods" />  
+				</div>
+			</div> 
+			<div class="form-group  ">
+				<label for=" " class="col-sm-2 control-label">入库数量</label>
+				<div class="col-md-6 col-sm-10">  
+					 <input type="number" class="form-control" name="num" value="" />
+				</div>
+			</div> 
+			  
+	 
+		 <div class="form-group  ">
+				<label for=" " class="col-sm-2 control-label">备注</label>
+				<div class="col-md-6 col-sm-10">  
+					<input type="text" class="form-control" name="dsc" value="" />
+				</div>
+			</div> 
+	  
+		 <div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10"> 
+			 
+					<button type="submit" class="save btn btn-primary js-ajax-submit" >确认添加</button>
+				 
+				</div>
+				
+			</div>
+		</form>
+		
+	</div>
+	<script src="__STATIC__/js/admin.js"></script> 
+</body>
+</html>
+ <script>
+ $('.save').click(function(){
+	 var goods=$('#goods').val();
+	 if(goods==0){ 
+		 $('#goods').focus();
+		 return false;
+	 } 
+	 
+	 $(this).parents('form').attr('action',"{:url('add_do')}");
+ });
+ 
+  
+ </script>
+ 

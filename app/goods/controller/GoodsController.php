@@ -11,6 +11,9 @@ use app\goods\model\GoodsModel;
 use app\shop\model\ShopModel;
 use app\goods\model\GoodsBrandCateModel;
 use app\goods\model\GoodsParamModel;
+use app\goods\model\GoodsTimeModel;
+use app\goods\model\GoodsPriceModel;
+use app\goods\model\GoodsFileModel;
 class GoodsController extends DeskBaseController
 {
 
@@ -89,19 +92,48 @@ class GoodsController extends DeskBaseController
        ->alias('p')
        ->join('cmf_goods_val val','val.pid=p.id and val.lid='.$lan1) 
        ->column($field);
-       
+       $goods_ids=array_keys($list);
        $shop_ids=[]; 
        $shop_names=[];
-       
+       $goods_list=[];
+       //阶梯价格
+       $price_list=[];
+       //产品文件
+       $file_list=[];
        if(!empty($list)){
            //得到供应商和品牌id
            foreach($list as $k=>$v){
                $shop_ids[]=$v['shop']; 
+              
            }
            //供应商名
            $m_shop=new ShopModel();
            $shop_names=$m_shop->get_limit($lan1,$lan2,['p.id'=>['in',$shop_ids]]);
-            
+           $type=100;
+           foreach($list as $k=>$v){
+               if(isset($shop_names[$v['shop']])){
+                   $type=$shop_names[$v['shop']]['type'];
+               }else{
+                   $type=100;
+               }
+               if(isset($goods_list[$type])){
+                   $goods_list[$type]['list'][$k]=$v;
+                   $goods_list[$type]['num']++;
+               }else{
+                   $goods_list[$type]=[
+                       'num'=>1,
+                       'list'=>[$k=>$v] 
+                   ]; 
+               }
+               
+           }
+           //阶梯价格
+           $m_price=new GoodsPriceModel();
+           $price_list=$m_price->get_all_by_pids($goods_ids);
+           
+           //产品文件
+           $m_file=new GoodsFileModel();
+           $file_list=$m_file->get_all_by_ids($goods_ids);
        }
        //品牌类型
        $m_brand_cate= new GoodsBrandCateModel();
@@ -109,17 +141,52 @@ class GoodsController extends DeskBaseController
        //品牌
        $m_brand=new GoodsBrandModel();
        $brands=$m_brand->get_list($lan1,$lan2);
-       $this->assign('goods_list',$list);
+       dump($list);
+       //发货时间
+       $m_time=new GoodsTimeModel();
+       $goods_times=$m_time->get_list($lan1,$lan2);
+       //阶梯价格
+       $this->assign('goods_list',$goods_list);
        $this->assign('shop_names',$shop_names);
        $this->assign('brand_cates',$brand_cates);
        $this->assign('brands',$brands); 
        $this->assign('params',$params); 
+       $this->assign('goods_times',$goods_times); 
+       $this->assign('price_list',$price_list); 
+       $this->assign('file_list',$file_list); 
        return $this->fetch();
    }
    /**
     * 产品文件下载
     */
    public function file_load()
+   {
+       $data=$this->request->param();
+       $id=intval($data['id']);
+       $file=Db::name('goods_file')->where('id',$id)->find();
+       
+       $path='upload/';
+       $file_url=$path.$file['url'];
+       $filename=$file['name'];
+       
+       
+       if(is_file($file_url)){
+           $fileinfo=pathinfo($file_url);
+           $ext=$fileinfo['extension'];
+           
+           header('Content-type: application/x-'.$ext);
+           header('content-disposition:attachment;filename='.$filename);
+           header('content-length:'.filesize($file_url));
+           readfile($file_url);
+           exit;
+       }else{
+           $this->error('文件损坏，不存在');
+       }
+   }
+   /**
+    * 产品文件在线查看
+    */
+   public function file_read()
    {
        $data=$this->request->param();
        $id=intval($data['id']);

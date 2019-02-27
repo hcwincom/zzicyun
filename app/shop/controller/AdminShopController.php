@@ -95,98 +95,7 @@ class AdminShopController extends AdminInfoController
      */
     public function add_do()
     {
-        $m=$this->m;
-        $data=$this->request->param();
-        $res=$this->param_check($data);
-        if($res!=1){
-            $this->error($res);
-        }
-        
-        $url=url('index');
-        
-        $table=$this->table;
-        $time=time();
-        $admin=$this->admin;
-        $fields=$this->base;
-        //str,int,round1,round2,round3,round4,pic,file
-        $data_add=[];
-        //添加的信息
-        foreach($fields as $k=>$v){
-            if(isset($data[$k])){
-                $data_add[$k]=$data[$k];
-            }
-        }
-       
-        //判断是否有店铺
-        if($this->isshop){
-            $data_add['shop']=$admin['shop'];
-        }
-        
-        $data_add['status']=1;
-        $data_add['aid']=$admin['id'];
-        $data_add['atime']=$time;
-        $data_add['time']=$time;
-        
-        $m->startTrans();
-        $id=$m->insertGetId($data_add);
-        //多语言
-        if($this->islan){
-            $vals=$this->vals;
-            $data_vals=[];
-            foreach($vals as $k=>$v){
-                foreach($data['lan-'.$k] as $kk=>$vv){
-                    if(isset($data_vals[$k.'-'.$kk])){
-                        $data_vals[$k.'-'.$kk][$k]=$vv;
-                    }else{
-                        $data_vals[$k.'-'.$kk]=[
-                            'pid'=>$id,
-                            'lid'=>$kk,
-                            $k=>$vv,
-                        ];
-                    }
-                }
-            }
-            Db::name('notice_val')->insertAll($data_vals);
-        }
-        $path='upload/';
-        $pathid='seller'.$id.'/';
-        //新店铺要创建目录
-        if(!is_dir($path.$pathid)){
-            mkdir($path.$pathid);
-        }
-        //图片处理 
-        if (!empty($data_add['logo']))
-        { 
-            $pathid='seller'.$id.'/logo/';
-            $logo_new=zz_set_file($data_add['logo'],$pathid,config('pic_logo'));
-            if($logo_new!=$data_add['logo']){
-                $m->where('id',$id)->setField('logo',$logo_new);
-            }
-        }
-         
-        //记录操作记录
-        $data_action=[
-            'aid'=>$admin['id'],
-            'time'=>$time,
-            'ip'=>get_client_ip(),
-            'action'=>$admin['user_nickname'].'添加'.($this->flag).$id.'-'.$data['name'],
-            'table'=>($this->table),
-            'type'=>'add',
-            'pid'=>$id,
-            'link'=>url('edit',['id'=>$id]),
-            'shop'=>$admin['shop'],
-            
-        ];
-        zz_action($data_action,['department'=>$admin['department']]);
-        
-        $m->commit();
-        //直接审核
-        $rule='review';
-        $res=$this->check_review($admin,$rule);
-        if($res){
-            $this->redirect($rule,['id'=>$id,'status'=>2]);
-        }
-        $this->success('添加成功',$url);
+         parent::add_do();
         
     }
     /**
@@ -290,124 +199,7 @@ class AdminShopController extends AdminInfoController
      */
     public function edit_do()
     {
-        $m=$this->m;
-        $table=$this->table;
-        $flag=$this->flag;
-        $data=$this->request->param();
-        $res=$this->param_check($data);
-        if($res!=1){
-            $this->error($res);
-        }
-        $info=$m->where('id',$data['id'])->find();
-        if(empty($info)){
-            $this->error('数据不存在');
-        }
-        $time=time();
-        $admin=$this->admin;
-        //其他店铺的审核判断
-        if($admin['shop']!=1){
-            if(empty($info['shop']) || $info['shop']!=$admin['shop']){
-                $this->error('不能编辑其他店铺的信息');
-            }
-        }
-        $update=[
-            'pid'=>$info['id'],
-            'aid'=>$admin['id'],
-            'atime'=>$time,
-            'table'=>$table,
-            'url'=>url('edit_info','',false,false),
-            'rstatus'=>1,
-            'rid'=>0,
-            'rtime'=>0,
-            'shop'=>$admin['shop'],
-        ];
-        $update['adsc']=(empty($data['adsc']))?('修改了'.$flag.'信息'):$data['adsc'];
-        $fields=$this->base;
-        //str,int,round1,round2,round3,round4,pic,file
-        $content=[];
-        //图片处理
-        $path='upload/';
-        $pathid='seller'.$info['id'].'/';
-        //新店铺要创建目录
-        if(!is_dir($path.$pathid)){
-            mkdir($path.$pathid);
-        }
-        if (!empty($data['logo']))
-        { 
-            $path='upload/';
-            $pathid='seller'.$info['id'].'/logo/';
-            $data['logo']=zz_set_file($data['logo'],$pathid,config('pic_logo'));
-            
-        }
-        //检测改变了哪些字段
-        //如果原信息和$data信息相同就未改变，不为空就记录，？null测试
-        foreach($fields as $k=>$v){
-            if(isset($data[$k])){
-                if($info[$k]!=$data[$k]){
-                    $content[$k]=$data[$k];
-                }
-            }
-            
-        }
-        //多语言
-        if($this->islan){
-            //获取原多语言值
-            $lans_info=Db::name($table.'_val')->where('pid',$info['id'])->column('*','lid');
-            $vals=$this->vals;
-            $data_vals=[];
-            foreach($vals as $k=>$v){
-                foreach($data['lan-'.$k] as $kk=>$vv){
-                    if(!isset($lans_info[$kk][$k]) || $lans_info[$kk][$k] != $vv){
-                        $data_vals[$kk][$k]=$vv;
-                    }
-                }
-            }
-            if(!empty($data_vals)){
-                $content['lans']=$data_vals;
-            }
-        }
-        if(empty($content)){
-            $this->error('未修改');
-        }
-        //保存更改
-        $m_edit=Db::name('edit');
-        $m_edit->startTrans();
-        $eid=$m_edit->insertGetId($update);
-        if($eid>0){
-            $data_content=[
-                'eid'=>$eid,
-                'content'=>json_encode($content),
-            ];
-            Db::name('edit_info')->insert($data_content);
-        }else{
-            $m_edit->rollback();
-            $this->error('保存数据错误，请重试');
-        }
-        
-        //记录操作记录
-        $data_action=[
-            'aid'=>$admin['id'],
-            'time'=>$time,
-            'ip'=>get_client_ip(),
-            'action'=>$admin['user_nickname'].'编辑了'.($this->flag).$info['id'].'-'.$info['name'],
-            'table'=>($this->table),
-            'type'=>'edit',
-            'pid'=>$info['id'],
-            'link'=>url('edit_info',['id'=>$eid]),
-            'shop'=>$admin['shop'],
-        ];
-        
-        zz_action($data_action,['department'=>$admin['department']]);
-        
-        $m_edit->commit();
-        //判断是否直接审核
-        $rule='edit_review';
-        $res=$this->check_review($admin,$rule);
-        if($res){
-            $this->redirect($rule,['id'=>$eid,'rstatus'=>2,'rdsc'=>'直接审核']);
-        }
-        
-        $this->success('已提交修改');
+        parent::edit_do();
     }
     /**
      * 加盟店铺编辑列表
@@ -545,6 +337,39 @@ class AdminShopController extends AdminInfoController
         parent::cates($type);
         $this->assign('shop_types',config('shop_types'));
         $this->assign('chars',config('chars'));
+        $pic_conf=config('pic_shop');
+        $this->assign('pic_conf',$pic_conf);
     }
+    /*额外添加的信息，一般是图片文件 */
+    public function add_do_after($id,$data){
+        $admin=$this->admin;
+        if($admin['shop']>1 ){
+            return '只有总站才能添加店铺信息';
+        }
+        $table=$this->table;
+        $path1=$table.'/'.$id.'/';
+        $data_update=[];
+        
+        $pic_conf=config('pic_'.$table);
+        $data_update['logo']=zz_set_file($data['logo'],$path1,$pic_conf);
+        
+        $m=$this->m;
+        $m->where('id',$id)->update($data_update);
+        
+        return 1;
+    }
+    /* 编辑中的处理 */
+    public function edit_do_before(&$content,&$data){
+        $admin=$this->admin;
+        if($admin['shop']>1 && $data['id']!=$admin['shop']){
+            return '不能修改其他店铺信息';
+        }
+        $table=$this->table;
+        $path1=$table.'/'.$data['id'].'/';
+        $pic_conf=config('pic_'.$table);
+        $data['logo']=zz_set_file($data['logo'],$path1,$pic_conf);
+        return 1;
+    }
+    
     
 }
