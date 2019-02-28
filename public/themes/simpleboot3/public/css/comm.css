@@ -495,7 +495,7 @@ input[type=checkbox], input[type=radio] {
 .capSpan{
 	padding-left: 22px;
 }
-.span1{background: url(../images/licon.png)no-repeat left center;}
+/* .span1{background: url(../images/licon.png)no-repeat left center;}
 .span2{background: url(../images/licon2.png)no-repeat left center;}
 .span3{background: url(../images/licon3.png)no-repeat left center;}
 .span4{background: url(../images/licon4.png)no-repeat left center;}
@@ -511,7 +511,7 @@ input[type=checkbox], input[type=radio] {
 .span14{background: url(../images/licon14.png)no-repeat left center;}
 .span15{background: url(../images/licon15.png)no-repeat left center;}
 .span16{background: url(../images/licon16.png)no-repeat left center;}
-.span17{background: url(../images/licon17.png)no-repeat left center;}
+.span17{background: url(../images/licon17.png)no-repeat left center;} */
 .nav_menu{
 	float: left;
 }

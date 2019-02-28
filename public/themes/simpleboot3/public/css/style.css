@@ -745,7 +745,7 @@
 
 .table.table-search>thead>tr>th{
 	font-size: 14px;
-	line-height: 42px;
+	/* line-height: 42px; */
 }
 .table.table-search>thead>tr>th.padTable,
 .table.table-search>tbody>tr>td.padStep{
@@ -821,11 +821,12 @@
 }
 .fuGoods p.fuGoods_border{
 	width: 96%;
-	border: 0.1em solid #d9000f;
+	
 	text-align: center;
 
 }
 .fuGoods p.fuGoods_border span{
+	border: 0.1em solid #d9000f;
 	
 	color: #D9000F;
 }

@@ -1,9 +1,4 @@
  <include file="public@head"/> 
- <style>
-	 
- 
- 
- </style>
   </head>
   <body>
   	<div class="topBanner">
@@ -20,7 +15,7 @@
 									<present name="cate['cate1']">
 									<foreach name="cate['cate1']" item="v1" key="k1">
 										<div class="allNav-lv1">
-											<a href="{:url('goods/Goods/goods_search',['cid'=>$k1])}" class="allNav-lv1__cap"><span class="capSpan span1">{$v1.name}</span></a>
+											<a href="{:url('goods/Goods/goods_search',['cid'=>$k1])}" class="allNav-lv1__cap"><span class="capSpan span1" style="background: url(__TMPL__/public/images/licon.png)no-repeat left center;">{$v1.name}</span></a>
 											<div class="allNav-lv2">
 												<div class="lv2_con">
 													<present name="cate['cate2'][$k1]">
