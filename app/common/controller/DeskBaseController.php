@@ -5,6 +5,7 @@ use cmf\controller\HomeBaseController;
 use think\Db; 
  
 use think\View;
+use app\notice\model\NoticeConfValModel;
  
 class DeskBaseController extends HomeBaseController
 {
@@ -46,6 +47,13 @@ class DeskBaseController extends HomeBaseController
             foreach($notices as $k=>$v){
                 $notice[$v['cname']][$v['name']]=$v['val'];
             }
+            //获取配置信息
+            $m_conf=new NoticeConfValModel();
+            $list0=$m_conf->get_all_by_lan($lan1,$lan2);
+            foreach($list0 as $k=>$v){
+                $notice[$k]=$v;
+            }
+           
             $notice_json=json_encode($notice);
             session('notice'.$lan1,$notice); 
         } else{

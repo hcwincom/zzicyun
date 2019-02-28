@@ -10,13 +10,13 @@
 			</a>
 			<div class="item_lists">
 				<a class="menu_list" href="{:url('goods/Goods/cate_list')}">{$notice.index.catalogue|default='catalogue'}</a>
-				<a class="menu_list" href="branded.html">{$notice.index.manufacturer|default='manufacturer'}</a>
+				<a class="menu_list" href="{:url('shop/Shop/shoplist1')}">{$notice.index.manufacturer|default='manufacturer'}</a>
 			</div>
 		</li>
 		<li><a class="navItem" href="copy.html">{$notice.index.bom}</a></li>
 		<li><a class="navItem" href="product_list.html">{$notice.index.sample}</a></li>
-		<li><a class="navItem" href="original_agent.html" rel="nofollow">{$notice.index.agency}</a></li>
-		<li><a class="navItem" href="strength_distributor.html" rel="nofollow">{$notice.index.distributor}</a></li>
+		<li><a class="navItem" href="{:url('shop/Shop/shoplist2')}" rel="nofollow">{$notice.index.agency}</a></li>
+		<li><a class="navItem" href="{:url('shop/Shop/shoplist3')}" rel="nofollow">{$notice.index.distributor}</a></li>
 		<li><a class="navItem" href="recruiting_suppliers.html" rel="nofollow">{$notice.index.recruit}</a></li>
 	</ul>	
 </div>		

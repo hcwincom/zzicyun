@@ -1,0 +1,53 @@
+<include file="public@header" />
+  
+</head>
+<body>
+
+	<div class="wrap js-check-wrap">
+		<ul class="nav nav-tabs"> 
+		<include file="notice@admin_notice_conf:nav" />
+	 
+		</ul>
+		 <form class="well form-inline margin-top-20" method="post"
+			action="">
+		 
+		</form>
+		 
+		<form method="post" class="js-ajax-form{$zzajax} margin-top-20" action="">
+			<div class="table-actions">
+ 
+			 	<p class='error'></p>
+			</div>
+
+			<table class="table table-hover table-bordered table-list">
+				<thead>
+					<tr>
+					   
+						  <th>系统配置标识</th>
+						  <th>系统配置名称</th>
+						 
+					</tr>
+				</thead>
+				<tbody>
+					 
+				   <foreach name="confs" item="vo">
+					<tr >
+						 
+					
+						 	<td><a href="{:url('edit',['id'=>$key])}">{$key}</a></td>
+						 	<td>{$vo}</td>
+						 
+						 
+					</tr>
+				  </foreach>
+				</tbody>
+
+			</table>
+
+		</form>
+	  
+	</div>
+	<script src="__STATIC__/js/admin.js"></script>
+ 
+</body>
+</html>

@@ -35,7 +35,7 @@ class AdminGoodsController extends AdminInfoController
             'production_code'=>'生产批次',
             'production_factory'=>'制造商'
         ];
-        $this->pdf_cate=[1=>'数据手册',2=>'AD封装库文件',3=>'PADS封装库文件'];
+        $this->pdf_cate=config('pdf_cates');
         $this->assign('flag','产品');
          
     }
@@ -390,7 +390,7 @@ class AdminGoodsController extends AdminInfoController
         //发货时间
         $goods_times=Db::name('goods_time')->where('status',2)->order('sort asc')->column('id,name');
         $this->assign('goods_times',$goods_times);
-        $this->assign('store_sures',[2=>'无需确认',1=>'需要确认']);
+        $this->assign('store_sures',config('store_sures'));
     }
     /*删除前检查  */
     public function del_before($ids){
@@ -626,6 +626,13 @@ class AdminGoodsController extends AdminInfoController
         $m_file=new GoodsFileModel();
         $pdfs=$m_file->get_all_by_id($info['id']);
         $this->assign('pdfs',$pdfs); 
+    }
+    /* 审核后的操作 */
+    public function review_after($info,$status){
+        //更新分类产品数量
+        $m_cate= new GoodsCateModel();
+        $m_cate->set_number_by_cate3($info['cid']);
+        return 1;
     }
     /* 编辑详情 */
     public function edit_info_after($info,$change){

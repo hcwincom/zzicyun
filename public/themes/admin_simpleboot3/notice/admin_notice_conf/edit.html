@@ -1,0 +1,68 @@
+<include file="public@header" />
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs"> 
+				<include file="notice@admin_notice_conf:nav" />
+			<li class="active"><a href="{:url('edit',['id'=>$key])}">编辑{$flag}</a></li>  
+		</ul>
+		<form class="form-horizontal js-ajax-form{$zzajax} margin-top-20" role="form" method="post" action="{:url('edit_do')}">
+		<div class="form-group">
+		    <label for="" class="col-sm-2 control-label">配置名称</label>
+		    <div class="col-md-6 col-sm-10"> 
+		    	<input type="hidden" name="id" value="{$key}"/>
+			   <input type="text" class="form-control " value="{$key}-{$confs[$key]}" />
+			</div>
+		</div>
+<div class="form-group" id="param">
+	<label for="" class="col-sm-2 control-label">配置值和描述</label>
+	<div class="col-md-6 col-sm-10">
+		<table class="table table-hover table-bordered table-list">
+		 
+			<thead>
+				<tr> 
+					<th width="18%">值-语言</th>
+					<th width="80%">描述</th> 
+				</tr>
+			</thead>
+			<tbody id="param_tbody"> 
+			 
+		<foreach name="conf" item="vo" key="key">
+			 <tr>  
+			 	<td>{$key}-后台</td>
+			  	<td>
+		  		<input type="text" class="form-control" value="{$vo}"/> 
+			  	</td> 
+			 </tr>
+			
+		  <foreach name="lans" item="vv" key="kk"> 	
+		   <tr>  
+			 	<td>{$key}-{$vv}</td>
+			  	<td>
+		  		<input type="text" class="form-control" name="val-{$key}[{$kk}]" value="{$list[$key][$kk]|default=''}"/>
+		  		 
+			  	</td>
+		   </tr> 
+		   </foreach>  
+		</foreach> 
+			</tbody> 
+		</table> 
+	</div>
+</div>
+		 
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10"> 
+					 
+					<button type="submit" class="save btn btn-primary js-ajax-submit" >保存信息</button>
+					 
+					 <p> </p>
+				</div>
+				
+			</div>
+		</form>
+	 
+	</div>
+	<script src="__STATIC__/js/admin.js"></script> 
+</body>
+</html>
+ 

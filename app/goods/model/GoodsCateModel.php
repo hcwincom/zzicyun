@@ -99,7 +99,8 @@ class GoodsCateModel extends Model
      */
     public function set_number_by_cate3($cid){
         //获取最新产品数
-        $nums=Db::name('goods')->where('cid',$cid)->value('store_num');
+        $where=['cid'=>$cid,'status'=>2];
+        $nums=Db::name('goods')->where($where)->count();
         if(empty($nums)){
             $nums=0;
         }

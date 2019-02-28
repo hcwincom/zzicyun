@@ -315,6 +315,23 @@ class AdminInfoController extends AdminBaseController
             $m->rollback();
             $this->error($res);
         }
+        //审核成功，记录操作记录,发送审核信息
+        $statuss=$this->statuss;
+        $admin=$this->admin;
+        
+        $time=time();
+        $data_action=[
+            'aid'=>$admin['id'],
+            'time'=>time(),
+            'ip'=>get_client_ip(),
+            'action'=>$admin['user_nickname'].'审核'.($this->flag).$info['id'].'-'.$info['name'].'的状态为'.$statuss[$status],
+            'table'=>($this->table),
+            'type'=>'review',
+            'pid'=>$info['id'],
+            'link'=>url('edit',['id'=>$info['id']]),
+            'shop'=>$admin['shop'],
+        ];
+        zz_action($data_action,['aid'=>$info['aid']]);
         $m->commit();
         $this->success('审核成功');
     }
@@ -1118,23 +1135,7 @@ class AdminInfoController extends AdminBaseController
     }
     /* 审核后的操作 */
     public function review_after($info,$status){
-        //审核成功，记录操作记录,发送审核信息
-        $statuss=$this->statuss;
-        $admin=$this->admin;
         
-        $time=time();
-        $data_action=[
-            'aid'=>$admin['id'],
-            'time'=>time(),
-            'ip'=>get_client_ip(),
-            'action'=>$admin['user_nickname'].'审核'.($this->flag).$info['id'].'-'.$info['name'].'的状态为'.$statuss[$status],
-            'table'=>($this->table),
-            'type'=>'review',
-            'pid'=>$info['id'],
-            'link'=>url('edit',['id'=>$info['id']]),
-            'shop'=>$admin['shop'],
-        ];
-        zz_action($data_action,['aid'=>$info['aid']]);
         return 1;
     }
     /*额外添加的信息，一般是图片文件 */

@@ -1,0 +1,161 @@
+ 	 <include file="public@head"/> 
+  </head>
+  <body>
+  	<div class="topBanner">
+  		<!--公共头部-->		
+  		 <include file="public@header"/> 		
+			<!--导航-->
+			<div class="l-nav l_proNav">
+				<div class="nav">
+					<div class="clear">
+						<div id="allNav" class="allNav allNav_list fl"></div>							
+						 	<include file="public@nav"/>   	
+					</div>
+				</div>
+			</div>	
+			<!--原厂代理主要内容-->
+			<div class="mainPart">
+				<div class="wraper">
+					<div class="product_listBanner totalback">
+						<div class="product_listimg">
+							<img src="__TMPL__/public/images/original.png" alt="" />
+						</div>
+					</div>
+					<!--最新入住-->
+					<div class="agent_check totalback">
+						<div class="agent-check_line clear">
+							<h3>最新入住</h3>
+							<div class="lineMore">
+								<a href="#agent_more">更多</a>
+								<i class="iconfont icon-enter"></i>
+							</div>
+						</div>
+						<div class="agent_content">
+							<div class="row">
+							 
+								<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+									<a href="product_list.html" class="agent_href">
+										<div class="agent_adimg">
+											<img src="__TMPL__/public/images/agen.png" alt="" />
+										</div>
+										<div class="agent_adinfo">
+											<h3>2018年企业文化交流认知创新</h3>
+											<p>
+												短路保护电路与限流保护电路有效防止功率管NMOS
+												和芯片在短路或大电，短路保护电路与限流保护电路
+												有效防止功率管NMOS和芯片在短路或大电流时损坏
+												 为有效。短路保护电路与限流保护电路。
+											</p>
+										</div>
+									</a>
+								</div>
+								<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+									<a href="product_list.html" class="agent_href">
+										<div class="agent_adimg">
+											<img src="__TMPL__/public/images/agen.png" alt="" />
+										</div>
+										<div class="agent_adinfo">
+											<h3>2018年企业文化交流认知创新</h3>
+											<p>
+												短路保护电路与限流保护电路有效防止功率管NMOS
+												和芯片在短路或大电，短路保护电路与限流保护电路
+												有效防止功率管NMOS和芯片在短路或大电流时损坏
+												 为有效。短路保护电路与限流保护电路。
+											</p>
+										</div>
+									</a>
+								</div>
+								<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+									<a href="product_list.html" class="agent_href">
+										<div class="agent_adimg">
+											<img src="__TMPL__/public/images/agen.png" alt="" />
+										</div>
+										<div class="agent_adinfo">
+											<h3>2018年企业文化交流认知创新</h3>
+											<p>
+												短路保护电路与限流保护电路有效防止功率管NMOS
+												和芯片在短路或大电，短路保护电路与限流保护电路
+												有效防止功率管NMOS和芯片在短路或大电流时损坏
+												 为有效。短路保护电路与限流保护电路。
+											</p>
+										</div>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--原厂搜索-->
+				</div>
+				
+				<div class="monogram clear">
+					<div class="wraper gramBox clear">
+						<span class="monogram_hint">按字母搜索</span> 
+						<span class="monogram_list">
+					 
+						<foreach name="chars" item="vo">
+							<a href="{:url('shop/Shop/'.$html,['type'=>$data.type,'char'=>$vo])}" class="<if condition='$data.char eq $vo'>clicked</if>">{$vo}</a>
+						</foreach>
+							 
+						</span>
+					</div>
+				</div>
+				<!--导航-->
+				<div class="agent_nav">
+					<div class="wraper">
+						<ul class="agent_nav_ul clear">
+							<li class="agent_current"><a href="{:url('shop/Shop/'.$html)}">全部</a></li>
+							 
+						</ul>
+					</div>
+					
+				</div>	
+						
+				<div class="agent_search" id="agent_more">
+					<div class="agent_specific wraper">
+						<!--全部-->
+						<div class="agent_nav_con agActive">
+						<foreach name="shop_list" item="vo">
+								<div class="agent_con_list" id="{$key}-item-box">
+									<h3 class="agent_al"><span>{$key}</span></h3>
+									<ul class="agent_con_ul clear">
+									<foreach name="vo" item="vv" key="kk">
+										<li>
+											<a href="{:url('shop/Shop/shop_goods',['id'=>$kk])}">
+												<div class="agent_ul_info">
+													<h1><img src="{$image_url}/{$vv.logo}" alt="" /></h1>
+													<p>主营：{$vv.pros}</p>
+													<div class="hoverPlay"><p>进入{$vv.name}</p></div>
+												</div>
+											</a>
+										</li>
+									</foreach> 
+												
+									</ul>
+								</div>
+							</foreach>
+								 
+							</div>
+					 
+					<!---->
+					</div>
+				</div>
+				
+			</div>
+			<!---->
+			 <include file="public@footer"/> 
+		</div>
+		
+	<include file="public@foot" />
+	    <script type="text/javascript">
+	    	$(".gramBox .monogram_list A").click(function(){
+	    		$(this).addClass("clicked").siblings("a").removeClass("clicked");
+	    	})
+	    	$(".agent_nav ul li").click(function(){
+	    		var index = $(this).index();
+	    		$(this).addClass("agent_current").siblings("li").removeClass("agent_current");
+	    		$(".agent_group .agent_nav_con").eq(index).addClass("agActive").siblings().removeClass("agActive")
+	    		
+	    	});
+	    </script>
+	</body>
+</html>

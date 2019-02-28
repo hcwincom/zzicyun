@@ -16,7 +16,7 @@ class ShopModel extends Model
      */
     public function get_limit($lan=1,$lan1=1,$where=['p.status'=>2],$limit=0){
      
-        $field='p.id,p.logo,p.type,val.name as name,val.char';
+        $field='p.id,p.logo,p.type,val.name as name,val.char,val.brands,val.pros';
         $order='p.sort asc';
         if(empty($limit)){
             $list=$this
