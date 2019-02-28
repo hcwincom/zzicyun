@@ -151,7 +151,7 @@
 					<foreach name="goods_list" item="vo" key="kshop_type">
 						<div class="port_title">
 							<h3> 
-							{$notice['goods_search']['shop_type'.$kshop_type]|default='goods_search-shop_type'}
+							{$notice['shop_types'][$kshop_type]|default=$kshop_type}
 							 <span>({$vo.num})</span></h3>
 						</div>
 						<div class="table-responsive">
@@ -220,7 +220,7 @@
 										<td>
 											<div class="fuGoods">
 												<p>{$vgoods.store_num}</p>
-												<p class="fuGoods_border"><span></span></p>
+												<p class="fuGoods_border"><span>{$notice['store_sures'][$vgoods['store_sure']]|default=$vgoods['store_sure']}</span></p>
 											</div>
 										</td>
 										<td class="padStep">

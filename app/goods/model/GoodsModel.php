@@ -44,7 +44,7 @@ class GoodsModel extends Model
      */
     public function get_one($id,$lan=1,$lan1=1){
         
-        $field='p.id,p.code,p.pic,p.pic0,p.store_num,p.store_code,p.brand,p.price1,p.price2,p.goods_time1,p.goods_time2,p.shop'.
+        $field='p.id,p.code,p.pic,p.pic0,p.store_num,p.store_code,p.store_sure,p.brand,p.price1,p.price2,p.goods_time1,p.goods_time2,p.shop'.
         ',p.num_min,p.num_times,p.num_one,val.name as name,val.dsc as dsc,val.production_code as production_code,val.production_factory as production_factory';
         $where=['p.id'=>$id];
         $info=$this
@@ -88,6 +88,11 @@ class GoodsModel extends Model
         //规格
         $m_param=new GoodsParamModel();
         $info['params']=$m_param->get_params_by_goods($id,$lan,$lan1);
+        
+        //阶梯价格
+        $m_price=new GoodsPriceModel();
+        $info['prices']=$m_price->get_all($id);
+        
         return $info;
     }
 }

@@ -33,6 +33,12 @@ class GoodsController extends DeskBaseController
          $this->assign('info',$goods);
          $this->assign('pdf_cates',[1=>'数据手册',2=>'AD封装库文件',3=>'PADS封装库文件']);
          $this->assign('html','goods_detail');
+         //发货时间
+         $m_time=new GoodsTimeModel();
+         $goods_times=$m_time->get_list($lan1,$lan2);
+         $this->assign('goods_times',$goods_times);
+          //类似产品
+         $this->assign('goods_likes',[]);
          return $this->fetch();
    }
    /**
@@ -65,7 +71,7 @@ class GoodsController extends DeskBaseController
        $this->assign('list',$list);
        //查询
        $data=$this->request->param();
-       $field='p.id,p.code,p.pic,p.pic0,p.store_num,p.store_code,p.brand,p.price1,p.price2,p.goods_time1,p.goods_time2,p.shop'.
+       $field='p.id,p.code,p.pic,p.pic0,p.store_num,p.store_code,p.store_sure,p.brand,p.price1,p.price2,p.goods_time1,p.goods_time2,p.shop'.
            ',p.num_min,p.num_times,p.num_one,val.name as name,val.dsc as dsc,val.production_code as production_code,val.production_factory as production_factory';
        $where=['p.status'=>2];
        $order='p.shop_type asc,p.sort asc';
@@ -141,11 +147,11 @@ class GoodsController extends DeskBaseController
        //品牌
        $m_brand=new GoodsBrandModel();
        $brands=$m_brand->get_list($lan1,$lan2);
-       dump($list);
+      
        //发货时间
        $m_time=new GoodsTimeModel();
        $goods_times=$m_time->get_list($lan1,$lan2);
-       //阶梯价格
+       
        $this->assign('goods_list',$goods_list);
        $this->assign('shop_names',$shop_names);
        $this->assign('brand_cates',$brand_cates);

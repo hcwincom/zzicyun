@@ -154,7 +154,7 @@
 						<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="padding-left: 0;">
 							<div class="right_detail">
 								<div class="detail_h3">
-									<h3>{$notice.index.inventory}：<span>{$info.store_num}<i>需确认</i></span></h3>
+									<h3>{$notice.index.inventory}：<span>{$info.store_num}<i>{$notice['store_sure'][$info['store_sure']]|default=''}</i></span></h3>
 								</div>
 								<div class="detail_form" style="background: #fff;">
 									<form action="" method="post">
@@ -162,7 +162,7 @@
 											<tbody>
 												<tr>
 													<th width="28%">{$notice.detail.delivery_time}：</th>
-													<td class="qred">15:00前付款订单当天发货</td>
+													<td class="qred">{$goods_times[$info['goods_time1']]}</td>
 												</tr>
 												<tr>
 													<th width="28%">{$notice.detail.en_route}：</th>
@@ -171,14 +171,20 @@
 												<tr>
 													<th width="28%">{$notice.goods_search.ship}：</th>
 													<td class="detail_radio">
+														<neq name="info.goods_time1" value="100">
 														<label for="checkra">
 															<input type="radio" name="checkra" id="checkra" value="" checked="checked"/>
 															{$notice.goods_search.mainland}
+															<input type="hidden" value="{$goods_times[$info['goods_time1']]|default=''}"/>
 														</label>
+														</neq>
+														<neq name="info.goods_time2" value="100">
 														<label for="checkrad">
 															<input type="radio" name="checkra" id="checkrad" value="" />
 															{$notice.goods_search.hongkong}
+															<input type="hidden" value="{$goods_times[$info['goods_time2']]|default=''}"/>
 														</label>
+														</neq>
 													</td>
 												</tr>
 											</tbody>
@@ -212,12 +218,12 @@
 											<div class="row">
 												<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="padding-right: 0;">
 													<div class="detail_benum">
-														<p>{$notice.detail.least}：<span>10000</span></p>
+														<p>{$notice.detail.least}：<span>{$info.num_min}</span></p>
 													</div>
 												</div>
 												<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="padding: 0;">
 													<div class="detail_benum">
-														<p>{$notice.goods_search.multiple}：<span>100000</span></p>
+														<p>{$notice.goods_search.multiple}：<span>{$info.num_times}</span></p>
 													</div>
 												</div>
 												<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="padding-left: 0;">
@@ -241,30 +247,24 @@
 										<tbody>
 											<tr>
 												<td><p>1+</p></td>
-												<td><p>￥8.56829</p></td>
-												<td><p>$8.56829</p></td>
+												<td><p>￥{$info.price1}</p></td>
+												<td><p>${$info.price2}</p></td>
 											</tr>
+										<foreach name="info.prices" item="vo">
 											<tr>
-												<td><p>10+</p></td>
-												<td><p>￥8.56829</p></td>
-												<td><p>$8.56829</p></td>
-											</tr>
-											<tr>
-												<td><p>100+</p></td>
-												<td><p>￥8.56829</p></td>
-												<td><p>$8.56829</p></td>
-											</tr>
-											<tr>
-												<td><p>250+</p></td>
-												<td><p>￥8.56829</p></td>
-												<td><p>$8.56829</p></td>
-											</tr>
-											<tr>
-												<td><p>5000+</p></td>
+												<td><p>{$vo.num}+</p></td>
+											<if condition="empty($vo.price1) || empty($vo.price2)">
 												<td colspan="2" class="bjbtn">
 													<a class="offerPop" href="javascript:void(0);">{$notice.detail.quote}</a>
 												</td>
+											<else/>
+												<td><p>￥{$vo.price1}</p></td>
+												<td><p>${$vo.price2}</p></td>
+											</if>
+												 
 											</tr>
+										</foreach>
+										  
 										</tbody>
 									</table>
 								</div>
@@ -277,7 +277,7 @@
 									<tbody>
 										<tr>
 											<td width="40%" class="text-center">{$notice.detail.mini_package}</td>
-											<td>1000</td>
+											<td>{$info.num_one}</td>
 										</tr>
 									</tbody>
 								</table>
@@ -293,31 +293,14 @@
 											<th>{$notice.index.hand}</th>
 										</tr>
 										<tbody>
+										<foreach name="goods_likes" item="vo">
 											<tr>
-												<td>RM04JTN103</td>
-												<td>小河 TH</td>
-												<td>10000</td>
+												<td>{$vo.name}</td>
+												<td>{$vo.shop_name}</td>
+												<td>{$vo.store_num}</td>
 											</tr>
-											<tr>
-												<td>RM04JTN103</td>
-												<td>小河 TH</td>
-												<td>10000</td>
-											</tr>
-											<tr>
-												<td>RM04JTN103</td>
-												<td>小河 TH</td>
-												<td>10000</td>
-											</tr>
-											<tr>
-												<td>RM04JTN103</td>
-												<td>小河 TH</td>
-												<td>10000</td>
-											</tr>
-											<tr>
-												<td>RM04JTN103</td>
-												<td>小河 TH</td>
-												<td>10000</td>
-											</tr>
+										</foreach>
+											 
 										</tbody>
 									</thead>
 								</table>
