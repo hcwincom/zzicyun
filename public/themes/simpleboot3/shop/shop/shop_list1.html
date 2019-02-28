@@ -1,0 +1,115 @@
+  <include file="public@head"/> 
+  </head>
+  <body>
+  	<div class="topBanner">
+  		<!--公共头部-->		
+  		 <include file="public@header"/> 		
+			<!--导航-->
+			<div class="l-nav l_proNav">
+				<div class="nav">
+					<div class="clear">
+						<div id="allNav" class="allNav allNav_list fl"></div>							
+						 	<include file="public@nav"/>   	
+					</div>
+				</div>
+			</div>	
+			<!--合作品牌主要内容-->
+			<div class="branded mt10" id="branded">
+				<div class="wraper">
+					<div class="wrap_branded">
+						<div class="bran_top">
+							<!--搜索-->
+							<div class="bran-character clear" id="bran_character"> 
+								<div class="row">
+									<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+										<div class="letter_title">
+											<span>按字母搜索：</span> 
+										</div>
+									</div>
+									<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+										<div class="alphabet" id="alphabet">
+											<p class="letter_list">
+											<foreach name="chars" item="vo">
+												<a href="{:url('shop/Shop/'.$html,['char'=>$vo])}" class="<if condition='$data.char eq $vo'>schCurrent</if>">{$vo}</a>
+											</foreach>
+												 
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!---->
+						<div class="bran_menu clear">
+							<div class="bran_menu_title">
+								<p>
+									<b class="pine"></b>
+									<span>全部:<i>{$data.char}</i></span>
+								</p>
+							</div>
+							<div class="bran_menu_cont">
+								<ul class="bran_ul">
+									<li>
+										<a href="branded_detail.html">
+											<div class="row">
+												<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 bran_pad1">
+													<div class="pin_img">
+														<p><img src="images/pin.png" alt="合作品牌" /></p>
+														<span>Huimaihui（汇买惠购）</span>
+													</div>
+												</div>
+												<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 bran_pad2">
+													<div class="pin_img">
+														<p><img src="images/pin.png" alt="合作品牌" /></p>
+														<span>Huimaihui（汇买惠购）</span>
+													</div>
+												</div>
+												<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 bran_pad3">
+													<div class="pin_img">
+														<p><img src="images/pin.png" alt="合作品牌" /></p>
+														<span>Huimaihui（汇买惠购）</span>
+													</div>
+												</div>
+												<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 bran_pad4">
+													<div class="pin_img">
+														<p><img src="images/pin.png" alt="合作品牌" /></p>
+														<span>Huimaihui（汇买惠购）</span>
+													</div>
+												</div>
+												<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 bran_pad5">
+													<div class="pin_img">
+														<p><img src="images/pin.png" alt="合作品牌" /></p>
+														<span>Huimaihui（汇买惠购）</span>
+													</div>
+												</div>
+												<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 bran_pad6">
+													<div class="pin_img">
+														<p><img src="images/pin.png" alt="合作品牌" /></p>
+														<span>Huimaihui（汇买惠购）</span>
+													</div>
+												</div>
+											</div>
+										</a>
+									</li>
+									 
+									 
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!--底部 -->
+			<div id="footer"></div>		
+			
+		<!---->
+		</div>
+		
+		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+	    <script src="js/jquery-1.12.1.min.js"></script>
+	    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+	    <script src="js/bootstrap.min.js"></script>
+	    <script type="text/javascript" src="js/index.js"></script>	
+	</body>
+</html>

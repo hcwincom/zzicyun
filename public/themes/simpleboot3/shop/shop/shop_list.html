@@ -17,70 +17,35 @@
 			<div class="mainPart">
 				<div class="wraper">
 					<div class="product_listBanner totalback">
-						<div class="product_listimg">
-							<img src="__TMPL__/public/images/original.png" alt="" />
+					<foreach name="banners" item="vo"> 
+						<div class="product_listimg"> 
+							<img src="{$image_url}/{$vo.pic}" alt="" />
 						</div>
+					</foreach>
+						 
 					</div>
 					<!--最新入住-->
 					<div class="agent_check totalback">
 						<div class="agent-check_line clear">
 							<h3>最新入住</h3>
-							<div class="lineMore">
-								<a href="#agent_more">更多</a>
-								<i class="iconfont icon-enter"></i>
-							</div>
+							 
 						</div>
 						<div class="agent_content">
 							<div class="row">
-							 
+							 <foreach name="shop_list_new" item="vo">
 								<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-									<a href="product_list.html" class="agent_href">
+									<a href="{:url('shop/Shop/shop_goods',['id'=>$key])}" class="agent_href">
 										<div class="agent_adimg">
-											<img src="__TMPL__/public/images/agen.png" alt="" />
+											<img src="{$image_url}/{$vo.logo}" alt="" />
 										</div>
 										<div class="agent_adinfo">
-											<h3>2018年企业文化交流认知创新</h3>
-											<p>
-												短路保护电路与限流保护电路有效防止功率管NMOS
-												和芯片在短路或大电，短路保护电路与限流保护电路
-												有效防止功率管NMOS和芯片在短路或大电流时损坏
-												 为有效。短路保护电路与限流保护电路。
-											</p>
+											<h3>{$vo.name}</h3>
+											<p>{$vo.dsc}</p>
 										</div>
 									</a>
 								</div>
-								<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-									<a href="product_list.html" class="agent_href">
-										<div class="agent_adimg">
-											<img src="__TMPL__/public/images/agen.png" alt="" />
-										</div>
-										<div class="agent_adinfo">
-											<h3>2018年企业文化交流认知创新</h3>
-											<p>
-												短路保护电路与限流保护电路有效防止功率管NMOS
-												和芯片在短路或大电，短路保护电路与限流保护电路
-												有效防止功率管NMOS和芯片在短路或大电流时损坏
-												 为有效。短路保护电路与限流保护电路。
-											</p>
-										</div>
-									</a>
-								</div>
-								<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-									<a href="product_list.html" class="agent_href">
-										<div class="agent_adimg">
-											<img src="__TMPL__/public/images/agen.png" alt="" />
-										</div>
-										<div class="agent_adinfo">
-											<h3>2018年企业文化交流认知创新</h3>
-											<p>
-												短路保护电路与限流保护电路有效防止功率管NMOS
-												和芯片在短路或大电，短路保护电路与限流保护电路
-												有效防止功率管NMOS和芯片在短路或大电流时损坏
-												 为有效。短路保护电路与限流保护电路。
-											</p>
-										</div>
-									</a>
-								</div>
+							</foreach>
+								 
 							</div>
 						</div>
 					</div>
@@ -104,6 +69,9 @@
 					<div class="wraper">
 						<ul class="agent_nav_ul clear">
 							<li class="agent_current"><a href="{:url('shop/Shop/'.$html)}">全部</a></li>
+							<foreach name="types" item="vo">
+							 <li><a href="{:url('shop/Shop/'.$html,['type'=>$vo])}">{$notice['shop_types'][$vo]}</a></li>
+							</foreach>
 							 
 						</ul>
 					</div>

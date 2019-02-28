@@ -1,0 +1,150 @@
+   <include file="public@head"/> 
+  </head>
+  <body>
+  	<div class="topBanner">
+  		<!--公共头部-->		
+  		 <include file="public@header"/> 		
+			<!--导航-->
+			<div class="l-nav l_proNav">
+				<div class="nav">
+					<div class="clear">
+						<div id="allNav" class="allNav allNav_list fl"></div>							
+						 	<include file="public@nav"/>   	
+					</div>
+				</div>
+			</div>	
+			<!--合作品牌详情页主要内容-->
+			<div class="bran_detail" id="bran_detail">
+				<div class="wraper">
+					<div class="totalback">
+						<div class="bran_detail_info">
+							<div class="info_cont">
+								<div class="info_cont_top">
+									<div class="row">
+										<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+											<div class="info_img">
+												<img src="{$image_url}/{$info.logo}" alt="" />
+											</div>
+										</div>
+										<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+											<div class="info_introduce">
+												<div class="company_name">
+													<h3><b class="pine"></b>{$info.name}</h3>
+												</div> 
+												<div class="company_intro">
+													<p>入驻时间 : {$info.show_time|date='Y-m-d',###}</p>
+													<p class="intell"> 
+														资质审核 : {$notice['shop_types'][$info['type']]}
+														<i>已认证</i>
+													</p> 
+													 
+													<p> 主营品牌 : {$info.brands}</p>
+													<p>在线商品 : {$info.goods_num}件 </p>
+													<p>产品线 : {$info.pros}</p>
+												</div>
+											</div>
+										</div>
+										<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+											<div class="vendor_code">
+												<p>厂商编码：{$info.code}</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="info_cont_text">
+									<div class="info_cont_text1">
+										<p>{$info.dsc}</p>
+									</div>
+									 
+									
+								</div>
+							</div>
+						</div>
+						<div class="bran_detail_cont">
+							<div class="bran_detail_sort">
+								<form action="" id="bran_fifter" method="post" role="form">
+									<div class="proList-srh">
+										<div class="row">
+											<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+												<div class="form-inline form-border">
+													<a href="javascript:void(0);" class="sear_select">综合排序</a>
+													<a href="javascript:void(0);">价格排序</a>
+													<a href="javascript:void(0);">库存排序</a>
+													<div class="form-group">
+														<div  class="checkbox-inline">
+															<label>
+										                        <input name="bran_select" type="checkbox" class="checkbox-item" id="bran-iselected">仅显有库存					                        	
+										                    </label>
+														</div>
+														
+													</div>
+												</div>
+											</div>
+											<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+												<div class="form-inline form-sear">
+													<div class="input-group">
+														<input type="text" name="bran-control" id="bran-control" value="" class="form-control" placeholder="在结果中搜索"/>
+													</div>
+													<button type="submit" class="btn_sub">搜索</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+							<!--搜索结果-->
+							<div class="bran_result">
+							 <include file="goods@goods:goods_table" />
+								 
+							<!---->
+							</div>
+						</div>
+						<!--分页-->
+						<div class="page">
+							<div class="p-wrap" id="j_bottomPage">
+								<span class="p-num">
+									<a class="pn-prev disabled">
+										<i><</i>
+									</a>
+									<a href="javascript:void(0);" class="num curr">1</a>
+									<a href="javascript:void(0);" class="num">2</a>
+									<a href="javascript:void(0);" class="num">3</a>
+									<a href="javascript:void(0);" class="num">4</a>
+									<a href="javascript:void(0);" class="num">5</a>
+									<a href="javascript:void(0);" class="num">6</a>
+									<a href="javascript:void(0);" class="pn-next ">
+										<i>></i>	
+									</a>
+								</span>
+								<span class="p-skip">
+									<a href="javascript:void(0);">共  <i>10</i>页</a>
+								</span>
+								<span class="page_jump">
+									<i>第</i>
+									<input class="pageInput" type="text" value="1" onkeyup="value=value.replace(/[^\d]/g,'')" onblur="value=value.replace(/[^\d]/g,'')" name="pageNo" id="pageInput">
+									<i>页</i>
+								</span>
+								<span class="page_btn">
+									<button type="button" id="pagebtn" class="btn btn-default">确定</button>
+								</span>
+							</div>
+						</div>
+						<!---->	
+						
+					</div>
+					
+				</div>
+			</div>
+			
+		<!--底部 -->
+			<div id="footer"></div>	
+			
+		<!---->	
+		</div>
+		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+	    <script src="js/jquery-1.12.1.min.js"></script>
+	    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+	    <script src="js/bootstrap.min.js"></script>
+	    <script type="text/javascript" src="js/index.js"></script>	
+	</body>
+</html>
