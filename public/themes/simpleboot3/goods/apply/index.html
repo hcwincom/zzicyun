@@ -1,0 +1,176 @@
+ 	 <include file="public@head"/> 
+  </head>
+  <body>
+  	<div class="topBanner">
+  		<!--公共头部-->		
+  		 <include file="public@header"/> 		
+			<!--导航-->
+			<div class="l-nav l_proNav">
+				<div class="nav">
+					<div class="clear">
+						<div id="allNav" class="allNav allNav_list fl"></div>							
+						 	<include file="public@nav"/>   	
+					</div>
+				</div>
+			</div>	
+			<!--样品申请详细内容-->
+			<div class="productMain">
+				<div class="wraper">
+					<!--banner-->
+					<div class="product_listBanner" style="position: relative;">
+						<div class="product_listimg">
+							<img src="__TMPL__/public/images/listbanner1.png" alt="" />
+						</div>
+						<div class="product-listad">
+							<div class="product-listline">
+								<span class="listline1">
+									<i class="iconfont icon-tishi"></i>
+									样品申请规则
+								</span>
+								<span class="listline2">
+									包邮
+									<i class="iconfont icon-fasong1"></i>
+								</span>
+							</div>
+							<div class="product-listInfo">
+								<p>1.会员每月最多可申请一次</p>
+								<p>2.每次样品申请最多可同时申请5种型号</p>
+								<p>3.部分商品有总价限制</p>
+								<p>4.样品订单成功通过审核后，5个工作日内寄出</p>
+								<p>5.如有任何问题，请联系在线客服</p>
+							</div>
+						</div>
+					</div>
+					<!--主要内容-->
+					<div class="product-sample totalback">
+						<div class="product-choose">
+							<form action="" method="post">
+								<div class="row">
+									<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+										<div class="choose-select">
+											<span>品牌</span>
+											<select name="pinselect" id="pinselect" class="pinselect">
+												<option value="0">请选择品牌</option>
+												<option value=""></option>
+											</select>
+										</div>
+										<div class="choose-select">
+											<span>分类</span>
+											<select name="pinselect" id="cateselect" class="cateselect">
+												<option value="0">请选择分类</option>
+												<option value=""></option>
+											</select>
+										</div>
+									</div>
+									<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+										<div class="choose-search searchWidth">
+											<input type="text" name="choInput" class="choInput" placeholder="请输入产品型号" />
+											<!--<button type="button" class="choBtn">查询</button>-->
+											<input type="button" name="" class="choBtn" value="查询" />
+										</div>
+										<div class="choose-search searGo">
+											<p class="chogo">
+												<i class="iconfont icon-gouwuche"></i>
+												样品篮子
+											</p>
+											<p class="choseNum" id="choseNum">
+												<a href="sample-basket.html">1</a>
+											</p>
+											
+										</div>
+										
+									</div>
+								</div>
+									
+							</form>
+							
+						</div>
+						
+						<div class="product-view">
+							<table class="table table-cell">
+								<thead>
+									<tr>
+										<th>产品型号</th>
+										<th>品牌</th>
+										<th>封装</th>
+										<th>描述</th>
+										<th width="10%">库存数量</th>
+										<th width="10%">最多申请数量</th>
+										<th width="10%">操作</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td class="verCenter">
+											<a href="product_detail.html">CC0201JRNPO9BN101</a>
+										</td>
+										<td>
+											<p>YAGEO </p>
+										</td>
+										<td>
+											<p>贴片内容 </p>
+										</td>
+										<td>
+											<p>MLCC-多层陶瓷电容器</p>
+										</td>
+										<td>
+											<p>20</p>
+										</td>
+										<td>
+											<p>20</p>
+										</td>
+										<td class="verColor">
+											<a class="add-sample" href="javascript:;">样品申请</a>
+											<!--<span class="">已申请</span>-->
+											<p>已有<span>4</span>人申请</p>
+										</td>
+									</tr>
+									
+								</tbody>
+							</table>
+							
+						</div>
+						<!--分页-->
+						<div class="page">
+							<div class="p-wrap" id="j_bottomPage">
+								<span class="p-num">
+									<a class="pn-prev disabled">
+										<i><</i>
+									</a>
+									<a href="javascript:void(0);" class="num curr">1</a>
+									<a href="javascript:void(0);" class="num">2</a>
+									<a href="javascript:void(0);" class="num">3</a>
+									<a href="javascript:void(0);" class="num">4</a>
+									<a href="javascript:void(0);" class="num">5</a>
+									<a href="javascript:void(0);" class="num">6</a>
+									<a href="javascript:void(0);" class="pn-next ">
+										<i>></i>	
+									</a>
+								</span>
+								<span class="p-skip">
+									<a href="javascript:void(0);">共  <i>10</i>页</a>
+								</span>
+								<span class="page_jump">
+									<i>第</i>
+									<input class="pageInput" type="text" value="1" onkeyup="value=value.replace(/[^\d]/g,'')" onblur="value=value.replace(/[^\d]/g,'')" name="pageNo" id="pageInput">
+									<i>页</i>
+								</span>
+								<span class="page_btn">
+									<button type="button" id="pagebtn" class="btn btn-default">确定</button>
+								</span>
+							</div>
+						</div>
+						<!---->	
+						
+					</div>
+					
+				</div>
+				
+				
+			</div>
+			
+				<include file="public@footer"/>   	
+		</div>
+			<include file="public@foot"/>   	
+	</body>
+</html>

@@ -1,20 +1,12 @@
 <?php
-// +----------------------------------------------------------------------
-// | ThinkCMF [ WE CAN DO IT MORE SIMPLE ]
-// +----------------------------------------------------------------------
-// | Copyright (c) 2013-2018 http://www.thinkcmf.com All rights reserved.
-// +----------------------------------------------------------------------
-// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
-// +----------------------------------------------------------------------
-// | Author: Powerless < wzxaini9@gmail.com>
-// +----------------------------------------------------------------------
+ 
 namespace app\user\controller;
-
-use cmf\controller\HomeBaseController;
+ 
 use think\Validate;
 use app\user\model\UserModel;
-
-class RegisterController extends HomeBaseController
+use app\common\controller\DeskBaseController;
+use think\Db;
+class RegisterController extends DeskBaseController
 {
 
     /**
@@ -33,10 +25,108 @@ class RegisterController extends HomeBaseController
         if (cmf_is_user_login()) {
             return redirect($this->request->root() . '/');
         } else {
-            return $this->fetch(":register");
+           $this->redirect('register');
         }
     }
-
+    /**
+     * 前台用户注册
+     */
+    public function register()
+    {
+        return $this->fetch();
+    }
+    /**
+     * 前台用户注册提交
+     */
+    public function register_ajax()
+    {
+        //{'phone':phone,'psw':psw,'email':email,'code':code},
+        if ($this->request->isPost()) {
+            $rules = [
+                'user_login'=> 'require|min:6|max:20',
+                'code'     => 'require|length:6',
+                'user_pass' => 'require|min:6|max:32',
+                'mobile'=>'require|number|length:11',
+                'user_email'=>'require|email',
+            ];
+             
+            $validate = new Validate($rules);
+            $validate->message([
+                'code.require'     => 'code_error',
+                'code.length'     => 'code_error',
+                'user_pass.require' => 'psw_error',
+                'user_pass.max'     => 'psw_error',
+                'user_pass.min'     => 'psw_error',
+                'user_login.require' => 'username_error',
+                'user_login.max'     => 'username_error',
+                'user_login.min'     => 'username_error',
+                'mobile.require' => 'mobile_error',
+                'mobile.length'     => 'mobile_error',
+                'user_email.require'     => 'email_error',
+                'user_email.email'     => 'email_error',
+            ]);
+            $time=time();
+            $data1= $this->request->post();
+            
+            $data=[
+                'user_login'=>$data1['username'],
+                'code'=>$data1['code'],
+                'user_pass'=>$data1['psw'],
+                'mobile'=>$data1['mobile'],
+                'user_email'=>$data1['email'],
+                'last_login_ip'   => get_client_ip(0, true),
+                'create_time'     => $time,
+                'last_login_time' => $time,
+                'user_status'     => 1,
+                "user_type"       => 2,//会员
+                
+            ];
+            
+            if (!$validate->check($data)) {
+                $this->error($validate->getError());
+            }
+            unset($data['code']);
+            $reg=config('reg');
+            //手机号验证
+            if(preg_match($reg['mobile'][0], $data['mobile'])!=1){
+                $this->error('mobile_error');
+            }
+            //用户名验证
+            if(preg_match($reg['user_login'][0], $data['user_login'])!=1){
+                $this->error('username_error');
+            }
+            $data['user_pass'] = cmf_password($data['user_pass']);
+            
+            $m_user=Db::name('user');
+            $tmp=$m_user->where('mobile',$data['mobile'])->find();
+            if(!empty($tmp)){
+                $this->error('mobile_used');
+            }
+            $tmp1=$m_user->where('user_email',$data['user_email'])->find();
+            if(!empty($tmp1)){
+                $this->error('email_used');
+            }
+            $tmp2=$m_user->where('user_login',$data['user_login'])->find();
+            if(!empty($tmp2)){
+                $this->error('username_used');
+            }
+            
+            $result  = $m_user->insertGetId($data);
+            if ($result !== false) {
+                $data   = $m_user->where('id', $result)->find();
+                cmf_update_current_user($data);
+                //验证码
+                session('verify',null);
+                $this->success("register_success");
+            } else {
+                $this->error("register_error");
+            }
+             
+        } else {
+            $this->error("request_error");
+        }
+        
+    }
     /**
      * 前台用户注册提交
      */

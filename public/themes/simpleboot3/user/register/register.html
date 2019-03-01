@@ -1,0 +1,127 @@
+ 
+  		<!--公共头部-->		
+  		 <include file="public@user_header"/> 		
+			 
+			<!--注册主要内容-->
+			<div class="register_content">
+				<div class="register_back">
+					<div class="wraper">
+						<div class="row">
+							<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+								<div class="loginImg">
+									<a href="" title="优惠券">
+										<img src="images/login_left.png" alt="" />
+									</a>
+								</div>
+							</div>
+							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+								<div class="title-nav">
+									<p>新用户注册</p>
+								</div>
+								<div class="register-list">
+									<form action="" method="post">
+										<div class="input-register">
+											<div class="input-box-re">
+												<span>手机号码</span>
+	            								<input type="text" class="phone-input register-input" placeholder="手机号码" id="pwdPhontInput" autocomplete="off">
+											</div>
+											<div class="input-box-re">
+												<span>用户名</span>
+	            								<input type="text" class="username register-input" placeholder="用户名"  autocomplete="off">
+											</div>
+											<div class="input-box-re">
+												<span>设置密码</span>
+												<input type="text" name="" id="" value="" class="psw register-input" placeholder="请输入密码"/>
+											</div>
+											<div class="input-box-re">
+												<span>确认密码</span>
+												<input type="text" name="" id="" value="" class="psw_sure register-input" placeholder="请确认密码" />
+											</div>
+											<div class="input-box-re">
+												<span>电子邮箱</span>
+												<input type="text" name="" id="" value="" class="email register-input" placeholder="请输入电子邮箱" />
+											</div>
+											<div class="input-box-re">
+												<div class="outer">
+													<div class="filter-box"></div>
+													<span>拖动方块到右边</span>
+													<div class="inner">&gt;&gt;</div>
+												</div>
+											</div>
+											<div class="input-box-re input-box-none clear">
+												<div class="fl" style="width: 60%;">
+													<input type="text" class="code-input" placeholder="手机验证码" autocomplete="off">
+												</div>
+												<a href="javascript:;" class="fr get-code not" id="loginMnote">获取验证码</a>
+											</div>	
+											<div class="input-box-re1">
+												<input type="checkbox" name="" id="" value="" />
+												<span>我已阅读并同意</span>
+												<a href="xieyi.html">《广诺科技用户注册协议》</a>
+											</div>
+											<div class="input-box-btn">
+												<button type="button" class="reg-btn" >确认注册</button>
+												<a href="login.html">已有账号，马上登录</a>
+											</div>
+									
+										</div>
+										<div class="error-info"></div>										
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--注册成功-->
+				<div class="register-succ" style="display: none;">
+					<div class="wraper">
+						<div class="succ-title">
+							<a href="/">去商城</a>
+						</div>
+						<div class="succ-content">
+							<span></span>
+							<h1>恭喜您，注册成功！</h1>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			<!--底部-->
+			  <include file="public@footer"/>
+		<!---->		
+		 <include file="public@login_foot"/>
+	</body>
+</html>
+<script>
+var url_register="{:url('user/Register/register_ajax')}";
+$('.reg-btn').click(function(){
+	var mobile=$.trim($('.phone-input').val());
+	var username=$.trim($('.username').val());
+	var psw=$.trim($('.psw').val());
+	var psw_sure=$.trim($('.psw_sure').val());
+	var email=$.trim($('.email').val());
+	var code=$.trim($('.code-input').val());
+	 //验证输入
+	 $.ajax({
+	        type: 'POST',
+	        url: url_register,
+	        dataType: 'json',
+	        data: {'mobile':mobile,'username':username,'psw':psw,'email':email,'code':code},
+	        success: function(data){ 
+	        	if(data.code==1){
+					//成功提示
+					 msg('成功');
+				}else{
+					//失败
+					msg(data.msg);
+				}
+	        },
+	        error: function(event, XMLHttpRequest, ajaxOptions, thrownError){ 
+	        	msg(event.responseText,1);
+	        	 
+	        }
+	        
+	    });
+		return false;
+});
+</script>

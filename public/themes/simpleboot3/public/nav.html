@@ -13,8 +13,8 @@
 				<a class="menu_list" href="{:url('shop/Shop/shop_list1')}">{$notice.index.manufacturer|default='manufacturer'}</a>
 			</div>
 		</li>
-		<li><a class="navItem" href="copy.html">{$notice.index.bom}</a></li>
-		<li><a class="navItem" href="product_list.html">{$notice.index.sample}</a></li>
+		<li><a class="navItem <eq name='html' value='bom'>active</eq>" href="{:url('goods/Bom/bom')}">{$notice.index.bom}</a></li>
+		<li><a class="navItem <eq name='html' value='apply_index'>active</eq>" href="{:url('goods/Apply/index')}">{$notice.index.sample}</a></li>
 		<li><a class="navItem <eq name='html' value='shop_list2'>active</eq>" href="{:url('shop/Shop/shop_list2')}" rel="nofollow">{$notice.index.agency}</a></li>
 		<li><a class="navItem <eq name='html' value='shop_list3'>active</eq>" href="{:url('shop/Shop/shop_list3')}" rel="nofollow">{$notice.index.distributor}</a></li>
 		<li><a class="navItem" href="recruiting_suppliers.html" rel="nofollow">{$notice.index.recruit}</a></li>

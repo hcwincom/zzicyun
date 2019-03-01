@@ -45,5 +45,31 @@ class ArticleCateModel extends Model
         
         return $list;
     }
-   
+    /**
+     * 获取文章分类名
+     * @param number $lan
+     * @param number $lan1
+     * @param number $limit
+     * @return $list
+     */
+    public function get_info($lan=1,$lan1=1,$cid){
+        
+        $field='p.id,p.name,val.name as lan_name,val.dsc';
+        $where=[
+            'pid'=>$cid,
+            'lid'=>$lan
+        ];
+        $info=Db::name('cmf_article_cate_val')->where($where)->find();
+        
+        if(empty($info)){
+            $where=[
+                'pid'=>$cid,
+                'lid'=>$lan1
+            ];
+            $info=Db::name('cmf_article_cate_val')->where($where)->find();
+        }
+        
+        
+        return $info;
+    }
 }
