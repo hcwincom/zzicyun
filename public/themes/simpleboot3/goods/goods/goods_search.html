@@ -132,9 +132,12 @@
 					 
 					 										
 				</div>
-			</div>			
+			</div>
+			
 		 	<div class="page">
-			 {$page}
+				 <ul class="guyuan_hhu">
+					{$page}
+				 </ul>
 			 </div>
 			<!--底部 -->
 			<include file="public@footer" />
@@ -164,9 +167,21 @@
 		    		});
 	    		});
 	    		
-	    		
-	    		
-	    	});
-	    </script>
+			});
+			
+			$("#priceSort").click(function () {
+				$(".hidSort").val("price1");
+				$("#filterForm").submit();
+			});
+			$("#synthesize").click(function () {
+				$(".hidSort").val("");
+				$("#filterForm").submit();
+			});
+			$("#repertory").click(function () {
+				$(".hidSort").val("store1");
+				$("#filterForm").submit();
+			});
+			
+		</script>
 	</body>
 </html>

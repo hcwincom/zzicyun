@@ -5,9 +5,9 @@
 			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 				<div class="form-inline form-border">
 					<!-- 点击sort=price1 -->
-					<a href="javascript:void(0);" class="<empty name='data.sort'>sear_select</empty>">{$notice.index.synthesize}{$notice.index.sort}</a>
-					<a href="javascript:void(0);" class="<eq name='data.sort' value='price1'>sear_select</eq>">{$notice.index.price}{$notice.index.sort}</a>
-					<a href="javascript:void(0);" class="<eq name='data.sort' value='store1'>sear_select</eq>">{$notice.index.hand}{$notice.index.sort}</a>
+					<a href="javascript:void(0);" id="synthesize" class="<empty name='data.sort'>sear_select</empty>">{$notice.index.synthesize}{$notice.index.sort}</a>
+					<a href="javascript:void(0);" id="priceSort" class="<eq name='data.sort' value='price1'>sear_select</eq>">{$notice.index.price}{$notice.index.sort}</a>
+					<a href="javascript:void(0);" id="repertory" class="<eq name='data.sort' value='store1'>sear_select</eq>">{$notice.index.hand}{$notice.index.sort}</a>
 					<div class="form-group">
 						<div  class="checkbox-inline">
 							<label>
@@ -32,11 +32,11 @@
 		               case 'store1':
 		                   //库存升序 
 		               case 'store2': -->
-					<input type="hidden" name="sort" value=""/>
+					<input type="hidden" name="sort" class="hidSort" value="kk"/>
 					<button type="submit" class="btn_sub">{$notice.index.search}</button>
 				</div>
 			</div>
 		</div>
 	</div>
 </form>
-					 
+	

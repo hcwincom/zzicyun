@@ -144,7 +144,7 @@ function setTotal(){
 		var stepNum = parseInt($(this).find("span").text());
 		if(singleNum >= stepNum){
 			var singlePrice = parseFloat($(this).next("td").find("span").text());
-			console.log(singlePrice);
+			// console.log(singlePrice);
 			$(".detail_pri").find("i").text(singlePrice);
 			allPrice = singleNum*singlePrice;
 		}
@@ -211,9 +211,9 @@ function plus(tag,sellprice,stock){
 		var stepsNum = parseInt($(this).find("span").text()); // 阶梯数量
 		if(orderNum >= stepsNum){
 			var stepsPrice = parseFloat($(this).next(".steps_price").find("span").text()); // 阶梯单价
-			console.log(stepsPrice);
+			// console.log(stepsPrice);
 			totalAmount = stepsPrice*orderNum;
-			console.log(totalAmount);
+			// console.log(totalAmount);
 		}
 		$(this).parents(".padStep").next().next(".addUp").find(".totalPrice span").html(totalAmount.toFixed(2));
 	});
