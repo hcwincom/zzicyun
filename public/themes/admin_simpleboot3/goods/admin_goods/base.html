@@ -45,6 +45,19 @@
     </div>
 </div>
 <div class="form-group">
+    <label for="" class="col-sm-2 control-label">Rohs</label>
+    <div class="col-md-6 col-sm-10">
+       <select name="is_rohs" class="form-control">
+       		<foreach name="is_rohs" item="vo">
+       		<option value="{$key}" <if condition="$key eq $info.is_rohs">selected</if>>{$vo}</option>
+       		</foreach>
+       </select>
+      <present name="change.is_rohs">
+      	 <input type="text" class="form-control red"  value="{$is_rohs[$change.is_rohs]|default=$change.is_rohs}" /> 
+      </present>  
+    </div>
+</div>
+<div class="form-group">
     <label for="" class="col-sm-2 control-label">库存编号</label>
     <div class="col-md-6 col-sm-10">
         <input type="text" class="form-control" name="store_code" value="{$info.store_code}" />

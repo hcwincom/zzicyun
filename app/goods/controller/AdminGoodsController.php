@@ -24,7 +24,7 @@ class AdminGoodsController extends AdminInfoController
         $this->m=new GoodsModel();
         $this->base=['name'=>'str','sort'=>'int','dsc'=>'str','cid'=>'int','num_min'=>'int','brand'=>'int',
             'num_times'=>'int','price1'=>'round5','price2'=>'round5','store_code'=>'str','pic'=>'str','pic0'=>'str',
-            'goods_time1'=>'int','goods_time2'=>'int','store_sure'=>'int','shop_type'=>'int',
+            'goods_time1'=>'int','goods_time2'=>'int','store_sure'=>'int','shop_type'=>'int','is_rohs'=>'int'
         ];
          
         $this->isshop=1;
@@ -391,6 +391,7 @@ class AdminGoodsController extends AdminInfoController
         $goods_times=Db::name('goods_time')->where('status',2)->order('sort asc')->column('id,name');
         $this->assign('goods_times',$goods_times);
         $this->assign('store_sures',config('store_sures'));
+        $this->assign('is_rohs',config('is_rohs'));
     }
     /*删除前检查  */
     public function del_before($ids){

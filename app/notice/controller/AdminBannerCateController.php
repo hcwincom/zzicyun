@@ -17,7 +17,7 @@ class AdminBannerCateController extends AdminInfoController
         $this->flag='广告图类型';
         $this->table='banner_cate';
         $this->m=Db::name('banner_cate');
-        $this->base=['name'=>'str','sort'=>'int','dsc'=>'str','width'=>'int','height'=>'int'];
+        $this->base=['name'=>'str','sort'=>'int','dsc'=>'str','width'=>'int','height'=>'int','num'=>'int'];
         
         //没有店铺区分
         $this->isshop=0;

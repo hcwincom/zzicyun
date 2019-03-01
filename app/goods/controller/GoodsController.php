@@ -91,12 +91,12 @@ class GoodsController extends DeskBaseController
                
                $m_param=new GoodsParamModel();
                $params=$m_param->get_params_by_templates($lan1,$lan2,$template_ids); 
-           }
-         
+           } 
        }
        $list=Db::name('goods')
        ->alias('p')
        ->join('cmf_goods_val val','val.pid=p.id and val.lid='.$lan1) 
+       ->where($where)
        ->column($field);
        $goods_ids=array_keys($list);
        $shop_ids=[]; 

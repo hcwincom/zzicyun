@@ -27,7 +27,7 @@ class AdminShopController extends AdminInfoController
             'address'=>'str',
             'code'=>'str',
             'logo'=>'str',
-            
+            'show_time'=>'str'
         ];
         $this->islan=1;
         $this->vals=[
@@ -339,6 +339,18 @@ class AdminShopController extends AdminInfoController
         $this->assign('chars',config('chars'));
         $pic_conf=config('pic_shop');
         $this->assign('pic_conf',$pic_conf);
+    }
+    /**
+     * 参数值过滤
+     *   */
+    public function param_check(&$data){
+        parent::param_check($data);
+        if(empty($data['show_time'])){
+            $data['show_time']=time();
+        }else{
+            $data['show_time']=strtotime($data['show_time']);
+        }
+        return 1;
     }
     /*额外添加的信息，一般是图片文件 */
     public function add_do_after($id,$data){
