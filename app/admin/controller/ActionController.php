@@ -99,7 +99,7 @@ class ActionController extends AdminBaseController
         ->where($where)
         ->order('p.time desc')
         ->paginate();
-       
+      
         // 获取分页显示
         $page = $list->render(); 
        //得到所有管理员

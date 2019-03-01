@@ -74,7 +74,7 @@ class GoodsController extends DeskBaseController
        $field='p.id,p.code,p.pic,p.pic0,p.store_num,p.store_code,p.store_sure,p.brand,p.price1,p.price2,p.goods_time1,p.goods_time2,p.shop'.
            ',p.num_min,p.num_times,p.num_one,val.name as name,val.dsc as dsc,val.production_code as production_code,val.production_factory as production_factory';
        $where=['p.status'=>2];
-       $order='p.shop_type asc,p.sort asc';
+      
        //条件筛选 
        $params=[];
        if(!empty($data['cid'])){
@@ -93,12 +93,55 @@ class GoodsController extends DeskBaseController
                $params=$m_param->get_params_by_templates($lan1,$lan2,$template_ids); 
            } 
        }
+       
+       //条件筛选
+       if(empty($data['name'])){
+           $data['name']='';
+       }else{
+           $where['p.code|val.name|val.production_code']=['like','%'.$data['name'].'%'];
+       }
+       //排序 
+       $order='p.shop_type asc,';
+       if(empty($data['sort'])){
+           $data['sort']='';
+       }else{
+           switch($data['sort']){
+               case 'price1':
+                   //价格升序
+                   $order='p.price1 asc,';
+                   break;
+               case 'price2':
+                   //价格降序
+                   $order='p.price1 desc,';
+                   break;
+               case 'store1':
+                   //库存升序
+                   $order='p.price1 asc,';
+                   break;
+               case 'store2':
+                   //库存降序
+                   $order='p.store2 desc,';
+                   break;
+           }
+       }
+       //显示有库存
+       if(empty($data['is_store'])){
+           $data['is_store']=0;
+       }else{
+           $where['p.store_num']=['gt',0];
+       }
+       $order=$order.'p.sort asc'; 
        $list=Db::name('goods')
        ->alias('p')
        ->join('cmf_goods_val val','val.pid=p.id and val.lid='.$lan1) 
        ->where($where)
-       ->column($field);
-       $goods_ids=array_keys($list);
+       ->field($field)
+       ->paginate(2);
+       
+       // 获取分页显示
+       $page = $list->appends($data)->render();
+      
+       $goods_ids=[];
        $shop_ids=[]; 
        $shop_names=[];
        $goods_list=[];
@@ -110,7 +153,7 @@ class GoodsController extends DeskBaseController
            //得到供应商和品牌id
            foreach($list as $k=>$v){
                $shop_ids[]=$v['shop']; 
-              
+               $goods_ids[]=$v['id'];
            }
            //供应商名
            $m_shop=new ShopModel();
@@ -123,12 +166,12 @@ class GoodsController extends DeskBaseController
                    $type=100;
                }
                if(isset($goods_list[$type])){
-                   $goods_list[$type]['list'][$k]=$v;
+                   $goods_list[$type]['list'][$v['id']]=$v;
                    $goods_list[$type]['num']++;
                }else{
                    $goods_list[$type]=[
                        'num'=>1,
-                       'list'=>[$k=>$v] 
+                       'list'=>[$v['id']=>$v] 
                    ]; 
                }
                
@@ -160,6 +203,8 @@ class GoodsController extends DeskBaseController
        $this->assign('goods_times',$goods_times); 
        $this->assign('price_list',$price_list); 
        $this->assign('file_list',$file_list); 
+       $this->assign('data',$data); 
+       $this->assign('page',$page); 
        return $this->fetch();
    }
    /**

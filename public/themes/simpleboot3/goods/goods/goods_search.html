@@ -118,35 +118,7 @@
 			<!--搜索内容-->
 			<div id="pro_main" class="pro_main clear">
 				<div class="proWraper">
-					<form action="" id="filterForm" method="post" role="form">
-						<div class="proList-srh">
-							<div class="row">
-								<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-									<div class="form-inline form-border">
-										<a href="javascript:void(0);" class="sear_select">{$notice.index.synthesize}{$notice.index.sort}</a>
-										<a href="javascript:void(0);">{$notice.index.price}{$notice.index.sort}</a>
-										<a href="javascript:void(0);">{$notice.index.hand}{$notice.index.sort}</a>
-										<div class="form-group">
-											<div  class="checkbox-inline">
-												<label>
-							                        <input name="isInventory" type="checkbox" class="checkbox-item" id="filter-iselected">{$notice.index.only}{$notice.index.inventory}
-							                    </label>
-											</div>
-											
-										</div>
-									</div>
-								</div>
-								<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-									<div class="form-inline form-sear">
-										<div class="input-group">
-											<input type="text" name="control" id="control" value="" class="form-control" placeholder="在结果中搜索"/>
-										</div>
-										<button type="submit" class="btn_sub">{$notice.index.search}</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</form>
+					  <include file="goods@goods:goods_form" />
 					<!--自营产品-->
 					<foreach name="goods_list" item="vo" key="kshop_type">
 						<div class="port_title">
@@ -161,7 +133,9 @@
 					 										
 				</div>
 			</div>			
-		 
+		 	<div class="page">
+			 {$page}
+			 </div>
 			<!--底部 -->
 			<include file="public@footer" />
 			

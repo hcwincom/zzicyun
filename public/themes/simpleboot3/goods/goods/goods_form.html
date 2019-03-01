@@ -1,0 +1,42 @@
+ 
+<form action="" id="filterForm" method="post" role="form">
+	<div class="proList-srh">
+		<div class="row">
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<div class="form-inline form-border">
+					<!-- 点击sort=price1 -->
+					<a href="javascript:void(0);" class="<empty name='data.sort'>sear_select</empty>">{$notice.index.synthesize}{$notice.index.sort}</a>
+					<a href="javascript:void(0);" class="<eq name='data.sort' value='price1'>sear_select</eq>">{$notice.index.price}{$notice.index.sort}</a>
+					<a href="javascript:void(0);" class="<eq name='data.sort' value='store1'>sear_select</eq>">{$notice.index.hand}{$notice.index.sort}</a>
+					<div class="form-group">
+						<div  class="checkbox-inline">
+							<label>
+		                        <input name="is_store" <notempty name="data.is_store">checked</notempty> value="1" type="checkbox" class="checkbox-item" id="filter-iselected">{$notice.index.only}{$notice.index.inventory}
+		                    </label>
+						</div>
+						
+					</div>
+					 
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<div class="form-inline form-sear">
+					<div class="input-group">
+						<input type="text" name="name" value="{$data.name}"  id="control" value="" class="form-control" placeholder="在结果中搜索"/>
+					</div>
+					<input type="hidden" name="page" value="1"/>
+					<!--  case 'price1':
+		                   //价格升序 
+		               case 'price2':
+		                   //价格降序 
+		               case 'store1':
+		                   //库存升序 
+		               case 'store2': -->
+					<input type="hidden" name="sort" value=""/>
+					<button type="submit" class="btn_sub">{$notice.index.search}</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+					 

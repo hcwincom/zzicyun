@@ -172,22 +172,63 @@ class ShopController extends DeskBaseController
        ];
        $order='p.sort asc';
        //条件筛选 
-       if(!empty($data['name'])){
+       if(empty($data['name'])){
+           $data['name']='';
+       }else{
            $where['p.code|val.name|val.production_code']=['like','%'.$data['name'].'%'];
        }
-       $list=Db::name('goods')
+       //排序
+       $order='';
+       if(empty($data['sort'])){
+           $data['sort']='';
+       }else{
+           switch($data['sort']){
+               case 'price1':
+                   //价格升序
+                   $order='p.price1 asc,';
+                   break;
+               case 'price2':
+                   //价格降序
+                   $order='p.price1 desc,';
+                   break;
+               case 'store1':
+                   //库存升序
+                   $order='p.price1 asc,';
+                   break;
+               case 'store2':
+                   //库存降序
+                   $order='p.store2 desc,';
+                   break;
+           }
+       }
+       //显示有库存
+       if(empty($data['is_store'])){
+           $data['is_store']=0;
+       }else{
+           $where['p.store_num']=['gt',0];
+       }
+       $order=$order.'p.sort asc'; 
+       $list0=Db::name('goods')
        ->alias('p')
        ->join('cmf_goods_val val','val.pid=p.id and val.lid='.$lan1) 
        ->where($where)
-       ->column($field);
-       $goods_ids=array_keys($list);
+       ->field($field)
+       ->paginate(2);
+       
+       // 获取分页显示
+       $page = $list0->appends($data)->render();
+       $list=[];
+       $goods_ids=[];
        
        //阶梯价格
        $price_list=[];
        //产品文件
        $file_list=[];
-       if(!empty($list)){
-            
+       if(!empty($list0)){
+           foreach ($list0 as $k=>$v){
+               $goods_ids[]=$v['id'];
+               $list[$v['id']]=$v;
+           }
            //阶梯价格
            $m_price=new GoodsPriceModel();
            $price_list=$m_price->get_all_by_pids($goods_ids);
@@ -208,7 +249,9 @@ class ShopController extends DeskBaseController
        $goods_times=$m_time->get_list($lan1,$lan2);
        
        $this->assign('goods_lists',$list);
+       $this->assign('page',$page);
        $this->assign('info',$shop);
+       $this->assign('data',$data);
        //本店铺
        $shop_names=[$shop['id']=>$shop];
        $this->assign('brand_cates',$brand_cates);
