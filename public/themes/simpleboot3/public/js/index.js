@@ -281,7 +281,7 @@ function setTotalScart(){
 	
 }	
 setTotalScart();
-
+// 单选
 $(".shop-check").click(function(){
 	var check=$(".shop-check").length; 
 	console.log(check);
@@ -379,6 +379,39 @@ function allPrice(){
 	}); 
 	$(".allPrice1").html(sum.toFixed(2)); 
 }
+
+
+
+
+// 商品详情页加入购物车计算
+
+$(".de_oplus").click(function () {
+
+	var _this = $(this);
+	var input = _this.prev('input');
+	var lessNum = parseInt($(".lessNum").find("span").text());  // 最小数量
+	console.log(lessNum);
+	var diploidNum = parseInt($(".diploid").find("span").text());  // 倍数
+	console.log(diploidNum);
+	var amount = parseInt(input.val());
+	amount++;
+	console.log(amount);
+	
+	var amountNum = amount * diploidNum;
+	console.log(amountNum);
+	input.val(amountNum);
+
+
+
+});
+
+
+
+
+
+
+
+
 
 
 
