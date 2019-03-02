@@ -383,26 +383,35 @@ function allPrice(){
 
 
 
+
+
+
+
+
 // 商品详情页加入购物车计算
-
+var num = 0;
 $(".de_oplus").click(function () {
-
 	var _this = $(this);
 	var input = _this.prev('input');
 	var lessNum = parseInt($(".lessNum").find("span").text());  // 最小数量
-	console.log(lessNum);
 	var diploidNum = parseInt($(".diploid").find("span").text());  // 倍数
-	console.log(diploidNum);
-	var amount = parseInt(input.val());
-	amount++;
-	console.log(amount);
-	
-	var amountNum = amount * diploidNum;
-	console.log(amountNum);
-	input.val(amountNum);
-
-
-
+	num++;
+	console.log(num);
+	var amount = num * diploidNum; 
+	input.val(amount);
+	var amountNum = parseInt(input.val());
+	$(".stepItem").each(function () {
+		console.log(amountNum);
+		var stepNum = parseInt($(this).find("span").text());
+		console.log(stepNum);
+		if (amountNum >= stepNum) {
+			var singlePrice = parseFloat($(this).next("td").find("span").text());
+			 console.log(singlePrice);
+			$(".detail_pri").find("i").text(singlePrice.toFixed(2));
+			allPrice = amountNum * singlePrice;
+		}
+		$(".allPrice").html(allPrice.toFixed(2));
+	});
 });
 
 

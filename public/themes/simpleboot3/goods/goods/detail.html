@@ -199,7 +199,7 @@
 														<p class="btn-add de_omin" onclick="minus(this,'9.9','100');">
 															<span class="glyphicon glyphicon-minus"></span>
 														</p>
-														<input type="text" class="btn-num de_onum" value="56" name="count" />
+														<input type="text" class="btn-num de_onum" value="" name="count" />
 														<p class="btn-add de_oplus">
 															<span class="glyphicon glyphicon-plus"></span>
 														</p>
@@ -214,7 +214,7 @@
 												<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5" style="padding-left: 0;">
 													<!-- 合计 -->
 													<div class="detail_total">
-														<p>{$notice.detail.total}：<span>¥<i>123</i></span></p>
+														<p>{$notice.detail.total}：<span>¥<i class="allPrice">123</i></span></p>
 													</div>
 												</div>
 											</div>
@@ -254,20 +254,20 @@
 										<tbody>
 											<tr>
 												<!-- 阶梯价格 -->
-												<td class="stepNum stepItem"><p>1+</p></td>
-												<td class="stepPrice"><p>￥{$info.price1}</p></td>
-												<td class="stepPrice2"><p>${$info.price2}</p></td>
+												<td class="stepNum stepItem"><p><span>1</span>+</p></td>
+												<td class="stepPrice"><p>￥<span>{$info.price1}</span></p></td>
+												<td class="stepPrice2"><p>$<span>{$info.price2}</span></p></td>
 											</tr>
 										<foreach name="info.prices" item="vo">
 											<tr>
-												<td class="stepLast stepItem"><p>{$vo.num}+</p></td>
+												<td class="stepLast stepItem"><p><span>{$vo.num}</span>+</p></td>
 											<if condition="empty($vo.price1) || empty($vo.price2)">
 												<td colspan="2" class="bjbtn">
 													<a class="offerPop" href="javascript:void(0);">{$notice.detail.quote}</a>
 												</td>
 											<else/>
-												<td><p>￥{$vo.price1}</p></td>
-												<td><p>${$vo.price2}</p></td>
+												<td><p>￥<span>{$vo.price1}</span></p></td>
+												<td><p>$ <span>{$vo.price2}</span></p></td>
 											</if>
 												 
 											</tr>
