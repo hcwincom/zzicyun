@@ -1,0 +1,57 @@
+ 	  	 <include file="public@head"/> 
+  </head>
+  <body>
+  	<div class="topBanner">
+  		<!--公共头部-->		
+  		 <include file="public@header"/> 		
+			<!--导航-->
+			<div class="l-nav l_proNav">
+				<div class="nav">
+					<div class="clear">
+						<div id="allNav" class="allNav allNav_list fl"></div>							
+						 	<include file="public@nav"/>   	
+					</div>
+				</div>
+			</div>	
+			<!--资讯详情主要内容-->
+			<div class="infoPart">
+				<div class="wraper totalback">
+					<div class="infoTitle">
+						<span>{$cate_info.lan_name}:</span>
+					</div>
+				</div>
+				<div class="wraper totalback" style="margin-top: 10px;">
+					<div class="proclan-cont">
+						<ul>
+							<foreach name="list" item="vo">
+							<li>
+								<a href="{:url('notice/Article/article_detail',['id'=>$vo.id])}">
+									<span>{$vo.name}</span>
+									<eq name="vo.is_hot" value="1">
+									<div class="imgTip">
+											<img src="__TMPL__/public/img/protip.png" alt="" />
+									</div>
+									</eq>
+								</a>
+							</li>
+							</foreach>
+							 
+						</ul>
+						<div class="pro-page">
+							<!--分页-->
+							  <include file="public@page"/> 
+							<!---->	
+
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			
+			<!--底部 -->
+			 <include file="public@footer"/> 
+		<!---->
+		</div>
+		 <include file="public@foot"/> 
+	</body>
+</html>

@@ -54,21 +54,29 @@ class ArticleCateModel extends Model
      */
     public function get_info($lan=1,$lan1=1,$cid){
         
-        $field='p.id,p.name,val.name as lan_name,val.dsc';
+       
+        $name=$this->where('id',$cid)->value('name');
+        $info=['id'=>$cid,'name'=>$name];
         $where=[
             'pid'=>$cid,
             'lid'=>$lan
         ];
-        $info=Db::name('cmf_article_cate_val')->where($where)->find();
+        $info0=Db::name('article_cate_val')->where($where)->find();
         
-        if(empty($info)){
+        if(empty($info0)){
             $where=[
                 'pid'=>$cid,
                 'lid'=>$lan1
             ];
-            $info=Db::name('cmf_article_cate_val')->where($where)->find();
+            $info0=Db::name('article_cate_val')->where($where)->find();
         }
-        
+        if(empty($info0)){
+            $info['lan_name']='';
+            $info['dsc']='';
+        }else{
+            $info['lan_name']=$info0['name'];
+            $info['dsc']=$info0['dsc'];
+        }
         
         return $info;
     }

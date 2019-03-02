@@ -28,7 +28,11 @@ class AdminNoticeConfController extends AdminInfoController
             'shop_types'=>'供应商类型',
             'pdf_cates'=>'产品文件类型',
             'store_sures'=>'库存类型',
+            'is_rohs'=>'是否符合rohs标准',
+            'user_rates'=>'用户等级',
+            'user_cates'=>'用户类型', 
         ];
+        
         $this->assign('flag',$this->flag);
         $this->assign('table',$this->table);
         $this->assign('confs',$this->vals);

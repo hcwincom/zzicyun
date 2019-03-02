@@ -15,8 +15,8 @@ class ArticleModel extends Model
       */
     public function get_limit($lan=1,$lan1=1,$where=['p.status'=>2],$limit=7){
        
-        $field='p.id,p.clicked,p.ctime,p.pic,val.name';
-        $order='p.sort asc,p.clicked desc,p.ctime desc';
+        $field='p.id,p.clicked,p.is_hot,p.ctime,p.pic,val.name';
+        $order='p.is_hot asc,p.sort asc,p.clicked desc,p.ctime desc';
         $list=$this
         ->alias('p')
         ->join('cmf_article_val val','val.pid=p.id and val.lid='.$lan)
@@ -37,37 +37,62 @@ class ArticleModel extends Model
         return $list;
     }
     /**
-     * 获取文章详情
+     * 获取文章列表和分页
      * @param number $lan
      * @param number $lan1
-     * @param number $id
-     * @return $info
+     * @param number $limit
+     * @return ['list'=>$list,'page'=>$pages];
      */
-    public function get_info($lan=1,$lan1=1,$id){
-         
-        $field=['name','content'];
-        $where=['id'=>$id];
-        $info=$this->where('id',$id)->find();
-        if(empty($info)){
-            return null;
-        }
-        $info=$info->getData();
-        $where=[
-            'pid'=>$id,
-            'lid'=>$lan,
+    public function get_page($lan=1,$lan1=1,$data,$page=15){
+        $field_array=[
+            'id','name','clicked','is_hot','ctime','pic'
         ];
-        $val_info=Db::name('cmf_article_val')->where($where)->find();
-        if(empty($val_info)){
-            $where['lid']=$lan1;
-            $val_info=Db::name('cmf_article_val')->where($where)->find();
+        $field_str=implode(',', $field_array); 
+        $order='is_hot asc,sort asc,clicked desc,ctime desc';
+        $where=['cid'=>$data['cid'],'status'=>2];
+        $ids0=$this->field($field_str)->where($where)->order($order)->paginate($page);
+        if(empty($ids0)){
+            return ['list'=>[],'page'=>null];
         }
-        //多语言值
-        foreach($field as $k=>$v){ 
-            $info[$v]=(isset($val_info[$v]))?$val_info[$v]:'';
+        $pages=$ids0->appends($data)->render();
+        $ids=[];
+        $list=[];
+        foreach($ids0 as $k=>$v){
+            $ids[]=$v['id'];
+            $list[$v['id']]=[];
+            foreach($field_array as $vv){
+                $list[$v['id']][$vv]=$v[$vv];
+            }
+            
         }
-        
-        return $info;
+        $m_val=Db::name('article_val');
+        $where=[
+            'pid'=>['in',$ids],
+            'lid'=>$lan
+        ];
+        $field_val='pid,name,content';
+        $vals=$m_val->where($where)->column($field_val);
+       
+        if(empty($vals)){
+            $where=[
+                'pid'=>['in',$ids],
+                'lid'=>$lan1
+            ];
+            $vals=$m_val->where($where)->column($field_val);
+        }
+        foreach($list as $k=>$v){
+           if(isset($vals[$k])){
+               
+               $list[$k]['content']='';
+           }else{
+               $list[$k]['name']=$vals[$k]['name'];
+               //过滤文字
+               $list[$k]['content']=zz_get_content[$vals[$k]['content']];
+           }
+       }
+       return ['list'=>$list,'page'=>$pages];
     }
+    
     /**
      * 获取文章详情和上一篇，下一篇
      * @param number $lan
@@ -109,10 +134,10 @@ class ArticleModel extends Model
             'pid'=>['in',$ids],
             'lid'=>$lan,
         ];
-        $vals=Db::name('cmf_article_val')->where($where)->column('*','pid');
+        $vals=Db::name('article_val')->where($where)->column('*','pid');
         if(empty($vals)){
             $where['lid']=$lan1;
-            $vals=Db::name('cmf_article_val')->where($where)->column('*','pid');
+            $vals=Db::name('article_val')->where($where)->column('*','pid');
         }
         //多语言值
         $list=[];
@@ -130,8 +155,7 @@ class ArticleModel extends Model
         if(isset($vals[$last])){ 
             $list['last']=[
                 'id'=>$last,
-                'name'=>$vals[$last]['name'],
-                'content'=>$vals[$last]['content'],
+                'name'=>$vals[$last]['name'], 
             ];
         }else{ 
             $list['last']=null;
@@ -140,8 +164,7 @@ class ArticleModel extends Model
         if(isset($vals[$next])){
             $list['next']=[
                 'id'=>$next,
-                'name'=>$vals[$next]['name'],
-                'content'=>$vals[$next]['content'],
+                'name'=>$vals[$next]['name'], 
             ];
         }else{
             $list['next']=null;
@@ -151,4 +174,8 @@ class ArticleModel extends Model
         return $list;
     }
    
+    //点击加一
+    public function clicked($id){
+       $this->where('id',$id)->setInc('clicked',1);
+    }
 }

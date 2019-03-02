@@ -24,7 +24,18 @@
 					<div class="input-group">
 						<input type="text" name="name" value="{$data.name}"  id="control" value="" class="form-control" placeholder="在结果中搜索"/>
 					</div>
+					<notempty name="data.brand">
+					<foreach name="data.brand" item="vbrand">
+				 		<input type="hidden" name="brand[]" value="{$vbrand}"/>
+					</foreach> 
+					</notempty>
+					<notempty name="data.param">
+					<foreach name="data.param" item="vparam" key="kparam">
+				 		<input type="hidden" name="param[{$kparam}]" value="{$vparam}"/>
+					</foreach> 
+					</notempty>
 					<input type="hidden" name="page" value="1"/>
+					<input type="hidden" name="cid" value="{$data.cid|default=0}"/>
 					<!--  case 'price1':
 		                   //价格升序 
 		               case 'price2':
@@ -32,7 +43,7 @@
 		               case 'store1':
 		                   //库存升序 
 		               case 'store2': -->
-					<input type="hidden" name="sort" class="hidSort" value="kk"/>
+					<input type="hidden" name="sort" class="hidSort" value=""/>
 					<button type="submit" class="btn_sub">{$notice.index.search}</button>
 				</div>
 			</div>

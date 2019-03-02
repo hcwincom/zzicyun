@@ -117,7 +117,20 @@
 	 
     </div>
 </div>
- 
+ <div class="form-group">
+    <label for="" class="col-sm-2 control-label">店铺产品图标</label>
+    <div class="col-md-6 col-sm-10">
+     	<input type="hidden" class="form-control" id="icon" name="icon" value="{$info.icon}">
+        <a href="javascript:uploadOneImage('图片上传','#icon');">上传图片</a>
+          <notempty name="pic_conf_icon"><span class="notice">建议尺寸{$pic_conf_icon.width}*{$pic_conf_icon.height}</span></notempty>
+        <img id="icon-preview" src="{:cmf_get_image_url($info.icon)}" width="{$pic_conf_icon.width}" height="{$pic_conf_icon.height}">
+         
+        <present name='change.icon'>
+            更改图片 <img  src="{:cmf_get_image_url($change.icon)}"  width="{$pic_conf_icon.width}" height="{$pic_conf_icon.height}">
+        </present> 
+	 
+    </div>
+</div>
 <div class="form-group">
     <label for="" class="col-sm-2 control-label">审核模式</label>
     <div class="col-md-6 col-sm-10">

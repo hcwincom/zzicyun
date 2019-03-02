@@ -497,7 +497,7 @@ function zz_curl($url, $data = null)
  * @param $list 列表
  * @param $len 截取文本长度
  */
-function zz_get_content($list,$len=100){
+function zz_get_contents($list,$len=100,$charset='utf-8'){
     //过滤富文本
     $tmp=[];
     foreach ($list as $k=>$v){
@@ -512,7 +512,21 @@ function zz_get_content($list,$len=100){
     }
     return $tmp;
 }
-
+/**
+ *过滤HTML得到纯文本
+ * @param $content 富文本
+ * @param $len 截取文本长度
+ */
+function zz_get_content($content,$len=100,$charset='utf-8'){
+    //过滤富文本 
+   
+    $content= htmlspecialchars_decode($content); //把一些预定义的 HTML 实体转换为字符
+    $content= str_replace("&nbsp;","",$content);//将空格替换成空
+    $content= strip_tags($content);//函数剥去字符串中的 HTML、XML 以及 PHP 的标签,获取纯文本内容
+    $content= mb_substr($content, 0, $len,$charset);//返回字符串中的前100字符串长度的字符
+    
+    return $content;
+}
  
 /**
  *制作缩略图

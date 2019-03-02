@@ -1,0 +1,140 @@
+ <!--公共头部-->		
+  		 <include file="public@user_header"/> 	
+			<!--主要内容-->
+			<div class="person-content">
+				<div class="wraper row totalback">
+					 <include file="public@user_left"/> 	
+					 
+					<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10" style="padding: 0;">
+						<div class="person-right">
+							<div class="person-right-head">
+								<p class="perpadding">
+									<span>会员信息</span>
+									<i class="iconfont icon-jiantoudown"></i>
+									<a href="">基本信息</a>
+								</p>
+							</div>
+							<div class="person-detail-content">
+								<div class="baseTitle">
+									<h3>基本信息</h3>
+								</div>
+								<form action="" method="post">
+									<div class="basic-cont">
+										<div class="basic-box clear">
+											<p class="fl headPic">更换头像</p>
+											<div class="fl basicRight">
+												<label for="photo" class="headPhoto">
+													<p>上传图片</p>
+													<input type="file" name="photo" id="photo" class="hideinp"  accept="image/*" capture="camera"/>
+													<div id="prev" class="prevImg"></div>
+												</label>
+											</div>
+										</div>
+										<div class="basic-box clear">
+											<p class="fl">手机号码</p>
+											<div class="fl basicRight">
+												<p>{$user.mobile}</p>
+											</div>
+										</div>
+										<div class="basic-box clear">
+											<p class="fl basEmail">邮箱</p>
+											<div class="fl basicRight">
+												<p class="moEmail">
+													<span>{$user.user_email}</span>
+													<a href="modify-email.html">修改邮箱</a>
+												</p>
+											</div>
+										</div>
+										<div class="basic-box clear">
+											<p class="fl">会员等级</p>
+											<div class="fl basicRight">
+												<p>银牌会员</p>
+											</div>
+										</div>
+										<div class="basic-box clear">
+											<p class="fl">用户类型</p>
+											<div class="fl basicRight">
+												<ul class="userType clear">
+													<li class="typeActive">企业单位</li>
+													<li>个体经营</li>
+													<li>事业单位或社会团体</li>
+												</ul>
+											</div>
+										</div>
+										<div class="basic-box clear">
+											<p class="fl">行业类型</p>
+											<div class="fl basicRight">
+												<select name="induType" class="induty-select">
+													<option value="0">选择行业类型</option>
+												</select>
+											</div>
+										</div>
+										<div class="basic-box clear">
+											<p class="fl">公司名称</p>
+											<div class="fl basicRight">
+												<input type="text" name="" id="" value="" class="basic-input" />
+											</div>
+										</div>
+										<div class="basic-box clear">
+											<p class="fl">通讯地址</p>
+											<div class="fl basicRight">
+												<select name="provice" class="addr-select">
+													<option value="0">请选择省份</option>
+												</select>
+												<select name="city" class="addr-select">
+													<option value="0">请选择城市</option>
+												</select>
+												<select name="country" class="addr-select">
+													<option value="0">请选择县/区</option>
+												</select>
+											</div>
+										</div>
+										<div class="basic-box clear">
+											<p class="fl">详细地址</p>
+											<div class="fl basicRight">
+												<textarea name="addrdetail" class="input-area"></textarea>
+											</div>
+										</div>
+										<div class="basic-box clear">
+											<div class="basic-button">
+												<button type="submit">保存</button>
+												<a href="javascript:;">取消</a>
+											</div>
+										</div>
+									</div>
+																
+								</form>
+								<!--修改成功-->
+								<div class="modify-over">
+									<p>修改完成</p>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			 <include file="public@footer"/>
+			<!---->
+		
+		 <include file="public@user_foot"/>
+	  	<script type="text/javascript" src="../js/laydate.js"></script>
+	  	<script type="text/javascript">
+	  		$("#invo-file").change(function(){
+	  			$(".invo-group .invo-label").html("已上传");
+	  		});
+	  		$(".discount-title ul li").click(function(){
+	  			var index = $(this).index();
+	  			$(this).addClass("disActive").siblings().removeClass("disActive");
+	  			$(".disco-cont .disco-cont-list").eq(index).removeClass("overduActive").siblings().addClass("overduActive");
+	  		});
+	  		$(".userType li").click(function(){
+	  			var index = $(this).index();
+	  			$(this).addClass("typeActive").siblings().removeClass("typeActive");
+	  		});
+			
+	  	</script>
+	  	
+	</body>
+</html>

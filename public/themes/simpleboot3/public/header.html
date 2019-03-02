@@ -22,16 +22,17 @@
 			</div>
 			<div class="col-xs-5 col-sm-5 col-md-6 col-lg-6">
 				<div class="top_search">
-					<form action="" method="post">
+					<form action="{:url('goods/Goods/goods_search')}" method="post">
 						<div class="search_bor clear">
-							<input class="srinp fl" id="nav-keyword" value="" name="keyword" autocomplete="off" placeholder="请输入型号或产品相关信息" type="text">		
-							<button class="srsub fl" value="" type="button" id="subser"><i class="iconfont icon-sousuo"></i>{$notice.index.search}</button>
+							<input class="srinp fl" id="nav-keyword" value="" name="name" autocomplete="off" placeholder="请输入型号或产品相关信息" type="text">		
+							<button class="srsub fl" value="" type="submit" id="subser"><i class="iconfont icon-sousuo"></i>{$notice.index.search}</button>
 						</div>
 						<div class="search_text">
 							<span>{$notice.index.hot_pro}：</span>
-		          <a class="text-warning" href="" rel="nofollow">TAJD226K035NDJ</a>
-		          <a href="javascript:void(0)" class="searchKeyword" keyword="TAJD226K035RNJ">TAJD226K035RNJ</a>
-		          <a href="javascript:void(0)" class="searchKeyword" keyword="传感器 100V">传感器 100V</a> 
+							<foreach name="goods_hot" item="vo">
+								 <a href="{:url('goods/Goods/detail',['id'=>$vo.id])}" >{$vo.name}</a>
+							</foreach>
+		         
 						</div>
 					</form>
 				</div>

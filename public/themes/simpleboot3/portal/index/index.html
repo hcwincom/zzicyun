@@ -102,7 +102,7 @@
 									</div>
 									<!--登录之后显示end-->
 									<div class="links clear">
-										<a href="copy.html"><span>{$notice.index.bom}</span></a>
+										<a href="{:url('goods/Bom/bom')}"><span>{$notice.index.bom}</span></a>
 										<a href="memberCenter/purchase-order.html"><span>{$notice.index.order_status}</span></a>
 										<a href="memberCenter/credit-discount.html"><span>{$notice.index.discount}</span></a>
 										<a href="memberCenter/purchase-order.html"><span>{$notice.index.payment}</span></a>
@@ -113,10 +113,11 @@
 									 
 										<div class="news_title">
 											{$articel_cates['notice']['lan_name']}
-											<a href="proclamation-more.html">{$notice.index.more}</a>
+											<a href="{:url('notice/Article/article_list',['cid'=>$articel_cates['notice']['id']])}">{$notice.index.more}</a>
 										</div>
 										<foreach name="article_notice" item="vo">
-											<a href="proclamation-detail.html" class="newsItem" target="_blank">{$vo.name}</a>
+											<a href="{:url('notice/Article/article_detail',['id'=>$vo.id])}" class="newsItem" target="_blank">{$vo.name}</a>
+										 
 										</foreach>
 									 
 									</div>
@@ -173,13 +174,17 @@
 									 
 									</ul>		
 								</div>
+							 
 								<div class="inx_ad clear mt10">
+							 
+								<notempty name="banners['index_goods']">
+								<foreach name="banners['index_goods']" item="vo">
 									<div class="ad_left">
-										<img src="images/ad_left.png" alt="" />
+										<img src="{$image_url}/{$vo.pic}" alt="" />
 									</div>
-									<div class="ad_right">
-										<img src="images/ad_right.png" alt="" />
-									</div>
+								</foreach> 
+								</notempty>
+							  
 								</div>
 								<div class="lists3 clear mt10 container-fluid">
 									<div class="inxSecCap" style="margin-left:-15px;margin-right:-15px;">
@@ -192,7 +197,7 @@
 											<div class="zx-left col-lg-4 col-md-4 col-sm-4">
 											<volist name="article_news" id="vo" offset="0" length="1">
 											 
-												<a href="information_detail.html">
+												<a href="{:url('notice/Article/article_detail',['id'=>$vo.id])}">
 													<div class="zxImg">
 														<img src="{:cmf_get_image_url($vo.pic)}" alt="" />
 													</div>
@@ -205,19 +210,21 @@
 												<ul class="zixun">
 												<volist name="article_news" id="vo" offset="1" length="10">
 													<li class="zixun_hot">
-														<a href="information_detail.html">
+														<a href="{:url('notice/Article/article_detail',['id'=>$vo.id])}">
 															{$vo.name}
 														</a>
 														
-														<if condition="(time()-$vo.ctime) lt 86000">
+														 
+														<eq name="vo.is_hot" value="1">
+															<p style="display:none">new</p>
+															<p> hot</p>  
+														<else/>
+															<if condition="(time()-$vo.ctime) lt 86000">
 															<p style="display:none">new</p>
 															<p> new</p>
-														<else/>
-															<gt name="vo.clicked" value="100">
-																<p style="display:none">new</p>
-																<p> hot</p> 
-															</gt> 
-														</if>
+															</if>
+														</eq> 
+														 
 														 
 													</li>
 												</volist>

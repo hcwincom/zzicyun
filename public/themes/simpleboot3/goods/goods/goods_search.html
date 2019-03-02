@@ -41,6 +41,7 @@
 				<div class="proSear">
 					<div class="pro-center">
 						<form action="" method="post">
+						<input type="hidden" name="page" value="1"/>
 							<div class="pro-filter">
 								<p class="breadcrumb">
 									{$notice.index.nowaddr}:
@@ -62,13 +63,13 @@
 												<div class="filter-select">
 													<ul class="select-ul">
 													<foreach name="brands" item="vo">
-														<li class="">{$vo.name}</li>
+														<li class="" dataid="{$vo.id}">{$vo.name}</li>
 													</foreach>
-													 
+													
 													</ul>
 												</div>
 											</div>
-											<foreach name="params" item="vo">
+											<foreach name="params" item="vo" key="kparam">
 											
 											
 											<div class="filter-s-item" style="width: 290px;">
@@ -80,26 +81,34 @@
 												<div class="filter-select">
 													<ul class="select-ul">
 													<foreach name="vo.vals" item="vv">
-														<li class="">{$vv}</li> 
+														<li class="" dataid="{$kparam}" >{$vv}</li> 
 													</foreach>
 													</ul>
 												</div>
 											</div>
 											</foreach>
-											 
-											 
+											  
 										</div>
 									</div>
 									
 								</div>
+								<input type="hidden" name="cid" value="{$data['cid']}"/>
+								<input type="hidden" name="page" value="1"/>
+								 <!-- 示例，选中品牌后添加,获取品牌li里的dataid，作为input的value -->
+								<!-- <input type="hidden" name="brand[]" value="1"/> -->
+								 <!-- 示例，选中参数后添加 ,获取参数li里的dataid，作为input的name[],li的文本作为value值-->
+								<!-- <input type="hidden" name="param[2]" value="24V,12,dd,"/>
+								<input type="hidden" name="param[36]" value="235d,1,11,2"/>
+								<input type="hidden" name="param[35]" value="24V,12,dd,156,"/>
+								 -->
 								<div id="keyWrds" class="mt10"></div>
 								<div class="mt10">
 				                    <label class="checkbox-inline">
-				                        <input name="isInventory" value="1" type="checkbox" class="checkbox-item" id="filter-isInventory-input">
+				                        <input name="is_store" value="1" type="checkbox" class="checkbox-item" id="filter-isInventory-input" <notempty name="data.is_store">checked</notempty> >
 											{$notice.index.inventory}
 				                    </label>
 				                    <label class="checkbox-inline">
-				                        <input name="isRosh" value="1" type="checkbox" class="checkbox-item" id="filter-isRosh-input">
+				                        <input name="is_rohs"  value="1" type="checkbox" class="checkbox-item" id="filter-isRosh-input" <notempty name="data.is_rohs">checked</notempty>>
 				                        	{$notice.index.rohs}
 				                    </label>
 				                </div>
@@ -107,7 +116,7 @@
 				                <div class="mt10">
 				                	<button>{$notice.index.clear}</button>
 				                	<button>{$notice.index.start}{$notice.index.search}</button>
-				                	<span>{$notice.index.conform}：<i>666</i></span>
+				                	<!-- <span>{$notice.index.conform}：<i>666</i></span> -->
 				                </div>
 							</div>
 						</form>

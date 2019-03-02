@@ -1,0 +1,79 @@
+ <!--公共头部-->		
+  		 <include file="public@user_header"/> 	
+			<!--主要内容-->
+			<div class="person-content">
+				<div class="wraper row totalback">
+					 <include file="public@user_left"/> 	
+					<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10" style="padding: 0;">
+						<div class="person-right">
+							<div class="person-right-head">
+								<p class="perpadding">
+									<span>资产管理</span>
+									<i class="iconfont icon-jiantoudown"></i>
+									<a href="change-password.html">修改密码</a>
+								</p>
+							</div>
+							<div class="baseTitle">
+								<h3>修改密码</h3>
+							</div>
+							<div class="person-detail-content">
+								<div class="change-pwd">
+									<form action="" method="post" onsubmit="return newRePwCheck();">
+										<div class="modify-cont">
+											<div class="modify-box clear">
+												<div class="col-sm-4 col-md-4 verify-email-left">旧密码：</div>
+												<div class="col-sm-6 col-md-5 verify-email-right">
+													<input type="password" name="oldpwd" id="oldpwd" placeholder="请输入旧密码"/>
+												</div>
+											</div>
+											<div class="modify-box clear">
+												<div class="col-sm-4 col-md-4 verify-email-left">新密码：</div>
+												<div class="col-sm-6 col-md-5 verify-email-right">
+													<input type="text" name="newpwd" id="newpwd" value="" placeholder="至少使用字母、数字、符号（除空格）两种以上组合"/>
+												</div>
+											</div>
+											<div class="modify-box clear">
+												<div class="col-sm-4 col-md-4 verify-email-left">确认新密码：</div>
+												<div class="col-sm-6 col-md-5 verify-email-right">
+													<input type="text" name="surepwd" id="surepwd" value="" placeholder="请再次输入新密码" />
+												</div>
+											</div>
+											<p class="email-ver tipMsg"></p>
+										</div>
+										
+										<div class="modify-cont-button">
+												<button type="submit" class="sureBtn">确认</button>
+												<!--<a href="javascript:;" class="cancelPwd">取消</a>-->
+											</div>
+									
+									</form>
+									
+								</div>
+								<!--修改成功-->
+								<div class="pwd-over">
+									<p class="pwd-index"><a href="../index.html">去商城</a></p>
+									<p class="suc-tip">修改密码成功！</p>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			 <include file="public@footer"/>
+			<!---->
+		
+		 <include file="public@user_foot"/> 
+	  	<script type="text/javascript" src="../js/laydate.js"></script>
+	  	<script type="text/javascript" src="../js/form.js"></script>
+	  	<script type="text/javascript">
+			$(".add-invo a").click(function(){
+	  			$(this).parents(".invo-exhibiting").hide();
+	  			$(".invoceForm-list").show();
+	  		});
+			
+	  	</script>
+	  	
+	</body>
+</html>

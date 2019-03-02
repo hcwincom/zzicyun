@@ -13,9 +13,9 @@ class CenterController extends UserBaseController
     /**
      * 个人中心 
      */
-    public function index()
+    public function center()
     {
-        
+        $this->assign('user',session('user'));
         return $this->fetch();
     }
 

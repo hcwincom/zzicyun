@@ -1,0 +1,75 @@
+  	 <include file="public@head"/> 
+  </head>
+  <body>
+  	<div class="topBanner">
+  		<!--公共头部-->		
+  		 <include file="public@header"/> 		
+			<!--导航-->
+			<div class="l-nav l_proNav">
+				<div class="nav">
+					<div class="clear">
+						<div id="allNav" class="allNav allNav_list fl"></div>							
+						 	<include file="public@nav"/>   	
+					</div>
+				</div>
+			</div>	
+			<!--更多资讯主要内容-->
+			
+			<div class="infoPart">
+				 <div class="wraper totalback">
+					<div class="infoTitle">
+						<span>{$cate_info.lan_name}:</span>
+						<!-- <span class="spanlist">
+							<a href="javascript:;" class="info-sear">电子制作 </a>
+							<a href="javascript:;" class="info-sear">电子工程师</a> 
+						</span> -->
+					</div>
+				</div> 
+				<div class="info-content">
+					<div class="wraper totalback">
+						<div class="info_list">
+							<ul class="info-ul">
+							<foreach name="list" item="vo">
+								<li>
+									<div class="row">
+										<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+											<div class="info-img">
+												<a href="{:url('notice/Article/article_detail',['id'=>$vo.id])}">
+													<img src="{$image_url}/{$vo.pic}" alt="" />
+												</a>
+											</div>
+										</div>
+										<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+											<div class="info-intro">
+												<div class="info-intro-title">
+													<a href="{:url('notice/Article/article_detail',['id'=>$vo.id])}">
+														<h3>{$vo.name}</h3>
+													</a>
+												</div>
+												<p>{$vo.content}</p>
+												<span>{$vo.ctime|date='Y-m-d',###}</span>
+											</div>
+										</div>
+									</div>
+								</li>
+								</foreach>
+								 
+						
+							</ul>
+							<!--分页-->
+							  <include file="public@page"/> 
+					
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			 
+			
+			<!--底部 -->
+			 <include file="public@footer"/> 
+		<!---->
+		</div>
+		 <include file="public@foot"/> 
+	</body>
+</html>

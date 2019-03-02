@@ -1,0 +1,91 @@
+  	 <include file="public@head"/> 
+  </head>
+  <body>
+  	<div class="topBanner">
+  		<!--公共头部-->		
+  		 <include file="public@header"/> 		
+			<!--导航-->
+			<div class="l-nav l_proNav">
+				<div class="nav">
+					<div class="clear">
+						<div id="allNav" class="allNav allNav_list fl"></div>							
+						 	<include file="public@nav"/>   	
+					</div>
+				</div>
+			</div>	
+			<!--资讯详情主要内容-->
+			<div class="infoPart">
+				<div class="wraper totalback">
+					<div class="infoTitle">
+						<span><a href="{:url('notice/Article/article_list',['cid'=>$cate_info.id])}">{$cate_info.lan_name}</a> ：</span>
+						<span>{$info.current.name}</span>
+					</div>
+				</div>
+				<div class="info-detail-content">
+					<div class="wraper totalback">
+						<div class="info-detail-title">
+							<h3>{$info.current.name}</h3>
+							<span></span>
+							<p>阅读量：{$info.current.clicked}</p>
+						</div>
+						<div class="info-detail-intro">
+							<div class="info-detail-text">
+								 {$info.current.content}
+							</div>
+							
+							
+						</div>
+						<div class="infodetail-bottom">
+							<div class="info-bottom-text">
+								<div class="text-nav">
+									<span>上一篇：
+									<empty name="info.last">
+									没有了
+									<else/>
+									<a href="{:url('notice/Article/article_detail',['id'=>$info['last']['id']])}">
+									{$info['last']['name']}
+									</a>
+									</empty>
+									
+									</span>
+									<i></i>
+									<span>下一篇：
+									<empty name="info.next">
+									没有了
+									<else/>
+									<a href="{:url('notice/Article/article_detail',['id'=>$info['next']['id']])}">
+									{$info['next']['name']}
+									</a>
+									</empty>
+									
+									
+									</span>
+								</div>
+								<div class="text-share">
+									<div class="row">
+										<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+											<div class="info-share">
+												<p>分享到：  </p>
+											</div>
+										</div>
+										<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+											<div class="info-detail-time">
+												<p>时间：{$info['current']['ctime']|date='Y-m-d',###}</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			<!--底部 -->
+			 <include file="public@footer"/> 
+			
+		</div>
+		<include file="public@foot" />
+	</body>
+</html>

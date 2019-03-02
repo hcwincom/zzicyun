@@ -6,6 +6,7 @@ use think\Db;
  
 use think\View;
 use app\notice\model\NoticeConfValModel;
+use app\goods\model\GoodsModel;
  
 class DeskBaseController extends HomeBaseController
 {
@@ -64,6 +65,10 @@ class DeskBaseController extends HomeBaseController
             $company=Db::name('shop')->where('id',1)->find();
             session('company',$company);
         }
+        //热门产品
+        $m_goods=new GoodsModel();
+        $goods=$m_goods->get_limit($lan1,$lan2,['status'=>2],3);
+        $this->assign('goods_hot',$goods);
         View::share('company',$company);
         View::share('notice',$notice);
         View::share('notice_json',$notice_json);

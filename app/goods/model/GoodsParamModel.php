@@ -41,7 +41,7 @@ class GoodsParamModel extends Model
         $lan=$lan1;
         $res=Db::name('goods_template_param')
         ->alias('tp')
-        ->join('cmf_goods_param_val p','p.pid=tp.param and lid='.$lan)
+        ->join('cmf_goods_param_val p','p.pid=tp.param and p.lid='.$lan)
         ->where($where)
         ->order($order)
         ->column($field);
@@ -49,7 +49,7 @@ class GoodsParamModel extends Model
             $lan=$lan2;
             $res=Db::name('goods_template_param')
             ->alias('tp')
-            ->join('cmf_goods_param_val p','p.pid=tp.param and lid='.$lan)
+            ->join('cmf_goods_param_val p','p.pid=tp.param and p.lid='.$lan)
             ->where($where)
             ->order($order)
             ->column($field);

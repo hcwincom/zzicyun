@@ -27,6 +27,7 @@ class AdminShopController extends AdminInfoController
             'address'=>'str',
             'code'=>'str',
             'logo'=>'str',
+            'icon'=>'str',
             'show_time'=>'str'
         ];
         $this->islan=1;
@@ -336,9 +337,9 @@ class AdminShopController extends AdminInfoController
     public function cates($type=3){
         parent::cates($type);
         $this->assign('shop_types',config('shop_types'));
-        $this->assign('chars',config('chars'));
-        $pic_conf=config('pic_shop');
-        $this->assign('pic_conf',$pic_conf);
+        $this->assign('chars',config('chars')); 
+        $this->assign('pic_conf',config('pic_logo'));
+        $this->assign('pic_conf_icon',config('pic_icon'));
     }
     /**
      * 参数值过滤
@@ -361,9 +362,15 @@ class AdminShopController extends AdminInfoController
         $table=$this->table;
         $path1=$table.'/'.$id.'/';
         $data_update=[];
-        
-        $pic_conf=config('pic_'.$table);
-        $data_update['logo']=zz_set_file($data['logo'],$path1,$pic_conf);
+        if(!empty($data['logo'])){
+            $pic_conf=config('pic_logo');
+            $data_update['logo']=zz_set_file($data['logo'],$path1,$pic_conf);
+        }
+        if(!empty($data['icon'])){
+            $pic_conf=config('pic_icon');
+            $data_update['icon']=zz_set_file($data['icon'],$path1,$pic_conf);
+        }
+       
         
         $m=$this->m;
         $m->where('id',$id)->update($data_update);
@@ -378,8 +385,15 @@ class AdminShopController extends AdminInfoController
         }
         $table=$this->table;
         $path1=$table.'/'.$data['id'].'/';
-        $pic_conf=config('pic_'.$table);
-        $data['logo']=zz_set_file($data['logo'],$path1,$pic_conf);
+        if(!empty($data['logo'])){
+            $pic_conf=config('pic_logo');
+            $data['logo']=zz_set_file($data['logo'],$path1,$pic_conf);
+        }
+        if(!empty($data['icon'])){
+            $pic_conf=config('pic_icon');
+            $data['icon']=zz_set_file($data['icon'],$path1,$pic_conf);
+        }
+         
         return 1;
     }
     

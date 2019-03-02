@@ -77,29 +77,26 @@ class GoodsController extends DeskBaseController
       
        //条件筛选 
        $params=[];
-       if(!empty($data['cid'])){
+       if(empty($data['cid'])){
+           $data['cid']=0;
+       }else{
            $cids=$m_cate->get_cids_by_fid($data['cid']);
            if(count($cids)>1){
                $where['p.cid']=['in',$cids];
            }else{
                $where['p.cid']=['eq',$data['cid']];
-           } 
+           }
            //获取模板和参数，用于查询
            $template_ids=Db::name('goods_template')->where('cid','in',$cids)->column('id');
            //查询参数
            if(!empty($template_ids)){
                
                $m_param=new GoodsParamModel();
-               $params=$m_param->get_params_by_templates($lan1,$lan2,$template_ids); 
+               $params=$m_param->get_params_by_templates($lan1,$lan2,$template_ids);
            } 
        }
        
-       //条件筛选
-       if(empty($data['name'])){
-           $data['name']='';
-       }else{
-           $where['p.code|val.name|val.production_code']=['like','%'.$data['name'].'%'];
-       }
+      
        //排序 
        $order='p.shop_type asc,';
        if(empty($data['sort'])){
@@ -129,6 +126,48 @@ class GoodsController extends DeskBaseController
            $data['is_store']=0;
        }else{
            $where['p.store_num']=['gt',0];
+       }
+       //rohs
+       if(empty($data['is_rohs'])){
+           $data['is_rohs']=0;
+       }else{
+           $where['p.rohs']=['eq',1];
+       }
+       //品牌
+       if(empty($data['brand'])){
+           $data['brand']=[];
+       }else{
+           $where['p.brand']=['in',$data['brand']];
+       }
+       //参数
+       if(empty($data['param'])){
+           $data['param']=[];
+       }else{
+           //参数比较
+           $where_param=[ 'lid'=>$lan1];
+           $where_param['param']=['in',array_keys($data['param'])];
+           $vals=[];
+          
+           foreach($data['param'] as $k=>$v){
+               $param_val=explode(',', $v); 
+               array_pop($param_val); 
+               $vals=array_merge($vals,$param_val); 
+           }
+           $where_param['val']=['in',$vals]; 
+          
+           $ids=Db::name('goods_param_goods')->where($where_param)->column('goods');
+          
+           if(empty($ids)){
+               $where['p.id']=['eq',0];
+           }else{
+               $where['p.id']=['in',$ids];
+           }
+       }
+       //条件筛选
+       if(empty($data['name'])){
+           $data['name']='';
+       }else{
+           $where['p.code|val.name|val.production_code']=['like','%'.$data['name'].'%'];
        }
        $order=$order.'p.sort asc'; 
        $list=Db::name('goods')

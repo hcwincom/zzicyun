@@ -1,0 +1,132 @@
+  <!--公共头部-->		
+  		 <include file="public@user_header"/> 	
+			<!--主要内容-->
+			<div class="person-content">
+				<div class="wraper row totalback">
+					 <include file="public@user_left"/> 	
+		 
+					<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10" style="padding: 0;">
+						<div class="person-right">
+							<div class="person-right-head">
+								<p class="perpadding">
+									<span>会员信息</span>
+									<i class="iconfont icon-jiantoudown"></i>
+									<a href="receiver-address.html">大陆收货地址</a>
+								</p>
+							</div>
+							<div class="person-detail-content">
+								<div class="invoce-title clear">
+									<ul>
+										<li class="sampling-active"><a href="receiver-address.html">国内地址</a></li>
+										<li><a href="hkrece-address.html">香港地址</a></li>
+									</ul>
+								</div>
+								<div class="addr-cont">
+									<!--国内地址-->
+									<div class="addr-cont-list">
+										<div class="invo-exhibiting">
+											<div class="invo-exhibit-detail">
+												<div class="invo-detail-head clear">
+													<div class="fl">
+														<h3>地址一</h3>
+													</div>
+													<div class="fr">
+														<a href="javascript:;">删除</a>
+													</div>
+												</div>
+												<div class="invo-detail-cont">
+													
+													<div class="invo-cont-text clear">
+														<p class="fl invoLeft">收货人：</p>
+														<p class="fl invoRight">廖鹏飞</p>
+													</div>
+													<div class="invo-cont-text clear">
+														<p class="fl invoLeft">联系电话：</p>
+														<p class="fl invoRight">15654265897</p>
+													</div>
+													<div class="invo-cont-text clear">
+														<p class="fl invoLeft">收货地址：</p>
+														<p class="fl invoRight">深圳市某某区某某路某某大厦</p>
+													</div>
+												</div>
+												<div class="invo-detail-button">
+													<a href="javascript:;" class="takeChange">修改</a>
+												</div>
+											</div>
+											<div class="add-addr">
+												<a href="javascript:;">
+													<i class="iconfont icon-jia"></i>
+													<span>新增收货地址</span>
+												</a>
+											</div>
+											
+										</div>
+										<!--表格-->
+										<div class="changeAddress">
+											<form action="" method="post" onsubmit="return orderVerify();">
+												<div class="added-total">
+													<div class="invoform-box clear">
+														<span>收货人：</span>
+														<div class="invo-group">
+															<input type="text" name="" id="takeName" class="invo-input" placeholder="请务必填写全名" />
+														</div>
+													</div>
+													<div class="invoform-box clear">
+														<span>联系电话：</span>
+														<div class="invo-group">
+															<input type="text" name="" id="takePhone" class="invo-input" placeholder="手机号或者座机" />
+														</div>
+													</div>
+													<div class="invoform-box clear">
+														<span>收票地址：</span>
+														<div class="invo-group">
+															<select name="provice">
+																<option value="0">请选择省份</option>
+															</select>
+															<select name="city">
+																<option value="0">请选择城市</option>
+															</select>
+															<select name="country" id="takeCity">
+																<option value="0">请选择县/区</option>
+															</select>
+														</div>
+													</div>
+													<div class="invoform-box clear">
+														<span>详细地址：</span>
+														<div class="invo-group">
+															<textarea name="addrdetail" id="takeAddr" class="invo-input"></textarea>
+														</div>
+													</div>
+													<p class="info-tip"></p>
+													<div class="invoform-button">
+														<div class="invo-group">
+															<input type="submit" name="" id="" value="保存" class="invo-button" />
+															<a href="javascript:;" class="addrCancel">取消</a>
+														</div>
+													</div>
+												<!---->
+												</div>
+											</form>
+										</div>
+										<!---->
+									</div>
+								</div>
+								
+								<!--修改成功-->
+								<div class="modify-over" style="display: none;">
+									<p>修改完成</p>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			 <include file="public@footer"/>
+			<!---->
+		
+		 <include file="public@user_foot"/>
+	  	<script type="text/javascript" src="../js/laydate.js"></script>
+	  	<script type="text/javascript" src="../js/form.js"></script>
+	</body>
+</html>
