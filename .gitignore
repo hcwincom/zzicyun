@@ -8,7 +8,6 @@
 /public/assets/dist
 /node_modules
 /data
-!/data/conf/config.php
 /public/data
 /public/log
 /public/upload
