@@ -25,14 +25,7 @@ $(".item_lists a").click(function(){
 $(".proNav .proNav_cap").click(function(){
 	$(this).next(".proNav_div").toggle().parent().siblings().children(".proNav_div").css("display","none");
 });
-
-//选择交期
-$(".steps_num-choice>div").click(function(){
-	$(this).addClass("selected").siblings().removeClass("selected");
-});
-	    
-	    
-	    
+	    	    
 //大陆订单页面
 $(".newBtn").click(function(){
 	$(".groupList-dsc").hide().prev(".groupList-grid").show();
@@ -202,70 +195,6 @@ function plus(tag,sellprice,stock){
 	}
 }
  
- //  订单页面商品总价格变化
- function setTotalOrder(){
- 	var totalAmount = 0;// 总价格
-	$(".stepsNumber").each(function(){
-		var parInt = $(this).parents("td");
-		var orderNum = parseInt(parInt.siblings(".addUp").find(".orderNum").val());   //单个商品的购买数量
-		var stepsNum = parseInt($(this).find("span").text()); // 阶梯数量
-		if(orderNum >= stepsNum){
-			var stepsPrice = parseFloat($(this).next(".steps_price").find("span").text()); // 阶梯单价
-			// console.log(stepsPrice);
-			totalAmount = stepsPrice*orderNum;
-			// console.log(totalAmount);
-		}
-		$(this).parents(".padStep").next().next(".addUp").find(".totalPrice span").html(totalAmount.toFixed(2));
-	});
- 	
- }
- setTotalOrder();
-//订单页面手动修改文本框商品数量与库存的限制
-function amount_input_order(tag,sellprice,stock){
-	var amount=parseInt($(tag).val());
-	if(isNaN(amount)){
-		alert('最少购买量为1');
-		$(tag).val(1);
-	}else{
-		if(amount>stock){
-			alert('购买数量不能大于库存');
-			$(tag).val(stock);
-		}else if(amount<1){
-			alert('最少购买量为1');
-			$(tag).val(1);
-		}
-	}
-	var val=parseFloat(sellprice)*parseInt($(tag).val());
-	setTotalOrder();
-}
- 
- // 数量增加
-function plusOrder(tag,sellprice,stock){
-	var _this=$(tag);
-	var input=_this.prev('input');
-	var amount=parseInt(input.val());
-	amount++;
-	if(amount>stock){
-		alert('购买数量不能大于库存');
-	}else{
-		input.val(amount);
-		setTotalOrder();
-	}
-}
-// 数量减少
-function minusOrder(tag,sellprice,stock){
-	var _this=$(tag);
-	var input=_this.next('input');
-	var amount=parseInt(input.val());
-		amount--;
-	if(amount<=0){
-		return alert('购买数量不能小于1');
-	}else{
-		input.val(amount);
-		setTotalOrder();
-	}
-}
-
 
 
 
@@ -382,41 +311,242 @@ function allPrice(){
 
 
 
-
-
-
-
-
-
 // 商品详情页加入购物车计算
-var num = 0;
-$(".de_oplus").click(function () {
+$("input[name='checkra']").click(function(){
 	var _this = $(this);
-	var input = _this.prev('input');
-	var lessNum = parseInt($(".lessNum").find("span").text());  // 最小数量
-	var diploidNum = parseInt($(".diploid").find("span").text());  // 倍数
-	num++;
-	console.log(num);
-	var amount = num * diploidNum; 
-	input.val(amount);
-	var amountNum = parseInt(input.val());
+	var checked = $("input[name='checkra']:checked").val();
+	var count = _this.parents(".detail_form").find(".de_onum").val();
+	console.log(count);
+	if(checked == "checkrad"){
+		$(".priceRmb").hide().next(".priceUsd").show();
+		$(".totalRmb").hide().next(".totalUsd").show();
+
+		$(".stepItem").each(function(){
+			var stepNum = parseInt($(this).find("span").text());
+			if(count >= stepNum){
+				var usdPrice =  parseFloat($(this).next("td").next("td").find("span").text());
+				$(".detail_pri").find(".priceUsd i").text(usdPrice.toFixed(2));
+				allPrice = count * usdPrice;
+				$(".allPrice").html(allPrice.toFixed(2));
+			}
+		});
+	}else{
+		$(".priceUsd").hide().prev(".priceRmb").show();
+		$(".totalUsd").hide().prev(".totalRmb").show();
+		$(".stepItem").each(function(){
+			var stepNum = parseInt($(this).find("span").text());
+			if(count >= stepNum){
+				var singlePrice = parseFloat($(this).next("td").find("span").text());
+				$(".detail_pri").find(".priceRmb i").text(singlePrice.toFixed(2));
+				allPrice = count * singlePrice;
+				$(".allPrice").html(allPrice.toFixed(2));
+			}
+		});
+	}
+});
+
+$(".de_oplus").click(function () {
+	var checked = $("input[name='checkra']:checked").val();
+	var count=$(this).prev("input").val();
+	// 最小数量
+	var lessNum = parseInt($(".lessNum").find("span").text());  
+	// 倍数
+	var diploidNum = parseInt($(".diploid").find("span").text());  
+	count=parseInt(count)+diploidNum;
+	$(this).prev("input").val(count);
+	//计算价格
 	$(".stepItem").each(function () {
-		console.log(amountNum);
+		// 阶梯价格
 		var stepNum = parseInt($(this).find("span").text());
-		console.log(stepNum);
-		if (amountNum >= stepNum) {
-			var singlePrice = parseFloat($(this).next("td").find("span").text());
-			 console.log(singlePrice);
-			$(".detail_pri").find("i").text(singlePrice.toFixed(2));
-			allPrice = amountNum * singlePrice;
+		if (count >= stepNum) {
+			if(checked == "checkra"){
+				$(".priceUsd").hide().prev(".priceRmb").show();
+				$(".totalUsd").hide().prev(".totalRmb").show();
+				// 阶梯单价
+				var singlePrice = parseFloat($(this).next("td").find("span").text());
+			   $(".detail_pri").find(".priceRmb i").text(singlePrice.toFixed(2));
+			   allPrice = count * singlePrice;
+			   $(".allPrice").html(allPrice.toFixed(2));
+			}else{
+				$(".priceRmb").hide().next(".priceUsd").show();
+				$(".totalRmb").hide().next(".totalUsd").show();
+				var usdPrice =  parseFloat($(this).next("td").next("td").find("span").text());
+				$(".detail_pri").find(".priceUsd i").text(usdPrice.toFixed(2));
+				console.log(usdPrice);
+				allPrice = count * usdPrice;
+				$(".allPrice").html(allPrice.toFixed(2));
+			}
 		}
-		$(".allPrice").html(allPrice.toFixed(2));
+		
+	});
+});
+
+$(".de_omin").click(function(){
+	var checked = $("input[name='checkra']:checked").val();
+	// 获取数量
+	var count=parseInt($(this).next("input").val());
+	console.log(count);
+	// 最小数量
+	var lessNum = parseInt($(".lessNum").find("span").text());  
+	console.log(lessNum);
+	if(count===lessNum){
+		return false;
+	}
+	// 倍数
+	var diploidNum = parseInt($(".diploid").find("span").text());  
+	count = parseInt(count)-diploidNum;
+	$(this).next("input").val(count);
+	//计算价格
+	$(".stepItem").each(function () {
+		// 阶梯价格
+		var stepNum = parseInt($(this).find("span").text());
+		if (count >= stepNum) {
+			if(checked == "checkra"){
+				$(".priceUsd").hide().prev(".priceRmb").show();
+				$(".totalUsd").hide().prev(".totalRmb").show();
+				// 阶梯单价
+				var singlePrice = parseFloat($(this).next("td").find("span").text());
+			   $(".detail_pri").find(".priceRmb i").text(singlePrice.toFixed(2));
+			   allPrice = count * singlePrice;
+			   $(".allPrice").html(allPrice.toFixed(2));
+			}else{
+				$(".priceRmb").hide().next(".priceUsd").show();
+				$(".totalRmb").hide().next(".totalUsd").show();
+				var usdPrice =  parseFloat($(this).next("td").next("td").find("span").text());
+				$(".detail_pri").find(".priceUsd i").text(usdPrice.toFixed(2));
+				console.log(usdPrice);
+				allPrice = count * usdPrice;
+				$(".allPrice").html(allPrice.toFixed(2));
+			}
+		}
+		
 	});
 });
 
 
 
 
+
+
+
+
+// 被动选型页面的价格和数量变化
+
+//选择交期
+$(".steps_num-choice>div").click(function(){
+	var _this = $(this);
+	$(this).addClass("selected").siblings().removeClass("selected");
+	var selected = $(".selected").attr("data-value");
+	var count = _this.parents("tr").find(".orderNum").val();
+	if(selected == "HK"){
+		$(this).parents("tr").find(".padStep .totalStep").find(".stepsNumber").each(function(){
+			var stepNum = parseInt($(this).find("span").text());
+		
+			if (count >= stepNum) {
+				$(this).parents("tr").find(".totalUsd").show().prev(".totalRmb").hide();
+				var priceUsd = parseFloat($(this).next(".steps_price").next(".steps_doller").find("span").text());
+					
+				totalNum = count*priceUsd;
+				$(this).parents("tr").find(".totalUsd").children("span").text(totalNum.toFixed(2));
+				
+			}
+			
+		});
+	}else{
+		$(this).parents("tr").find(".padStep .totalStep").find(".stepsNumber").each(function(){
+			var stepNum = parseInt($(this).find("span").text());
+
+			if (count >= stepNum) {
+				$(this).parents("tr").find(".totalRmb").show().next(".totalUsd").hide();
+				var singlePrice = parseFloat($(this).next(".steps_price").find("span").text());
+									
+				totalNum = count*singlePrice;
+			 	$(this).parents("tr").find(".totalRmb").children("span").text(totalNum.toFixed(2));
+								
+			}
+		});
+	}
+
+
+});
+
+// 数量增加
+var totalNum ;
+$(".go_plus").click(function(){
+	// 选中交货地
+	var selected = $(".selected").attr("data-value");
+	//获取数量
+	var count=$(this).prev("input").val();
+	// 倍数
+	var diploidNum = parseInt($(this).parents("tr").find(".number .diploid").children("span").text());
+	count=parseInt(count)+diploidNum;
+	$(this).prev("input").val(count);
+
+	//计算价格
+	$(this).parents("tr").find(".padStep .totalStep").find(".stepsNumber").each(function(){
+			var stepNum = parseInt($(this).find("span").text());
+		
+			if (count >= stepNum) {
+
+				if(selected == "CN"){
+					$(this).parents("tr").find(".totalRmb").show().next(".totalUsd").hide();
+					var singlePrice = parseFloat($(this).next(".steps_price").find("span").text());
+					
+					 totalNum = count*singlePrice;
+					 $(this).parents("tr").find(".totalRmb").children("span").text(totalNum.toFixed(2));
+				}else{
+					$(this).parents("tr").find(".totalUsd").show().prev(".totalRmb").hide();
+					var priceUsd = parseFloat($(this).next(".steps_price").next(".steps_doller").find("span").text());
+					
+					totalNum = count*priceUsd;
+					$(this).parents("tr").find(".totalUsd").children("span").text(totalNum.toFixed(2));
+				}
+			}
+			
+		});
+
+});
+// 数量减少
+$(".go_min").click(function(){
+	// 选中交货地
+	var selected = $(".selected").attr("data-value");
+	//获取数量
+	var count=$(this).next("input").val();
+	var lessNum = $(this).parents("tr").find(".number .lessNum").children("span").text();
+	if(count===lessNum){
+		return false;
+	}
+	// 倍数
+	var diploidNum = parseInt($(this).parents("tr").find(".number .diploid").children("span").text());
+	count=parseInt(count)-diploidNum;
+	$(this).next("input").val(count);
+
+	//计算价格
+	$(this).parents("tr").find(".padStep .totalStep").find(".stepsNumber").each(function(){
+		
+		var stepNum = parseInt($(this).find("span").text());
+	
+		if (count >= stepNum) {
+
+			if(selected == "CN"){
+				$(this).parents("tr").find(".totalRmb").show().next(".totalUsd").hide();
+				var singlePrice = parseFloat($(this).next(".steps_price").find("span").text());
+				
+				 totalNum = count*singlePrice;
+				 $(this).parents("tr").find(".totalRmb").children("span").text(totalNum.toFixed(2));
+			}else{
+				$(this).parents("tr").find(".totalUsd").show().prev(".totalRmb").hide();
+				var priceUsd = parseFloat($(this).next(".steps_price").next(".steps_doller").find("span").text());
+				
+				totalNum = count*priceUsd;
+				$(this).parents("tr").find(".totalUsd").children("span").text(totalNum.toFixed(2));
+			}
+						
+		}
+		
+	});
+
+});
 
 
 

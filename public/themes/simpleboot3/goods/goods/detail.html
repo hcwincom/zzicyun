@@ -176,14 +176,14 @@
 													<td class="detail_radio">
 														<neq name="info.goods_time1" value="100">
 														<label for="checkra">
-															<input type="radio" name="checkra" id="checkra" value="" checked="checked"/>
+															<input type="radio" name="checkra" id="checkra" value="checkra" checked="checked"/>
 															{$notice.goods_search.mainland}
 															<input type="hidden" value="{$goods_times[$info['goods_time1']]|default=''}"/>
 														</label>
 														</neq>
 														<neq name="info.goods_time2" value="100">
 														<label for="checkrad">
-															<input type="radio" name="checkra" id="checkrad" value="" />
+															<input type="radio" name="checkra" id="checkrad" value="checkrad" />
 															{$notice.goods_search.hongkong}
 															<input type="hidden" value="{$goods_times[$info['goods_time2']]|default=''}"/>
 														</label>
@@ -196,10 +196,10 @@
 											<div class="row">
 												<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="padding-right: 0;">
 													<div class="addetail clear">
-														<p class="btn-add de_omin" onclick="minus(this,'9.9','100');">
+														<p class="btn-add de_omin">
 															<span class="glyphicon glyphicon-minus"></span>
 														</p>
-														<input type="text" class="btn-num de_onum" value="" name="count" />
+														<input type="text" class="btn-num de_onum" value="{$info.num_min}" name="count" readonly />
 														<p class="btn-add de_oplus">
 															<span class="glyphicon glyphicon-plus"></span>
 														</p>
@@ -208,13 +208,15 @@
 												<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding: 0;">
 													<!-- 单价 -->
 													<div class="detail_pri">
-														<p>{$notice.goods_search.unit_price}：<span>¥<i>123456</i></span></p>
+														<p class="priceRmb">{$notice.goods_search.unit_price}：<span>¥<i></i></span></p>
+														<p class="priceUsd" style="display:none;">{$notice.goods_search.unit_price}：<span>$<i></i></span></p>
 													</div>
 												</div>
 												<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5" style="padding-left: 0;">
 													<!-- 合计 -->
 													<div class="detail_total">
-														<p>{$notice.detail.total}：<span>¥<i class="allPrice">123</i></span></p>
+														<p class="totalRmb">{$notice.detail.total}：<span>¥<i class="allPrice">0.00</i></span></p>
+														<p class="totalUsd" style="display:none;">{$notice.detail.total}：<span>$<i class="allPrice">0.00</i></span></p>
 													</div>
 												</div>
 											</div>

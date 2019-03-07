@@ -58,8 +58,8 @@
 				<td>
 					<div class="number">
 						<p>{$notice.goods_search.package}:{$vgoods.num_one}</p>
-						<p>{$notice.goods_search.mininum}:{$vgoods.num_min}</p>
-						<p>{$notice.goods_search.multiple}:{$vgoods.num_times}</p>
+						<p class="lessNum">{$notice.goods_search.mininum}:<span>{$vgoods.num_min}</span></p>
+						<p class="diploid">{$notice.goods_search.multiple}:<span>{$vgoods.num_times}</span></p>
 					</div>
 				</td>
 				<td>
@@ -71,6 +71,7 @@
 				<td class="padStep">
 					<div class="totalStep">
 						<ul class="clear">
+							<!-- 阶梯数量  人民币单价 美元单价 -->
 							<li class="steps_num clear">
 								<p class="stepsNumber"><span>1</span>+</p>
 								<p class="ayellow steps_price">￥ <span>{$vgoods.price1}</span></p>
@@ -105,15 +106,16 @@
 				<td class="addUp">
 					<div class="steps_num">
 						<div class="addBtn clear">
-							<p class="btn-add omin" onclick="minusOrder(this,'9.9','100');">
+							<p class="btn-add go_min">
 							<span class="glyphicon glyphicon-minus"></span>
 						</p>
-						<input type="text" class="btn-num onum orderNum" value="56" name="count" onblur='amount_input_order(this,"9.9","10000")' />
-						<p class="btn-add oplus" onclick="plusOrder(this,'9.9}','100}');">
+						<input type="text" class="btn-num onum orderNum" value="{$vgoods.num_min}" name="count" readonly />
+						<p class="btn-add go_plus" >
 								<span class="glyphicon glyphicon-plus"></span>
 							</p>
 						</div>
-						<p class="qred totalPrice">计:￥ <span>66</span></p>
+						<p class="qred totalPrice totalRmb">计:￥ <span></span></p>
+						<p class="qred totalPrice totalUsd" style="display:none;">计:$ <span></span></p>
 					</div>
 				</td>
 				<td>

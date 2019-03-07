@@ -1033,9 +1033,9 @@ input[type=checkbox], input[type=radio] {
 	.site-nav .pro_nav{
 		width: 99%;
 	}
-	.proNav_nav{width: 99%;}
-	.pro_wraper{width: 99%;}
-	.proWraper{width: 99%;min-width: 99%}
+	.proNav_nav{width: 90%;}
+	.pro_wraper{width: 90%;}
+	.proWraper{width: 90%;min-width: 90%}
 	.modal-dialog {
 	    width: 900px;
 	    margin: 30px auto;

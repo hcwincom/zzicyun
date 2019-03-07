@@ -12,9 +12,7 @@
 							<h3 class="allNav__cap">{$notice.index.goods_cate}</h3>
 							<div class="proAllNav">
 							<foreach name="list['cate1']" item="v1" key="k1">
-							
 								<foreach name="list['cate2'][$k1]" item="v2" key="k2">
-								 
 								<div class="proNav">
 									<a href="javascript:void(0)" class="proNav_cap"><i class="iconfont icon-icon"></i><span>{$v2.name}({$v2.num})</span></a>
 									<div class="proNav_div">
@@ -63,15 +61,13 @@
 												<div class="filter-select">
 													<ul class="select-ul">
 													<foreach name="brands" item="vo">
-														<li class="" dataid="{$vo.id}">{$vo.name}</li>
+														<li class="brands{$vo.id}" dataid="{$vo.id}">{$vo.name}</li>
 													</foreach>
 													
 													</ul>
 												</div>
 											</div>
 											<foreach name="params" item="vo" key="kparam">
-											
-											
 											<div class="filter-s-item" style="width: 290px;">
 												<div class="filter-s-srh mt5">
 													<label>{$vo.name}</label>
@@ -138,8 +134,6 @@
 						 <assign  name="goods_lists" value="$vo.list"/>
 						 <include file="goods@goods:goods_table" />
 					</foreach>
-					 
-					 										
 				</div>
 			</div>
 			
@@ -150,26 +144,26 @@
 			</div>
 			<include file="public@foot" />
 	    <script type="text/javascript">
-	    	$(function(){
-	    		var span;
-	    		var spani;
-	    		$(".filter-select ul li").click(function(){
-	    			var len = $(this).parent().children("li").length;
-	    			$(this).addClass("is-selected");
-	    			var litext = $(this).text();	
-	    			console.log(litext);
-	    			
-	    			span = "<span class='filter-kwBtn'>"+litext+"</span>";
-	    		
-	    			console.log(span);
-	    			$("#keyWrds").append(span);
-	    			spani = "<i class='js-del'>x</i>";
-	    			$("#keyWrds span").append(spani);
-	    			
-	    			$(".filter-kwBtn .js-del").click(function(){
-						$(this).parent(".filter-kwBtn").remove();
-						
-		    		});
+			function removeSelectBrands(tar){
+				var selectLi = $(tar).attr("brandsClass");
+				console.log(selectLi);
+				$("."+selectLi).removeClass("is-selected");		
+				$(tar).parents("span").remove();
+			};
+			
+			$(function(){
+	    		 var span;
+	    		 var spani;
+				$(".filter-select ul li").click(function(){
+					$(this).addClass("is-selected");
+					var text = $(this).text();
+					var dataId = $(this).attr("dataid");
+					var brandsClass="brands"+dataId;
+
+					console.log(dataId);
+					span = "<span class='filter-kwBtn' >"+text+"<i class='js-del' onClick='removeSelectBrands(this);' brandsClass='"+brandsClass+"'>x</i></span>";
+					$("#keyWrds").append(span);
+
 	    		});
 	    		
 			});
