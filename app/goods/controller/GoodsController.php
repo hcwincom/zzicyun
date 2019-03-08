@@ -300,5 +300,15 @@ class GoodsController extends DeskBaseController
            $this->error('文件损坏，不存在');
        }
    }
+   /**
+    * 产品文件
+    */
+   public function file_list()
+   {
+       $lan1=$this->lan1;
+       $lan2=$this->lan2;
+       
+       return $this->fetch();
+   }
 
 }

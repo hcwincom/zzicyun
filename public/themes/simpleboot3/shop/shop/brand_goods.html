@@ -23,7 +23,7 @@
 									<div class="row">
 										<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 											<div class="info_img">
-												<img src="{$image_url}/{$info.logo}" alt="" />
+												<img src="{$image_url}/{$info.pic}" alt="" />
 											</div>
 										</div>
 										<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
@@ -31,24 +31,10 @@
 												<div class="company_name">
 													<h3><b class="pine"></b>{$info.name}</h3>
 												</div> 
-												<div class="company_intro">
-													<p>入驻时间 : {$info.show_time|date='Y-m-d',###}</p>
-													<p class="intell"> 
-														资质审核 : {$notice['shop_types'][$info['type']]}
-														<i>已认证</i>
-													</p> 
-													 
-													<p> 主营品牌 : {$info.brands}</p>
-													<p>在线商品 : {$info.goods_num}件 </p>
-													<p>产品线 : {$info.pros}</p>
-												</div>
+												 
 											</div>
 										</div>
-										<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-											<div class="vendor_code">
-												<p>厂商编码：{$info.code}</p>
-											</div>
-										</div>
+										 
 									</div>
 								</div>
 								<div class="info_cont_text">

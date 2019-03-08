@@ -51,54 +51,18 @@
 								<ul class="bran_ul">
 									<li class="clear">
 										<div class="row">
+										<foreach name="brands" item="vo">
 											<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 bran_pad1">
-												<a href="branded_detail.html">
+												<a href="{:url('shop/Shop/brand_goods',['id'=>$vo.id])}">
 													<div class="pin_img">
-														<p><img src="images/pin.png" alt="合作品牌" /></p>
-														<span>Huimaihui（汇买惠购）</span>
+														<p><img src="{$vo.pic}" alt="{$vo.name}" /></p>
+														<span>{$vo.name}</span>
 													</div>
 												</a>
 											</div>
-											<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 bran_pad2">
-												<a href="branded_detail.html">
-													<div class="pin_img">
-														<p><img src="images/pin.png" alt="合作品牌" /></p>
-														<span>Huimaihui（汇买惠购）</span>
-													</div>
-												</a>
-											</div>
-											<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 bran_pad3">
-												<a href="branded_detail.html">
-													<div class="pin_img">
-														<p><img src="images/pin.png" alt="合作品牌" /></p>
-														<span>Huimaihui（汇买惠购）</span>
-													</div>
-												</a>
-											</div>
-											<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 bran_pad4">
-												<a href="branded_detail.html">
-													<div class="pin_img">
-														<p><img src="images/pin.png" alt="合作品牌" /></p>
-														<span>Huimaihui（汇买惠购）</span>
-													</div>
-												</a>
-											</div>
-											<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 bran_pad5">
-												<a href="branded_detail.html">
-													<div class="pin_img">
-														<p><img src="images/pin.png" alt="合作品牌" /></p>
-														<span>Huimaihui（汇买惠购）</span>
-													</div>
-												</a>
-											</div>
-											<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 bran_pad6">
-												<a href="branded_detail.html">
-													<div class="pin_img">
-														<p><img src="images/pin.png" alt="合作品牌" /></p>
-														<span>Huimaihui（汇买惠购）</span>
-													</div>
-												</a>
-											</div>
+										</foreach>
+											 
+											 
 										</div>
 									</li>
 								</ul>

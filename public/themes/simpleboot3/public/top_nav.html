@@ -37,7 +37,7 @@
 			<li class="site-nav-menu">
 				<div class="site-nav-menu-hd">	
 					<div class="site-nav-bom">
-						<a href="copy.html" target="_blank">{$notice.index.bom_import_all}</a>
+						<a href="{:url('goods/Bom/bom')}" target="_blank">{$notice.index.bom_import_all}</a>
 					</div>								
 				</div>
 			</li>
@@ -46,7 +46,8 @@
 			<li class="site-nav-menu">
 				<div class="site-nav-menu-hd">
 					<div class="site-nav-menu-order">
-						<a href="memberCenter/purchase-order.html" target="_top">
+					<!-- memberCenter/purchase-order.html -->
+						<a href="{:url('order/Order/myorder')}" target="_top">
 							<span class="site-nav-icon site-nav-myorder"></span>
 							<span>{$notice.index.myorder}</span>
 						</a>

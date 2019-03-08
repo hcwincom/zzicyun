@@ -2,7 +2,7 @@
  
 namespace app\goods\controller;
  
-use app\common\controller\DeskBaseController;
+ 
 use app\goods\model\GoodsCateModel;
 use think\Db; 
   
@@ -14,7 +14,8 @@ use app\goods\model\GoodsParamModel;
 use app\goods\model\GoodsTimeModel;
 use app\goods\model\GoodsPriceModel;
 use app\goods\model\GoodsFileModel;
-class ApplyController extends DeskBaseController
+use app\common\controller\UserBaseController;
+class ApplyController extends UserBaseController
 {
 
     

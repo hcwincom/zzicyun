@@ -71,10 +71,7 @@ class IndexController extends DeskBaseController
          $m_brand=new GoodsBrandModel();
          $brands=$m_brand->order('sort asc')->limit(10)->column('id,pic,name');
          $this->assign('brands',$brands);
-         //海量产品
-         $m_goods=new GoodsModel();
-         $goods=$m_goods->get_limit($lan1,$lan2,['status'=>2],10);
-         $this->assign('goods',$goods);
+         
          return $this->fetch();
    }
 

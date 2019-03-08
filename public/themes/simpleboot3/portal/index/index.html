@@ -78,8 +78,8 @@
 							<div class="inx-uBox fr">
 								<div class="login_right">
 									<div class="login-center">
-										<a href="login.html">{$notice.index.plase_login}</a>
-										<a href="register.html">{$notice.index.free_register}</a>
+										<a href="{:url('user/Login/login')}">{$notice.index.plase_login}</a>
+										<a href="{:url('user/Register/register')}">{$notice.index.free_register}</a>
 									</div>
 									<!--登录之后显示begin-->
 									<div class="login-after" style="display: none;">
@@ -99,14 +99,14 @@
 											</div>
 											
 										</div>
-									</div>
+									</div> 
 									<!--登录之后显示end-->
 									<div class="links clear">
 										<a href="{:url('goods/Bom/bom')}"><span>{$notice.index.bom}</span></a>
-										<a href="memberCenter/purchase-order.html"><span>{$notice.index.order_status}</span></a>
-										<a href="memberCenter/credit-discount.html"><span>{$notice.index.discount}</span></a>
-										<a href="memberCenter/purchase-order.html"><span>{$notice.index.payment}</span></a>
-										<a href="memberCenter/cominquiry-list.html"><span>{$notice.index.offer}(<i>0</i>)</span></a>
+										<a href="{:url('order/Order/myorder')}"><span>{$notice.index.order_status}</span></a>
+										<a href="{:url('order/Order/myorder')}"><span>{$notice.index.discount}</span></a>
+										<a href="{:url('order/Order/myorder')}"><span>{$notice.index.payment}</span></a>
+										<a href="{:url('order/Order/myorder')}"><span>{$notice.index.offer}(<i>0</i>)</span></a>
 									</div>
 								 
 									<div class="news">
@@ -151,11 +151,11 @@
 									<div class="inxSecCap">
 										<span class="ag_mod">{$notice.index.brand}</span>
 										<span class="ag_mod2">{$notice.index.dscbefore} &nbsp;{$notice.index.dsc}</span>
-										<a href="branded.html">{$notice.index.more}<i class="glyphicon glyphicon-menu-right"></i></a>
+										<a href="{:url('shop/Shop/shop_list1')}">{$notice.index.more}<i class="glyphicon glyphicon-menu-right"></i></a>
 									</div>
 									<ul class="inx-agList clear">
 										<foreach name="brands" item="vo">
-										<li><a href="branded_detail.html"><img src="{$image_url}/{$vo.pic}" alt="" /></a></li>
+										<li><a href="{:url('shop/Shop/brand_goods',['id'=>$vo.id])}"><img src="{$image_url}/{$vo.pic}" alt="" /></a></li>
 										</foreach>
 										 
 									</ul>								
@@ -165,11 +165,11 @@
 									<div class="inxSecCap">
 										<span class="ag_mod">{$notice.index.product}</span>
 										<span class="ag_mod2">{$notice.index.dscbefore} &nbsp;{$notice.index.dsc}</span>
-										<a href="product_category.html">{$notice.index.more}<i class="glyphicon glyphicon-menu-right"></i></a>
+										<a href="{:url('goods/Goods/cate_list')}">{$notice.index.more}<i class="glyphicon glyphicon-menu-right"></i></a>
 									</div>	
 									<ul class="inx-goods">
-									<foreach name="goods" item="vo">
-										<li><a href="{:url('goods/Goods/detail',['id'=>$key])}"><img src="{$image_url}/{$vo.pic}" alt="" /><h3 class="goods-title">{$vo.name}</h3></a></li>
+									<foreach name="banners['index_goods_cate']" item="vo">
+										<li><a href="{$vo.url}"><img src="{$image_url}/{$vo.pic}" alt="" /><h3 class="goods-title">{$vo.name}</h3></a></li>
 									</foreach>
 									 
 									</ul>		
@@ -190,7 +190,7 @@
 									<div class="inxSecCap" style="margin-left:-15px;margin-right:-15px;">
 										<span class="ag_mod">{$articel_cates['news']['lan_name']}</span>
 										<span class="ag_mod2">{$articel_cates['news']['dsc']}</span>
-										<a href="information_center.html">{$notice.index.more}<i class="iconfont icon-enter"></i></a>
+										<a href="{:url('notice/Article/article_list',['id'=>$articel_cates['news']['id']])}">{$notice.index.more}<i class="iconfont icon-enter"></i></a>
 									</div>	
 									<div class="inx-zixun">
 										<div class="row">
@@ -233,6 +233,7 @@
 											</div>
 											<div class="zx-right col-lg-4 col-md-4 col-sm-4">
 												<div class="zxRight">
+												<form action="{:url('goods/Goods/file_list')}">
 													<div class="zxtitle">
 														<p>{$notice.index.date}</p>
 													</div>
@@ -250,7 +251,8 @@
 														</foreach>
 														 
 														</div>
-													</div>									
+													</div>	
+													</form>								
 												</div>								
 											</div>
 										</div>

@@ -54,7 +54,8 @@ class DeskBaseController extends HomeBaseController
             foreach($list0 as $k=>$v){
                 $notice[$k]=$v;
             }
-           
+           //获取底部的文章名称cid=[7,8,9,10]
+            $where=['id'=>['gt',6]];
             $notice_json=json_encode($notice);
             session('notice'.$lan1,$notice); 
         } else{
