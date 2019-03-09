@@ -170,24 +170,19 @@ class GoodsController extends DeskBaseController
            $where['p.code|val.name|val.production_code']=['like','%'.$data['name'].'%'];
        }
        $order=$order.'p.sort asc'; 
-       $list=Db::name('goods')
-       ->alias('p')
-       ->join('cmf_goods_val val','val.pid=p.id and val.lid='.$lan1) 
-       ->where($where)
-       ->field($field)
-       ->paginate(2);
+       $m_goods=new GoodsModel();
+       $goods_data=$m_goods->goods_page($lan1,$lan2,$where,$data,$order);
+       $list=$goods_data['goods_list'];
+       $page=$goods_data['page'];
+       $file_list=$goods_data['file_list'];
+       $price_list=$goods_data['price_list'];
        
-       // 获取分页显示
-       $page = $list->appends($data)->render();
-      
+       
        $goods_ids=[];
        $shop_ids=[]; 
        $shop_names=[];
        $goods_list=[];
-       //阶梯价格
-       $price_list=[];
-       //产品文件
-       $file_list=[];
+       
        if(!empty($list)){
            //得到供应商和品牌id
            foreach($list as $k=>$v){
@@ -215,13 +210,7 @@ class GoodsController extends DeskBaseController
                }
                
            }
-           //阶梯价格
-           $m_price=new GoodsPriceModel();
-           $price_list=$m_price->get_all_by_pids($goods_ids);
            
-           //产品文件
-           $m_file=new GoodsFileModel();
-           $file_list=$m_file->get_all_by_ids($goods_ids);
        }
        //品牌类型
        $m_brand_cate= new GoodsBrandCateModel();
@@ -307,7 +296,41 @@ class GoodsController extends DeskBaseController
    {
        $lan1=$this->lan1;
        $lan2=$this->lan2;
+       $m_file=new GoodsFileModel();
+       $data=$this->request->param();
+       $where=[];
+       if(isset($data['name'])){
+           $where['name']=['like','%'.$data['name'].'%']; 
+       }else{
+           $data['name']=''; 
+       }
        
+       $list=$m_file->where($where)->paginate(2);
+       $page = $list->appends($data)->render();
+       $pids=[];
+       $goods_list=[];
+       if(!empty($list)){
+           foreach($list as $k=>$v){
+               $pids[$v['pid']]=$v['pid'];
+           }
+           $field='p.id,p.code,p.pic,p.pic0,p.store_num,p.store_code,p.store_sure,p.brand,p.price1,p.price2,p.goods_time1,p.goods_time2,p.shop'.
+               ',p.num_min,p.num_times,p.num_one,val.name as name,val.dsc as dsc,val.production_code as production_code,val.production_factory as production_factory';
+           $where=['p.id'=>['in',$pids]];
+           $goods_list=Db::name('goods')
+           ->alias('p')
+           ->join('cmf_goods_val val','val.pid=p.id and val.lid='.$lan1)
+           ->where($where) 
+           ->column($field);
+       }
+      
+       //品牌
+       $m_brand=new GoodsBrandModel();
+       $brands=$m_brand->get_list($lan1,$lan2);
+       $this->assign('list',$list);
+       $this->assign('page',$page);
+       $this->assign('data',$data); 
+       $this->assign('brands',$brands); 
+       $this->assign('goods_list',$goods_list); 
        return $this->fetch();
    }
 

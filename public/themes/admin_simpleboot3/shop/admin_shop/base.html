@@ -35,6 +35,15 @@
     </div>
 </div>
 <div class="form-group">
+    <label for="" class="col-sm-2 control-label"><eq name="info.id" value="1">人民币对美元汇率<else/>抽成比例</eq></label>
+    <div class="col-md-6 col-sm-10">
+        <input type="text" class="form-control" name="rate" value="{$info.rate}" /> 
+        <present name='change.rate'>
+            <input type="text" class="red form-control" value="{$change.rate}" />
+        </present> 
+    </div>
+</div>
+<div class="form-group">
     <label for="" class="col-sm-2 control-label">加盟时间</label>
     <div class="col-md-6 col-sm-10">
     <empty name="info.show_time">

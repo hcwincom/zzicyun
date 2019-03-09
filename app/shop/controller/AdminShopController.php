@@ -28,7 +28,8 @@ class AdminShopController extends AdminInfoController
             'code'=>'str',
             'logo'=>'str',
             'icon'=>'str',
-            'show_time'=>'str'
+            'show_time'=>'str',
+            'rate'=>'round4',
         ];
         $this->islan=1;
         $this->vals=[

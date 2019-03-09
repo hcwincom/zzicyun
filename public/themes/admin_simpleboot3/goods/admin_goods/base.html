@@ -45,6 +45,15 @@
     </div>
 </div>
 <div class="form-group">
+    <label for="" class="col-sm-2 control-label">型号</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="text" class="form-control" name="code" value="{$info.code}" /> 
+      <present name="change.code">
+      	 <input type="text" class="form-control red"  value="{$change.code}" /> 
+      </present>  
+    </div>
+</div>
+<div class="form-group">
     <label for="" class="col-sm-2 control-label">Rohs</label>
     <div class="col-md-6 col-sm-10">
        <select name="is_rohs" class="form-control">
@@ -142,15 +151,7 @@
       </present>  
     </div>
 </div>
- <div class="form-group">
-    <label for="" class="col-sm-2 control-label">美元单价</label>
-    <div class="col-md-6 col-sm-10">
-        <input type="text" class="form-control" name="price2" value="{$info.price2}" /> 
-      <present name="change.price2">
-      	 <input type="text" class="form-control red"  value="{$change.price2}" /> 
-      </present>  
-    </div>
-</div>
+ 
  <div class="form-group" id="param">
 	<label for="" class="col-sm-2 control-label">阶梯价格</label>
 	<div class="col-md-6 col-sm-10">
@@ -161,7 +162,7 @@
 					<th >数量 </th>
 					
 					<th>人民币单价</th> 
-					<th>美元单价</th> 
+					 
 					<th><button type="button" class="price_add">添加</button></th> 
 				</tr>
 			</thead>
@@ -171,7 +172,7 @@
 			 <tr>  
 			 	<td><input type="number" class="form-control" name="nums[]" value="{$vo.num}"/></td>
 			  	<td> <input type="text" class="form-control" name="price1s[]" value="{$vo.price1}"/> </td>
-			  	<td> <input type="text" class="form-control" name="price2s[]" value="{$vo.price2}"/>  </td> 
+			    
 			  	<td><button type="button" class="price_del">删除</button></td>
 			 </tr>
 			</foreach> 
@@ -180,7 +181,7 @@
 			 <tr class="red">  
 			 	<td><input type="number" class="form-control" name="nums[]" value="{$vo.num}"/></td>
 			  	<td> <input type="text" class="form-control" name="price1s[]" value="{$vo.price1}"/> </td>
-			  	<td> <input type="text" class="form-control" name="price2s[]" value="{$vo.price2}"/>  </td>
+			  
 			  	<td><span class="red">新数据</span></td> 
 			 </tr>
 			</foreach> 

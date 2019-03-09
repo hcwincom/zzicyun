@@ -23,7 +23,7 @@ class AdminGoodsController extends AdminInfoController
         $this->table='goods';
         $this->m=new GoodsModel();
         $this->base=['name'=>'str','sort'=>'int','dsc'=>'str','cid'=>'int','num_min'=>'int','brand'=>'int',
-            'num_times'=>'int','price1'=>'round5','price2'=>'round5','store_code'=>'str','pic'=>'str','pic0'=>'str',
+            'num_times'=>'int','price1'=>'round5','store_code'=>'str','pic'=>'str','pic0'=>'str','code'=>'str',
             'goods_time1'=>'int','goods_time2'=>'int','store_sure'=>'int','shop_type'=>'int','is_rohs'=>'int'
         ];
          
@@ -421,39 +421,7 @@ class AdminGoodsController extends AdminInfoController
             unset($data);
         }
         $table=$this->table;
-        //文件处理
-        if(!empty($data['id'])){
          
-            $pathid='goods_file/'.$data['id'].'/'; 
-            $path='upload/';
-            $data_update=[];
-            //没有目录创建目录
-            if(!is_dir($path.$pathid)){
-                mkdir($path.$pathid);
-            }
-            if(!empty($data['pic']) && is_file($path.$data['pic'])){
-                //有更改
-                if(strpos($data['pic'], $pathid)!==0){ 
-                    //获取后缀名,复制文件
-                    $ext=substr($data['pic'], strrpos($data['pic'],'.'));
-                    //原图
-                    $data_update['pic0']=$pathid.date('Ymd-His').'pic0'.$ext;
-                   
-                    copy($path.$data['pic'],$path.$data_update['pic0']);
-                    //缩略图
-                    $pic_conf=config('pic_'.$table);
-                    $data_update['pic']=zz_set_file($data['pic'],$pathid,$pic_conf);
-                }
-            }else{
-                $data_update['pic']='';
-                $data_update['pic0']='';
-            }
-            
-            foreach($data_update as $k=>$v){
-                $data[$k]=$v;
-            }
-            
-        }
         //阶梯价格
         if(!empty($data['nums'])){ 
             foreach($data['nums'] as $k=>$v){
@@ -499,8 +467,7 @@ class AdminGoodsController extends AdminInfoController
                 $data_price[]=[
                     'pid'=>$id,
                     'num'=>$v,
-                    'price1'=>$data['price1s'][$k],
-                    'price2'=>$data['price2s'][$k],
+                    'price1'=>$data['price1s'][$k], 
                 ];
             }
             $m_price=new GoodsPriceModel();
@@ -531,6 +498,36 @@ class AdminGoodsController extends AdminInfoController
     }
     /* 编辑中的处理 */
     public function edit_do_before(&$content,&$data){
+        //文件处理
+        if(!empty($data['pic'])){
+            
+            $pathid='goods_file/'.$data['id'].'/';
+            $path='upload/';
+            $data_update=[];
+            //没有目录创建目录
+            if(!is_dir($path.$pathid)){
+                mkdir($path.$pathid);
+            }
+            if(!empty($data['pic']) && is_file($path.$data['pic'])){
+                //有更改
+                if(strpos($data['pic'], $pathid)!==0){
+                    //获取后缀名,复制文件
+                    $ext=substr($data['pic'], strrpos($data['pic'],'.'));
+                    //原图
+                    $data['pic0']=$pathid.date('Ymd-His').'pic0'.$ext;
+                    
+                    copy($path.$data['pic'],$path.$data['pic0']);
+                    //缩略图
+                    $pic_conf=config('pic_goods');
+                    $data['pic']=zz_set_file($data['pic'],$pathid,$pic_conf);
+                }
+            }else{
+                $data['pic']='';
+                $data['pic0']='';
+            }
+            
+        }
+        
         //添加阶梯价格
         if(!empty($data['nums'])){
             $data_price=[];
@@ -538,8 +535,7 @@ class AdminGoodsController extends AdminInfoController
                 $data_price[]=[
                     'pid'=>$data['id'],
                     'num'=>$v,
-                    'price1'=>$data['price1s'][$k],
-                    'price2'=>$data['price2s'][$k],
+                    'price1'=>$data['price1s'][$k], 
                 ];
             } 
             //阶梯数量
@@ -550,7 +546,7 @@ class AdminGoodsController extends AdminInfoController
             }else{
                 $i=0;
                 foreach($prices as $k=>$v){
-                    if($v['num'] != $data_price[$i]['num'] || $v['price1'] != $data_price[$i]['price1'] || $v['price2'] != $data_price[$i]['price2']){
+                    if($v['num'] != $data_price[$i]['num'] || $v['price1'] != $data_price[$i]['price1'] ){
                         $content['prices']=$data_price;
                         break;
                     }
@@ -637,7 +633,7 @@ class AdminGoodsController extends AdminInfoController
     }
     /* 编辑详情 */
     public function edit_info_after($info,$change){
-      
+        
         $m=$this->m;
         $m_cate=new GoodsCateModel();
         $cate_info=$m_cate->cate_info($info['cid']);

@@ -69,7 +69,7 @@ class IndexController extends DeskBaseController
          //合作品牌
          //品牌还是品牌供应商，暂定为品牌
          $m_brand=new GoodsBrandModel();
-         $brands=$m_brand->order('sort asc')->limit(10)->column('id,pic,name');
+         $brands=$m_brand->where('status',2)->order('sort asc')->limit(10)->column('id,pic,name');
          $this->assign('brands',$brands);
          
          return $this->fetch();

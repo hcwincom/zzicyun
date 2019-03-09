@@ -208,35 +208,14 @@ class ShopController extends DeskBaseController
            $where['p.store_num']=['gt',0];
        }
        $order=$order.'p.sort asc'; 
-       $list0=Db::name('goods')
-       ->alias('p')
-       ->join('cmf_goods_val val','val.pid=p.id and val.lid='.$lan1) 
-       ->where($where)
-       ->field($field)
-       ->paginate(2);
        
-       // 获取分页显示
-       $page = $list0->appends($data)->render();
-       $list=[];
-       $goods_ids=[];
-       
-       //阶梯价格
-       $price_list=[];
-       //产品文件
-       $file_list=[];
-       if(!empty($list0)){
-           foreach ($list0 as $k=>$v){
-               $goods_ids[]=$v['id'];
-               $list[$v['id']]=$v;
-           }
-           //阶梯价格
-           $m_price=new GoodsPriceModel();
-           $price_list=$m_price->get_all_by_pids($goods_ids);
-           
-           //产品文件
-           $m_file=new GoodsFileModel();
-           $file_list=$m_file->get_all_by_ids($goods_ids);
-       }
+       $m_goods=new GoodsModel();
+       $goods_data=$m_goods->goods_page($lan1,$lan2,$where,$data,$order);
+       $list=$goods_data['goods_list'];
+       $page=$goods_data['page'];
+       $file_list=$goods_data['file_list'];
+       $price_list=$goods_data['price_list'];
+        
        //品牌类型
        $m_brand_cate= new GoodsBrandCateModel();
        $brand_cates=$m_brand_cate->get_all($lan1,$lan2);
@@ -324,40 +303,25 @@ class ShopController extends DeskBaseController
            $where['p.store_num']=['gt',0];
        }
        $order=$order.'p.sort asc';
-       $list0=Db::name('goods')
-       ->alias('p')
-       ->join('cmf_goods_val val','val.pid=p.id and val.lid='.$lan1)
-       ->where($where)
-       ->field($field)
-       ->paginate(2);
-       
-       // 获取分页显示
-       $page = $list0->appends($data)->render();
-       $list=[];
+       $m_goods=new GoodsModel();
+       $goods_data=$m_goods->goods_page($lan1,$lan2,$where,$data,$order);
+       $list=$goods_data['goods_list'];
+       $page=$goods_data['page'];
+       $file_list=$goods_data['file_list'];
+       $price_list=$goods_data['price_list'];
+         
        $goods_ids=[];
        //店铺id
        $shop_ids=[];
-       //阶梯价格
-       $price_list=[];
-       //产品文件
-       $file_list=[];
-       if(!empty($list0)){
-           foreach ($list0 as $k=>$v){
-               $goods_ids[]=$v['id'];
-               $list[$v['id']]=$v;
+       $shop_names=[];
+       if(!empty($list)){
+           foreach ($list as $k=>$v){ 
                $shop_ids[]=$v['shop']; 
            }
            //供应商名
            $m_shop=new ShopModel();
            $shop_names=$m_shop->get_limit($lan1,$lan2,['p.id'=>['in',$shop_ids]]);
-           
-           //阶梯价格
-           $m_price=new GoodsPriceModel();
-           $price_list=$m_price->get_all_by_pids($goods_ids);
-           
-           //产品文件
-           $m_file=new GoodsFileModel();
-           $file_list=$m_file->get_all_by_ids($goods_ids);
+            
        }
        //品牌类型
        $m_brand_cate= new GoodsBrandCateModel();
