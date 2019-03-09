@@ -66,7 +66,7 @@ class GoodsModel extends Model
     public function get_one($id,$lan=1,$lan1=1){
         
         $field='p.id,p.code,p.pic,p.pic0,p.store_num,p.store_code,p.store_sure,p.brand,p.price1,p.price2,p.goods_time1,p.goods_time2,p.shop'.
-        ',p.num_min,p.num_times,p.num_one,val.name as name,val.dsc as dsc,val.production_code as production_code,val.production_factory as production_factory';
+        ',p.box,p.num_min,p.num_times,p.num_one,val.name as name,val.dsc as dsc,val.production_code as production_code,val.production_factory as production_factory';
         $where=['p.id'=>$id];
         $info=$this
         ->alias('p')
@@ -137,14 +137,14 @@ class GoodsModel extends Model
     public function goods_page($lan1,$lan2,$where,$data,$order)
     { 
         $field='p.id,p.code,p.pic,p.pic0,p.store_num,p.store_code,p.store_sure,p.brand,p.price1,p.price2,p.goods_time1,p.goods_time2,p.shop'.
-            ',p.num_min,p.num_times,p.num_one,val.name as name,val.dsc as dsc,val.production_code as production_code,val.production_factory as production_factory';
+            ',p.box,p.num_min,p.num_times,p.num_one,val.name as name,val.dsc as dsc,val.production_code as production_code,val.production_factory as production_factory';
        
         $list=$this
         ->alias('p')
         ->join('cmf_goods_val val','val.pid=p.id and val.lid='.$lan1)
         ->where($where)
         ->field($field)
-        ->paginate(2);
+        ->paginate(10);
         
         // 获取分页显示
         $page = $list->appends($data)->render();
