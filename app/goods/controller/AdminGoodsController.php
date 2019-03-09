@@ -1323,5 +1323,23 @@ class AdminGoodsController extends AdminInfoController
        $this->success('导入成功',url('index'));
         exit('dd');
     }
-    
+    /**
+     * 分类产品数量统计
+     * @adminMenu(
+     *     'name'   => ' 分类产品数量统计',
+     *     'parent' => 'index',
+     *     'display'=> false,
+     *     'hasView'=> false,
+     *     'order'  => 100,
+     *     'icon'   => '',
+     *     'remark' => '分类产品数量统计',
+     *     'param'  => ''
+     * )
+     */
+    public function cate_num()
+    {
+        $m_cate=new GoodsCateModel();
+        $m_cate->set_number_all();
+        $this->success('更新成功',url('index'));
+    }
 }

@@ -153,4 +153,72 @@ class GoodsCateModel extends Model
          
         return $ids;
     }
+    /**
+     * 重新统计分类下产品的数量 
+     * @return number
+     */
+    public function set_number_all(){
+        $list=$this->column('id,rate,fid,num');
+        $cates=[];
+        foreach($list as $k=>$v){
+            switch($v['rate']){
+                case 1:
+                    $cates['cate1'][$v['id']]=$v;
+                    break;
+                case 2:
+                    $cates['cate2'][$v['fid']][$v['id']]=$v;
+                    break;
+                case 3:
+                    $cates['cate3'][$v['fid']][$v['id']]=$v;
+                    break;
+            }
+        }
+        //获取最新产品数
+       
+        $m_goods=Db::name('goods');
+         
+        foreach($cates['cate1'] as $k1=>$v1){
+            if(empty( $cates['cate2'][$k1])){
+                $nums=0;
+            }else{
+                foreach($cates['cate2'][$k1]as $k2=>$v2){
+                    if(empty( $cates['cate3'][$k2])){
+                        $nums=0;
+                    }else{
+                        //各分类一个个统计
+                        foreach($cates['cate3'][$k2] as $k3=>$v3){
+                            $where=['status'=>2,'cid'=>$k3];
+                            $nums=$m_goods->where($where)->count();
+                            if(empty($nums)){
+                                $nums=0;
+                            }
+                            if($nums!=$v3['num']){
+                                $this->where('id',$k3)->setField('num',$nums);
+                            }
+                        }
+                        //统计二级分类
+                        $nums=$this->where('fid',$k2)->sum('num');
+                        if(empty($nums)){
+                            $nums=0;
+                        }
+                    }
+                    //二级分类是否有变化
+                    if($nums!=$v2['num']){
+                        $this->where('id',$k2)->setField('num',$nums);
+                    } 
+                }
+                //统计一级分类
+                $nums=$this->where('fid',$k1)->sum('num');
+                if(empty($nums)){
+                    $nums=0;
+                }
+            }
+            //一级分类是否有变化
+            if($nums!=$v1['num']){
+                $this->where('id',$k1)->setField('num',$nums);
+            } 
+        }
+        
+        return 1;
+    }
 }
