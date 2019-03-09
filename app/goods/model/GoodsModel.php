@@ -18,19 +18,40 @@ class GoodsModel extends Model
      
         $field='p.id,p.pic,p.pic0,p.store_num,val.name as name';
         $order='p.sort asc,p.shop asc';
-        $list=$this
-        ->alias('p')
-        ->join('cmf_goods_val val','val.pid=p.id and val.lid='.$lan)
-        ->where($where)
-        ->order($order)
-        ->column($field);
-        if(empty($list)){
+        if(empty($limit)){
             $list=$this
             ->alias('p')
-            ->join('cmf_goods_val val','val.pid=p.id and val.lid='.$lan1)
+            ->join('cmf_goods_val val','val.pid=p.id and val.lid='.$lan)
             ->where($where)
             ->order($order)
             ->column($field);
+        }else{
+            $list=$this
+            ->alias('p')
+            ->join('cmf_goods_val val','val.pid=p.id and val.lid='.$lan)
+            ->where($where)
+            ->order($order)
+            ->limit($limit)
+            ->column($field);
+        }
+        
+        if(empty($list)){
+            if(empty($limit)){
+                $list=$this
+                ->alias('p')
+                ->join('cmf_goods_val val','val.pid=p.id and val.lid='.$lan1)
+                ->where($where)
+                ->order($order)
+                ->column($field);
+            }else{
+                $list=$this
+                ->alias('p')
+                ->join('cmf_goods_val val','val.pid=p.id and val.lid='.$lan1)
+                ->where($where)
+                ->order($order)
+                ->limit($limit)
+                ->column($field);
+            }
         }
         
         return $list;

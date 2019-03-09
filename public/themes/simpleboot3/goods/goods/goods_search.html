@@ -12,20 +12,23 @@
 							<h3 class="allNav__cap">{$notice.index.goods_cate}</h3>
 							<div class="proAllNav">
 							<foreach name="list['cate1']" item="v1" key="k1">
+							<present name="list['cate2'][$k1]">
 								<foreach name="list['cate2'][$k1]" item="v2" key="k2">
 								<div class="proNav">
 									<a href="javascript:void(0)" class="proNav_cap"><i class="iconfont icon-icon"></i><span>{$v2.name}({$v2.num})</span></a>
 									<div class="proNav_div">
 										<ul>
+										<present name="list['cate3'][$k2]">
 										<foreach name="list['cate3'][$k2]" item="v3" key="k3">
 											<li><a href="{:url('goods/Goods/goods_search',['cid'=>$k3])}">{$v3.name}</a></li>
 											 
 										</foreach>
-											 
+										</present>
 										</ul>
 									</div>
 								</div>
 								</foreach>
+								</present>
 							</foreach>
 								 
 							</div>	

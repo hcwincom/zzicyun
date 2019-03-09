@@ -11,6 +11,10 @@ use app\goods\model\GoodsParamModel;
 use app\goods\model\GoodsPriceModel;
 use app\goods\model\GoodsBrandModel;
 use app\goods\model\GoodsFileModel;
+use PHPExcel_IOFactory;
+use PHPExcel;
+use PHPExcel_Cell_DataType;
+use PHPExcel_Style_Border;
 /* 产品的添加 */
 class AdminGoodsController extends AdminInfoController
 {
@@ -72,6 +76,32 @@ class AdminGoodsController extends AdminInfoController
         }else{
             $where['status']=['eq',$data['status']];
         }
+        
+        //父类cid1,cid2
+        $cid1=0;
+        $cid2=0;
+        $cid3=0;
+        if(!empty($data['cid1'])){
+            $m_cate=new GoodsCateModel();
+            $cid1=$data['cid1'];
+            if(empty($data['cid2'])){
+                $cids=$m_cate->get_cids_by_fid($cid1); 
+                $where['cid']=['in',$cids];
+            }else{
+                $cid2=$data['cid2'];
+                if(empty($data['cid3'])){
+                    $cids=$m_cate->get_cids_by_fid($cid2);
+                    $where['cid']=['in',$cids];
+                }else{
+                    $cid3=$data['cid3'];
+                    $where['cid']=['eq',$cid3];
+                } 
+            }
+           
+        }
+        $this->assign('cid1',$cid1);
+        $this->assign('cid2',$cid2); 
+        $this->assign('cid3',$cid3); 
         //状态
         if(empty($data['fid'])){
             $data['fid']=0;
@@ -1157,4 +1187,141 @@ class AdminGoodsController extends AdminInfoController
         $m->commit();
         $this->success('审核成功');
     }
+    
+    /**
+     * 产品导入
+     * @adminMenu(
+     *     'name'   => ' 产品导入',
+     *     'parent' => 'index',
+     *     'display'=> false,
+     *     'hasView'=> false,
+     *     'order'  => 100,
+     *     'icon'   => '',
+     *     'remark' => ' 产品导入',
+     *     'param'  => ''
+     * )
+     */
+    public function import()
+    {
+        dump($_POST);
+        dump($_FILES);
+        $excel_url=$this->request->param('excel_url','');
+        $path='upload/';
+        $file =$path.$excel_url;
+        if(empty($excel_url) || !is_file($file)){
+            $this->error('没有上传excel文件');
+        }
+        
+        // 读取excel文件
+        try {
+            $inputFileType = PHPExcel_IOFactory::identify($file);
+            $objReader = PHPExcel_IOFactory::createReader($inputFileType);
+            $objPHPExcel = $objReader->load($file);
+        } catch(\Exception $e) {
+            die('加载文件发生错误：'.pathinfo($file,PATHINFO_BASENAME).':'.$e->getMessage());
+        }
+                
+        // 确定要读取的sheet，什么是sheet，看excel的右下角，真的不懂去百度吧
+        $sheet = $objPHPExcel->getSheet(0);
+        $highestRow = $sheet->getHighestRow();
+        $highestColumn = $sheet->getHighestColumn();
+      
+        //从第二行开始读取数据
+        $data_goods=[]; 
+        $data_file=[]; 
+        $data_val=[];
+       /*  [0] => array(16) {
+            [0] => string(11) "供应商id"
+            [1] => string(8) "分类id"
+            [2] => string(12) "库存编号"
+                [3] => string(12) "完整型号"
+                    [4] => string(8) "品牌id"
+                        [5] => string(12) "封装规格"
+            [6] => string(13) " 参数描述"
+                [7] => string(6) "库存"
+                    [8] => string(6) "单价"
+                        [9] => string(27) "电脑存档对应pdf编号"
+            [10] => string(6) "整包"
+                [11] => string(9) "起订量"
+                    [12] => string(6) "倍数"
+            [13] => string(12) "大陆交货"
+                [14] => string(12) "香港交货"
+                    [15] => string(12) "库存类型" */
+        
+        $file_path='file_upload/';
+        $store_codes=[];
+        $admin=$this->admin;
+        $time=time();
+        $rows= $sheet->rangeToArray('A2:P'.$highestRow, NULL, TRUE, FALSE);
+        
+        foreach($rows as $k=>$rowData){
+             
+            $store_code=trim($rowData[2]);
+            $store_codes[]=$store_code;
+            $data_goods[$store_code]=[
+                'shop'=>intval($rowData[0]),
+                'cid'=>intval($rowData[1]),
+                'store_code'=>$store_code,
+                'code'=>trim($rowData[3]),
+                'name'=>trim($rowData[3]),
+                'dsc'=>trim($rowData[3]),
+                'brand'=>intval($rowData[4]),
+                'box'=>trim($rowData[5]),
+                'store_num'=>intval($rowData[7]),
+                'price1'=>round($rowData[8],5),
+                'num_one'=>intval($rowData[10]),
+                'num_min'=>intval($rowData[11]),
+                'num_times'=>intval($rowData[12]),
+                'goods_time1'=>intval($rowData[13]),
+                'goods_time2'=>intval($rowData[14]),
+                'store_sure'=>intval($rowData[15]), 
+                'status'=>2,
+                'aid'=>$admin['id'],
+                'atime'=>$time,
+                'rid'=>$admin['id'],
+                'rtime'=>$time, 
+                'time'=>$time,
+            ];
+            $data_val[$store_code]=[
+                'name'=>$data_goods[$store_code]['name'],
+                'dsc'=>trim($rowData[6]), 
+                'lid'=>1,
+            ];
+            $url=trim($rowData[9]);
+            if(!empty($url)){
+                $data_file[$store_code]=[
+                    'name'=>$url,
+                    'url'=>$file_path.$url,
+                    'type'=>1,
+                ];
+            }
+           
+           
+        }
+        if(empty($data_goods)){
+            $this->error('没有数据',url('index'));
+        }
+       $m_goods=$this->m;
+       $m_file=new GoodsFileModel();
+       $m_val=Db::name('goods_val');
+       $m_goods->startTrans();
+       //添加产品
+       $m_goods->insertAll($data_goods);
+       $pids=$m_goods->where('store_code','in',$store_codes)->column('store_code,id','store_code');
+       if(!empty($data_file)){
+           foreach($data_file as $k=>$v){
+               $data_file[$k]['pid']=$pids[$k];
+           }
+           $m_file->insertAll($data_file);
+       }
+       
+       foreach($data_val as $k=>$v){
+           $data_val[$k]['pid']=$pids[$k];
+       }
+       $m_val->insertAll($data_val);
+       $m_goods->commit();
+       $this->success('导入成功',url('index'));
+        exit('dd');
+    }
+    
 }

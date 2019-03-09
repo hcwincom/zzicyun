@@ -60,21 +60,27 @@ class AdminGoodsCateController extends AdminInfoController
         }else{
             $where['status']=['eq',$data['status']];
         }
-        //状态
-        if(empty($data['fid'])){
-            $data['fid']=0;
-        }else{
-            $arr=explode('-',$data['fid']);
-            $data['fid']=$arr[0];
-            $rate=$arr[1];
-            if($rate==2){
-                $where['fid']=['eq',$data['fid']];
-            }else{
-                $fids=$m->where('fid',$data['fid'])->column('id');
-                $where['fid']=['in',$fids];
-            } 
-        }
         
+        //父类cid1,cid2
+        $cid1=0;
+        $cid2=0;
+        if(!empty($data['cid1'])){ 
+           
+            $cid1=$data['cid1'];
+            if(empty($data['cid2'])){
+                $fids=$m->where('fid',$cid1)->column('id');
+                $fids[]=$cid1;
+                $where['fid']=['in',$fids];
+            }else{
+                $cid2=$data['cid2']; 
+                $where['fid']=['eq',$cid2];
+            } 
+          
+            
+        } 
+        $this->assign('cid1',$cid1); 
+        $this->assign('cid2',$cid2); 
+     
         //添加人
         if(empty($data['aid'])){
             $data['aid']=0;
@@ -106,7 +112,7 @@ class AdminGoodsCateController extends AdminInfoController
         
         $list=$m
         ->where($where)
-        ->order('status asc,sort asc,time desc')
+        ->order('status asc,rate asc,sort asc,time desc')
         ->paginate();
         
         // 获取分页显示
