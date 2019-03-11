@@ -57,14 +57,14 @@
 										<ol class="carousel-indicators">
 										<present name="banners['index_x']">
 										<foreach name="banners['index_x']" item="vo">
-										  <li data-target="#carousel-example-generic" data-slide-to="{$key}" class="<eq name='key' value='active'></eq>"></li> 
+										  <li data-target="#carousel-example-generic" data-slide-to="{$key}" class="<eq name='key' value='0'>active</eq>"></li> 
 										  </foreach>
 										</present> 
 										</ol>
 										<div class="carousel-inner slider-con" role="listbox">
 										<present name="banners['index_x']">
 										<foreach name="banners['index_x']" item="vo">
-											<div class="item active">
+											<div class="item <eq name='key' value='0'>active</eq>">
 										    <a href="{$vo.url}" target="_blank" title="">
 													<img src="{:cmf_get_image_url($vo.pic)}" alt="" />
 												 
@@ -72,7 +72,7 @@
 										  </div> 
 										</foreach>
 										</present>
-										  
+										
 										</div>
 									</div>
 								</div>												

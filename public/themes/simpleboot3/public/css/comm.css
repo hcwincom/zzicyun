@@ -578,8 +578,27 @@ input[type=checkbox], input[type=radio] {
 .footer{background: #fff;}
 .footer_top{
 	margin-top: 2em;
-	height: 252px;
-	line-height: 252px;
+	height: 220px;
+	line-height: 220px;
+}
+.footImg>p{
+	height: 120px;
+	line-height: 120px;
+	text-align: center;
+}
+.footImg>p>img{
+	width: 72px;
+	height: 72px;
+}
+.footImg>h3{
+	width: 100%;
+	text-align: center;
+	font-size: 30px;
+	line-height: 1.5;
+	font-weight: 400;
+	color: #000000;
+	white-space:nowrap;
+	word-break:break-all;
 }
 .footer_bottom{
 	background: #242424;

@@ -21,11 +21,11 @@
 }
 .carousel{
 	width: 100%;
-	height: 365px;
+	height: 358px;
 	position: relative;
 }
 .slider-con{
-	height: 365px;
+	height: 358px;
 	position: relative;
 	overflow: hidden;
 }
@@ -540,16 +540,7 @@
 .zxshuju .zxshuju_p p a{
 	color: #fff;
 }
-.footImg{
-	text-align: center;
-}
-.footImg>p{
-	width: 60%;
-	margin: 0 auto;
-}
-.footImg>p>img{
-	max-width: 100%;
-}
+
 /*被动选型*/
 .pro_main{
 	width: 100%;
