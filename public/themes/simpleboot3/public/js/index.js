@@ -1,7 +1,8 @@
 $(function(){
-	// 加载公共底部
-$("#footer").load("foot.html");
-$("#bottomFooter").load("../bottom_footer.html");
+// 顶部广告点击删除
+	$(".banner-wrap>span").click(function () {
+		$(".banner-wrap").hide();
+	});
 
 
 // 侧导航切换

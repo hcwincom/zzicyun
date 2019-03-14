@@ -734,9 +734,9 @@
 }
 .table{margin-bottom: 1px;}
 
-.table.table-search>thead>tr>th{
+.table-search>thead>tr>th{
 	font-size: 14px;
-	/* line-height: 42px; */
+	line-height: 42px;
 }
 .table.table-search>thead>tr>th.padTable,
 .table.table-search>tbody>tr>td.padStep{
@@ -756,21 +756,23 @@
 }
 .titleTotal>ul>li{
 	float: left;
-	width: 33.33%;
 	line-height: 52px;
 	border-right: 1px solid #ddd;
 	padding-left: 5px;
 }
+.titleTotal>ul>li:first-child{
+	width: 30%;
+}
+.titleTotal>ul>li:nth-child(2),
+.titleTotal>ul>li:nth-child(3){
+	width: 35%;
+}
+
 .titleTotal>ul>li>p{
 	line-height: 24px;
 	padding-top: 2px;
 }
-/* .totalStep>ul>li{
-	border-top: 1px solid #ddd;
-}
-.totalStep>ul>li:first-child{
-	border-top: none;
-} */
+
 
 .totalStep>ul>li>p{
 	display: block;
@@ -783,18 +785,21 @@
 	border-right: none;
 }
 
-
-
 .product_list p{
 	line-height: 1.8;
 }
 .table tr td p.pgreen{
-	width: 100%;
-	line-height: 24px;
+	width: 90%;
+	margin: 0 auto;
+	font-size: 12px;
+	line-height: 20px;
 	background: #198148;
 	text-align: center;
 	color: #fff;
 	margin-top: 1em;
+}
+.table tr td p.pCenter{
+	text-align: center;
 }
 .icon-PDF{
 	color: #f3181a;
@@ -812,7 +817,10 @@
 	line-height: 2.6;
 }
 .fuGoods p.fuGoods_border{
-	width: 96%;
+	width: 90%;
+	margin: 0 auto;
+	line-height: 1.8;
+	font-size: 12px;
 	text-align: center;
 	border: 0.01em solid #d9000f;
 }
@@ -1151,6 +1159,10 @@
 .table_right,.table-grayth,.tabble_view{
 	margin-bottom: 0;
 }
+.tabble_view>thead>tr>th{
+	line-height: 22px;
+	vertical-align: middle;
+}
 .table-grayth>tbody>tr>th{
     background: #eee;
 }
@@ -1210,9 +1222,7 @@
 	line-height: 38px;
 	font-size: 16px;
 }
-.detail_bei>.row{
-	
-}
+
 .detail_benum>p,.detail_buy>p{
 	padding-left: 5px;
 }

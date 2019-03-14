@@ -3,12 +3,12 @@
 	<table class="table table-condensed table-bordered table-search">
 		<thead>
 			<tr>
-				<th width="14%">{$notice.goods_search.commodity}</th>
-				<th width="8%">{$notice.index.trademark}</th>
-				<th width="8%">{$notice.goods_search.parameter}</th>
-				<th width="8%">{$notice.goods_search.package}{$notice.goods_search.buy_num}</th>
-				<th width="8%">{$notice.index.hand}</th>
-				<th width="24%" class="padTable">
+				<th width="18%">{$notice.goods_search.commodity}</th>
+				<th width="7%">{$notice.index.trademark}</th>
+				<th width="11%">{$notice.goods_search.parameter}</th>
+				<th width="7%">{$notice.goods_search.package}{$notice.goods_search.buy_num}</th>
+				<th width="7%">{$notice.index.hand}</th>
+				<th width="22%" class="padTable">
 					<div class="titleTotal">
 						<ul class="clear ">
 							<li>{$notice.goods_search.ladder}{$notice.goods_search.buy_num}</li>
@@ -23,7 +23,7 @@
 						</ul>
 					</div>
 				</th>
-				<th width="11%">{$notice.goods_search.ship}</th>
+				<th width="9%">{$notice.goods_search.ship}</th>
 				<th width="10%">{$notice.goods_search.buy}{$notice.goods_search.buy_num}</th>
 				<th width="9%">{$notice.goods_search.operation}</th>
 			</tr>
@@ -41,7 +41,7 @@
 				</td>
 				<td>
 				<present name="brands[$vgoods['brand']]">
-					<p>{$brands[$vgoods['brand']]['name']}</p>
+					<p class="pCenter">{$brands[$vgoods['brand']]['name']}</p>
 					<p class="pgreen">{$brand_cates[$brands[$vgoods['brand']]['cid']]|default=''}</p>
 				</present>
 				</td>
