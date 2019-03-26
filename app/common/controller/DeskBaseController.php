@@ -28,7 +28,7 @@ class DeskBaseController extends HomeBaseController
         $this->lan2=$lan2;
         $notice_json=session('notice'.$lan1);
         if(empty($notice_json) || 1){ 
-            //获取所有信息 
+            //获取所有notice信息 
             $notices=Db::name('notice')
             ->alias('notice')
             ->join('cmf_notice_cate cate','notice.cid=cate.id')
@@ -55,7 +55,27 @@ class DeskBaseController extends HomeBaseController
                 $notice[$k]=$v;
             }
            //获取底部的文章名称cid=[7,8,9,10]
-            $where=['id'=>['gt',6]];
+            $where=['id'=>['in',[7,8,9,10]]];
+            
+            
+            //底部图片
+//             9-底部微信二维码	foot_qr,1
+//             8-底部图片	foot_img,6
+            $where=['status'=>2,'cid'=>['in',[8,9]]];
+            $foot_pics=Db::name('banner')->where($where)->order('sort asc')->column('id,cid,url,pic');
+            foreach($foot_pics as $k=>$v){
+                if($v['cid']==9){
+                    $notice['foot_qr'][$v['id']]=$v;
+                }else{
+                    if(empty($notice['foot_img'])){
+                        $notice['foot_img'][$v['id']]=$v;
+                    }else{
+                        if(count($notice['foot_img'])<6){
+                            $notice['foot_img'][$v['id']]=$v;
+                        }
+                    } 
+                }
+            }
             $notice_json=json_encode($notice);
             session('notice'.$lan1,$notice); 
         } else{
@@ -74,6 +94,10 @@ class DeskBaseController extends HomeBaseController
         View::share('notice',$notice);
         View::share('notice_json',$notice_json);
         $this->assign('html',$this->request->action());
+        $this->assign('module',$this->request->module());
+        $this->assign('controller',$this->request->controller());
+      
+       
     }
 
 

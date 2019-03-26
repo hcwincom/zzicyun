@@ -41,6 +41,9 @@ class AdminInfoController extends AdminBaseController
         $this->base=['name'=>'str','sort'=>'int','dsc'=>'str','cid'=>'int'];
         
         $this->search=[2=>['name','名称'],1=>['id','id']];  
+        $this->isshop=0;
+        $this->islan=0;
+        
         $this->assign('statuss',$this->statuss);
         $this->assign('review_status',$this->review_status);
        
@@ -599,8 +602,9 @@ class AdminInfoController extends AdminBaseController
     /* 批量删除 */
     public function del_all()
     {
+        $url=url('index');
         if(empty($_POST['ids'])){
-            $this->error('未选中信息');
+            $this->error('未选中信息',$url);
         }
         $ids=$_POST['ids'];
         
@@ -617,23 +621,29 @@ class AdminInfoController extends AdminBaseController
                 $where['shop']=['eq',$admin['shop']];
                 $ids=$m->where($where)->column('id');
                 if(empty($ids)){
-                    $this->error('没有可删除数据');
+                    $this->error('没有可删除数据',$url);
                 }
             }else{
-                $this->error('店铺不能操作系统数据');
+                $this->error('店铺不能操作系统数据',$url);
             }
         } 
         $res=$this->del_before($ids);
-        if(!($res>0)){
-            $this->error($res);
+        
+        if(!($res>0)){ 
+            $this->error($res,$url);
         }
+        
         $m->startTrans();
         $tmp=$m->where('id','in',$ids)->delete(); 
         //删除多语言值
         if($this->islan){
             Db::name($table.'_val')->where('pid','in',$ids)->delete();
         }
-         
+        $res=$this->del_after($ids);
+        
+        if(!($res>0)){
+            $this->error($res,$url);
+        }
         //删除关联编辑记录
         $where_edit=[
             'table'=>['eq',$table],
@@ -1156,6 +1166,10 @@ class AdminInfoController extends AdminBaseController
     }
     /* 删除前 */
     public function del_before($ids){
+        return 1;
+    }
+    /* 删除后 */
+    public function del_after($ids){
         return 1;
     }
 }

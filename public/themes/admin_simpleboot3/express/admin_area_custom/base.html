@@ -1,0 +1,70 @@
+<div style="clear:both"></div>
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">名称</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="text" class="form-control" name="name" value="{$info.name}" />
+
+        <present name='change.name'>
+            <input type="text" class="red form-control" name="name" value="{$change.name}" />
+        </present>
+
+    </div>
+</div>
+ <empty name="info1.id">
+	<include file="express@admin_area_custom:city_add" />
+</empty>
+ <div class="form-group">
+     <label class="col-sm-2 control-label">包含地区</label>
+     <div class="col-md-6 col-sm-10" id="citys">
+
+         <foreach name="citys" item="vo" key="key">
+            
+             <div id="citys{$key}">
+             <h4>----{$city1s[$key]}----</h4>
+             <foreach name="vo" item="vv" key="kk">
+                 <label class="checkbox-inline">
+                     <input type="checkbox" value="{$kk}" name="citys[{$kk}]" <present name="city_ids[$kk]">checked</present>  />
+                    {$vv}
+                 <present name="change['city_del'][$kk]">
+                    <span class="red">删除</span>
+                 </present>
+                  <present name="change['city_add'][$kk]">
+                    <span class="red">新增</span>
+                 </present>
+                 </label>
+             </foreach>
+             </div>
+         </foreach>
+     </div>
+ </div>
+ 
+ 
+<div class="form-group">
+    <label class="col-sm-2 control-label">简介</label>
+    <div class="col-md-6 col-sm-10">
+        <textarea class="form-control"  rows="5" >{$info.dsc}</textarea>
+        <present name='change.dsc'>
+            <textarea class="red form-control" rows="5" >{$change.dsc}</textarea>
+        </present>
+    </div>
+</div>
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">排序</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="text" class="form-control" name="sort" value="{$info.sort}" />
+        <present name='change.sort'>
+            <input type="text" class="red form-control" name="sort" value="{$change.sort}" />
+        </present>
+    </div>
+</div>
+<div class="form-group " >
+    <label class="col-sm-2 control-label">备注</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="text" class="form-control" name="dsc" value="{$info.dsc}"  />
+        <present name='change.dsc'>
+            <input type="text" class="red form-control"  name="dsc" value="{$change.dsc}"  />
+        </present>
+    </div>
+</div>
+
+<include file="public@adsc" />

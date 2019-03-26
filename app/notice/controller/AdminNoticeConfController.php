@@ -31,6 +31,9 @@ class AdminNoticeConfController extends AdminInfoController
             'is_rohs'=>'是否符合rohs标准',
             'user_rates'=>'用户等级',
             'user_cates'=>'用户类型', 
+             
+            'pay_type'=>[1=>'支付宝',2=>'微信支付',3=>'网银',4=>'银行转账',5=>'授信额度'],
+            
         ];
         
         $this->assign('flag',$this->flag);

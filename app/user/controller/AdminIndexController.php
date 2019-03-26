@@ -48,7 +48,7 @@ class AdminIndexController extends AdminBaseController
      *     'parent' => 'default1',
      *     'display'=> true,
      *     'hasView'=> true,
-     *     'order'  => 10000,
+     *     'order'  => 1,
      *     'icon'   => '',
      *     'remark' => '本站用户',
      *     'param'  => ''

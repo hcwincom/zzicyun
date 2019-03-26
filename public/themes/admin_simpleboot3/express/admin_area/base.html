@@ -11,7 +11,7 @@
 
     </div>
 </div>
- <foreach name="vals" item="vo" key="key">
+   <foreach name="vals" item="vo" key="key">
 <div class="form-group">
     <label for="" class="col-sm-2 control-label">{$vo}</label>
     <div class="col-md-6 col-sm-10">
@@ -27,55 +27,90 @@
     </div>
 </div>
 </foreach>
-
-<div class="form-group">
-    <label class="col-sm-2 control-label">简介</label>
-    <div class="col-md-6 col-sm-10">
-        <textarea class="form-control"  rows="5" >{$info.dsc}</textarea>
-        <present name='change.dsc'>
-            <textarea class="red form-control" rows="5" >{$change.dsc}</textarea>
-        </present>
-    </div>
-</div>
-<div class="form-group">
-    <label for="" class="col-sm-2 control-label">排序</label>
-    <div class="col-md-6 col-sm-10">
-        <input type="text" class="form-control" name="sort" value="{$info.sort}" />
-        <present name='change.sort'>
-            <input type="text" class="red form-control"  name="sort" value="{$change.sort}" />
-        </present>
-    </div>
-</div>
-<empty name="info.id">
+<notempty name="info.id">
 <div class="form-group">
     <label for="" class="col-sm-2 control-label">级别</label>
     <div class="col-md-6 col-sm-10">
-        <label class="radio-inline" id="type1">
-            <input type="radio" value="0" name="type" />国
+    <foreach name="area_types" item="vo">
+    	 <label class="radio-inline" id="type1">
+            <input type="radio" value="{$key}" name="type" <if condition="$key eq $info.type">checked</if>/>{$vo}
         </label>
-        <label class="radio-inline" id="type1">
-            <input type="radio" value="1" name="type" />省
-        </label>
-        <label class="radio-inline" id="type2">
-            <input type="radio" value="2" name="type" />市
-        </label>
-        <label class="radio-inline" id="type3">
-            <input type="radio" value="3" name="type" />县/区
-        </label>
+    </foreach>
+        
     </div>
 </div>
+</notempty>
 <div class="form-group">
     <label for="" class="col-sm-2 control-label">上级地区</label>
     <div class="col-md-6 col-sm-10">
-        <select name="city1" id="city1" name="fid" required>
-
-        </select>
-        <select name="city2" id="city2"  >
-
-        </select>
+    <empty name="info.id">
+    	<include file="public@city1" /> 
+    <else/>
+    <switch name="info.type">
+    	<case value="1">
+    		<select name="country"  class="form-control short2"  id="city0">
+				<option value="1">中国</option> 
+			</select>
+    	</case>
+    	<case value="2">
+    		 <select name="country"  class="form-control short2"  id="city0">
+				<option value="0">国家</option>
+			 
+			</select>
+			<select name="province"  class="form-control short2"  id="city1">
+				<option value="0">省份</option>
+			 
+			</select>
+    	</case>
+    	<case value="3">
+    		<include file="public@city1" /> 
+    	</case>
+    </switch>
+    
+    </empty>
+        
     </div>
 </div>
-</empty>
+ <present name="change.fid">
+ <div class="form-group red">
+    <label for="" class="col-sm-2 control-label">上级地区修改</label>
+    <div class="col-md-6 col-sm-10">
+    
+    <switch name="info.type">
+    	<case value="1">
+    		<select name="country"  class="form-control short2"  id="city0_change">
+				<option value="1">中国</option> 
+			</select>
+    	</case>
+    	<case value="2">
+    		 <select name="country"  class="form-control short2"  id="city0_change">
+				<option value="0">国家</option>
+			 
+			</select>
+			<select name="province"  class="form-control short2"  id="city1_change">
+				<option value="0">省份</option>
+			 
+			</select>
+    	</case>
+    	<case value="3">
+    		 <select name="country"  class="form-control short2"  id="city0_change">
+				<option value="0">国家</option>
+			 
+			</select>
+			<select name="province"  class="form-control short2"  id="city1_change">
+				<option value="0">省份</option>
+			 
+			</select>
+			<select name="province"  class="form-control short2"  id="city2_change">
+				<option value="0">市</option>
+			 
+			</select>
+    	</case>
+    </switch>
+    
+    </div>
+</div>
+ </present>
 <div class="form-group">
     <label for="" class="col-sm-2 control-label">区号</label>
     <div class="col-md-6 col-sm-10">
@@ -88,7 +123,15 @@
         <input type="text" class="form-control" name="postcode" value="{$info.postcode}" required/>
     </div>
 </div>
-
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">排序</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="number" class="form-control" name="sort" value="{$info.sort|default=1000}" />
+        <present name='change.sort'>
+            <input type="text" class="red form-control"  name="sort" value="{$change.sort}" />
+        </present>
+    </div>
+</div>
 <div class="form-group " >
     <label class="col-sm-2 control-label">备注</label>
     <div class="col-md-6 col-sm-10">

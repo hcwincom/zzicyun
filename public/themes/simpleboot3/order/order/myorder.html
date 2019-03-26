@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	   <!-- <meta name="viewport" content="width=device-width, initial-scale=1">-->
+	    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+	    <title> {$notice[$html]['html']|default=$notice.common.html}</title>
+			<meta name="applicable-device" content="pc">
+	    <!-- Bootstrap -->
+	    <link href="__TMPL__/public/css/bootstrap.min.css" rel="stylesheet">
+	    <link rel="stylesheet" type="text/css" href="__TMPL__/public/css/comm.css"/>
+	    <link rel="stylesheet" type="text/css" href="__TMPL__/public/css/iconfont.css"/>
+	    <link rel="stylesheet" type="text/css" href="__TMPL__/public/css/person_style.css"/>
+	    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+	    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+	    <!--[if lt IE 9]>
+	      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+	      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+	    <![endif]-->
+	     <style type="text/css">
+    	.modal-backdrop{
+			background: #fff;
+		}
+
+    </style>
+    
+    <script type="text/javascript">
+    	function copyLink(){
+		var e = document.getElementById("copy");
+		var copyRe = document.getElementById("copyRe");
+		e.select(); // 选择对象
+		document.execCommand("Copy"); // 执行浏览器复制命令
+			copyRe.value="复制成功";
+		}
+    </script>
+  </head>
+  <body>
+  	<div class="perPart"> 
+ <include file="public@top_nav" />
+
+<!--头部-->
+<div class="person-head">
+	<div class="wraper">
+		<div class="person-head-list">
+			<a href="/">
+				<div class="person-logo">
+					<img class="logo_img" src="{:cmf_get_image_url($company.logo)}" alt="{:cmf_get_image_url($company.name)}" />
+				</div>
+			</a>
+			<div class="person-title">
+				<h3> {$notice[$html]['html']|default=$notice.common.html}</h3>
+			</div>
+		</div>
+	</div>
+</div>
+ 
+			<!--主要内容-->
+			<div class="person-content">
+				<div class="wraper row totalback">
+					 <include file="public@user_left"/> 	
+					<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10" style="padding: 0;">
+						<div class="person-right">
+							<div class="person-right-head">
+								<p class="perpadding">
+									<span>订单管理</span>
+									<i class="iconfont icon-jiantoudown"></i>
+									<a href="purchase-order.html">采购订单</a>
+								</p>
+							</div>
+							<div class="order-sort">
+								<div class="order-sort-title clear">
+									<ul>
+										<li class="order-active"><a href="purchase-order.html">全部</a></li>
+										<li><a href="purchase-order.html">待审核(<span>2</span>)</a></li>
+										<li><a href="purchase-order.html">待付款(<span>2</span>)</a></li>
+										<li><a href="purchase-order.html">待收货(<span>2</span>)</a></li>
+										<li><a href="purchase-order.html">未完成(<span>2</span>)</a></li>
+									</ul>
+								</div>
+								<div class="order-sort-search">
+									<ul class="row">
+										<li class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+											<div class="date-ds clear">
+												<div class="data-ksd fl">
+													<span>购买时间:</span><input name="start" id="start" value="" readonly />
+												</div>
+												<div class="date-jsd fl">
+													<span>至</span><input name="end" id="end" value="" readonly />
+												</div>
+											</div>
+										</li>
+										<li class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+											<div class="qbfl">
+												<span>订单状态:</span>
+												<select name="orstau">
+													<option value="0">全部类别</option>
+												</select>
+											</div>
+										</li>
+										<li class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+											<div class="qbfl">
+												<span>物料进程:</span>
+												<select name="">
+													<option value="0">全部类别</option>
+												</select>
+											</div>
+										</li>
+										<li class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+											<div class="qbfl">
+												<span>支付状态:</span>
+												<select name="">
+													<option value="0">全部类别</option>
+												</select>
+											</div>
+										</li>
+										<li class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+											<div class="spss">
+												<input type="text" name="" id="" value="" placeholder="商品编号/型号/名称" />
+												<button type="button">搜索</button>
+											</div>
+										</li>
+									</ul>
+								</div>
+								<!--主要内容-->
+								<div class="order-sort-content">
+									<div class="order-list-detail">
+										<ul class="order-detail-ul">
+											<li>
+												<table class="table orderTable" >
+													<thead>
+														<tr>
+															<th width="56%" class="clear">
+																<div class="listLeft fl">
+																	<p>2018-06-14 16:36:55</p>
+																</div>
+																<div class="listMid fl">
+																	<p>
+																		<span>订单编号：</span>
+																		<a href="purchase-order-detail.html">SO1806141852</a>
+																	</p>
+																</div>
+															</th>
+															<th width="11%"></th>
+															<th width="11%"></th>
+															<th width="11%">
+																<div class="listRight">
+																	<a href="">
+																		<i class="iconfont icon-xiazai"></i>
+																		<span>合同下载</span>
+																	</a>
+																</div>
+															</th>
+															<th width="11%">
+																<div class="listRight">
+																	<a href="">
+																		<i class="iconfont icon-shangchuan"></i>
+																		<span>合同上传</span>
+																	</a>
+																</div>
+															</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td class="item-long">
+																<ul class="item-order-group">
+																	<li class="clear">
+																		<div class="item-order-title fl">
+																			<p><a href="../product_detail.html">ERJ-3GEYJ472V</a></p>
+																			<p>库存编号：GN1234</p>
+																		</div>
+																		<div class="item-order-num itemOderShort fl">
+																			<p>数量：<span>1000</span></p>
+																		</div>
+																		<div class="item-order-price itemOderShort  fl">
+																			<p>单价：<span>￥0.87</span></p>
+																		</div>
+																		<div class="item-order-press itemOderShort  fl">
+																			<p>物料进程：<span>已发货</span></p>
+																			<p class="backSerive"><a href="device-back.html">申请售后</a></p>
+																		</div>
+																	</li>
+																	<li class="clear">
+																		<div class="item-order-title fl">
+																			<p><a href="../product_detail.html">ERJ-3GEYJ472V</a></p>
+																			<p>库存编号：GN1234</p>
+																		</div>
+																		<div class="item-order-num itemOderShort fl">
+																			<p>数量：<span>1000</span></p>
+																		</div>
+																		<div class="item-order-price itemOderShort  fl">
+																			<p>单价：<span>￥0.87</span></p>
+																		</div>
+																		<div class="item-order-press itemOderShort  fl">
+																			<p>物料进程：<span>已发货</span></p>
+																			<p>物料进程：<span>已出库</span></p>
+																			<p>物料进程：<span class="dispose">无状态</span></p>
+																			<p>物料进程：<span class="dispose">备货中</span></p>
+																			<p>物料进程：<span class="dispose">订货在途</span></p>
+																			<p>物料进程：<span class="dispose">仓库拣货</span></p>
+																			<p>物料进程：<span class="dispose">已取消</span></p>
+																			<p class="backSerive">
+																				<a href="device-back.html">
+																					<span>申请售后</span>
+																				</a>
+																			</p>
+																			<p class="backSerive">
+																				<a href="device-back.html">
+																					<span class="qred">退款中</span>
+																				</a>
+																			</p>
+																			<p class="backSerive">
+																				<a href="device-back.html">
+																					<span>退款成功</span>
+																				</a>
+																			</p>
+																		</div>
+																	</li>
+																</ul>
+															</td>
+															<td class="item-short">
+																<div class="item-order-total">
+																	<strong>赖鹏飞</strong>
+																	<p>总额：<span>￥56.12</span></p>
+																	<i>（全部预付）</i>
+																	<i style="display: none;">（预付30%）</i>
+																</div>
+															</td>
+															<td class="item-short">
+																<div class="item-order-name">
+																	<p>已付款<span>￥31.00</span></p>
+																</div>
+															</td>
+															<td class="item-short">
+																<div class="item-group">
+																	<p>订单关闭</p>
+																	<p>待付款</p>
+																	<p>待处理</p>
+																	<p>备货中</p>
+																	<p>付尾款</p>
+																	<p>部分发货</p>
+																	<p>全部发货</p>
+																	<p>已完成</p>
+																</div>
+															</td>
+															<td class="item-short">
+																<div class="item-order-button">
+																	<p class="orderRed">
+																		<button type="button" data-toggle="modal" data-target="#myModal">立即付款</button>
+																	</p>
+																	<p class="orange">
+																		<a href="purchase-order-detail.html">查看详情</a>
+																	</p>
+																	<p class="green">
+																		<a href="javascript:;" class="canaelOrder">取消订单</a>
+																	</p>
+																	<p class="oranBorder">
+																		<a href="javascript:;" class="tackOrder">确认收货</a>
+																	</p>
+																	<p class="green">
+																		<a href="../product.html" class="buyOrder">再次购买</a>
+																	</p>
+																</div>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</li>
+											<li>
+												<table class="table orderTable" >
+													<thead>
+														<tr>
+															<th width="56%" class="clear">
+																<div class="listLeft fl">
+																	<p>2018-06-14 16:36:55</p>
+																</div>
+																<div class="listMid fl">
+																	<p>
+																		<span>订单编号：</span>
+																		<a href="purchase-order-detail.html">SO1806141852</a>
+																	</p>
+																</div>
+															</th>
+															<th width="11%"></th>
+															<th width="11%"></th>
+															<th width="11%">
+																<div class="listRight">
+																	<a href="">
+																		<i class="iconfont icon-xiazai"></i>
+																		<span>合同下载</span>
+																	</a>
+																</div>
+															</th>
+															<th width="11%">
+																<div class="listRight">
+																	<a href="">
+																		<i class="iconfont icon-shangchuan"></i>
+																		<span>合同上传</span>
+																	</a>
+																</div>
+															</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td class="item-long">
+																<ul class="item-order-group">
+																	<li class="clear">
+																		<div class="item-order-title fl">
+																			<p><a href="../product_detail.html">ERJ-3GEYJ472V</a></p>
+																			<p>库存编号：GN1234</p>
+																		</div>
+																		<div class="item-order-num itemOderShort fl">
+																			<p>数量：<span>1000</span></p>
+																		</div>
+																		<div class="item-order-price itemOderShort  fl">
+																			<p>单价：<span>￥0.87</span></p>
+																		</div>
+																		<div class="item-order-press itemOderShort  fl">
+																			<p>物料进程：<span>已发货</span></p>
+																			<p class="backSerive"><a href="device-back.html">申请售后</a></p>
+																		</div>
+																	</li>
+																	<li class="clear">
+																		<div class="item-order-title fl">
+																			<p><a href="../product_detail.html">ERJ-3GEYJ472V</a></p>
+																			<p>库存编号：GN1234</p>
+																		</div>
+																		<div class="item-order-num itemOderShort fl">
+																			<p>数量：<span>1000</span></p>
+																		</div>
+																		<div class="item-order-price itemOderShort  fl">
+																			<p>单价：<span>￥0.87</span></p>
+																		</div>
+																		<div class="item-order-press itemOderShort  fl">
+																			<p>物料进程：<span>已发货</span></p>
+																			<p>物料进程：<span>已出库</span></p>
+																			<p>物料进程：<span class="dispose">无状态</span></p>
+																			<p>物料进程：<span class="dispose">备货中</span></p>
+																			<p>物料进程：<span class="dispose">订货在途</span></p>
+																			<p>物料进程：<span class="dispose">仓库拣货</span></p>
+																			<p>物料进程：<span class="dispose">已取消</span></p>
+																			<p class="backSerive">
+																				<a href="device-back.html">
+																					<span>申请售后</span>
+																				</a>
+																			</p>
+																			<p class="backSerive">
+																				<a href="device-back.html">
+																					<span class="qred">退款中</span>
+																				</a>
+																			</p>
+																			<p class="backSerive">
+																				<a href="device-back.html">
+																					<span>退款成功</span>
+																				</a>
+																			</p>
+																		</div>
+																	</li>
+																</ul>
+															</td>
+															<td class="item-short">
+																<div class="item-order-total">
+																	<strong>赖鹏飞</strong>
+																	<p>总额：<span>￥56.12</span></p>
+																	<i>（全部预付）</i>
+																	<i style="display: none;">（预付30%）</i>
+																</div>
+															</td>
+															<td class="item-short">
+																<div class="item-order-name">
+																	<p>已付款<span>￥31.00</span></p>
+																</div>
+															</td>
+															<td class="item-short">
+																<div class="item-group">
+																	<p>订单关闭</p>
+																	<p>待付款</p>
+																	<p>待处理</p>
+																	<p>备货中</p>
+																	<p>付尾款</p>
+																	<p>部分发货</p>
+																	<p>全部发货</p>
+																	<p>已完成</p>
+																</div>
+																<div class="item-upload">
+																	<label for="transfer">
+																		<p>上传水单</p>
+																		<input type="file" name="transfer" id="transfer" value="" class="hideinp" />
+																	</label>
+																</div>
+															</td>
+															<td class="item-short">
+																<div class="item-order-button">
+																	<p class="orderRed">
+																		<button type="button" data-toggle="modal" data-target="#myModal">立即付款</button>
+																	</p>
+																	<p class="orange">
+																		<a href="purchase-order-detail.html">查看详情</a>
+																	</p>
+																	<p class="green">
+																		<a href="javascript:;" class="canaelOrder">取消订单</a>
+																	</p>
+																	<p class="oranBorder">
+																		<a href="javascript:;" class="tackOrder">确认收货</a>
+																	</p>
+																	<p class="green">
+																		<a href="../product.html" class="buyOrder">再次购买</a>
+																	</p>
+																</div>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</li>
+										</ul>
+										<!--取消订单弹窗-->
+										<div id="cancel-order">
+											<div class="cancel-content">
+												<div class="cancel-close">
+													<p>
+														<i class="iconfont icon-guanbi"></i>
+													</p>
+												</div>
+												<form action="" method="post">
+													<div class="cancel-info">
+														<span>取消原因：</span>
+														<select name="" id="selectCancel">
+															<option value="0">型号错误</option>
+														</select>
+													</div>
+													<div class="cancel-button">
+														<input type="submit" value="提交"/>
+													</div>
+												</form>
+											</div>
+										</div>
+										<!--分页-->
+										<div class="order-page">
+											<!--分页-->
+											<div class="page">
+												<div class="p-wrap" id="j_bottomPage">
+													<span class="p-num">
+														<a class="pn-prev disabled">
+															<i><</i>
+														</a>
+														<a href="javascript:void(0);" class="num curr">1</a>
+														<a href="javascript:void(0);" class="num">2</a>
+														<a href="javascript:void(0);" class="num">3</a>
+														<a href="javascript:void(0);" class="num">4</a>
+														<a href="javascript:void(0);" class="num">5</a>
+														<a href="javascript:void(0);" class="num">6</a>
+														<a href="javascript:void(0);" class="pn-next ">
+															<i>></i>	
+														</a>
+													</span>
+													<span class="p-skip">
+														<a href="javascript:void(0);">共  <i>10</i>页</a>
+													</span>
+													<span class="page_jump">
+														<i>第</i>
+														<input class="pageInput" type="text" value="1" onkeyup="value=value.replace(/[^\d]/g,'')" onblur="value=value.replace(/[^\d]/g,'')" name="pageNo" id="pageInput">
+														<i>页</i>
+													</span>
+													<span class="page_btn">
+														<button type="button" id="pagebtn" class="btn btn-default">确定</button>
+													</span>
+												</div>
+											</div>
+											<!---->	
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		 <include file="public@footer"/>
+			<!--付款页面-->	
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog atonceModal" role="document">
+					<div class="modal-content">
+					    <div class="modal-header atonce-head">
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					        <div class="modal-atonce">
+					        	<div class="atonce-order-num">
+					        		<p>
+					        			<span>订单编号：SOC837589237957</span>
+					        			<a href="purchase-order-detail.html">查看详情</a>
+					        		</p>
+					        	</div>
+					        	<div class="atonce-order-price">
+					        		<p>应付金额：<span>￥50.00</span></p>
+					        	</div>
+					        </div>
+					    </div>
+					    <div class="modal-body">
+					       <div class="atonce-choice clear">
+					       	<h3>付款方式：</h3>
+					       	<ul class="clear atonce-choice-ul">
+					       		<li class="bank clear wayActive">
+					       			<p class="fl">网银</p>
+					       			<p class="fl"><span>中国工商</span><a href="javascript:;">（切换银行）</a></p>
+					       		</li>
+					       		<li class="">支付宝</li>
+					       		<li class="">微信支付</li>
+					       		<li class="">银行转账</li>
+					       		<li>授信额度</li>
+					       	</ul>
+					       </div>
+					       <div class="atonce-choice-group">
+					       	<div class="choice-group-list choiceActive">
+					       		<form action="" method="post">
+					       			<div class="bank-alipay">
+					       				<i></i>
+					       				<em></em>
+					       				<ul class="clear">
+					       					<li>
+					       						<div class="bank-img">
+					       							<img src="../img/bank.png" alt="" />
+					       							<p>工商银行</p>
+					       						</div>
+					       					</li>
+					       					<li>
+					       						<div class="bank-img">
+					       							<img src="../img/bank.png" alt="" />
+					       							<p>工商银行</p>
+					       						</div>
+					       					</li>
+					       					<li>
+					       						<div class="bank-img">
+					       							<img src="../img/bank.png" alt="" />
+					       							<p>工商银行</p>
+					       						</div>
+					       					</li>
+					       					<li>
+					       						<div class="bank-img">
+					       							<img src="../img/bank.png" alt="" />
+					       							<p>工商银行</p>
+					       						</div>
+					       					</li>
+					       					<li>
+					       						<div class="bank-img">
+					       							<img src="../img/bank.png" alt="" />
+					       							<p>工商银行</p>
+					       						</div>
+					       					</li>
+					       					<li>
+					       						<div class="bank-img">
+					       							<img src="../img/bank.png" alt="" />
+					       							<p>工商银行</p>
+					       						</div>
+					       					</li>
+					       					<li>
+					       						<div class="bank-img">
+					       							<img src="../img/bank.png" alt="" />
+					       							<p>农业银行</p>
+					       						</div>
+					       					</li>
+					       					<li>
+					       						<div class="bank-img">
+					       							<img src="../img/bank.png" alt="" />
+					       							<p>工商银行</p>
+					       						</div>
+					       					</li>
+					       				</ul>
+					       			</div>
+					       			<div class="bank-button">
+					       				<input type="button" name="bankSub" id="bankSub" value="确认支付" />
+					       			</div>
+					       		</form>
+					       	</div>
+					       	<div class="choice-group-list ">
+					       		<form action="" method="post">
+					       			<div class="bank-button">
+					       				<input type="button" name="bankSub" id="zhb-alipay" value="确认支付" />
+					       			</div>
+					       			
+					       		</form>
+					       	</div>
+					       	<div class="choice-group-list">
+					       		<form action="" method="post">
+					       			<div class="bank-button">
+					       				<input type="button" name="bankSub" id="wx-alipay" value="确认支付" />
+					       			</div>
+					       			<a href="wx-alipay.html"></a>
+					       		</form>
+					       	</div>
+					       	<div class="choice-group-list ">
+					       		<form action="" method="post">
+					       			<div class="bank-tranfer">
+					       				<i></i>
+					       				<em></em>
+					       				<div class="bank-tranfer-text">
+					       					<p>账户名称：深圳广诺科技有限公司</p>
+					       					<p>开户银行：招商银行股份有限公司深圳深纺大厦支行</p>
+					       					<p>
+					       						<span>收款账号：</span>
+					       						<textarea id="copy" readonly>7559 2966 6610 905</textarea>
+					       						<input type="button" id="copyRe" onclick="copyLink();" value="点击复制"></input>
+					       					</p>
+					       				</div>
+					       				<div class="bank-tranfer-info">
+					       					<div>请您汇款时在“用途栏”注明订单号，</div>
+					       					<div>付款成功后在“会员中心-采购订单-上传水单”，上传银行转账水单，以便及时确认付款。</div>
+					       				</div>
+					       			</div>
+					       			<div class="bank-button">
+						       			<input type="button" name="bankSub" id="bankTran" value="确认" />
+						       		</div>
+					       		</form>
+					       	</div>
+					       	<div class="choice-group-list">
+					       		<form action="" method="post">
+					       			<div class="bank-tranfer bankCredit">
+					       				<i></i>
+					       				<em></em>
+					       				<div class="bank-credit">
+					       					<div>
+					       						<span>当前当前可使用授信余额：</span>
+					       						<span class="bankRed">30000元</span>
+					       					</div>
+					       				</div>
+					       				<div class="bank-button">
+							       			<input type="button" name="bankSub" id="bankTran" value="确认支付" />
+							       		</div>
+					       			</div>
+					       			
+					       		</form>
+					       	</div>
+					       </div>
+					    </div>
+					</div>
+				</div>
+			</div>
+			
+		  <include file="public@user_foot"/>
+	  	<script type="text/javascript" src="../js/laydate.js"></script>
+	  
+	  	<script type="text/javascript">
+		       //日期范围限制
+		       var start = {
+		           elem: '#start',
+		           format: 'YYYY-MM-DD',
+		           min: laydate.now(), //设定最小日期为当前日期
+		           max:'', //最大日期
+		           istime: false,
+		           istoday: true,
+		           choose: function(datas){
+		           		end.min = datas; //开始日选好后，重置结束日的最小日期
+                		end.start = datas; //将结束日的初始值设定为开始日
+		           }
+		       };
+		
+		    laydate(start);  
+		    var end = {
+		           elem: '#end',
+		           format: 'YYYY-MM-DD',
+		           min: laydate.now(), //设定最小日期为当前日期
+		           max:'', //最大日期
+		           istime: false,
+		            istoday: false,
+		           choose: function(datas){ 
+		                start.max = datas; //结束日选好后，重置开始日的最大日期   
+		           }
+		       };
+		    laydate(end);  
+		    //取消订单
+		    $(".canaelOrder").click(function(){
+		    	$("#cancel-order").fadeIn();
+		    });
+		    $("#cancel-order .cancel-close i").click(function(){
+		    	$("#cancel-order").fadeOut();
+		    });
+		    //上传水单
+		    $(".item-upload #transfer").change(function(){
+		    	$(".item-upload label").html("已上传")
+		    });
+		    $(".atonce-choice-ul li").click(function(){
+		    	var index = $(this).index();
+		    	$(this).addClass("wayActive").siblings().removeClass("wayActive");
+		    	$(".atonce-choice-group .choice-group-list").eq(index).addClass("choiceActive").siblings().removeClass("choiceActive");
+		    });
+		    
+		    
+		    $(".bank-alipay ul li").click(function(){
+		    	$(this).addClass("bankActive").siblings().removeClass("bankActive");
+		    	var pHtml = $(this).find("p").text();
+		    	console.log(pHtml);
+		    	$(".bank p span").html(pHtml);
+		    });
+				
+			
+	  	</script>
+	  	
+	</body>
+</html>

@@ -16,6 +16,7 @@ class IndexController extends DeskBaseController
     
     public function index()
     {
+       
          $lan1=session('lan1');
          $lan2=session('lan2');
          //分类获取

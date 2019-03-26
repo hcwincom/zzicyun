@@ -22,7 +22,7 @@ class AdminExpressController extends AdminInfoController
         $this->isshop=0;
         $this->islan=1;
         $this->vals=[
-            'val'=>'多语言名称',
+            'name'=>'多语言名称',
         ];
         //没有店铺区分
         $this->isshop=0;
@@ -45,6 +45,7 @@ class AdminExpressController extends AdminInfoController
      */
     public function index()
     {
+        
          parent::index();
         return $this->fetch();
     }

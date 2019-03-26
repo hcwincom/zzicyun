@@ -208,15 +208,15 @@
 												<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding: 0;">
 													<!-- 单价 -->
 													<div class="detail_pri">
-														<p class="priceRmb">{$notice.goods_search.unit_price}：<span>¥<i></i></span></p>
-														<p class="priceUsd" style="display:none;">{$notice.goods_search.unit_price}：<span>$<i></i></span></p>
+														<p class="priceRmb">{$notice.goods_search.unit_price}：<span>¥<i>{$info.price1}</i></span></p>
+														<p class="priceUsd" style="display:none;">{$notice.goods_search.unit_price}：<span>$<i>{$info.price2}</i></span></p>
 													</div>
 												</div>
 												<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5" style="padding-left: 0;">
 													<!-- 合计 -->
 													<div class="detail_total">
-														<p class="totalRmb">{$notice.detail.total}：<span>¥<i class="allPrice">0.00</i></span></p>
-														<p class="totalUsd" style="display:none;">{$notice.detail.total}：<span>$<i class="allPrice">0.00</i></span></p>
+														<p class="totalRmb">{$notice.detail.total}：<span>¥<i class="allPrice"><php>echo round($info['num_min']*$info['price1'],2);</php></i></span></p>
+														<p class="totalUsd" style="display:none;">{$notice.detail.total}：<span>$<i class="allPrice"><php>echo round($info['num_min']*$info['price2'],2);</php></i></span></p>
 													</div>
 												</div>
 											</div>
@@ -237,7 +237,7 @@
 												</div>
 												<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="padding-left: 0;">
 													<div class="detail_buy">
-														<p><a href="">{$notice.goods_search.buy}</a></p>
+														<p><a id="cart_add">{$notice.goods_search.buy}</a></p>
 													</div>
 												</div>
 											</div>

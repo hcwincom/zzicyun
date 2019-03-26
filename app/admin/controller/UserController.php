@@ -57,22 +57,20 @@ class UserController extends AdminBaseController
         $search_types=config('search_types');
         $where = ["p.user_type" => ['eq',1]];
         $admin=$this->admin;
-        
+       
         /**搜索条件**/
         $data = $this->request->param();
         $res=zz_shop($admin, $data, $where,'p.shop');
-        $data=$res['data'];
-        $where=$res['where'];
-        
+         
         $res=zz_search_param($types, $search_types, $data, $where,['alias'=>'p.']);
-        $data=$res['data'];
-        $where=$res['where'];
+      
         $ids0 = Db::name('user')
         ->field('p.id')
         ->alias('p') 
         ->where($where)
         ->order("p.id asc")
         ->paginate();
+      
         // 获取分页显示
         $page = $ids0->appends($data)->render();
         $ids=[];
@@ -91,6 +89,7 @@ class UserController extends AdminBaseController
             ->join('cmf_department dt','dt.id=p.department','left')
             ->where('p.id','in',$ids) 
             ->column('p.*,shop.name as shop_name,dt.name as dt_name');
+            
             //角色信息
             $roles_user=Db::name('role_user')
             ->alias('ru')
@@ -110,7 +109,7 @@ class UserController extends AdminBaseController
                 
             }
         }
-        
+       
         if($admin['shop']==1){
             $shops=Db::name('shop')->where('status',2)->order('sort asc')->column('id,name');
             $this->assign("shops", $shops);

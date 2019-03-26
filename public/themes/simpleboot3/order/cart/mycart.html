@@ -1,0 +1,343 @@
+ <include file="public@head"/> 
+	</head>
+	<body>
+		<div class="perPart">
+			  <include file="public@top_nav"/> 
+			<!--头部-->
+			<div class="shopping-part">
+				<div class="wraper">
+					<div class="shopping-head-cont clear">
+						<div class="shopping-head-logo fl">
+							<a href="/">
+								<div class="shopping-logo">
+									<img src="{:cmf_get_image_url($company.logo)}" alt="" />
+								</div>
+							</a>
+						</div>
+						<div class="shopping-head-list fl">
+							<div class="shopping-bg">
+								<span id="trapezium-right">我的购物车</span>
+								<span id="parallelogram">订单填写及核实</span>
+								<span id="trapezium-left">提交成功</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="wraper totalback mtop">
+					<div class="shopping-zycont">
+						<div class="shoptip" style="display: none;">
+							<span><i class="iconfont icon-warning"></i>您还没有登录 !  登陆后购物车的商品将保存到您账号中</span>
+							<a href="{:url('user/Login/login')}">立即登录</a>
+						</div>
+						<div class="shop-order mt20">
+							<div class="shopOrder-head clear">
+								<ul class="clear col-xs-6 col-md-6">
+									<li class="shopActive"> <a href="{:url('order/Cart/mycart',['type'=>1])}">内地交货</a></li>
+									<li><a href="{:url('order/Cart/mycart',['type'=>2])}">香港交货</a></li>
+								</ul>
+								<div class="shopOrder-tip col-xs-6 col-md-6">
+									<p>温馨提示： 海外代购和国内现货的需要分开下单 ！</p>
+								</div>
+							</div>
+							<!--没有登录或者购物车为空时-->
+							<div class="shopOrder-empty" style="display: none;">
+								<table class="table shopTable">
+									<tr>
+										  <th width="14%">
+										  	<p>商品名称</p>
+										  </th>
+										  <th width="13%">
+										  	<p>详情</p>
+										  </th>
+										  <th width="12.5%">
+										  	<p>包装/起订量</p>
+										  </th>
+										  <th width="12%">
+										  	<p>合同单价</p>
+										  	<span>（含税）</span>
+										  </th>
+										  <th width="13%">
+										  	<p>数量（pcs）</p>
+										  </th>
+										  <th width="12.5%">
+										  	<p>小计</p>
+										  </th>
+										  <th width="11%">
+										  	<p>货期</p>
+										  </th>
+										  <th width="12%">
+										  	<p>操作</p>
+										  </th>                                                                                                                                
+									</tr>
+								</table>
+								<div class="shop-empty-img">
+									<p><img src="img/emtrygo.png" alt="" /></p>
+									<div class="shop-empty-txt">
+										<p>购物车内是空的，请添加您所需的商品哦~</p>
+									</div>
+								</div>
+							</div>
+							<div class="shopOrder-cont">
+								<div class="shopOrder-list">
+									<form action="{:url('order/Order/cart_order')}" method="post">
+										<div class="shopOrder-table">
+											<table class="table table-striped shopTable">
+												<tr>
+												  <th width="18%">
+												  	<p>商品名称</p>
+												  </th>
+												  <th width="13%">
+												  	<p>详情</p>
+												  </th>
+												  <th width="13%">
+												  	<p>包装/起订量</p>
+												  </th>
+												  <th width="12%">
+												  	<p>合同单价</p>
+												  	<span>（含税）</span>
+												  </th>
+												  <th width="12.5%">
+												  	<p>数量（pcs）</p>
+												  </th>
+												  <th width="12.5%">
+												  	<p>小计</p>
+												  </th>
+												  <th width="11%">
+												  	<p>货期</p>
+												  </th>
+												  <th width="8%">
+												  	<p>操作</p>
+												  </th>                                                                                                                                
+												</tr>
+											 <foreach name="list" item="vo" key="key">
+											  
+												<tr class="shopdetail">
+													<td>
+														<div class="shopName clear">
+															<div class="shopName-left fl">
+																<input type="checkbox" name="ids[{$key}]" value="{$key}" class="shop-check" />
+																<!-- 区分是现货还是不确定 -->
+																<input type="hidden" class="store_sure" name="store_sures[{$key}]" value="{$vo.goods_info.store_sure}"/>
+															</div>
+															<div class="shopName-right fl">
+																<p>
+																	<a href="{:url('goods/Goods/detail',['id'=>$vo.goods])}">{$vo.goods_info.name}</a>
+																</p>
+																<span>封装规格：{$vo.goods_info.box}</span>
+																<span>{$notice['store_sures'][$vo['goods_info']['store_sure']]|default=$vo['goods_info']['store_sure']}</span>
+																 
+															</div>
+														</div>
+													</td>
+													<td>
+														<div class="shopList-left">
+															<p>品牌 ：  {$brands[$vo.goods_info.brand]['name']|default=''}</p>
+															<p>库存编码 ： {$vo.goods_info.store_code}</p>
+															<p>供应商：{$shops[$vo.goods_info.shop]['name']|default=''}</p>
+														</div>
+													</td>
+													<td>
+														<div class="shopList-left">
+															<p>整包：{$vo.goods_info.num_one}</p>
+															<p>起订：{$vo.goods_info.num_min}</p>
+															<p>倍数：{$vo.goods_info.num_times}</p>
+														</div>
+													</td>
+													<td class="scartPrice">
+														<div class="shopList">
+													<eq name="type" value="1">
+															<input type="hidden" value="{$vo.goods_info.price1}" num="1"/>
+														<foreach name="vo.price_list" item="vprice">
+															<input type="hidden" value="{$vprice.price1}" num="{$vprice.num}"/>
+													 
+														</foreach>
+															<p>￥ <span>{$vo.price}</span></p>
+														 
+													<else/>
+															<input type="hidden" value="{$vo.goods_info.price2}" num="1"/>
+														<foreach name="vo.price_list" item="vprice">
+															<input type="hidden" value="{$vprice.price2}" num="{$vprice.num}"/>
+													 
+														</foreach>
+															<p>$ <span>{$vo.price}</span></p>
+														
+													</eq>
+														</div>
+													</td>
+													<td>
+														<div class="shopList shopNum">
+															<div class="addBtn clear">
+																<p class="btn-add omin" onclick="minusScart(this,'9.9','100');">
+																	<span class="glyphicon glyphicon-minus"></span>
+																</p>
+																<input type="text" class="btn-num onum" value="{$vo.num}" onblur='amount_input_Scart(this,"9.9","10000")' />
+																<p class="btn-add oplus" onclick="plusScart(this,'9.9}','100}');">
+																	<span class="glyphicon glyphicon-plus"></span>
+																</p>
+															</div>
+															<p class="qred">库存：  <span>{$vo.goods_info.store_num}</span></p>
+														</div>	
+													</td>
+													<td class="subtotal">
+														<div class="shopList">
+															<p>
+															<eq name="type" value="1">
+															￥<else/>$
+															</eq>
+															<span>
+															<php>echo round($vo['num']*$vo['price'],2);</php>
+														 
+															</span></p>
+														</div>
+													</td>
+													<td>
+														<div class="shopList shopdate">
+															<span>{$goods_times['goods_time'.$type]|default=''}</span>
+														</div>
+													</td>
+													<td>
+														<div class="shopList">
+													 
+															<button type="button" class="del-shop">删除</button>
+															<button type="button" class="chose-addr">更改交货地</button>
+														</div>
+													</td>
+												</tr>
+											 </foreach>
+											 
+											</table>
+										</div>
+										<div class="shopOrder-bot">
+											<div class="shop-action col-xs-4 col-md-4">
+												<span><input type="checkbox" name="check-all" id="checkAll" value="" class="check-all" />全选</span>
+												<button type="submit" class="del-all"><i class="iconfont icon-lajixiang"></i>批量删除</button>
+												<button type="submit" class="chose-all"><i class="iconfont icon-piliangguanli"></i>批量更改交货地</button>
+											</div>
+											<div class="shop-action-right col-xs-8 col-md-8">
+											<notempty name="coupons">
+												<p class="shopqu">优惠券</p>
+											</notempty>
+												<p>已选<span class="allNum">2</span>个型号</p>
+												<p class="shopjs">总金额（不含运费）：<b class="redColor"><eq name="type" value="1">￥<else/>$</eq><span class="allPrice1"> 0.00</span></b></p>
+												<button type="submit" class="jsBtn">结算</button>
+												<div class="shopPop">
+													<i class="iconfont icon-icon"></i>
+													<div class="shopPop-part">
+														<ul>
+														<foreach name="coupons" item="vo">
+															<li class="clear">
+																<div class="col-xs-3 col-md-3 shopPrice">
+																	<p><span><eq name="type" value="1">￥<else/>$</eq></span>{$vo.money}</p>
+																</div>
+																<div class="col-xs-6 col-md-6 shopLeft">
+																	<p>{$vo.name}</p>
+																	<span>{$vo.time1|date='Y-m-d',###}—{$vo.time2|date='Y-m-d',###}</span>
+																</div>
+																<div class="col-xs-3 col-md-3 shopHerf">
+																	<button type="button">使用</button>
+																</div>
+															</li>
+														</foreach>
+															 
+														</ul>
+													</div>
+												</div>
+											
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		  <include file="public@footer"/>
+			<!---->
+		</div>
+		  <include file="public@foot"/>
+		 
+	  	<script type="text/javascript">
+//	  		$(".shopOrder-head ul li").click(function(){
+//	  			var index = $(this).index();
+//	  			$(this).addClass("shopActive").siblings().removeClass("shopActive");
+//	  		    $(".shopOrder-cont .shopOrder-list").eq(index).addClass("shopOrder-active").siblings().removeClass("shopOrder-active");
+//	  		});
+
+var url_cart_change="{:url('order/cart/cart_change')}";
+var url_cart_changes="{:url('order/cart/cart_changes')}";
+ var type=parseInt('{$type}');
+var change_type=(type==2)?1:2;
+$('.del-shop').click(function(){
+	var $tr=$(this).parents('tr');
+	 
+	cart_change($tr,0);
+});
+$('.chose-addr').click(function(){
+	var $tr=$(this).parents('tr'); 
+	cart_change($tr,0,change_type);
+});
+function cart_change($tr,num=0,type=0){
+	var id=$tr.find('.shop-check').val();
+	$.ajax({
+		"url":url_cart_change,
+		"type":"POST", 
+		"data":{'id':id,'num':num,'type':type},
+		"dataType":"json", 
+		"success":function(data){
+			msg(data.msg); 
+			if(data.code==1){
+				if(num==0){
+					$tr.remove();
+				} 
+			}
+		},
+		 "error": function(event, XMLHttpRequest, ajaxOptions, thrownError){ 
+        	msg(event.responseText,1); 
+        }
+	});
+}
+$('.del-all').click(function(){
+	cart_changes(0);
+});
+$('.chose-all').click(function(){
+	cart_changes(change_type);
+});
+function cart_changes(type=0){
+	var ids='';
+	$('.shop-check').each(function(){
+		if($(this).prop('checked')){
+			ids=ids+$(this).val()+',';
+		} 
+	});
+	if(ids==''){
+		msg('未选择');
+		return 0;
+	}
+	$.ajax({
+		"url":url_cart_changes,
+		"type":"POST", 
+		"data":{'ids':ids,'type':type},
+		"dataType":"json", 
+		"success":function(data){
+			msg(data.msg); 
+			if(data.code==1){
+				$('.shop-check').each(function(){
+					if($(this).prop('checked')){
+						$('.shop-check').parents('tr').remove();
+					} 
+				}); 
+			}
+		},
+		 "error": function(event, XMLHttpRequest, ajaxOptions, thrownError){ 
+        	msg(event.responseText,1); 
+        }
+	});
+}
+	  		$(".shopqu").click(function(){
+	  			$(".shopPop").toggle();
+	  		});
+	  	</script>
+	</body>
+</html>

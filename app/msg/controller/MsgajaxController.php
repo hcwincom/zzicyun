@@ -26,11 +26,18 @@ class MsgajaxController extends AdminBase0Controller
             $where['shop'] =  ['eq',$admin['shop']];
         }
         
-       
+       if(!empty($data['user_rate'])){
+           $where['user_rate'] = $data['user_rate'];
+       }
+       if(!empty($data['user_cate'])){
+           $where['user_cate'] = $data['user_cate'];
+       }
+       if(!empty($data['user_type'])){
+           $where['user_type'] = $data['user_type'];
+       }
         $res=zz_search_param($types, $search_types, $data, $where);
-        $data=$res['data'];
-        $where=$res['where']; 
-        $users = Db::name('user')->where($where)->order('shop asc,department asc,user_type asc,id asc')->column('id,user_nickname');
+       
+        $users = Db::name('user')->where($where)->order('id asc')->column('id,user_login');
         
         $this->success('ok','',$users);
     }

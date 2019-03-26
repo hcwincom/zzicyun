@@ -4,3 +4,31 @@
     <script src="__TMPL__/public/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="__TMPL__/public/js/index.js"></script>
     <script type="text/javascript" src="__TMPL__/public/js/zz.js"></script>
+    
+    <script>
+ 
+var cart_url="{:url('order/Cart/cart_add')}";
+$('.btn-list-buy').click(function(){
+	$tr=$(this).parents('tr');
+	var goods=parseInt($tr.find('.id').val());
+	var num=parseInt($tr.find('.orderNum').val());
+	//要获取大陆收货还是香港收货，先默认大陆
+	var type=1;
+	cart_add(goods,num,type);
+});
+function cart_add(goods,num,type){
+	$.ajax({
+			"url":cart_url,
+			"type":"POST", 
+			"data":{'goods':goods,'num':num,'type':type},
+			"dataType":"json", 
+			"success":function(data){
+				msg(data.msg);
+        	 
+			},
+			 "error": function(event, XMLHttpRequest, ajaxOptions, thrownError){ 
+	        	msg(event.responseText,1); 
+	        }
+		});
+}
+</script>	

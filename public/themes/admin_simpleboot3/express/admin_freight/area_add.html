@@ -1,0 +1,43 @@
+ <div class="form-group">
+	<label class="col-sm-2 control-label">配送区域添加</label>
+	<div class="col-md-6 col-sm-10"> 
+		 <select name="" id="ea" class="form-control">
+		 <foreach name="areas" item="vo">
+		 	<option value="{$key}">{$vo}</option>
+		 </foreach>
+		 </select>
+		 <button id="add" type="button">添加</button>
+	</div>
+</div>
+
+<script>
+$(function(){
+	$('#add').click(function(){
+		var area=parseInt($('#ea').val());
+	 
+		if(!(area>0) || $('#price'+area).length>0){
+			$('#price'+area).focus();
+			return 0;
+		}
+		 var area_name=$('#ea option:selected').text(); 
+	 
+		var div='<div class="form-group">'+
+		'<label class="col-sm-2 control-label">'+area_name+'</label>'+
+		'</label><div class="col-md-6 col-sm-10">'+
+		'包邮达标金额：<input type="text" class="form-control short " id="price'+area+'" name="price0['+area+']" />元/'+
+		'包邮极限重量：<input type="text" class="form-control short" name="weight0['+area+']" />kg'+
+		'首重：<input type="text" class="form-control short " name="price1['+area+']" />元/'+
+		'<input type="text" class="form-control short" name="weight1['+area+']" />kg'+
+		'续重：<input type="text" class="form-control short" name="price2['+area+']" />元/'+
+		'<input type="text" class="form-control short" name="weight2['+area+']" />kg'+
+		'<button class="del" type="button">删除</button></div></div>';
+        
+		$('#fees').append(div); 
+		 
+	});
+	$(document).on('click','.del',function(){
+		$(this).parent().parent().remove();
+		
+	});
+});
+</script>

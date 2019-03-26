@@ -5,6 +5,7 @@ namespace app\express\controller;
  
 use app\common\controller\AdminInfoController; 
 use think\Db; 
+use app\express\model\AreaModel;
   
 class AdminAreaController extends AdminInfoController
 {
@@ -15,14 +16,14 @@ class AdminAreaController extends AdminInfoController
        
         $this->flag='地区';
         $this->table='area';
-        $this->m=Db::name('area');
+        $this->m=new AreaModel();
       
-        $this->base=['name'=>'str','sort'=>'int','dsc'=>'str','code'=>'str','postcode'=>'str'];
+        $this->base=['name'=>'str','fid'=>'int','type'=>'int','sort'=>'int','dsc'=>'str','code'=>'str','postcode'=>'str'];
         
         $this->isshop=0;
         $this->islan=1;
         $this->vals=[
-            'val'=>'多语言名称', 
+            'name'=>'多语言名称', 
         ];
         
         $this->assign('flag',$this->flag);
@@ -44,7 +45,102 @@ class AdminAreaController extends AdminInfoController
      */
     public function index()
     {
-         parent::index();
+        
+        $table=$this->table;
+        $m=$this->m;
+        $admin=$this->admin;
+        
+        $data=$this->request->param();
+        $where=[];
+        
+        //状态
+        if(empty($data['status'])){
+            $data['status']=0;
+        }else{
+            $where['status']=['eq',$data['status']];
+        }
+        
+        //上级地区 
+        if(empty($data['country'])){
+            $data['country']=0;
+        }else{
+            if(empty($data['province'])){
+                $data['province']=0;
+                $where_fid=['fid'=>$data['country']];
+                $fids=$m->where($where_fid)->column('id');
+                $fids[]=$data['country'];
+                $where_fid=['fid'=>['in',$fids]];
+                $fids1=$m->where($where_fid)->column('id');
+                $fids=array_merge($fids,$fids1);
+                $where['fid']=['in',$fids];
+            }else{
+                if(empty($data['city'])){
+                    $where_fid=['fid'=>$data['province']];
+                    $fids=$m->where($where_fid)->column('id');
+                    $fids[]=$data['province'];
+                    $where['fid']=['in',$fids];
+                }else{
+                    $where['fid']=['eq',$data['city']];
+                }
+            }
+        }
+        
+        //添加人
+        if(empty($data['aid'])){
+            $data['aid']=0;
+        }else{
+            $where['aid']=['eq',$data['aid']];
+        }
+        //审核人
+        if(empty($data['rid'])){
+            $data['rid']=0;
+        }else{
+            $where['rid']=['eq',$data['rid']];
+        }
+        
+        //类型
+        if(empty($data['type'])){
+            $data['type']=0;
+        }else{
+            $where['type']=['eq',$data['type']];
+        }
+        //查询字段
+        $types=$this->search;
+        $search_types=config('search_types');
+        zz_search_param($types,$search_types,$data,$where);
+        
+        
+        //时间类别
+        $times=config('pro_time_search');
+        zz_search_time($times,$data,$where);
+        
+        $list=$m
+        ->where($where)
+        ->order('status asc,type asc,sort asc,time desc')
+        ->paginate();
+        
+        // 获取分页显示
+        $page = $list->appends($data)->render();
+        //得到父级名称
+        $fids=[];
+        foreach($list as $v){
+            $fids[]=$v['fid'];
+        }
+        $fnames=[];
+        if(!empty($fids)){
+            $fnames=$m->where('id','in',$fids)->column('id,name');
+        }
+        $this->assign('page',$page);
+        $this->assign('list',$list);
+        $this->assign('fnames',$fnames);
+        
+        $this->assign('data',$data);
+        $this->assign('types',$types);
+        $this->assign('times',$times);
+        $this->assign("search_types", $search_types);
+        
+        $this->cates(1);
+         
         return $this->fetch();
     }
      
@@ -274,10 +370,73 @@ class AdminAreaController extends AdminInfoController
      * )
      */
     public function del_all()
-    {
-         
+    { 
         parent::del_all();
     }
-   
+    /* 删除前 */
+    public function del_before($ids){
+        $m=$this->m;
+        $tmp=$m->where(['fid'=>['in',$ids]])->find(); 
+        if(!empty($tmp)){
+            return '地区'.$tmp['fid'].'有下级地区'.$tmp['id'].'-'.$tmp['name'].',不能删除';
+        }
+        return 1;
+    }
+    public function cates($type=3){
+        parent::cates($type);
+        $this->assign('area_types',[0=>'国',1=>'省',2=>'市',3=>'县']);
+    }
+    public function param_check(&$data){
+        if(empty($data['name'])){
+            return '不能没有名称';
+        }
+        if(empty($data['country'])){
+            $data['fid']=0;
+            $data['type']=0;
+        }else{
+            if(empty($data['province'])){
+                $data['fid']=$data['country'];
+                $data['type']=1;
+            }else{
+                if(empty($data['city'])){
+                    $data['fid']=$data['province'];
+                    $data['type']=2;
+                }else{
+                    $data['fid']=$data['city'];
+                    $data['type']=3;
+                }
+            }
+            
+        }
+        
+        return 1;
+    }
+    /* 编辑中的处理 */
+    public function edit_do_before(&$content,&$data){
+        $m=$this->m;
+        $info=$m->where('id',$data['id'])->find();
+        if($info['type'] != $data['type']){
+            return '地区级别不能改变';
+        }
+        return 1;
+    }
+    /* 查看详情 */
+    public function edit_after($info){
+        $m=$this->m;
+        $data=$m->get_fids_by_id($info['id']);
+        $this->assign('data',$data); 
+    }
+    /* 编辑详情 */
+    public function edit_info_after($info,$change){
+        $m=$this->m;
+        $data=$m->get_fids_by_id($info['id']);
+        $this->assign('data',$data);
+        if(isset($change['fid'])){
+            $data_change=$m->get_fids_by_info($change['fid'],$info['type']);
+            $this->assign('data_change',$data_change);
+        }
+       
+       
+    }
      
 }

@@ -1,13 +1,7 @@
-$("#bottomFooter").load("../person-bottom.html");
+
 
 $(function(){
-	//上传头像预览
-	$("#photo").change(function(e){
-		var file = e.target.files[0];
-		console.log(file);
-				
-		preview(file);
-	});
+	
 	
 
 	$(".add-invo a").click(function(){
@@ -32,25 +26,9 @@ $(function(){
 		$(".changeAddress").hide();
 		$(document.body).toggleClass("html_overflow");
 	});
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	 
 });
-function preview(file){
-	var reader = new FileReader();
-	reader.onload = function(e){
-		var $img = $("<img>").attr("src",e.target.result);
-		$("#prev").empty().append($img);
-	}
-	reader.readAsDataURL(file);
-}
-
+ 
 // 购买数量加
 function plus(tag,sellprice,stock){
 	var _this=$(tag);

@@ -17,12 +17,7 @@ use app\common\controller\DeskBaseController;
 class LoginController extends DeskBaseController
 {
 
-    public function _initialize()
-    {
-        $this->error('暂不开放用户登录和注册','/');
-        exit;
-       
-    }
+    
     /**
      * 登录
      */

@@ -33,6 +33,30 @@ class NoticeConfValModel extends Model
         return $list;
     }
     /**
+     * 获取指定语言的指定配置信息
+     * @param number $lan
+     * @param number $lan1
+     * @param array $where
+     * @return $list
+     */
+    public function get_one($lan=1,$lan1=1,$conf){
+        
+        $field='key,val';
+        $where=['conf'=>$conf];
+        $where['lid']=$lan;
+        $list0=$this
+        ->where($where)
+        ->column($field);
+        if(empty($list0)){
+            $where['lid']=$lan1;
+            $list0=$this
+            ->where($where)
+            ->column($field);
+        }
+        
+        return $list0;
+    }
+    /**
      * 获取指定配置所有语言信息
      * @param number $lan
      * @param number $lan1

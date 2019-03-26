@@ -49,6 +49,33 @@
 </body>
 </html>
  <script>
+ var type=parseInt("{$info.type}");
+var country=parseInt("{$data.country|default=0}");
+var province=parseInt("{$data.province|default=0}");
+var city=parseInt("{$data.city|default=0}"); 
+var country_change=parseInt("{$data_change.country|default=0}");
+var province_change=parseInt("{$data_change.province|default=0}");
+var city_change=parseInt("{$data_change.city|default=0}"); 
+ 
+if(type>2){
+	 get_citys($('#city2'),province,city);
+	if(city_change>0){
+		get_citys($('#city2_change'),province_change,city_change);
+	}
+}
+if(type>1){
+	 get_citys($('#city1'),country,province);
+	if(province_change>0){
+		get_citys($('#city1_change'),country_change,province_change);
+	}
+}
+if(type>0){
+	 get_citys($('#city0'),-1,country);
+	if(country_change>0){
+		get_citys($('#city0_change'),-1,country_change);
+	}
+}
+ 
  $('.review_edit').click(function(){
 	 var status=$('.rstatus input:checked').val();
 	 if(status=='1'){

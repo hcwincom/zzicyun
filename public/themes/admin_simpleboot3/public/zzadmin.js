@@ -25,51 +25,78 @@ function check_one(){
  }
 //获取城市信息
 function get_citys($select,fid=1,id=0){
-	var options='<option value="0">请选择</option>';
+	var options='<option value="0">请选择地区</option>';
 	if(fid==0){
+		 
 		$select.html(options); 
 		return false;
 	}
+	 
 	$.post(city_url,{'fid':fid},function(data){
 		if(data.code!=1){ 
 			return false;
 		}
 		
-		var list=data.data.list;
-		
+		var list=data.data;
+		var select='';
 		for(var i in list){
-			options+='<option value="'+i+'">'+list[i]+'</option>';
+			if(id==i){
+				select='selected';
+			}else{
+				select='';
+			}
+			options+='<option value="'+i+'" '+select+'>'+list[i]+'</option>';
 		} 
 		$select.html(options); 
-		if(id>0){
-			$select.val(id);
-		}
+		 
 		
 	},'json');
 }
  
 //城市选择js初始化
-function city_js($province,province,$city,city,$area=null,area=0){
-	get_citys($province,1,province);
-	if(province>0){
+function city_js($country,country,$province,province,$city=null,city=0,$area=null,area=0){
+	if($country){
+		get_citys($country,-1,country); 
+		$country.change(function(){
+			country=$(this).val();
+			get_citys($province,country,0);
+			if($city){
+				get_citys($city,0,0); 
+			} 
+			if($area){
+				 get_citys($area,0,0); 
+			}
+		});
+	} 
+	 
+	if(country>0){
+		get_citys($province,country,province);
+	} 
+	if(province>0 && $city){
 		get_citys($city,province,city);
 	}
 	if($area && city>0){
 		get_citys($area,city,area); 
 	}
-	$province.change(function(){
-		province=$(this).val();
-		get_citys($city,province,0);
+	 
+	if($city){
+		$province.change(function(){
+			province=$(this).val();
+			get_citys($city,province,0);
+			if($area){
+				 get_citys($area,0,0); 
+			}
+		});
 		if($area){
-			 get_citys($area,0,0); 
+			$city.change(function(){  
+				city=$(this).val();
+				get_citys($area,city,0); 
+				 
+			});
 		}
-	});
-	$city.change(function(){ 
-		if($area){
-			city=$(this).val();
-			 get_citys($area,city,0); 
-		}
-	});
+		
+	}
+	
 }
 //获取cate信息
 function get_cates($select,fid=0,id=0){

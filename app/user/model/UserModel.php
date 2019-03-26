@@ -15,9 +15,17 @@ use think\Model;
 
 class UserModel extends Model
 {
-    protected $type = [
-        'more' => 'array',
-    ];
+    /**
+     * 获取user的信息保存session
+     * @param int $uid
+     */
+     public function get_user($uid){
+         $user=$this->where('id',$uid)->find();
+         $user=$user->getData();
+         
+         
+         return $user;
+     }
 
     public function doMobile($user)
     {

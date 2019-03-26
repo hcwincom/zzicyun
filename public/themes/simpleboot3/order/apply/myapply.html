@@ -1,0 +1,113 @@
+  <!--公共头部-->		
+  		 <include file="public@user_header"/> 	
+			<!--主要内容-->
+			<div class="person-content">
+				<div class="wraper row totalback">
+					  <include file="public@user_left"/> 	
+					<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10" style="padding: 0;">
+						<div class="person-right">
+							<div class="person-right-head">
+								<p class="perpadding">
+									<span>订单管理</span>
+									<i class="iconfont icon-jiantoudown"></i>
+									<a href="sampling-order.html">样品订单</a>
+								</p>
+							</div>
+							<div class="person-sampling">
+								<div class="order-sort-title clear">
+									<ul>
+										<li class="sampling-active"><a href="javascript:;">全部</a></li>
+										<li><a href="javascript:;">待审核(<span>2</span>)</a></li>
+										<li><a href="javascript:;">待发货(<span>2</span>)</a></li>
+									</ul>
+								</div>
+								<div class="order-sampling">
+									<input type="text" name="samInput" id="samInput" value="" placeholder="商品编号/型号" />
+									<button type="submit">查询</button>
+								</div>
+								<div class="order-sampling-group">
+									<div class="order-sampling-list">
+										<ul class="order-sampling-ul">
+											<li>
+												<table class="table sampOrder">
+													<tr>
+														<th width="56%">
+															<div class="listLeft fl">
+																	<p>2018-06-14 16:36:55</p>
+																</div>
+															<div class="listMid fl">
+																<p>
+																	<span>订单编号：</span>
+																	<a href="sampling-order-detail.html">SO1806141852</a>
+																</p>
+															</div>
+														</th>
+														<th width="11%"></th>
+														<th width="11%"></th>
+														<th width="11%"></th>
+														<th width="11%"></th>
+													</tr>
+													<tr>
+														<td class="sampling-long">
+															<ul>
+																<li class="samLong clear">
+																	<div class="samLong-title fl">
+																		<p><a href="../product_detail.html">ERJ-3GEYJ472V</a></p>
+																		<p>库存编号：GN1234</p>
+																	</div>
+																	<div class="samLong-pin fl">
+																		<p>品牌：国恒</p>
+																	</div>
+																	<div class="samLong-dsc  fl">
+																		<p>封装描述：休息休息</p>
+																	</div>
+																</li>
+															</ul>
+														</td>
+														<td class="sampling-shaort">
+															<div class="sampling-list">
+																<p>数量：1000</p>
+															</div>
+														</td>
+														<td class="sampling-shaort">
+															<div class="sampling-list">
+																<p>赖鹏飞</p>
+															</div>
+														</td>
+														<td class="sampling-shaort">
+															<div class="sampling-list">
+																<p>已完成</p>
+															</div>
+														</td>
+														<td class="sampling-shaort">
+															<div class="sampling-list">
+																<p class="orange"><a href="sampling-order-detail.html">查看详情</a></p>
+															</div>
+														</td>
+													</tr>
+												</table>
+											</li>
+											<li></li>
+										</ul>
+									</div>
+									<div class="order-sampling-list"></div>
+									<div class="order-sampling-list"></div>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			  <include file="public@footer"/>
+			<!---->
+		  <include file="public@user_foot"/>
+	  	<script type="text/javascript" src="../js/laydate.js"></script>
+	  	<script type="text/javascript">
+	  		$(".order-sort-title ul li").click(function(){
+	  			$(this).addClass("sampling-active").siblings().removeClass("sampling-active");
+	  		});
+	  	</script>
+	</body>
+</html>

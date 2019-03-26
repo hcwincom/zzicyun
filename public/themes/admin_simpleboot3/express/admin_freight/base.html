@@ -1,0 +1,180 @@
+<div style="clear:both"></div>
+			<div class="form-group">
+				<label  class="col-sm-2 control-label">名称</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control" name="name" value="{$info.name}" />
+				 <present name='change.name'>
+				 	<input type="text" class="red form-control" value="{$change.name}" />
+				 </present>
+				</div>
+			</div>
+		 
+			 <div class="form-group">
+				<label for="" class="col-sm-2 control-label">关联快递</label>
+				<div class="col-md-6 col-sm-10">
+					<select name="express" id="express" class=" form-control" required> 
+						<option value="0">未选择</option>
+					<foreach name="expresses" item="vo">
+						<option value="{$key}" <if condition="$key eq $info.express">selected</if>>{$vo}</option>
+					</foreach>
+					</select>
+					
+				 <present name='change.express'>
+				  
+					<input type="text" class="red form-control" value="{$expresses[$change.express]|default=$change.express}"/>
+				 	
+				 </present>
+				</div>
+			</div>
+			 
+			<div class="form-group">
+				<label for="" class="col-sm-2 control-label">类型</label>
+				<div class="col-md-6 col-sm-10">
+			 
+					<foreach name="freight_types" item="vo">
+						<label class="checkbox-inline">
+					 		<input type="checkbox" value="1" name="type{$key}" <if condition="$info['type'.$key] eq 1">checked</if>/>{$vo}
+					 	<if condition="isset($change['type'.$key])">
+					 		<span class="red">
+					 		 <if condition="$change['type'.$key] eq 1">
+					 		 选中<else/>不选
+					 		 </if>
+					 		</span>
+					 	</if>
+					 	</label>
+					</foreach>
+					 
+				 
+				</div>
+			</div>
+			 <div class="form-group">
+				<label class="col-sm-2 control-label">体积重量换算比</label>
+				<div class="col-md-6 col-sm-10"> 
+					<input type="number" class="form-control" name="size" value="{$info.size|default=6000}" /> 
+					<present name="change.size">
+					<input type="number" class="form-control red"  value="{$change.size}" /> 
+					</present>
+					<span class="notice">换算比用于体积大重量小的快递，体积（立方厘米）/换算比=计费重量（kg）</span>
+				</div>
+			</div>
+		<empty name="info1.id">
+			<include file="express@admin_freight:area_add" />
+		</empty>
+		   
+		<div id="fees">
+		<foreach name="fees" item="vo"> 
+			<div class="form-group">
+				<label class="col-sm-2 control-label">
+					{$areas[$key]|default="关联区域已失效"}
+				<present name="change['fee_add'][$key]">
+					<span class="red">新增</span>
+				</present>
+				<present name="change['fee_del'][$key]">
+					<span class="red">删除</span>
+				</present>
+				</label>
+				<div class="col-md-6 col-sm-10"> 
+				包邮达标金额：
+					<input type="text" class="form-control short" id="price{$key}" name="price0[{$key}]" value="{$vo.price0}" />
+					<present name="change['fee_edit'][$key]['price0']">
+					<span class="red">{$change['fee_edit'][$key]['price0']}</span>
+					</present>
+					元/
+				包邮极限重量：
+					<input type="text" class="form-control short" name="weight0[{$key}]" value="{$vo.weight0}" />
+					<present name="change['fee_edit'][$key]['weight0']">
+					<span class="red">{$change['fee_edit'][$key]['weight0']}</span>
+					</present>
+					kg
+				首重：
+					<input type="text" class="form-control short" name="price1[{$key}]" value="{$vo.price1}" />
+					<present name="change['fee_edit'][$key]['price1']">
+					<span class="red">{$change['fee_edit'][$key]['price1']}</span>
+					</present>
+					元/
+					<input type="text" class="form-control short" name="weight1[{$key}]" value="{$vo.weight1}" />
+					<present name="change['fee_edit'][$key]['weight1']">
+					<span class="red">{$change['fee_edit'][$key]['weight1']}</span>
+					</present>
+					kg
+				 续重：
+					<input type="text" class="form-control short" name="price2[{$key}]" value="{$vo.price2}" />
+					<present name="change['fee_edit'][$key]['price2']">
+					<span class="red">{$change['fee_edit'][$key]['price2']}</span>
+					</present>
+					元/
+					<input type="text" class="form-control short" name="weight2[{$key}]" value="{$vo.weight2}" />
+					<present name="change['fee_edit'][$key]['weight2']">
+					<span class="red">{$change['fee_edit'][$key]['weight2']}</span>
+					</present>
+					kg
+					<button class="del" id="del{$key}" type="button">删除</button>
+				</div>
+			</div>
+		    
+		</foreach>
+		<present name="change.fee_add">
+		<foreach name="change.fee_add" item="vo"> 
+			<div class="form-group red">
+				<label class="col-sm-2 control-label">
+					{$areas[$key]|default="关联区域已失效"} 
+					<span class="red">新增</span>
+				</label>
+				<div class="col-md-6 col-sm-10"> 
+				首重：
+					<input type="text" class="form-control short" name="price1[{$key}]" value="{$vo.price1}" />
+					 
+					元/
+					<input type="text" class="form-control short" name="weight1[{$key}]" value="{$vo.weight1}" />kg
+				 续重：
+					<input type="text" class="form-control short" name="price2[{$key}]" value="{$vo.price2}" />元/
+					<input type="text" class="form-control short" name="weight2[{$key}]" value="{$vo.weight2}" />kg
+					 
+				</div>
+			</div>
+		    
+		</foreach>
+		</present>
+		<present name="change.fee_del"> 
+			<div class="form-group red">
+				<label class="col-sm-2 control-label">
+					 
+					<span class="red">删除关联区域</span>
+				</label>
+				<div class="col-md-6 col-sm-10"> 
+				<foreach name="change.fee_del" item="vo"> 
+				 	<span class="red">{$areas[$vo]|default=$vo}</span>
+				 </foreach>
+				</div>
+			</div> 
+		</present>
+		<div class="form-group">
+				<label class="col-sm-2 control-label">
+					 
+				</label>
+				<div class="col-md-6 col-sm-10"> 
+				 <p class="notice">订单达到包邮达标金额后可以免邮，但是超过包邮极限重量后要按续重价格计费</p>
+				</div>
+			</div> 
+		
+		</div>
+			 <div class="form-group">
+				<label class="col-sm-2 control-label">备注</label>
+				<div class="col-md-6 col-sm-10">
+					 <input type="text" class="form-control" name="dsc" value="{$info.dsc}"  />
+				 <present name='change.dsc'>
+				 	<input type="text" class="red form-control" value="{$change.dsc}" />
+				 </present> 
+				</div>
+			</div>
+			 <div class="form-group">
+				<label class="col-sm-2 control-label">排序</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="number" class="form-control" name="sort" value="{$info.sort|default=1000}" />
+				 <present name='change.sort'>
+				 	<input type="text" class="red form-control" value="{$change.sort}" />
+				 </present>
+				</div>
+			</div>
+ 
+<include file="public@adsc" />

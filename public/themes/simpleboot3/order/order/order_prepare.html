@@ -1,0 +1,711 @@
+ <include file="public@head"/> 
+	</head>
+	<body>
+		<div class="perPart">
+			  <include file="public@top_nav"/> 
+			<!--头部-->
+			<div class="shopping-part">
+				<div class="wraper">
+					<div class="shopping-head-cont clear">
+						<div class="shopping-head-left fl">
+							<a href="/">
+								<div class="shopping-logo">
+									<img src="{:cmf_get_image_url($company.logo)}" alt="" />
+								</div>
+							</a>
+						</div>
+						<div class="shopping-head-txt fl">
+							<p>订单信息填写及核实</p>
+						</div>
+						<div class="shopping-head-right fr">
+							<div class="shopping-bg">
+								<span id="trapezium-right">我的购物车</span>
+								<span id="parallelogram">订单填写及核实</span>
+								<span id="trapezium-left">提交成功</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="wraper totalback mtop">
+					<div class="shopOrderCont">
+						<div class="shopOrderCont-group">
+							<form action="{:url('order/Order/order_do2')}" method="post">
+								<div class="shopOrder-groupList">
+									<div class="groupList-head">
+										<h3>收货地址</h3>
+									</div>
+									<div class="groupList-list">
+										<div class="groupList-grid">
+										<!-- 不能用form嵌套 -->
+											<form action="" method="post">
+												<div class="groupInput">
+													<div class="groupInput-box clear">
+														<p class="fl">收货人：</p>
+														<div class="box-input fl">
+															<input type="text" name="takeName" id="takeName" value="" class="orderbox-input" placeholder="请输入全名" />
+														</div>
+													</div>
+													<div class="groupInput-box clear">
+														<p class="fl">联系电话：</p>
+														<div class="box-input fl">
+															<input type="text" name="takePhone" id="takePhone" value="" class="orderbox-input" />
+														</div>
+													</div>
+													<div class="groupInput-box clear">
+														<p class="fl">收货地址：</p>
+														<div class="box-input fl">
+															<select name="provice">
+																<option value="0">请选择省份</option>
+															</select>
+															<select name="city">
+																<option value="0">请选择城市</option>
+															</select>
+															<select name="country" id="takeCity">
+																<option value="0">请选择县/区</option>
+															</select>
+														</div>
+													</div>
+													<div class="groupInput-box clear">
+														<p class="fl">详细地址：</p>
+														<div class="box-input fl">
+															<textarea name="shopAddr" id="takeAddr" class="shop-area"></textarea>
+														</div>
+													</div>
+													<div class="groupInput-box clear">
+														<p class="fl"></p>
+														<div class="box-input fl">
+															<input type="checkbox" name="takedafult" value="" id="takedafult" class="orcheck takedafult"/>
+															<span>设为默认</span>
+														</div>
+													</div>
+													<p class="deml tipMsg"></p>
+													<div class="groupInput-box clear">
+														<p class="fl"></p>
+														<div class="box-input fl">
+															<button type="submit" class="keepaddr" id="keepaddr" name="keepAddr">保存</button>
+															<button type="button" class="callOff">取消</button>
+														</div>
+													</div>
+												</div>
+											</form>
+										</div>
+										<div class="groupList-dsc">
+											<form action="" method="post">
+											<foreach name="addresses" item="vo">
+												<div class="groupList-dscont">
+										<input type="radio" name="address_id" class="address_id" value="{$key}" <if condition="$key eq $address_id">checked</if> />
+													<div class="groupInput-box clear">
+														<p class="fl">收货人：</p>
+														<div>{$vo.accept_name}</div>
+													</div>
+													<div class="groupInput-box  clear">
+														<p class="fl">收货地址：</p>
+														<div>{$vo.address_info}{$vo.address}</div>
+													</div>
+													
+													<div class="groupInput-box clear">
+														<p class="fl">联系电话：</p>
+														<div>{$vo.tel}</div>
+													</div>
+													<div class="groupBtn-order">
+													<eq name="vo.is_first" value="1">
+														<span class="addr-approve">默认</span> 
+													<else/>
+														<button type="button" class="addr-approve">设为默认</button>
+													</eq> 
+														<button type="button" class="addr-amend">修改</button>
+													</div>
+												</div>
+											</foreach>
+												 
+											</form>
+											<div class="groupList-newBtn">
+												<button type="button" class="newBtn">新增地址</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="shopOrder-groupList">
+									<div class="groupList-head">
+										<h3>配送方式</h3>
+									</div>
+									<div class="groupList-list">
+										<div class="orderdelive clear">
+											<div class="orderdelive-div fl ordeliveCurrt">快递配送</div>
+											<div class="orderdelive-div fl">门店自提</div>
+										</div>
+										<div class="orderdelive-cont">
+											<div class="orderdelive-expre storeCurrent">
+												<div class="orderdelive-expre-box clear">
+													<p class="fl">选择快递：</p>
+													<div class="expre-list fl">
+													<foreach name="freights" item="vo">
+													<span><input type="radio" name="freight_id" class="expreRadio" value="{$key}" <if condition="$key eq $freight_id">checked</if>/>{$vo.name}</span>
+														
+													</foreach>
+														 
+													</div>
+												</div>
+												<div class="orderdelive-expre-box clear">
+													<p class="fl">可选条件：</p>
+													<div class="expre-list fl">
+													<foreach name="pay_type1s" item="vo">
+														<span><input type="radio" name="pay_type1" class="condition" value="" />{$vo}</span>
+													</foreach> 
+													</div>
+												</div>
+												<div class="orderdelive-expre-box clear">
+												 
+												</div>
+											</div>
+											<div class="orderdelive-pickup">
+												<div class="orderdeliveTip">温馨提示：请收到商城短信通知后，盖章合同复印件取货。</div>
+												<div class="orderdelive-store">
+													<ul class="storeAddfr">
+													<foreach name="stations" item="vo">
+														<li class="storeActive">
+															<div class="storeTxt">
+															<input type="hidden" value="{$key}"/>
+																<p>地址：{$vo.address_info}{$vo.address}</p>
+																<p>联系电话：{$vo.tel}</p>
+																<p>提货之间：{$vo.work_time}</p>
+															</div>
+														</li>
+													</foreach> 
+													</ul>
+												</div>
+												<div class="storeInfo">
+													<span>自提信息：</span>
+													<input type="hidden" name="station_id" id="station_id" value="{$key}"/>
+													<span class="storeleft">联系人<input type="text" name="lname" value="" class="storeInput" /></span>
+													<span class="storeleft">联系电话<input type="text" name="lphone" value="" class="storeInput" /></span>
+													 
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="shopOrder-groupList">
+									<div class="groupList-head">
+										<h3>支付方式</h3>
+									</div>
+									<div class="groupList-list">
+										<div class="groupList-pay">
+											<div class="groupList-paylimit clear">
+												<h3>付款金额：</h3>
+												<ul class="clear">
+												<foreach name="pay_type3s" item="vo">
+													<li class="<eq name='key' value='1'>shopchoice</eq>">
+														<p>{$vo}</p>
+													</li>
+												</foreach>
+													 <input type="hidden" id="pay_type3" name="pay_type3" value="1" />
+												</ul>
+											</div>
+											<div class="groupList-payway clear">
+												<h3>付款方式：</h3>
+												<ul class="clear">
+													<li class="shopchoice" >
+														<input type="hidden" class="pay_type2" value="1" />
+														<a href="javascript:;">支付宝</a>
+													</li>
+													<li>
+														<input type="hidden" class="pay_type2" value="2" />
+														<a href="javascript:;">微信支付</a>
+													</li>
+													<li class="netbank">
+														<input type="hidden" class="pay_type2" value="3" />
+														<a href="javascript:;">网银 中国工商<span>（切换银行）</span></a>
+														<div class="netbankpop">
+															
+														</div>
+													</li>
+													<li>
+														<input type="hidden" class="pay_type2" value="4" />
+														<a href="javascript:;">银行转账</a>
+													</li>
+													
+												</ul>
+											</div>
+											<div class="groupList-waycredit">
+												<div class="defaultgray">
+													<input type="hidden" class="pay_type2" value="5" />
+													<a href="javascript:;">授信额度</a>
+												</div>
+												<div class="shopchoice" style="display: none;"><a href="javascript:;">授信额度</a></div>
+											</div>
+											 <input type="hidden" id="pay_type2" name="pay_type2" value="1" />
+											<input type="hidden" id="bank_id" name="bank_id" value="0" />
+										</div>
+									</div>
+								</div>
+								<div class="shopOrder-groupList">
+									<div class="groupList-head">
+										<h3>发票信息</h3>
+									</div>
+									<div class="groupList-list">
+										<div class="orderinvo clear">
+											<div class="orderdelive-div fl ordeliveCurrt">专用发票</div>
+											<div class="orderdelive-div fl">普通发票（公司）</div>
+											<div class="orderdelive-div fl">普通发票（个人）</div>
+										</div>
+										<div class="orderinvo-group">
+											<!--专用发票-->
+											<div class="orderinvo-group-list cateinvocurrent">
+												<div class="excultxt">
+													<ul class="excultxt-list">
+													<foreach name="invoices[1]" item="vo">
+														<li class="excultxtaddr">
+															<div class="excultxt-list-top">
+																<span> {$vo.title}&nbsp;&nbsp;</span>
+																<span>{$vo.name}</span>
+															</div>
+															<div class="excultxt-list-btn">
+																<button type="button" class="exculdafult">默认</button>
+																<button type="button" class="excultxtbtn">修改</button>
+															</div>
+														</li>
+													</foreach>
+														 
+														<li>
+															<div class="excultxt-list-top">
+																<span>谢谢，我不用发票</span>
+															</div>
+														</li>
+													</ul>
+													<div class="exaddinvo">
+														<button type="button">添加发票</button>
+													</div>
+												</div>
+												<div class="exculform" style="display: none;">
+													<div class="exclu-tip">
+														<p>请确保所填开票信息与贵司税务登记证一致，避免不必要的损失。</p>
+														<p>首次开局增值税专用发票或更改信息，需上传加盖公章的开票信息扫描件，客服代表接收到贵司开票信后，我司会在您的订单签</p>
+														<p>满七天开具发票，发票建在每月的22号左右同意寄送，详见：<a href="memberCenter/invoice-xuzhi.html">《发票须知》</a></p>
+													</div>
+													<form action="" method="post">
+														<div class="shopexclu-form">
+															<div class="groupInput-box clear">
+																<p class="fl">发票抬头：</p>
+																<div class="box-input fl">
+																	<input type="text" name="intitle" id="intitle" value="" class="orderbox-input" placeholder="请输入全名" />
+																</div>
+															</div>
+															<div class="togginfo"><p>（<span>关闭</span>补全发票信息）<i class="iconfont icon-jiantou-copy"></i></p></div>
+															<div class="groupbox-display">
+																<div class="groupInput-box clear">
+																	<p class="fl">公司注册地址：</p>
+																	<div class="box-input fl">
+																		<input type="text" name="regaddr" id="regaddr" value="" class="orderbox-input" />
+																	</div>
+																</div>
+																<div class="groupInput-box clear">
+																	<p class="fl">公司电话：</p>
+																	<div class="box-input fl">
+																		<input type="text" name="comtel" id="comtel" value="" class="orderbox-input" placeholder="区号和号码用“-”隔开，或者不填区号" />
+																	</div>
+																</div>
+																<div class="groupInput-box clear">
+																	<p class="fl">税务登记号：</p>
+																	<div class="box-input fl">
+																		<input type="text" name="regnum" id="regnum" value="" class="orderbox-input" />
+																	</div>
+																</div>
+																<div class="groupInput-box clear">
+																	<p class="fl">开户银行：</p>
+																	<div class="box-input fl">
+																		<input type="text" name="kbank" id="kbank" value="" class="orderbox-input" />
+																	</div>
+																</div>
+																<div class="groupInput-box clear">
+																	<p class="fl">开户银行账号：</p>
+																	<div class="box-input fl">
+																		<input type="text" name="bankaccount" id="bankaccount" value="" class="orderbox-input" />
+																	</div>
+																</div>
+																<div class="groupInput-box clear">
+																	<p class="fl">收票人：</p>
+																	<div class="box-input fl">
+																		<input type="text" name="sname" id="sname" value="" class="orderbox-input" />
+																	</div>
+																</div>
+																<div class="groupInput-box clear">
+																	<p class="fl">收票人手机号：</p>
+																	<div class="box-input fl">
+																		<input type="text" name="sphone" id="sphone" value="" class="orderbox-input" />
+																	</div>
+																</div>
+																<div class="groupInput-box clear">
+																	<p class="fl">收票地址：</p>
+																	<div class="box-input fl">
+																		<select name="provice">
+																			<option value="0">请选择省份</option>
+																		</select>
+																		<select name="city">
+																			<option value="0">请选择城市</option>
+																		</select>
+																		<select name="country">
+																			<option value="0">请选择县/区</option>
+																		</select>
+																	</div>
+																</div>
+																<div class="groupInput-box clear">
+																	<p class="fl">详细地址：</p>
+																	<div class="box-input fl">
+																		<textarea name="addrdetail" id="addrdetail" class="shop-area"></textarea>
+																	</div>
+																</div>
+																<div class="groupInput-box invoformpad clear">
+																	<p class="fl">上传开票资料：</p>
+																	<div class="box-input fl">
+																		<label for="invo-file" class="invo-label">
+																			<p>请选择文件</p>
+																			<input type="file" name="invofile" id="invo-file" value="" class="invo-file hideinp" />
+																		</label>
+																	</div>
+																</div>
+															</div>
+															<div class="groupInput-box clear">
+																<p class="fl"></p>
+																<div class="box-input fl">
+																	<input type="checkbox" name="tolecheck" id="tolecheck" value="" class="orcheck"/>
+																	<span>我已阅读并同意 <a href="memberCenter/invoice-xuzhi.html">《发票须知》</a></span>
+																</div>
+															</div>
+															
+															<div class="groupInput-box clear">
+																<p class="fl"></p>
+																<div class="box-input fl excuBtn">
+																	<button type="submit" class="keepaddr">保存</button>
+																	<button type="button" class="callOff">取消</button>
+																</div>
+															</div>
+														</div>
+													</form>
+												</div>
+											</div>
+											<!--普通发票-->
+											<div class="orderinvo-group-list">
+												<div class="invocateform-total">
+													<ul class="invocateformTxt">
+													<foreach name="invoices[2]" item="vo">
+														<li class="incocateaddr">
+															<div class="invocateform-top">
+																<span>个人发票 &nbsp;&nbsp;</span>
+																 <span>{$vo.name} &nbsp;&nbsp; {$vo.tel}&nbsp;&nbsp; {$vo.address_info}{$vo.address}</span> 
+															</div>
+															<div class="invocateform-button">
+																<button type="button">默认</button>
+																<button type="button" class="invoamendbtn">修改</button>
+															</div>
+														</li>
+													</foreach>
+														 
+														<li>
+															<div class="invocateform-top">
+																 <span>我不开发票，谢谢！</span> 
+															</div>
+														</li>
+													</ul>
+													<!--添加-->
+													<div class="invocateAdd">
+														<button type="button" class="cate-addbtn">添加发票</button>
+													</div>
+													<!---->
+												</div>
+												<!--表格-->
+												<div class="invocatedisplayform">
+													<div class="invocheckchoice">
+														<ul  class="clear cateselete">
+															<li class="fl catecurrt">公司</li>
+															<li class="fl">个人</li>
+														</ul>
+													</div>
+													<div class="invocate-box">
+														<div class="orderinvo-company cateinvocurrent">
+															<div class="invocateform">
+																<form action="" method="post">
+																	<div class="shopexclu-form">
+																		<div class="groupInput-box clear">
+																			<p class="fl">发票抬头：</p>
+																			<div class="box-input fl">
+																				<input type="text" name="intitle" id="intitle" value="" class="orderbox-input" placeholder="请输入全名" />
+																			</div>
+																		</div>
+																		<div class="groupInput-box clear">
+																			<p class="fl">税务登记号：</p>
+																			<div class="box-input fl">
+																				<input type="text" name="regnum" id="regnum" value="" class="orderbox-input" />
+																			</div>
+																		</div>
+																		<div class="togginfo"><p><span>展开</span>补全发票信息（非必填）<i class="iconfont icon-jiantou-copy"></i></p></div>
+																		<div class="groupbox-display">
+																			<div class="groupInput-box clear">
+																				<p class="fl">收票人：</p>
+																				<div class="box-input fl">
+																					<input type="text" name="sname" id="sname" value="" class="orderbox-input" />
+																				</div>
+																			</div>
+																			<div class="groupInput-box clear">
+																				<p class="fl">收票人手机号：</p>
+																				<div class="box-input fl">
+																					<input type="text" name="sphone" id="sphone" value="" class="orderbox-input" />
+																				</div>
+																			</div>
+																			<div class="groupInput-box clear">
+																				<p class="fl">收票地址：</p>
+																				<div class="box-input fl">
+																					<select name="provice">
+																						<option value="0">请选择省份</option>
+																					</select>
+																					<select name="city">
+																						<option value="0">请选择城市</option>
+																					</select>
+																					<select name="country">
+																						<option value="0">请选择县/区</option>
+																					</select>
+																				</div>
+																			</div>
+																			<div class="groupInput-box clear">
+																				<p class="fl">详细地址：</p>
+																				<div class="box-input fl">
+																					<textarea name="addrdetail" id="addrdetail" class="shop-area"></textarea>
+																				</div>
+																			</div>
+																		</div>
+																		<div class="groupInput-box clear">
+																			<p class="fl"></p>
+																			<div class="box-input fl">
+																				<input type="checkbox" name="tolecheck" id="tolecheck" value="" class="orcheck"/>
+																				<span>我已阅读并同意 <a href="memberCenter/invoice-xuzhi.html">《发票须知》</a></span>
+																			</div>
+																		</div>
+																		<p class="deml tipMsg"></p>
+																		<div class="groupInput-box clear">
+																			<p class="fl"></p>
+																			<div class="box-input fl personBtn">
+																				<button type="submit" class="keepaddr">保存</button>
+																				<button type="button" class="callOff">取消</button>
+																			</div>
+																		</div>
+																	</div>
+																</form>
+															</div>
+														</div>
+														<div class="orderinvo-person">
+															<div class="invopersonform">
+																<form action="" method="post">
+																	<div class="shopexclu-form">
+																		<div class="groupInput-box clear">
+																			<p class="fl">发票抬头：</p>
+																			<div class="box-input fl">
+																				<input type="text" name="intitle" id="intitle" value="" class="orderbox-input" placeholder="请输入全名" />
+																			</div>
+																		</div>
+																		<div class="togginfo"><p><span>展开</span>补全发票信息（非必填）<i class="iconfont icon-jiantou-copy"></i></p></div>
+																		<div class="groupbox-display">
+																			<div class="groupInput-box clear">
+																				<p class="fl">收票人：</p>
+																				<div class="box-input fl">
+																					<input type="text" name="sname" id="sname" value="" class="orderbox-input" />
+																				</div>
+																			</div>
+																			<div class="groupInput-box clear">
+																				<p class="fl">收票人手机号：</p>
+																				<div class="box-input fl">
+																					<input type="text" name="sphone" id="sphone" value="" class="orderbox-input" />
+																				</div>
+																			</div>
+																			<div class="groupInput-box clear">
+																				<p class="fl">收票地址：</p>
+																				<div class="box-input fl">
+																					<select name="provice">
+																						<option value="0">请选择省份</option>
+																					</select>
+																					<select name="city">
+																						<option value="0">请选择城市</option>
+																					</select>
+																					<select name="country">
+																						<option value="0">请选择县/区</option>
+																					</select>
+																				</div>
+																			</div>
+																			<div class="groupInput-box clear">
+																				<p class="fl">详细地址：</p>
+																				<div class="box-input fl">
+																					<textarea name="addrdetail" id="addrdetail" class="shop-area"></textarea>
+																				</div>
+																			</div>
+																			<!---->
+																		</div>
+																		<div class="groupInput-box clear">
+																			<p class="fl"></p>
+																			<div class="box-input fl">
+																				<input type="checkbox" name="tolecheck" id="tolecheck" value="" class="orcheck"/>
+																				<span>我已阅读并同意 <a href="memberCenter/invoice-xuzhi.html">《发票须知》</a></span>
+																			</div>
+																		</div>
+																		<p class="deml tipMsg"></p>
+																		<div class="groupInput-box clear">
+																			<p class="fl"></p>
+																			<div class="box-input fl personBtn">
+																				<button type="submit" class="keepaddr">保存</button>
+																				<button type="button" class="callOff">取消</button>
+																			</div>
+																		</div>
+																	</div>
+																</form>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="shopOrder-groupList">
+									<div class="groupList-head">
+										<h3>订单信息</h3>
+										<p class="backup"><a href="{:url('order/Cart/mycart')}">返回购物车</a></p>
+									</div>
+									<div class="groupList-list">
+										<div class="orderInfo-beizhu clear">
+											<p class="fl">备注留言：</p>
+											<div class="fl">
+												<input type="tex" name="beizhu" id="beizhu" value="" placeholder="请填写批次要求或者特殊要求，如18年，如无备注则按商城系统发货。" />
+											</div>
+										</div>
+										<div class="orderInfo-detail mt10 ">
+											<table class="table orderInfo-table">
+												<tr>
+													<th width="4%">序号</th>
+													<th width="16%">商品名称</th>
+													<th width="10%">封装规格</th>
+													<th width="10%">品牌</th>
+													<th width="10%">库存编码</th>
+													<th width="10%">含税单价</th>
+													<th width="10%">数量</th>
+													<th width="10%">小计</th>
+													<th width="10%">货期（工作日）</th>
+													<th width="10%">客户物料编码</th>
+												</tr>
+												
+												<volist name="goods_list" id="vo" key="key">
+												<tr>
+													<td>
+														<p>{$key}</p>
+													</td>
+													<td>
+														<p>{$vo.code}</p>
+													</td>
+													<td>
+														<p>{$vo.box}</p>
+													</td>
+													<td>
+														<p>{$brands[$vo.brand]['name']|default=''}</p>
+													</td>
+													<td>
+														<p>{$vo.store_num}</p>
+													</td>
+													<td> 
+														<p>
+														<eq name="type" value="1">￥<else/>$</eq>
+														{$vo.price}
+														</p>
+													</td>
+													<td>
+														<p>{$vo.order_num}</p>
+													</td>
+													<td>
+														<p><eq name="type" value="1">￥<else/>$</eq>
+														{$vo.order_price}</p>
+													</td>
+													<td>
+														<p>{$goods_times[$vo['goods_time']]|default=''}</p>
+													</td>
+													<td>
+														<p>
+															<input type="text" name="dscs[{$vo.id}]" id="" value="" placeholder="自由输入"/>
+														</p>
+													</td>
+												
+												</tr>
+												</volist>
+											</table>
+										</div>
+										<!--优惠券-->
+										<div class="orderInfo-discount-cont">
+											<div class="orderInfo-discount">
+												<p class="infotext">使用优惠/礼品卡/抵用 <i class="iconfont icon-icon"></i></p>
+												<p class="redColor mt10 infotext">优惠券</p>
+												<div class="infodivtxt"><i class="iconfont icon-weibiaoti"></i>优惠组合推荐，共抵用300.00元：使用优惠券一张</div>
+												<div class="orderInfodis-list">
+													<ul class="clear">
+													<foreach name="coupons" item="vo">
+														<li class="<if condition='$key eq $coupon'>onfodisactive</if> ">
+															<div class="discount-cont">
+																<div class="discountTxt">
+																	<h2><b>{$money_flag}{$vo.money}</b><span>满{$vo.money_min}元</span></h2>
+																	<p>有效期至{$vo.time2|date='Y-m-d'}</p>
+																	<h3>{$vo.name}</h3>
+																</div>
+															</div>
+														</li>
+													</foreach>
+														 
+													</ul>
+												</div>
+											</div>
+											<div class="dicounttotal">
+												<!-- <p>金额抵用<span class="redColor">￥300.00 </span>  使用优惠券1张，优惠300.00元</p> -->
+											</div>
+											
+											<!---->
+										</div>
+										
+									</div>
+									
+ 								</div>
+								<div class="shopOrder-groupList">
+								 
+										<div class="shopOrderTotal">
+											<table class="table shopOrderTotalTable">
+												<tr>
+													<td class="shopLeftwidth"><p><span class="shopOrange">{$count_num}</span>件商品，商品总金额：</p></td>
+													<td class="shopRightwidth"><p>{$money_flag}{$count_money}</p></td>
+												</tr>
+												<tr>
+													<td class="shopLeftwidth"><p> 运费：</p></td>
+													<td class="shopRightwidth"><p><b class="shopOrange">{$money_flag}{$freight_fee}</b></p></td>
+												</tr>
+												 
+												<tr>
+													<td class="shopLeftwidth"><p> 商品优惠：</p></td>
+													<td class="shopRightwidth"><p>-{$money_flag}0.00</p></td>
+												</tr>
+												<tr>
+													<td class="shopLeftwidth"><p>应付金额：</p></td>
+													<td class="shopRightwidth"><p class="shoplarge"><b class="redColor">{$money_flag}{$money_end}</b></p></td>
+												</tr>
+												
+											</table>
+											<div class="shoptotalbtn">
+												<button type="submit" class="pickBtn">提交订单</button>
+											</div>
+										</div>
+										 
+									
+								</div>
+							</form>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			  <include file="public@footer"/>
+			<!---->
+		</div>
+		  <include file="public@foot"/>
+	  <!--   <script type="text/javascript" src="__TMPL__/public/js/form.js"></script> -->
+	</body>
+</html>

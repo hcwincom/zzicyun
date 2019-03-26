@@ -1,0 +1,312 @@
+  <include file="public@user_header"/> 	
+			<!--主要内容-->
+			<div class="person-content">
+				<div class="wraper row totalback">
+					  <include file="public@user_left"/> 	
+					<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10" style="padding: 0;">
+						<div class="person-right">
+							<div class="person-right-head">
+								<p class="perpadding">
+									<span>发票管理</span>
+									<i class="iconfont icon-jiantoudown"></i>
+									<a href="">开票资料</a>
+								</p>
+							</div>
+							<div class="person-detail-content">
+								<div class="invoce-title clear">
+									<ul>
+										<li class="<eq name='type' value='1'>sampling-active</eq>"><a href="{:url('invoice_infos',['type'=>1])}">增值税专用发票</a></li>
+										<li class="<eq name='type' value='2'>sampling-active</eq>"><a href="{:url('invoice_infos',['type'=>2])}">普通发票（公司）</a></li>
+										<li class="<eq name='type' value='3'>sampling-active</eq>"><a href="{:url('invoice_infos',['type'=>3])}">普通发票（个人）</a></li>
+									</ul>
+								</div>
+								<div class="invoceForm">
+									<div class="invo-exhibiting">
+										
+										<volist name="list" id="vo" key="key">
+										<div class="invo-exhibit-detail">
+											<div class="invo-detail-head clear">
+												<div class="fl">
+													<h3>专用发票{$key}</h3>
+												</div>
+												<div class="fr">
+												
+													<a href="javascript:;">删除</a>
+												</div>
+											</div>
+											<div class="invo-detail-cont">
+												<div class="invo-cont-text clear">
+													<p class="fl invoLeft">发票抬头：</p>
+													<input type="hidden" class="id" value="{$vo.id}"/>
+													<p class="fl invoRight">{$vo.name}</p>
+												</div>
+											<neq name="type" value="3">
+												<div class="invo-cont-text clear">
+													<p class="fl invoLeft">公司注册地址：</p>
+													<p class="fl invoRight">{$vo.company_address}</p>
+												</div>
+												<div class="invo-cont-text clear">
+													<p class="fl invoLeft">公司电话：</p>
+													<p class="fl invoRight">{$vo.company_tel}</p>
+												</div>
+												<div class="invo-cont-text clear">
+													<p class="fl invoLeft">税务登记号：</p>
+													<p class="fl invoRight">{$vo.company_code}</p>
+												</div>
+												<div class="invo-cont-text clear">
+													<p class="fl invoLeft">开户银行：</p>
+													<p class="fl invoRight">{$vo.bank}</p>
+												</div>
+												<div class="invo-cont-text clear">
+													<p class="fl invoLeft">开户银行账号：</p>
+													<p class="fl invoRight">{$vo.bank_num}</p>
+												</div>
+											</neq>
+												<div class="invo-cont-text clear">
+													<p class="fl invoLeft">收票人：</p>
+													<p class="fl invoRight">{$vo.accept_name}</p>
+												</div>
+												<div class="invo-cont-text clear">
+													<p class="fl invoLeft">收票人手机号：</p>
+													<p class="fl invoRight">{$vo.accept_tel}</p>
+												</div>
+												<div class="invo-cont-text clear">
+													<p class="fl invoLeft">收票地址：</p>
+													<input type="hidden" class="accept_province" value="{$vo.accept_province}" />
+													<input type="hidden" class="accept_city" value="{$vo.accept_city}" />
+													<input type="hidden" class="accept_area" value="{$vo.accept_area}" />
+													<p class="fl invoRight">{$vo.accept_address_info}</p>
+												</div>
+												<div class="invo-cont-text clear">
+													<p class="fl invoLeft">详细地址：</p>
+													<p class="fl invoRight">{$vo.accept_address}</p>
+												</div>
+												<neq name="type" value="3">
+												<div class="invo-cont-text invo-cont-text-file clear">
+													<p class="fl invoLeft">上传开票资料：</p>
+													<p class="fl invoRight">
+													<empty name="vo.file">
+														<span>无</span>
+													<else/>
+														<a href="{:url('file_load',['id'=>$vo.id])}">下载资料</a>
+													</empty>
+													 
+													</p>
+												</div>
+												</neq>
+											</div>
+											<div class="invo-detail-button">
+												<a href="javascript:;">修改</a>
+											</div>
+										</div>
+										</volist>
+										<div class="add-invo">
+											<a href="javascript:;">
+												<i class="iconfont icon-jia"></i>
+												<span>新增发票信息</span>
+											</a>
+										</div>
+										
+									</div>
+									<!--表格-->
+									<div class="invoceForm-list" style="display: none;">
+										<form action="{:url('invoice_infos_do')}" method="post">
+											<div class="added-total">
+												<div class="invoform-box">
+													<span>发票抬头：</span>
+													<div class="invo-group">
+														<input type="hidden" name="id" id="id" value="0"/>
+														<input type="text" name="name" id="intitle" value="" class="invo-input" placeholder="请输入全名" />
+													</div>
+												</div>
+											<neq name="type" value="3">
+												<div class="invoform-box">
+													<span>公司注册地址：</span>
+													<div class="invo-group">
+														<input type="text" name="company_address" id="regaddr" value="" class="invo-input" />
+													</div>
+												</div>
+												<div class="invoform-box">
+													<span>公司电话：</span>
+													<div class="invo-group">
+														<input type="text" name="company_tel" id="comtel" value="" class="invo-input" placeholder="区号和号码用“-”隔开，或者不填区号" />
+													</div>
+												</div>
+												<div class="invoform-box">
+													<span>税务登记号：</span>
+													<div class="invo-group">
+														<input type="text" name="company_code" id="regnum" value="" class="invo-input" />
+													</div>
+												</div>
+												<div class="invoform-box">
+													<span>开户银行：</span>
+													<div class="invo-group">
+														<input type="text" name="bank" id="kbank" value="" class="invo-input" />
+													</div>
+												</div>
+												<div class="invoform-box">
+													<span>开户银行账号：</span>
+													<div class="invo-group">
+														<input type="text" name="bank_num" id="bankaccount" value="" class="invo-input" />
+													</div>
+												</div>
+											</neq>
+												<div class="invoform-box">
+													<span>收票人：</span>
+													<div class="invo-group">
+														<input type="text" name="accept_name" id="sname" value="" class="invo-input" />
+													</div>
+												</div>
+												<div class="invoform-box">
+													<span>收票人手机号：</span>
+													<div class="invo-group">
+														<input type="text" name="accept_tel" id="sphone" value="" class="invo-input" />
+													</div>
+												</div>
+												<div class="invoform-box">
+													<span>收票地址：</span>
+													<div class="invo-group">
+														<include file="public@city1" />
+													</div>
+												</div>
+												<div class="invoform-box">
+													<span>详细地址：</span>
+													<div class="invo-group">
+														<textarea name="accept_address" id="addrdetail" class="invo-input"></textarea>
+													</div>
+												</div>
+											<neq name="type" value="3">
+												<div class="invoform-box invoice-file">
+													<span>上传开票资料</span>
+													<div class="invo-group">
+														<label for="invo-file" class="invo-label">
+															<p>请选择文件</p>
+															<input type="file" name="" id="invo-file" value="" class="invo-file hideinp" />
+															<input type="hidden" name="file" id="file" />
+														</label>
+													</div>
+												</div>
+											</neq>
+												<div class="invoform-box">
+													<div class="invo-check">
+														<input type="checkbox" name="tolecheck" id="tolecheck" value="" checked="checked" />
+														<span>我已经阅读并同意</span>
+														<a href="invoice-xuzhi.html">《发票须知》</a>
+													</div>
+												</div>
+												<p class="info-tip"></p>
+												<div class="invoform-button">
+													<div class="invo-group">
+														<input type="button" name="" id="invoice_add" value="保存" class="invo-button" />
+														<a href="javascript:;" class="invo-cancel">取消</a>
+													</div>
+												</div>
+											<!---->
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			 <include file="public@footer"/>
+			<!---->
+	 
+		  <include file="public@user_foot"/>
+	  
+	</body>
+</html>
+<script>
+city_js(0,1,$('#city1'),0,$('#city2'),0,$('#city3'),0);
+var url_invoice_do="{:url('invoice_infos_do')}";
+var type=parseInt("{$type}");
+$('#invoice_add').click(function(){
+	
+	var id=$.trim($('#id').val());
+	var name=$.trim($('#intitle').val());
+	var company_address='';
+	var company_tel='';
+	var company_code='';
+	var bank='';
+	var bank_num='';
+	var file='';
+	if(type<3){
+		company_address=$.trim($('#regaddr').val());
+		company_tel=$.trim($('#comtel').val());
+		company_code=$.trim($('#regnum').val());
+		bank=$.trim($('#kbank').val());
+		bank_num=$.trim($('#bankaccount').val());
+		file=$('#file').val();
+	}
+	
+	var accept_name=$.trim($('#sname').val());
+	var accept_tel=$.trim($('#sphone').val());
+	var accept_address=$.trim($('#addrdetail').val());
+	var province=$('#city1').val();
+	var city=$('#city2').val();
+	var area=$('#city3').val();
+	var data_json={'id':id,'type':type,'name':name,'province':province,'city':city,'area':area,
+			'accept_name':accept_name,'accept_tel':accept_tel,'accept_address':accept_address,
+			'company_address':company_address,'company_tel':company_tel,'company_code':company_code,
+			'bank':bank,'bank_num':bank_num,'file':file};
+	 
+	$.ajax({
+			"url":url_invoice_do,
+			"type":"POST", 
+			"data":data_json,
+			"dataType":"json", 
+			"success":function(data){
+				console.log(data);
+				msg(data.msg); 
+				
+			},
+			 "error": function(event, XMLHttpRequest, ajaxOptions, thrownError){ 
+	        	msg(event.responseText,1); 
+	        }
+		});
+	 
+	return false;
+	
+});
+$("#invo-file").change(function(e){
+	var file = e.target.files[0];
+	    
+	var reader = new FileReader();
+	 
+	if (file) {
+		reader.readAsDataURL(file); 
+	} else {
+		click=0;
+		return false;
+	}
+	//组装表单数据
+		var fordata=new FormData();
+		fordata.append("file",file);
+		 
+		//ajax
+		$.ajax({
+			"url":"{:url('file_do')}",
+			"type":"POST",
+			"processData":false,
+			"contentType":false,
+			"data":fordata,
+			"dataType":"json", 
+			"success":function(data){
+				if(data.code==1){
+					//上传成功后要给隐藏域赋值，但是页面元素不见了??
+					$('#file').val(data.data);
+					
+				}else{
+					$('#file').val('');
+				} 
+				msg(data.msg); 
+			},
+		 	"error": function(event, XMLHttpRequest, ajaxOptions, thrownError){ 
+	        	msg(event.responseText,1); 
+	        }
+		});
+});
+</script>

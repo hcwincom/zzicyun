@@ -1,0 +1,107 @@
+
+<div style="clear:both"></div>
+
+ <div class="form-group">
+    <label for="" class="col-sm-2 control-label">类型</label>
+    <div class="col-md-6 col-sm-10">
+       <select name="type" class="form-control">
+       <foreach name="coupon_types" item="vo">
+       		<option value="{$key}" <if condition="$key eq $info.type">selected</if>>{$vo}</option>
+       </foreach>
+       </select>
+      <present name="change.type">
+      	 <input type="text" class="form-control red"  value="{$coupon_types[$change.type]|default=$change.type}" /> 
+      </present>  
+    </div>
+</div>
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">名称</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="text" class="form-control" name="name" value="{$info.name}" /> 
+      <present name="change.name">
+      	 <input type="text" class="form-control red"  value="{$change.name}" /> 
+      </present>  
+    </div>
+</div>
+  <div class="form-group">
+    <label for="" class="col-sm-2 control-label">优惠金额</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="number" step="0.01" class="form-control" name="money" value="{$info.money}" /> 
+      <present name="change.money">
+      	 <input type="text" class="form-control red"  value="{$change.money}" /> 
+      </present>  
+    </div>
+</div>
+ <div class="form-group">
+    <label for="" class="col-sm-2 control-label">最低金额（0则无条件使用）</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="number" step="0.01" class="form-control" name="money_min" value="{$info.money_min|default=0}" /> 
+      <present name="change.money_min">
+      	 <input type="text" class="form-control red"  value="{$change.money_min}" /> 
+      </present>  
+    </div>
+</div>
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">生效日期-截止日期</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="text" class="form-control js-date" name="time1" value="<notempty name='info.time1'>{$info.time1|date='Y-m-d',###}</notempty> " /> 
+      <present name="change.time1">
+      	 <input type="text" class="form-control red"  value="<notempty name='change.time1'>{$change.time1|date='Y-m-d',###}</notempty>" /> 
+      </present> 
+      -
+       <input type="text" class="form-control js-date" name="time2" value="<notempty name='info.time2'>{$info.time2|date='Y-m-d',###}</notempty>" /> 
+      <present name="change.time2">
+      	 <input type="text" class="form-control red"  value="<notempty name='change.time2'>{$change.time2|date='Y-m-d',###}</notempty>" /> 
+      </present>  
+      <span class="notice">没有填写生效日期但是填写了截止日期的则生效日期默认为当天；生效日期和截止日期都没填的按生效天数计算；有生效日期没有截止日期则无效</span> 
+    </div>
+</div>
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">生效天数</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="number" class="form-control" name="day" value="{$info.day|default=10}" /> 
+      <present name="change.day">
+      	 <input type="text" class="form-control red"  value="{$change.day}" /> 
+      </present> 
+      <span class="notice">生效天数默认为10，若没有有效的生效和截止日期，则领取当天为生效日期，累加生效天数之后为截止日期</span> 
+    </div>
+</div>
+ <div class="form-group">
+    <label for="" class="col-sm-2 control-label">排序</label>
+    <div class="col-md-6 col-sm-10">
+       <input type=money class="form-control" name="sort" value="{$info.sort|default=1000}" />
+       <present name="change.sort">
+      	 <input type="text" class="form-control red"  value="{$change.sort}" /> 
+       </present>    
+    </div>
+</div>
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">排序</label>
+    <div class="col-md-6 col-sm-10">
+       <input type="number" class="form-control" name="sort" value="{$info.sort|default=1000}" />
+       <present name="change.sort">
+      	 <input type="text" class="form-control red"  value="{$change.sort}" /> 
+       </present>    
+    </div>
+</div>
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">排序</label>
+    <div class="col-md-6 col-sm-10">
+       <input type="number" class="form-control" name="sort" value="{$info.sort|default=1000}" />
+       <present name="change.sort">
+      	 <input type="text" class="form-control red"  value="{$change.sort}" /> 
+       </present>    
+    </div>
+</div>
+
+<div class="form-group "  >
+    <label class="col-sm-2 control-label">备注</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="text" class="form-control" name="dsc" value="{$info.dsc}"  />
+      <present name="change.dsc">
+      	 <input type="text" class="form-control red"  value="{$change.dsc}" /> 
+       </present>    
+    </div>
+</div>
+
+<include file="public@adsc" />

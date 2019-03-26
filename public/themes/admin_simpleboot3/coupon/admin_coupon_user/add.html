@@ -1,0 +1,61 @@
+<include file="public@header" />
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs"> 
+			<include file="public@nav" />
+		</ul>
+		<form class="form-horizontal js-ajax-form{$zzajax} margin-top-20" role="form" method="post" action="{:url('add_do')}">
+		 
+			  <include file="coupon@admin_coupon_user:base" />
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" id="add" class="btn btn-primary js-ajax-submit">{:lang('SAVE')}</button>
+					<p class="notice">优惠券添加后无需审核直接生效</p>
+				</div>
+			</div>
+		</form>
+	</div>
+	<script src="__STATIC__/js/admin.js"></script>
+	 
+</body>
+</html>
+<script>
+var url_user_search="{:url('msg/Msgajax/user_search')}";
+$('#user_search').click(function(){
+	 
+	var user_rate=$('#user_rate').val();
+	var user_cate=$('#user_cate').val(); 
+	var type1=$('#type1').val();
+	var type2=$('#type2').val();
+	var name=$('#name').val(); 
+	$.ajax({
+        type: 'POST',
+        url: url_user_search,
+        dataType: 'json', 
+        data:{'user_rate':user_rate,'user_cate':user_cate,'type1':type1,'type2':type2,'name':name,'user_type':2},
+        success: function (data) { 
+     	    if(data.code!=1){
+     	    	msg(data.msg);
+     	    	return false;
+     	    } 
+     	   var list=data.data;
+     	   var labels='';
+     	   for(var i in list){
+     		  labels+='<label class="checkbox-line">'+
+     		  '<input type="checkbox" name="uids['+i+']" value="'+i+'" checked/>'+list[i]+'</label>';
+	 		
+     	   }
+     	   if(labels==''){
+     		  labels='没有搜索到结果';
+     	   }
+     	   $('.unames').html(labels);
+     	   
+        }, 
+        error: function (event, XMLHttpRequest, ajaxOptions, thrownError) { 
+            msg(event.responseText,1);
+        }
+    }); 
+	
+});
+</script>

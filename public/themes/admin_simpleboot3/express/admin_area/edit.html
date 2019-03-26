@@ -49,6 +49,25 @@
 </body>
 </html>
 <script>
+var type=parseInt("{$info.type}");
+var country=parseInt("{$data.country|default=0}");
+var province=parseInt("{$data.province|default=0}");
+var city=parseInt("{$data.city|default=0}"); 
+ 
+ switch(type){
+	 
+	 case 1:
+		 get_citys($('#city0'),-1,country);
+		 break;
+	 case 2: 
+		 city_js($('#city0'),country,$('#city1'),province);  
+		 break;
+	 case 3: 
+		 city_js($('#city0'),country,$('#city1'),province,$('#city2'),city); 
+		 break;
+ }
+ 
+ 
 $('.review').click(function(){
 	$('form').attr('action',"{:url('review')}");
 });

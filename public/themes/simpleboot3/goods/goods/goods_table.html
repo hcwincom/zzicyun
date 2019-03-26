@@ -3,12 +3,12 @@
 	<table class="table table-condensed table-bordered table-search">
 		<thead>
 			<tr>
-				<th width="18%">{$notice.goods_search.commodity}</th>
-				<th width="7%">{$notice.index.trademark}</th>
-				<th width="11%">{$notice.goods_search.parameter}</th>
-				<th width="7%">{$notice.goods_search.package}{$notice.goods_search.buy_num}</th>
-				<th width="7%">{$notice.index.hand}</th>
-				<th width="22%" class="padTable">
+				<th width="14%">{$notice.goods_search.commodity}</th>
+				<th width="8%">{$notice.index.trademark}</th>
+				<th width="8%">{$notice.goods_search.parameter}</th>
+				<th width="8%">{$notice.goods_search.package}{$notice.goods_search.buy_num}</th>
+				<th width="8%">{$notice.index.hand}</th>
+				<th width="24%" class="padTable">
 					<div class="titleTotal">
 						<ul class="clear ">
 							<li>{$notice.goods_search.ladder}{$notice.goods_search.buy_num}</li>
@@ -23,7 +23,7 @@
 						</ul>
 					</div>
 				</th>
-				<th width="9%">{$notice.goods_search.ship}</th>
+				<th width="11%">{$notice.goods_search.ship}</th>
 				<th width="10%">{$notice.goods_search.buy}{$notice.goods_search.buy_num}</th>
 				<th width="9%">{$notice.goods_search.operation}</th>
 			</tr>
@@ -41,7 +41,7 @@
 				</td>
 				<td>
 				<present name="brands[$vgoods['brand']]">
-					<p class="pCenter">{$brands[$vgoods['brand']]['name']}</p>
+					<p>{$brands[$vgoods['brand']]['name']}</p>
 					<p class="pgreen">{$brand_cates[$brands[$vgoods['brand']]['cid']]|default=''}</p>
 				</present>
 				</td>
@@ -110,16 +110,17 @@
 							<span class="glyphicon glyphicon-minus"></span>
 						</p>
 						<input type="text" class="btn-num onum orderNum" value="{$vgoods.num_min}" name="count" readonly />
-						<p class="btn-add go_plus" >
+							<p class="btn-add go_plus" >
 								<span class="glyphicon glyphicon-plus"></span>
 							</p>
 						</div>
-						<p class="qred totalPrice totalRmb">计:￥ <span></span></p>
-						<p class="qred totalPrice totalUsd" style="display:none;">计:$ <span></span></p>
+						<p class="qred totalPrice totalRmb">计:￥<php>echo round($vgoods['num_min']*$vgoods['price1'],2);</php> <span></span></p>
+						<p class="qred totalPrice totalUsd" style="display:none;">计:$ <php>echo round($vgoods['num_min']*$vgoods['price2'],2);</php> <span></span></p>
 					</div>
 				</td>
 				<td>
 					<div class="steps_num">
+					<input type="hidden" class="id" value="{$vgoods.id}"/>
 						<p><button id="shopGoods" class="btn-list-buy mt5">{$notice.goods_search.shopcar}</button></p>
 						<p class="purBuy"><a href="">{$notice.goods_search.buy}</a></p>
 					</div>

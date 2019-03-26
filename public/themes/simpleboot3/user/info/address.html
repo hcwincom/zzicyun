@@ -11,48 +11,62 @@
 								<p class="perpadding">
 									<span>会员信息</span>
 									<i class="iconfont icon-jiantoudown"></i>
-									<a href="receiver-address.html">大陆收货地址</a>
+									<a href="">大陆收货地址</a>
 								</p>
 							</div>
 							<div class="person-detail-content">
 								<div class="invoce-title clear">
 									<ul>
-										<li class="sampling-active"><a href="receiver-address.html">国内地址</a></li>
-										<li><a href="hkrece-address.html">香港地址</a></li>
+										<li class="<eq name='type' value='1'>sampling-active</eq>"><a href="{:url('address',['type'=>1])}">国内地址</a></li>
+										<li class="<eq name='type' value='2'>sampling-active</eq>"><a href="{:url('address',['type'=>2])}">香港地址</a></li>
 									</ul>
 								</div>
 								<div class="addr-cont">
 									<!--国内地址-->
 									<div class="addr-cont-list">
 										<div class="invo-exhibiting">
+											
+											<volist name="list" id="vo" key="k">
 											<div class="invo-exhibit-detail">
 												<div class="invo-detail-head clear">
 													<div class="fl">
-														<h3>地址一</h3>
+														<h3>地址{$k+1}</h3>
 													</div>
 													<div class="fr">
-														<a href="javascript:;">删除</a>
+														<a class="address_del" href="javascript:address_del({$vo.id});">删除</a>
 													</div>
 												</div>
 												<div class="invo-detail-cont">
 													
 													<div class="invo-cont-text clear">
 														<p class="fl invoLeft">收货人：</p>
-														<p class="fl invoRight">廖鹏飞</p>
+														<p class="fl invoRight">{$vo.accept_name}</p>
 													</div>
 													<div class="invo-cont-text clear">
 														<p class="fl invoLeft">联系电话：</p>
-														<p class="fl invoRight">15654265897</p>
+														<p class="fl invoRight">{$vo.tel}</p>
 													</div>
 													<div class="invo-cont-text clear">
 														<p class="fl invoLeft">收货地址：</p>
-														<p class="fl invoRight">深圳市某某区某某路某某大厦</p>
+														<p class="fl invoRight">{$vo.address_info}{$vo.address}</p>
+														
 													</div>
+													<!-- 修改地址时下列数据应写入弹出页面 -->
+													<input type="hidden" class="country" value="{$vo.country|default=1}"/>
+													<input type="hidden" class="province" value="{$vo.province}"/>
+													<input type="hidden" class="city" value="{$vo.city}"/>
+													<input type="hidden" class="area" value="{$vo.area}"/>
+													<input type="hidden" class="id" value="{$vo.id}"/>
 												</div>
 												<div class="invo-detail-button">
+												<!-- 添加点击事件，和新增一样弹框，但修改要把信息读取写入到新form里 -->
 													<a href="javascript:;" class="takeChange">修改</a>
 												</div>
-											</div>
+												</div>
+											</volist>
+												 
+												
+											
 											<div class="add-addr">
 												<a href="javascript:;">
 													<i class="iconfont icon-jia"></i>
@@ -63,44 +77,51 @@
 										</div>
 										<!--表格-->
 										<div class="changeAddress">
-											<form action="" method="post" onsubmit="return orderVerify();">
+											<form action="" method="post" >
 												<div class="added-total">
 													<div class="invoform-box clear">
 														<span>收货人：</span>
 														<div class="invo-group">
-															<input type="text" name="" id="takeName" class="invo-input" placeholder="请务必填写全名" />
+															<input type="text" name="accept_name" id="takeName" class="invo-input" placeholder="请务必填写全名" />
 														</div>
 													</div>
 													<div class="invoform-box clear">
 														<span>联系电话：</span>
 														<div class="invo-group">
-															<input type="text" name="" id="takePhone" class="invo-input" placeholder="手机号或者座机" />
+															<input type="text" name="tel" id="takePhone" class="invo-input" placeholder="手机号或者座机" />
 														</div>
 													</div>
 													<div class="invoform-box clear">
-														<span>收票地址：</span>
+														<span>收货地址：</span>
 														<div class="invo-group">
-															<select name="provice">
-																<option value="0">请选择省份</option>
-															</select>
-															<select name="city">
-																<option value="0">请选择城市</option>
-															</select>
-															<select name="country" id="takeCity">
-																<option value="0">请选择县/区</option>
-															</select>
+														<switch name="type">
+														<case value="1">
+															<include file="public@city1" />
+														</case>
+														<case value="2">
+															<include file="public@city2" />
+														</case>
+														<case value="3">
+															<include file="public@city3" />
+														</case>
+														
+														</switch>
+														 
 														</div>
 													</div>
 													<div class="invoform-box clear">
 														<span>详细地址：</span>
 														<div class="invo-group">
-															<textarea name="addrdetail" id="takeAddr" class="invo-input"></textarea>
+															<textarea name="address" id="takeAddr" class="invo-input"></textarea>
 														</div>
 													</div>
+													<!-- 修改时数据要写入，添加时数据要清空 -->
+													<input type="hidden" name="id" id="id" value="0"/>
+													<input type="hidden" name="type"  value="{$type}"/>
 													<p class="info-tip"></p>
 													<div class="invoform-button">
 														<div class="invo-group">
-															<input type="submit" name="" id="" value="保存" class="invo-button" />
+															<input type="button"  id="address_do" value="保存" class="invo-button" />
 															<a href="javascript:;" class="addrCancel">取消</a>
 														</div>
 													</div>
@@ -126,7 +147,76 @@
 			<!---->
 		
 		 <include file="public@user_foot"/>
-	  	<script type="text/javascript" src="../js/laydate.js"></script>
-	  	<script type="text/javascript" src="../js/form.js"></script>
+		 <script>
+		 var type=parseInt("{$type}");
+		 
+		 switch(type){
+		 case 1:
+			 city_js(0,1,$('#city1'),0,$('#city2'),0,$('#city3'),0);
+			 break;
+		 case 2:
+			 city_js(0,1,$('#city1'),33,$('#city2'),0,$('#city3'),0);
+			 break;
+		 case 3:
+			 city_js($('#city0'),0,$('#city1'),0,$('#city2'),0,$('#city3'),0); 
+		 }
+		 
+		 	var url_add="{:url('address_do')}";
+			var url_del="{:url('address_del')}";
+			 
+			//添加修改的ajax做，前端补足 
+			$('#address_do').click(function(){
+				 //根据div获取各参数id
+				 var accept_name=$('#takeName').val();
+				 var tel=$('#takePhone').val();
+				 //id没有就是0，新增，city0没有就是1
+				  var country=1;
+				 if(type==3){
+					 country=$('#city0').val();
+				 } 
+				 var province=$('#city1').val();
+				 var city=$('#city2').val();
+				 var area=$('#city3').val();
+				 var address=$('#takeAddr').val();
+				 var id=$('#id').val();
+				 //参数验证
+				// onsubmit="return orderVerify();";
+				 console.log('id'+id+'type'+type+'country'+country+'province'+province+'city'+city+'area'+area+'address'+address+'accept_name'+accept_name+'tel'+tel);
+				//$('form').submit();
+			 
+				 $.ajax({
+		 			"url":url_add,
+		 			"type":"POST", 
+		 			"data":{'id':id,'type':type,'country':country,'province':province,'city':city,'area':area,'address':address,'accept_name':accept_name,'tel':tel},
+		 			"dataType":"json", 
+		 			"success":function(data){
+		 				msg(data.msg); 
+		 			},
+		 			 "error": function(event, XMLHttpRequest, ajaxOptions, thrownError){ 
+	 		        	msg(event.responseText,1); 
+	 		        }
+		 		});
+				return false;
+			});
+			 
+			function address_del(id){
+				 
+				$.ajax({
+		 			"url":url_del,
+		 			"type":"POST", 
+		 			"data":{'id':id},
+		 			"dataType":"json", 
+		 			"success":function(data){
+		 				msg(data.msg);
+		            	 
+		 			},
+		 			 "error": function(event, XMLHttpRequest, ajaxOptions, thrownError){ 
+	 		        	msg(event.responseText,1); 
+	 		        }
+		 		});
+			}
+			
+		 </script>
+	    
 	</body>
 </html>

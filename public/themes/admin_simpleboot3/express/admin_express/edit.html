@@ -11,7 +11,7 @@
 				<label  class="col-sm-2 control-label">id</label>
 				<div class="col-md-6 col-sm-10">
 					<input type="text" class="form-control" name="id" value="{$info.id}" readonly/>
-					<a href="{:url('edit_list',['type1'=>'id','name'=>$info.id])}" target="{$zztarget['edit']}">查看编辑记录</a>
+					<a href="{:url('edit_list',['type1'=>1,'name'=>$info.id,'type2'=>1])}" target="{$zztarget['edit']}">查看编辑记录</a>
 				</div>
 			</div>
 			<include file="express@admin_express:base"/>

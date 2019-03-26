@@ -128,11 +128,12 @@ class GoodsModel extends Model
     }
     /**
      * 分页产品信息
-     * @param unknown $where
-     * @param unknown $order
-     * @param unknown $field
-     * @param unknown $join
-     * @return unknown
+     * @param number $lan
+     * @param number $lan1 
+     * @param array $where
+     * @param array $data
+     * @param string $order 
+     * @return array['goods_list'=>$goods_list,'page'=>$page,'file_list'=>$file_list,'price_list'=>$price_list]
      */
     public function goods_page($lan1,$lan2,$where,$data,$order)
     { 
@@ -184,5 +185,56 @@ class GoodsModel extends Model
         }
          
         return ['goods_list'=>$goods_list,'page'=>$page,'file_list'=>$file_list,'price_list'=>$price_list];
+    }
+    /**
+     * 分页产品信息
+     * @param number $lan
+     * @param number $lan1
+     * @param array $ids产品ids 
+     * @return array['goods_list'=>$goods_list,'page'=>$page,'file_list'=>$file_list,'price_list'=>$price_list]
+     */
+    public function goods_list($lan1,$lan2,$ids)
+    {
+       /*  $field='p.id,p.code,p.pic,p.box,p.pic0,p.store_num,p.store_code,p.store_sure,p.brand,p.price1,p.price2'.
+            ',p.goods_time1,p.goods_time2,p.shop,p.weight,p.size,p.is_rohs'.
+            ',p.box,p.num_min,p.num_times,p.num_one,val.name as name,val.dsc as dsc,val.production_code as production_code,val.production_factory as production_factory'; */
+        $field='p.*,val.name as name,val.dsc as dsc,val.production_code as production_code,val.production_factory as production_factory';
+        
+        $where=['p.id'=>['in',$ids]];
+        $list=$this
+        ->alias('p')
+        ->join('cmf_goods_val val','val.pid=p.id and val.lid='.$lan1)
+        ->where($where)
+        ->column($field);
+        if(empty($list)){
+            $list=$this
+            ->alias('p')
+            ->join('cmf_goods_val val','val.pid=p.id and val.lid='.$lan2)
+            ->where($where)
+            ->column($field);
+         }
+       
+        //阶梯价格
+        $price_list=[]; 
+        if(empty($list)){
+          return ['goods_list'=>$list,'price_list'=>$price_list];
+        }
+        //获取美元汇率
+        $rate=Db::name('shop')->where('id',1)->value('rate');
+        //得到供应商和品牌id
+        foreach($list as $k=>$v){ 
+            //价格计算 
+            $list[$k]['price2']=round($v['price1']*$rate,5); 
+        }
+            
+        //阶梯价格
+        $m_price=new GoodsPriceModel();
+        $price_list=$m_price->get_all_by_pids($ids);
+        foreach($price_list as $k=>$v){
+            foreach($v as $kk=>$vv){ 
+                $price_list[$k][$kk]['price2']=round($vv['price1']*$rate,5); 
+            } 
+        } 
+        return ['goods_list'=>$list,'price_list'=>$price_list];
     }
 }

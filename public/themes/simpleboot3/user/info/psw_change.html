@@ -10,7 +10,7 @@
 								<p class="perpadding">
 									<span>资产管理</span>
 									<i class="iconfont icon-jiantoudown"></i>
-									<a href="change-password.html">修改密码</a>
+									<a href="">修改密码</a>
 								</p>
 							</div>
 							<div class="baseTitle">
@@ -18,7 +18,7 @@
 							</div>
 							<div class="person-detail-content">
 								<div class="change-pwd">
-									<form action="" method="post" onsubmit="return newRePwCheck();">
+									<form action="" method="post"  >
 										<div class="modify-cont">
 											<div class="modify-box clear">
 												<div class="col-sm-4 col-md-4 verify-email-left">旧密码：</div>
@@ -42,7 +42,7 @@
 										</div>
 										
 										<div class="modify-cont-button">
-												<button type="submit" class="sureBtn">确认</button>
+												<button type="button" class="sureBtn">确认</button>
 												<!--<a href="javascript:;" class="cancelPwd">取消</a>-->
 											</div>
 									
@@ -51,7 +51,7 @@
 								</div>
 								<!--修改成功-->
 								<div class="pwd-over">
-									<p class="pwd-index"><a href="../index.html">去商城</a></p>
+									<p class="pwd-index"><a href="/">去商城</a></p>
 									<p class="suc-tip">修改密码成功！</p>
 								</div>
 							</div>
@@ -65,14 +65,36 @@
 			<!---->
 		
 		 <include file="public@user_foot"/> 
-	  	<script type="text/javascript" src="../js/laydate.js"></script>
-	  	<script type="text/javascript" src="../js/form.js"></script>
+	   	<script type="text/javascript" src="__TMPL__/public/js/form.js"></script>
+	 
 	  	<script type="text/javascript">
 			$(".add-invo a").click(function(){
 	  			$(this).parents(".invo-exhibiting").hide();
 	  			$(".invoceForm-list").show();
 	  		});
-			
+			$('.sureBtn').click(function(){
+				var res=newRePwCheck();
+				if(res){
+					
+				}
+				var url_psw="{:url('psw_change_do')}";
+				var old=$('#oldpwd').val();
+				var psw=$('#newpwd').val();
+				$.ajax({
+		 			"url":url_psw,
+		 			"type":"POST", 
+		 			"data":{'old':old,'psw':psw},
+		 			"dataType":"json", 
+		 			"success":function(data){
+		 				msg(data.msg);
+		            	 
+		 			},
+		 			 "error": function(event, XMLHttpRequest, ajaxOptions, thrownError){ 
+	 		        	msg(event.responseText,1); 
+	 		        }
+		 		});
+				return false;
+			});
 	  	</script>
 	  	
 	</body>

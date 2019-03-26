@@ -1,0 +1,106 @@
+<div style="clear:both"></div>
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">名称</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="text" class="form-control" name="name" value="{$info.name}" />
+
+        <present name='change.name'>
+            <input type="text" class="red form-control" name="name" value="{$change.name}" />
+        </present>
+
+    </div>
+</div>
+ <div class="form-group">
+    <label for="" class="col-sm-2 control-label">类型</label>
+    <div class="col-md-6 col-sm-10">
+    	<select name="type" class="form-control">
+    	<foreach name="station_types" item="vo">
+    		<option value="{$key}" <if condition="$key eq $info.type">selected</if>>{$vo}</option>
+    	</foreach>
+    	</select> 
+    </div>
+</div>
+ <div class="form-group">
+    <label for="" class="col-sm-2 control-label">地区</label>
+    <div class="col-md-6 col-sm-10">
+    
+     <include file="public@city0" /> 
+   
+    </div>
+</div>
+<present name="change.area">
+ <div class="form-group red">
+    <label for="" class="col-sm-2 control-label">地区修改</label>
+    <div class="col-md-6 col-sm-10"> 
+		<select name="province"  class="form-control short2"  id="city1_change">
+			<option value="0">省份</option> 
+		</select>
+		<select name="city"  class="form-control short2"  id="city2_change">
+			<option value="0">地级市</option> 
+		</select>
+		<select name="area"  class="form-control short2" id="city3_change">
+			<option value="0">县/区</option> 
+		</select> 
+    </div>
+</div>
+</present>
+
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">街道地址</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="text" class="form-control" name="address" value="{$info.address}" /> 
+        <present name='change.address'>
+            <input type="text" class="red form-control" name="address" value="{$change.address}" />
+        </present> 
+    </div>
+</div>
+ <div class="form-group">
+    <label class="col-sm-2 control-label">联系电话</label>
+    <div class="col-md-6 col-sm-10">
+     	<input type="text" class="form-control" name="tel" value="{$info.tel}" /> 
+        <present name='change.tel'>
+            <input type="text" class="red form-control" value="{$change.tel}" />
+        </present> 
+        
+    </div>
+</div>
+ <div class="form-group">
+    <label class="col-sm-2 control-label">工作时间</label>
+    <div class="col-md-6 col-sm-10">
+     	<input type="text" class="form-control" name="work_time" value="{$info.work_time}" /> 
+        <present name='change.work_time'>
+            <input type="text" class="red form-control" value="{$change.work_time}" />
+        </present> 
+        
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2 control-label">简介</label>
+    <div class="col-md-6 col-sm-10">
+     	<input type="text" class="form-control" name="dsc" value="{$info.dsc}" /> 
+        <present name='change.dsc'>
+            <input type="text" class="red form-control" value="{$change.dsc}" />
+        </present> 
+        
+    </div>
+</div>
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">排序</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="text" class="form-control" name="sort" value="{$info.sort|default=1000}" />
+        <present name='change.sort'>
+            <input type="text" class="red form-control" name="sort" value="{$change.sort}" />
+        </present>
+    </div>
+</div>
+
+
+<include file="public@adsc" />
+<script>
+$(function(){
+	city_js(0,1,$('#city1'),"{$info.province|default=0}",$('#city2'),"{$info.city|default=0}",$('#city3'),"{$info.area|default=0}");
+	<present name="change.area">
+	city_js(0,1,$('#city1_change'),"{$change.province}",$('#city2_change'),"{$change.city}",$('#city3_change'),"{$change.area}");
+	</present>
+});
+</script>

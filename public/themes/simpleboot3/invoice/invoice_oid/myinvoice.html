@@ -1,0 +1,269 @@
+  <include file="public@user_header"/> 	
+			<!--主要内容-->
+			<div class="person-content">
+				<div class="wraper row totalback">
+					  <include file="public@user_left"/> 	
+					<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10" style="padding: 0;">
+						<div class="person-right">
+							<div class="person-right-head">
+								<p class="perpadding">
+									<span>发票管理</span>
+									<i class="iconfont icon-jiantoudown"></i>
+									<a href="">开票进程</a>
+								</p>
+							</div>
+							<div class="person-detail-content">
+								<div class="order-sort-title clear">
+									<ul>
+										<li class="sampling-active"><a href="javascript:;">全部</a></li>
+										<li><a href="javascript:;">未开票(<span>2</span>)</a></li>
+										<li><a href="javascript:;">已开票(<span>2</span>)</a></li>
+										<li><a href="javascript:;">不开票(<span>2</span>)</a></li>
+									</ul>
+								</div>
+								<div class="comTitle clear">
+									<div class="bom-title-list fl">
+										<div class="ddzt">
+											<p class="fl">开票状态</p>
+											<div class="fl xzlb">
+												<select name="comcate">
+													<option value="0">全部类别</option>
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="bom-title-list fl">
+										<div class="ddzt">
+											<p class="fl">发票类型：</p>
+											<div class="fl xzlb">
+												<select name="comcate">
+													<option value="0">全部类别</option>
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="bom-title-list kpcx fl">
+										<div class="bom-sear">
+											<input type="text" name="" id="" value="" placeholder="商品编码/型号" />
+											<button type="button">查询</button>
+										</div>
+									</div>
+									<div class="bom-title-list fl">
+										<div class="bom-sear">
+											<a href="">导出开票明细</a>
+										</div>
+									</div>
+								</div>
+								<div class="wram-tip">
+									<span>请注意：1、仅开票抬头相同的订单允许合并开票；2、订单存在售后或特殊原因时不可申请开票。详询   <a href="">在线客服</a></span>
+								</div>
+								<div class="proce-detail">
+									<div class="peoce-table">
+										<table class="table conTable">
+											<tr>
+												<th width="4%">勾选</th>                                                                                                                
+												<th width="10%">下单时间</th>
+												<th width="13%">订单号</th>
+												<th width="10%">订单金额</th>
+												<th width="12%">发票类型</th>
+												<th width="10%">开票状态</th>
+												<th width="10%">开票时间</th>
+												<th width="10%">收件人</th>
+												<th width="10%">快递单号</th>
+												<th width="11%">操作</th>
+											</tr>
+										<foreach name="list" item="vo" key="key">
+										
+										</foreach>
+											<tr>
+												<td>
+													<p>
+														<input type="checkbox" name="kpcheck" id="" value="" />
+													</p>
+												</td>
+												<td>
+													<p>2018-06-14</p>
+												</td>
+												<td>
+													<p>321654987</p>
+												</td>
+												<td>
+													<p>1000</p>
+												</td>
+												<td>
+													<p>增值税普通发票</p>
+												</td>
+												<td>
+													<div class="inHover">
+														<p>未开票</p>
+													</div>
+												</td>
+												<td>
+													<p>2018-07-0</p>
+												</td>
+												<td>
+													<p>赖鹏飞</p>
+												</td>
+												<td>
+													<p>32164987</p>
+												</td>
+												<td class="probutton">
+													<p class="green">
+														<a href="purchase-order-detail.html">查看订单</a>
+													</p>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<p>
+														<input type="checkbox" name="kpcheck" id="" value="" />
+													</p>
+												</td>
+												<td>
+													<p>2018-06-14</p>
+												</td>
+												<td>
+													<p>321654987</p>
+												</td>
+												<td>
+													<p>1000</p>
+												</td>
+												<td>
+													<p>增值税普通发票</p>
+												</td>
+												<td class="nav-invo">
+													<div class="inHover">
+														<p>已开票</p>
+														<div class="inHover-content">
+															<div class="inHover-cont-list">
+																<p>票号：123446687</p>
+																<p>票号：123446687</p>
+																<p>票号：123446687</p>
+															</div>
+														</div>
+													</div>
+												</td>
+												<td>
+													<p>2018-07-0</p>
+												</td>
+												<td>
+													<p>赖鹏飞</p>
+												</td>
+												<td>
+													<p>32164987</p>
+												</td>
+												<td class="probutton">
+													<p class="green">
+														<a href="purchase-order-detail.html">查看订单</a>
+													</p>
+												</td>
+											</tr>
+										
+										</table>
+									</div>
+									<div class="proce-page clear">
+										<!--分页-->
+										<div class="page">
+											<div class="p-wrap" id="j_bottomPage">
+												<span class="p-num">
+													<a class="pn-prev disabled">
+														<i><</i>
+													</a>
+													<a href="javascript:void(0);" class="num curr">1</a>
+													<a href="javascript:void(0);" class="num">2</a>
+													<a href="javascript:void(0);" class="num">3</a>
+													<a href="javascript:void(0);" class="pn-next ">
+														<i>></i>	
+													</a>
+												</span>
+												<span class="p-skip">
+													<a href="javascript:void(0);">共  <i>10</i>页</a>
+												</span>
+												<span class="page_jump">
+													<i>第</i>
+													<input class="pageInput" type="text" value="1" onkeyup="value=value.replace(/[^\d]/g,'')" onblur="value=value.replace(/[^\d]/g,'')" name="pageNo" id="pageInput">
+													<i>页</i>
+												</span>
+												<span class="page_btn">
+													<button type="button" id="pagebtn" class="btn btn-default">确定</button>
+												</span>
+											</div>
+										</div>
+										<!---->	
+
+									</div>
+									<div class="proce-know">
+										<div class="proce-know-title">
+											<h3>开票须知</h3>
+										</div>
+										<div class="proce-know-text">
+											<div class="proce-text-know-intro clear">
+												<p class="intro-left fl">1、开票种类：</p>
+												<p class="intro-right fl">
+													<span>增值税普通发票（不可抵扣）</span>
+													<span> 增值税专用发票（不可抵扣）</span>
+												</p>
+											</div><div class="proce-text-know-intro clear">
+												<p class="intro-left fl">2、开票时间：</p>
+												<p class="intro-right fl">每月10日至24日统一开出（仅限增值税专用发票），普通发票随货一起发出（单笔订单满200元）</p>
+											</div>
+											<div class="proce-text-know-intro clear">
+												<p class="intro-left fl">3、开票规则：</p>
+												<p class="intro-right fl">每月每个客户统一开具一次发票，当月一开票后产生的已发货订单货款金额顺眼累计到下个月统一
+                           							开票。（当月仅有在10-24号发货需开票的订单，顺延至下月开出）增值税专用发票金额需累计满1000元以上开具增值税普通发票金额需累计满200元随货发，
+                           							不满则累计200元以上再开</p>
+											</div>
+											<div class="proce-text-know-intro clear">
+												<p class="intro-left fl">4、发票运费：</p>
+												<p class="intro-right fl">单独寄出，运费我司付</p>
+											</div>
+											<div class="proce-text-know-intro clear">
+												<p class="intro-left fl">5、注意事项：</p>
+												<p class="intro-right fl">1、仅开票抬头相同的订单允许合并开票； 2、订单存在售后或特殊原因时不可申请开票，详询 <a href="">在线客服</a>
+                   							需要增值税专用发票的客户，</p>
+											</div>
+											<div class="intro-special clear">
+												<span class="intro-left">6、需要上传相应的证明文件：</span>
+												<span class="intro-right">加盖公章的 ①一般纳税人资格证书或认定文件复印件 ②税务登记证副本复印件【三证合
+    												一的公司请提供营业执照复印件，正副本均可】</span>
+											</div>
+										</div>
+									</div>
+								
+								
+								</div>
+								
+								
+								
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div id="bottomFooter"></div>
+			<!---->
+		</div>
+		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+	    <script src="../js/jquery-1.12.1.min.js"></script>
+	    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+	    <script src="../js/bootstrap.min.js"></script>
+	  	<script type="text/javascript" src="../js/person.js"></script>
+	  	<script type="text/javascript" src="../js/laydate.js"></script>
+	  	<script type="text/javascript">
+	  		$(".order-sort-title ul li").click(function(){
+	  			$(this).addClass("sampling-active").siblings().removeClass("sampling-active");
+	  		});
+	  		$(".nav-invo").mousemove(function(){
+	  			$(this).find(".inHover-content").show();
+	  		});
+	  		
+	  		$(".nav-invo").mouseout(function(){
+	  			$(this).find(".inHover-content").hide();
+	  		});
+	  		
+	  	</script>
+	  	
+	</body>
+</html>

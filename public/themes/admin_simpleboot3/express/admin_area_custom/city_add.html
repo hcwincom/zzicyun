@@ -1,0 +1,41 @@
+<div class="form-group">
+    <label class="col-sm-2 control-label">选择地区</label>
+    <div class="col-md-6 col-sm-10">
+        <select id="city1" class="form-control short2"> 
+            <option value="0">全国省份</option> 
+          <foreach name="city1s" item="vo">
+          	<option value="{$key}">{$vo}</option> 
+          </foreach>
+        </select>
+        <button type="button" id="add">添加</button>
+    </div>
+</div>
+
+<script>
+$(function(){
+	$('#add').click(function(){
+		var fid=parseInt($('#city1').val());
+	 
+		if(!(fid>0) || $('#citys'+fid).length>0){
+			return 0;
+		}
+		 var fname=$('#city1 option:selected').text(); 
+		$.post(city_url,{'fid':fid},function(data){
+			if(data.code!=1){ 
+				return false;
+			}
+			var div='<div id="citys'+fid+'"><h4>----'+fname+'----</h4>';
+            
+			var list=data.data; 
+			for(var i in list){
+				div+=' <label class="checkbox-inline">'+
+				'<input type="checkbox" value="'+i+'" name="citys['+i+']"  checked />'+list[i]+'</label>';
+			} 
+			div+='</div>';
+			$('#citys').append(div); 
+			 
+			
+		},'json');
+	});
+});
+</script>

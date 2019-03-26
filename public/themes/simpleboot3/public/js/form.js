@@ -1,13 +1,4 @@
-var notice_json={
-	'common':
-			{'applay_name':'请输入联系人姓名','applay_phone':'请输入手机号码','apply_file':'文件已上传','apply_size':'上传的图片大小不能超过10M !',
-			 'apply_companyName':'请输入公司名称','apply_email':'请输入可用邮箱','apply_read':'请确认已阅读入驻协议','apply_uploadfile':'请上传文件',
-			 'job_name':'请输入姓名','job_code':"请输入验证码",'city_check':'请选择收货地址','detail_addr':'请填写详细地址','dafult_take':'设为默认',
-			 'changePwd':'新旧密码不能相同！','changeNewPwd':'密码不一致！','oldPwd':'请输入旧密码','newPwd':'请输入新密码','newrePwd':'请再次输入新密码',
-			},
-	 
-	};
-console.log(notice_json.common.success);
+ 
 // 验证6位密码
 	function isPassword(password){
 	    var pattern=/^\d{6}$/;

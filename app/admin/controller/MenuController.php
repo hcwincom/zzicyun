@@ -365,7 +365,7 @@ class MenuController extends AdminBaseController
         }
 
         $controllers = cmf_scan_dir($filePatten);
-
+      
         if (!empty($controllers)) {
             foreach ($controllers as $controller) {
                
@@ -374,10 +374,11 @@ class MenuController extends AdminBaseController
                 $controllerName  = preg_replace('/\Controller$/', '', $controller);
              
                 $controllerClass = "app\\$app\\controller\\$controller";
-               
+              
                 $menuAnnotations = Annotations::ofClass($controllerClass, '@adminMenuRoot');
                
                 if (!empty($menuAnnotations)) {
+                   
                     foreach ($menuAnnotations as $menuAnnotation) {
                        
                         $name      = $menuAnnotation->name; 
@@ -388,6 +389,7 @@ class MenuController extends AdminBaseController
                         $listOrder = floatval($menuAnnotation->order);
                         $param     = $menuAnnotation->param;
                         $remark    = $menuAnnotation->remark; 
+                     
                         if (empty($menuAnnotation->parent)) {
                             $parentId = 0;
                         } else {
@@ -440,7 +442,7 @@ class MenuController extends AdminBaseController
                             'controller' => $controllerName,
                             'action'     => $action
                         ])->find();
-
+                       
                         if (empty($findAdminMenu)) {
 
                             Db::name('admin_menu')->insert([
@@ -501,7 +503,7 @@ class MenuController extends AdminBaseController
                             'name' => $authRuleName,
                             'type' => 'admin_url'
                         ])->count();
-
+                      
                         if ($findAuthRuleCount == 0) {
                             Db::name('auth_rule')->insert([
                                 'app'   => $app,
@@ -544,6 +546,7 @@ class MenuController extends AdminBaseController
                                 $listOrder = floatval($menuAnnotation->order);
                                 $param     = $menuAnnotation->param;
                                 $remark    = $menuAnnotation->remark; 
+                             
                                 if (empty($menuAnnotation->parent)) {
                                     $parentId = 0;
                                 } else {

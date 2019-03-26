@@ -567,9 +567,11 @@ function zz_set_image($pic,$pic_new,$width,$height,$thump=6){
  * @param array $size 图片制作大小
  * @param string $path 文件根目录
  * @param number $thump 图片大小制作类型
+ * @param number $is_again 是否一定要重新制作，1为一定重新制图
+ * @param number $is_unlink 是否删除原图,1删除，0不删除
  * @return string 
  */
-function zz_set_file($pic,$pathid,$size=[],$path='upload/',$thump=6){
+function zz_set_file($pic,$pathid,$size=[],$path='upload/',$thump=6,$is_again=0,$is_unlink=1){
     if(empty($pic)){
        return '';
     }
@@ -577,27 +579,32 @@ function zz_set_file($pic,$pathid,$size=[],$path='upload/',$thump=6){
     if(!is_dir($path.$pathid)){
         mkdir($path.$pathid);
     }
-    //不是文件则返回空
-    if (!is_file($path.$pic))
-    {
-        return '';
-    }
-    
     //先比较是否需要额外保存,非指定位置的要复制粘贴
-    if(strpos($pic, $pathid)===0){
+    if($is_again==0 && strpos($pic, $pathid)===0){
         return $pic;
     }
+    //不是文件则返回空
+    if (!is_file($pic)){
+        $pic=$path.$pic;
+        if (!is_file($pic)){
+            return '';
+        }
+    } 
+     
     
     //获取后缀名,复制文件
     $ext=substr($pic, strrpos($pic,'.'));
     $new_file=$pathid.date('Ymd-His').$ext;
-    $result =copy($path.$pic, $path.$new_file);
+    $result =copy($pic, $path.$new_file);
     if ($result == false)
     {
         return '';
     } 
     //删除原图片
-    unlink($path.$pic);
+    if($is_unlink){
+        unlink($pic);
+    }
+   
     if(!empty($size['width']) && !empty($size['height'])){
         $image = \think\Image::open($path.$new_file);
         $image->thumb($size['width'], $size['height'],$thump)->save($path.$new_file); 
