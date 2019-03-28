@@ -17,10 +17,10 @@ $(function(){
 	
 	//添加收货地址
 	
-	$(".add-addr a").click(function(){
-	  	$(".changeAddress").show();
-	  	$(document.body).toggleClass("html_overflow");
-	});
+	// $(".add-addr a").click(function(){
+	//   	$(".changeAddress").show();
+	//   	$(document.body).toggleClass("html_overflow");
+	// });
 	
 	$(".addrCancel").click(function(){
 		$(".changeAddress").hide();

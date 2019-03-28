@@ -92,9 +92,24 @@
 										<div class="groupList-dsc">
 											 
 											<foreach name="addresses" item="vo">
-												<div class="groupList-dscont">
-										<input type="radio" name="address_id" class="address_id" value="{$key}" <if condition="$key eq $address_id">checked</if> />
-													<div class="groupInput-box clear">
+												<div class="groupList-dscont clear">
+													
+												<input type="radio" name="address_id" class="address_id fl" value="{$key}" <if condition="$key eq $address_id">checked</if> />
+													<div class="groupList_addr_text fl">
+														<span>{$vo.accept_name}（收）</span>
+														<span>{$vo.tel}</span>
+														<span>{$vo.address_info}{$vo.address}</span>
+													</div>
+
+
+
+
+
+
+
+
+
+													<!-- <div class="groupInput-box clear">
 														<p class="fl">收货人：</p>
 														<div>{$vo.accept_name}</div>
 													</div>
@@ -106,7 +121,7 @@
 													<div class="groupInput-box clear">
 														<p class="fl">联系电话：</p>
 														<div>{$vo.tel}</div>
-													</div>
+													</div> -->
 													<div class="groupBtn-order">
 													<eq name="vo.is_first" value="1">
 														<span class="addr-approve">默认</span> 

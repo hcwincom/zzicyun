@@ -1727,7 +1727,7 @@ p.oranBorder>a{
 	text-align: right;
 }
 .invo-cont-text>p.invoRight{
-	width: 85%;
+	width: 73%;
 }
 .invo-cont-text-file>p.invoRight>span{
 	border: 1px solid #dcdcdc;
@@ -1736,13 +1736,33 @@ p.oranBorder>a{
 .invo-detail-button{
 	position: absolute;
 	bottom: 20px;
-	right: 5%;
+	right: 3%;
+}
+.invo_detail_dafult{
+	position: absolute;
+	top: 50%;
+	right: 3%;
 }
 .invo-detail-button>a{
 	color: #fff;
 	background: #FF9500;
 	font-size: 16px;
 	padding: 5px 20px;
+}
+.invo_detail_dafult>a{
+	padding: 5px 10px;
+	font-size: 14px;
+	line-height: 30px;
+	color: #008000;
+	text-decoration: none;
+}
+.invo_detail_dafult>a:hover{
+	color: #ff0000;
+}
+.invo_detail_dafult>.default_text{
+	border: 1px solid #ff0000;
+	color: #ff0000;
+	background: rgb(255, 214, 204);
 }
 .add-invo,.add-addr{
 	width: 100%;
@@ -1816,6 +1836,24 @@ p.oranBorder>a{
 	color: #D9000F;
 	font-size: 14px;
 }
+.invoform-box>.defult_btn{
+	width: 100%;
+	font-size: 14px;
+	color: #121212;
+	margin-left: 10%;
+	font-weight: 100;
+}
+.invoform-box>.defult_btn>input{
+	margin: 0;
+	margin-right: 10px;
+
+}
+
+
+
+
+
+
 /*授信额度*/
 .borderColor{
 	border-color: #FF9500;

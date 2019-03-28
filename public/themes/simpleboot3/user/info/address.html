@@ -40,15 +40,15 @@
 													
 													<div class="invo-cont-text clear">
 														<p class="fl invoLeft">收货人：</p>
-														<p class="fl invoRight">{$vo.accept_name}</p>
+														<p class="fl invoRight accName">{$vo.accept_name}</p>
 													</div>
 													<div class="invo-cont-text clear">
 														<p class="fl invoLeft">联系电话：</p>
-														<p class="fl invoRight">{$vo.tel}</p>
+														<p class="fl invoRight accPhone">{$vo.tel}</p>
 													</div>
 													<div class="invo-cont-text clear">
 														<p class="fl invoLeft">收货地址：</p>
-														<p class="fl invoRight">{$vo.address_info}{$vo.address}</p>
+														<p class="fl invoRight accAddr">{$vo.address_info}<span>{$vo.address}</span></p>
 														
 													</div>
 													<!-- 修改地址时下列数据应写入弹出页面 -->
@@ -60,7 +60,11 @@
 												</div>
 												<div class="invo-detail-button">
 												<!-- 添加点击事件，和新增一样弹框，但修改要把信息读取写入到新form里 -->
-													<a href="javascript:;" class="takeChange">修改</a>
+													<a href="javascript:void(0);" class="takeChange">修改</a>
+												</div>
+												<div class="invo_detail_dafult">
+													<a href="javascript:void(0);" class="default_text">默认</a>
+													<a href="javascript:void(0);" class="default_setting">设为默认</a>
 												</div>
 												</div>
 											</volist>
@@ -113,6 +117,13 @@
 															<textarea name="address" id="takeAddr" class="invo-input"></textarea>
 														</div>
 													</div>
+													<div class="invoform-box clear">
+														<label for="dafult" class="defult_btn">
+															<input type="checkbox" name="dafult" id="dafult">设为默认
+														</label>
+															
+														
+													</div>
 													<!-- 修改时数据要写入，添加时数据要清空 -->
 													<input type="hidden" name="id" id="id" value="0"/>
 													<input type="hidden" name="type"  value="{$type}"/>
@@ -159,24 +170,113 @@
 			 city_js($('#city0'),0,$('#city1'),0,$('#city2'),0,$('#city3'),0); 
 		 }
 
-		  switch (type) {
-				case 1:
-					//city_js(0, 1, $('#city1'), 0, $('#city2'), 0, $('#city3'), 0);
-					 
-					 get_citys(省select, 国id, 省id);
-					  get_citys(市select, 省id, 市id);
-					  get_citys($('#city1'), 1, 22);
-					break;
-				case 2:
-					//city_js(0, 1, $('#city1'), 33, $('#city2'), 0, $('#city3'), 0);
-					break;
-				case 3:
-					//city_js($('#city0'), 0, $('#city1'), 0, $('#city2'), 0, $('#city3'), 0);
-			}
-		 get_citys($('#city0'),1,22);
+		 
+			 get_citys($('#city0'),1,22);
 		 	var url_add="{:url('user/Info/address_do')}";
 			var url_del="{:url('user/Info/address_del')}";
-			 
+			 $(".takeChange").click(function () {
+				$(".changeAddress").show();
+				$(document.body).toggleClass("html_overflow");
+				var $div=$(this).parents('.invo-exhibit-detail');
+				 var oldName = $.trim( $div.find(".invo-cont-text>.accName").text());
+				 var oldTel = $.trim($div.find(".invo-cont-text>.accPhone").text());
+				 var oldAddr = $.trim($div.find(".invo-cont-text>.accAddr>span").text());
+				var country = $div.find(".country").val();
+				var province = $div.find(".province").val();
+				var city = $div.find(".city").val();
+				var area = $div.find(".area").val();
+				var id = $div.find('.id').val();
+				 switch (type) {
+					 case 1:
+						 //city_js(0, 1, $('#city1'), 0, $('#city2'), 0, $('#city3'), 0);
+
+						 //  get_citys(省select, 国id, 省id);
+						 //   get_citys(市select, 省id, 市id);
+						 //   get_citys($('#city1'), 1, 22);
+						$('#city1').val(province);
+						 get_citys($('#city2'), province, city);
+						  get_citys($('#city3'), city, area);
+						 break;
+					 case 2:
+						 //city_js(0, 1, $('#city1'), 33, $('#city2'), 0, $('#city3'), 0);
+						 $('#city2').val(city);
+						 get_citys($('#city3'), city, area);
+						 break;
+					 case 3:
+					 //city_js($('#city0'), 0, $('#city1'), 0, $('#city2'), 0, $('#city3'), 0);
+						 $('#city0').val(country);
+					 	 get_citys($('#city1'), country, province); 
+						get_citys($('#city2'), province, city);
+						 get_citys($('#city3'), city, area);
+				 }
+				 $("#id").val(id);
+				 $("#takeName").val(oldName);
+				 $("#takePhone").val(oldTel);
+				 $("#takeAddr").val(oldAddr);
+
+
+			 });
+
+			 // 添加新的收货地址
+
+			 $(".add-addr a").click(function () {
+				$("#id").val(0);
+				$(".changeAddress").show();
+				$(document.body).toggleClass("html_overflow");
+				$("#takeName").val("");
+				$("#takePhone").val("");
+				 switch (type) {
+					 case 1:
+						 //city_js(0, 1, $('#city1'), 0, $('#city2'), 0, $('#city3'), 0);
+						
+						 $('#city1').val(0);
+						 get_citys($('#city2'), 0, 0);
+						 get_citys($('#city3'), 0, 0);
+						 break;
+					 case 2:
+						 //city_js(0, 1, $('#city1'), 33, $('#city2'), 0, $('#city3'), 0);
+						 $('#city2').val(0);
+						 get_citys($('#city3'), 0, 0);
+						 break;
+					 case 3:
+						 //city_js($('#city0'), 0, $('#city1'), 0, $('#city2'), 0, $('#city3'), 0);
+						 $('#city0').val(0);
+						 get_citys($('#city1'), 0, 0);
+						 get_citys($('#city2'), 0, 0);
+						 get_citys($('#city3'), 0, 0);
+				 }
+				$("#takeAddr").val("");
+				
+
+
+
+
+
+
+			 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 			//添加修改的ajax做，前端补足 
 			$('#address_do').click(function(){
 				 //根据div获取各参数id
@@ -224,7 +324,10 @@
 		 			"data":{'id':id,'type':type,'country':country,'province':province,'city':city,'area':area,'address':address,'accept_name':accept_name,'tel':tel},
 		 			"dataType":"json", 
 		 			"success":function(data){
-		 				msg(data.msg); 
+
+						 msg(data.msg); 
+						 $(".changeAddress").hide();
+						 window.location.reload();
 		 			},
 		 			 "error": function(event, XMLHttpRequest, ajaxOptions, thrownError){ 
 	 		        	msg(event.responseText,1); 
@@ -242,7 +345,7 @@
 		 			"dataType":"json", 
 		 			"success":function(data){
 		 				msg(data.msg);
-		            	 
+		            	window.location.reload();
 		 			},
 		 			 "error": function(event, XMLHttpRequest, ajaxOptions, thrownError){ 
 	 		        	msg(event.responseText,1); 
