@@ -64,8 +64,6 @@
 												</div>
 												</div>
 											</volist>
-												 
-												
 											
 											<div class="add-addr">
 												<a href="javascript:;">
@@ -160,9 +158,24 @@
 		 case 3:
 			 city_js($('#city0'),0,$('#city1'),0,$('#city2'),0,$('#city3'),0); 
 		 }
-		 
-		 	var url_add="{:url('address_do')}";
-			var url_del="{:url('address_del')}";
+
+		  switch (type) {
+				case 1:
+					//city_js(0, 1, $('#city1'), 0, $('#city2'), 0, $('#city3'), 0);
+					 
+					 get_citys(省select, 国id, 省id);
+					  get_citys(市select, 省id, 市id);
+					  get_citys($('#city1'), 1, 22);
+					break;
+				case 2:
+					//city_js(0, 1, $('#city1'), 33, $('#city2'), 0, $('#city3'), 0);
+					break;
+				case 3:
+					//city_js($('#city0'), 0, $('#city1'), 0, $('#city2'), 0, $('#city3'), 0);
+			}
+		 get_citys($('#city0'),1,22);
+		 	var url_add="{:url('user/Info/address_do')}";
+			var url_del="{:url('user/Info/address_del')}";
 			 
 			//添加修改的ajax做，前端补足 
 			$('#address_do').click(function(){
@@ -179,6 +192,27 @@
 				 var area=$('#city3').val();
 				 var address=$('#takeAddr').val();
 				 var id=$('#id').val();
+				 console.log(id);
+				if (accept_name == "") {
+					$("#takeName").focus();
+					$(".info-tip").text(notice_json.common.job_name);
+					return false;
+				} else if (tel == "" || isPhoneNo(tel) == false) {
+					$("#takePhone").focus();
+					$(".info-tip").text(notice_json.common.applay_phone);
+					return false;
+				} else if (area == 0) {
+					$(".info-tip").text(notice_json.common.city_check);
+					return false;
+				} else if (address == "") {
+					$(".info-tip").text(notice_json.common.detail_addr);
+					return false;
+				}
+				$(".info-tip").text(""); 
+
+
+				 //1默认，2不默认
+				  var is_first = 2;
 				 //参数验证
 				// onsubmit="return orderVerify();";
 				 console.log('id'+id+'type'+type+'country'+country+'province'+province+'city'+city+'area'+area+'address'+address+'accept_name'+accept_name+'tel'+tel);

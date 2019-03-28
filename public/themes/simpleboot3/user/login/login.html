@@ -42,9 +42,8 @@
 													        <div class="inner">&gt;&gt;</div>
 													    </div>
 											        </div>
-											        
 											        <div class="input-boxBtn">
-											        	<button type="button" id="psw_submit" class="lg-subicn mt15" href="javascript:void(0);">登录</button>
+											        	<button type="button" id="psw_submit" class="lg-subicn mt15">登录</button>
 											        </div>
 											        
 												</form>
@@ -103,6 +102,23 @@ $('#psw_submit').click(function(){
 	//密码提交
 	var name=$.trim($('#pwdPhontInput').val());
 	var psw=$.trim($('.password-input').val());
+	var yzm = $(".outer>span").text();
+	if (name == "") {
+		$("#pwdPhontInput").focus();
+		$(".error-info").text("请输入账号");
+		return false;
+	} else if (psw == "") {
+		$(".password-input").focus();
+		$(".error-info").text("请输入密码");
+		return false;
+	} else if (yzm === "拖动方块到右边") {
+		
+		$(".error-info").text("滑动滑块进行验证");
+		return false;
+	} else{
+		$(".error-info").text("");
+	}
+	
 	 //验证输入
 	 $.ajax({
 	        type: 'POST',
@@ -130,6 +146,18 @@ $('#code_submit').click(function(){
 	//验证码提交
 	var name=$.trim($('#codePhoneInput').val());
 	var code=$.trim($('.code-input').val());
+
+	if (name == "" || isPhoneNo(name) == false) {
+		$("#codePhoneInput").focus();
+		$(".error-info").text("请输入手机号码！！！");
+		return false;
+	} else if (code == "" || isCode(code) == false) {
+		$(".code-input").focus();
+		$(".error-info").text("请输入正确的验证码！！！");
+		return false;
+	} 
+	$(".error-info").text("");
+
 	 //验证输入
 	 $.ajax({
 	        type: 'POST',

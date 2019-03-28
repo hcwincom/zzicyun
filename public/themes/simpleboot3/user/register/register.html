@@ -55,7 +55,7 @@
 												<a href="javascript:;" class="fr get-code not" id="loginMnote">获取验证码</a>
 											</div>	
 											<div class="input-box-re1">
-												<input type="checkbox" name="" id="" value="" />
+												<input type="checkbox" name="redbox" id="redbox" value="" />
 												<span>我已阅读并同意</span>
 												<a href="xieyi.html">《广诺科技用户注册协议》</a>
 											</div>
@@ -93,6 +93,7 @@
 	</body>
 </html>
 <script>
+
 var url_register="{:url('user/Register/register_ajax')}";
 $('.reg-btn').click(function(){
 	var mobile=$.trim($('.phone-input').val());
@@ -101,6 +102,39 @@ $('.reg-btn').click(function(){
 	var psw_sure=$.trim($('.psw_sure').val());
 	var email=$.trim($('.email').val());
 	var code=$.trim($('.code-input').val());
+	var yzm = $.trim($(".outer>span").text());
+
+	if (mobile == "" || isPhoneNo(mobile) == false) {
+		$(".phone-input").focus();
+		$(".error-info").text("提示：请输入手机号码！！！");
+		return false;
+	} else if (username == "") {
+		$(".username").focus();
+		$(".error-info").text("提示：请输入用户名");
+		return false;
+	} else if (psw == "") {
+		$(".psw").focus();
+		$(".error-info").text("提示：请输入密码");
+		return false;
+	} else if(psw_sure == "" || psw_sure != psw){
+			$(".psw_sure").focus();
+			$(".error-info").text("提示：两次密码不一致");
+			return false;
+	}else if(email == "" || isValidEmailAddress(email) == false){
+			$(".email").focus();
+			$(".error-info").text("提示：请输入正确的电子邮箱！！！");
+			return false;
+	} else if (yzm === "拖动方块到右边") {
+		$(".error-info").text("提示：滑动滑块进行验证");
+		return false;
+	}	
+
+	if ($('input[type="checkbox"]').prop('checked') == false) {
+		$('.error-info').text('提示：请确认已阅读注册协议');
+		return false;
+	}
+		$(".error-info").text("");
+	
 	 //验证输入
 	 $.ajax({
 	        type: 'POST',
@@ -124,4 +158,10 @@ $('.reg-btn').click(function(){
 	    });
 		return false;
 });
+
+	// 验证手机号码
+	function isPhoneNo(phone) {
+		var pattern = /^1[34578]\d{9}$/;
+		return pattern.test(phone);
+	}
 </script>

@@ -29,6 +29,18 @@ $(function(){
 	 
 });
  
+// 更改地址和快递方式触发运费变化
+function freight_count() {
+	
+}
+
+
+
+
+
+
+
+
 // 购买数量加
 function plus(tag,sellprice,stock){
 	var _this=$(tag);

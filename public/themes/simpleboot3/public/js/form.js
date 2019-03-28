@@ -1,5 +1,5 @@
  
-// 验证6位密码
+	// 验证6位密码
 	function isPassword(password){
 	    var pattern=/^\d{6}$/;
 	    return pattern.test(password)

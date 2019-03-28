@@ -73,13 +73,30 @@
 	  			$(".invoceForm-list").show();
 	  		});
 			$('.sureBtn').click(function(){
-				var res=newRePwCheck();
-				if(res){
-					
-				}
 				var url_psw="{:url('psw_change_do')}";
 				var old=$('#oldpwd').val();
+				console.log(old)
 				var psw=$('#newpwd').val();
+				var newrepw = $("#surepwd").val();
+				if (old == "") {
+					$("#oldpwd").focus();
+					$(".tipMsg").text(notice_json.common.oldPwd);
+					return false;
+				} else if (psw == "") {
+					$("#oldpwd").focus();
+					$(".tipMsg").text(notice_json.common.changePwd);
+					return false;
+				} else if (newrepw == "" || newrepw != psw) {
+					$("#oldpwd").focus();
+					$(".tipMsg").text(notice_json.common.oldPwd);
+					return false;
+				}
+				if (old == psw) {
+					$(".tipMsg").text(notice_json.common.changeNewPwd);
+					return false;
+				}
+				$(".tipMsg").text("");
+				
 				$.ajax({
 		 			"url":url_psw,
 		 			"type":"POST", 
