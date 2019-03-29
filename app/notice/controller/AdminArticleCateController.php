@@ -277,7 +277,7 @@ class AdminArticleCateController extends AdminInfoController
     {
         $admin=$this->admin;
         if($admin['id']>1){
-            $this->error('文章类型只有超管能删除');
+            $this->error('只有超级管理员super能删除');
         }
        
         parent::del_all();

@@ -1,0 +1,121 @@
+ <include file="public@user_header"/> 	
+			<!--主要内容-->
+			<div class="person-content">
+				<div class="wraper row totalback">
+					<include file="public@user_left"/> 	
+					 
+					<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10" style="padding: 0;">
+						<div class="person-right">
+							<div class="person-right-head">
+								<p class="perpadding">
+									<span>礼品中心 </span>
+									<i class="iconfont icon-jiantoudown"></i>
+									<a href="{:url('score/Gift/gift')}">积分兑换</a>
+									<i class="iconfont icon-jiantoudown"></i>
+									<a href="">积分详情</a>
+								</p>
+							</div>
+							<div class="person-detail-content mt10">
+								<div class="limitTitle">
+									<h3>积分明细</h3>
+								</div>
+								<div class="comTitle clear exmt">
+									<form action="{:url('score_list')}" method="post">
+										<div class="bom-title-list exmar fl">
+											<div class="ddzt">
+												<p class="fl">收支类型</p>
+												<div class="fl xzlb">
+													<select name="pid">
+														<option value="0">全部类别</option>
+													<foreach name="rules" item="vo">
+														<option value="{$key}" <if condition="$key eq $data.pid">selected</if>>{$vo}</option>
+													</foreach>
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="bom-title-list exmar fl">
+											<div class="bom-sjfw fl">
+												<span>收支时间:</span><input name="start" id="start" value="{$data.start}" readonly placeholder="请选择时间范围起始" />
+											</div>
+											<div class="bom-sjjs fl">
+												<span>——</span><input name="end" id="end" value="{$data.end}" readonly placeholder="请选择时间范围结束"  />
+											</div>
+										</div>
+										<div class="bom-title-list exmar fl">
+											<div class="bom-sear">
+												<button type="submit">查询</button>
+											</div>
+										</div>
+									</form>
+									
+								</div>
+								<!--表格-->
+								<div class="detable mt20">
+									<table class="table tableBom extable ">
+										<tr>
+											<th width="20%">交易时间</th>
+											<th width="20%">积分变化</th> 
+											<th width="40%">说明</th>
+										</tr>
+									<foreach name="list" item="vo">
+										<tr>
+											<td class="exdecen"><p>{$vo.time|date='Y-m-d H:i',###}</p></td>
+											<td class="exdecen"><p><gt name="vo.score" value="0">+</gt>{$vo.score}</p></td> 
+											<td class="exdpa"><p>{$vo.dsc}</p></td>
+										</tr>
+									</foreach>
+										 
+									</table>
+								</div>
+								<div class="expage padtb">
+									 <include file="public@page" />
+								</div>
+							</div>
+						
+						</div>
+					</div>
+				</div>
+			</div>
+			 <include file="public@footer" />
+			<!---->
+		 <include file="public@user_foot" />
+	  	<script type="text/javascript">
+	  		 //日期范围限制
+		       var start = {
+		           elem: '#start',
+		           format: 'YYYY-MM-DD',
+		           min: laydate.now(), //设定最小日期为当前日期
+		           max:'', //最大日期
+		           istime: false,
+		           istoday: true,
+		           choose: function(datas){
+		           		end.min = datas; //开始日选好后，重置结束日的最小日期
+                		end.start = datas; //将结束日的初始值设定为开始日
+		           }
+		       };
+		
+		    laydate(start);  
+		    var end = {
+		           elem: '#end',
+		           format: 'YYYY-MM-DD',
+		           min: laydate.now(), //设定最小日期为当前日期
+		           max:'', //最大日期
+		           istime: false,
+		            istoday: false,
+		           choose: function(datas){ 
+		                start.max = datas; //结束日选好后，重置开始日的最大日期   
+		           }
+		       };
+		    laydate(end);  
+	  		$(".immed-addr-list li").click(function(){
+	  			$(this).addClass("exActive").siblings().removeClass("exActive");
+	  		});
+	  		
+	  		$(".new-addr").click(function(){
+	  			$(".invoceForm-list").fadeIn();
+	  		});
+	  	</script>
+	  
+	</body>
+</html>

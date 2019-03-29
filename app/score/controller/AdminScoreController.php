@@ -1,42 +1,42 @@
 <?php
 
-namespace app\notice\controller;
+namespace app\score\controller;
 
 
 use app\common\controller\AdminInfoController;
-use think\Db;
-use app\notice\model\NoticeCateModel;
-
-class AdminNoticeController extends AdminInfoController
+use think\Db; 
+class AdminScoreController extends AdminInfoController
 {
     
     public function _initialize()
     {
         parent::_initialize();
         
-        $this->flag='页面提示信息';
-        $this->table='notice';
-        $this->m=Db::name('notice');
+        $this->flag='积分规则';
+        $this->table='score_rule';
+        $this->m=Db::name('score_rule');
+        $this->base=['name'=>'str','sort'=>'int','dsc'=>'str','code'=>'str','score'=>'int',
+            'type'=>'int','number'=>'int','rate'=>'round2'];
         
         //没有店铺区分
         $this->isshop=0;
-        $this->islan=1;
-        $this->vals=['val'=>'多语言提示'];
+        $this->islan=0;
+       
         $this->assign('flag',$this->flag);
         $this->assign('table',$this->table);
         
         
     }
     /**
-     * 页面提示信息列表
+     * 积分规则列表
      * @adminMenu(
-     *     'name'   => '页面提示信息列表',
-     *     'parent' => 'notice/AdminIndex/default',
+     *     'name'   => '积分规则列表',
+     *     'parent' => 'score/AdminIndex/default',
      *     'display'=> true,
      *     'hasView'=> true,
-     *     'order'  => 2,
+     *     'order'  => 1,
      *     'icon'   => '',
-     *     'remark' => '页面提示信息列表',
+     *     'remark' => '积分规则列表',
      *     'param'  => ''
      * )
      */
@@ -48,52 +48,60 @@ class AdminNoticeController extends AdminInfoController
     
     
     /**
-     * 页面提示信息添加
+     * 积分规则添加
      * @adminMenu(
-     *     'name'   => '页面提示信息添加',
+     *     'name'   => '积分规则添加',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> true,
      *     'order'  => 10,
      *     'icon'   => '',
-     *     'remark' => '页面提示信息添加',
+     *     'remark' => '积分规则添加',
      *     'param'  => ''
      * )
      */
     public function add()
     {
+        $admin=$this->admin;
+        if($admin['id']>1){
+            $this->error('只有超级管理员super能操作');
+        }
         parent::add();
         return $this->fetch();
         
     }
     /**
-     * 页面提示信息添加do
+     * 积分规则添加do
      * @adminMenu(
-     *     'name'   => '页面提示信息添加do',
+     *     'name'   => '积分规则添加do',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> false,
      *     'order'  => 10,
      *     'icon'   => '',
-     *     'remark' => '页面提示信息添加do',
+     *     'remark' => '积分规则添加do',
      *     'param'  => ''
      * )
      */
     public function add_do()
     {
+        $admin=$this->admin;
+        if($admin['id']>1){
+            $this->error('只有超级管理员super能操作');
+        }
         parent::add_do();
         
     }
     /**
-     * 页面提示信息详情
+     * 积分规则详情
      * @adminMenu(
-     *     'name'   => '页面提示信息详情',
+     *     'name'   => '积分规则详情',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> true,
      *     'order'  => 10,
      *     'icon'   => '',
-     *     'remark' => '页面提示信息详情',
+     *     'remark' => '积分规则详情',
      *     'param'  => ''
      * )
      */
@@ -103,15 +111,15 @@ class AdminNoticeController extends AdminInfoController
         return $this->fetch();
     }
     /**
-     * 页面提示信息状态审核
+     * 积分规则状态审核
      * @adminMenu(
-     *     'name'   => '页面提示信息状态审核',
+     *     'name'   => '积分规则状态审核',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> false,
      *     'order'  => 10,
      *     'icon'   => '',
-     *     'remark' => '页面提示信息状态审核',
+     *     'remark' => '积分规则状态审核',
      *     'param'  => ''
      * )
      */
@@ -120,15 +128,15 @@ class AdminNoticeController extends AdminInfoController
         parent::review();
     }
     /**
-     * 页面提示信息状态批量同意
+     * 积分规则状态批量同意
      * @adminMenu(
-     *     'name'   => '页面提示信息状态批量同意',
+     *     'name'   => '积分规则状态批量同意',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> false,
      *     'order'  => 10,
      *     'icon'   => '',
-     *     'remark' => '页面提示信息状态批量同意',
+     *     'remark' => '积分规则状态批量同意',
      *     'param'  => ''
      * )
      */
@@ -137,7 +145,7 @@ class AdminNoticeController extends AdminInfoController
         parent::review_all();
     }
     /**
-     * 页面提示信息禁用
+     * 积分规则禁用
      * @adminMenu(
      *     'name'   => '信息状态禁用',
      *     'parent' => 'index',
@@ -154,15 +162,15 @@ class AdminNoticeController extends AdminInfoController
         parent::ban();
     }
     /**
-     * 页面提示信息信息状态恢复
+     * 积分规则信息状态恢复
      * @adminMenu(
-     *     'name'   => '页面提示信息信息状态恢复',
+     *     'name'   => '积分规则信息状态恢复',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> false,
      *     'order'  => 10,
      *     'icon'   => '',
-     *     'remark' => '页面提示信息信息状态恢复',
+     *     'remark' => '积分规则信息状态恢复',
      *     'param'  => ''
      * )
      */
@@ -171,15 +179,15 @@ class AdminNoticeController extends AdminInfoController
         parent::cancel_ban();
     }
     /**
-     * 页面提示信息编辑提交
+     * 积分规则编辑提交
      * @adminMenu(
-     *     'name'   => '页面提示信息编辑提交',
+     *     'name'   => '积分规则编辑提交',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> false,
      *     'order'  => 10,
      *     'icon'   => '',
-     *     'remark' => '页面提示信息编辑提交',
+     *     'remark' => '积分规则编辑提交',
      *     'param'  => ''
      * )
      */
@@ -189,15 +197,15 @@ class AdminNoticeController extends AdminInfoController
         parent::edit_do();
     }
     /**
-     * 页面提示信息编辑列表
+     * 积分规则编辑列表
      * @adminMenu(
-     *     'name'   => '页面提示信息编辑列表',
+     *     'name'   => '积分规则编辑列表',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> true,
      *     'order'  => 10,
      *     'icon'   => '',
-     *     'remark' => '页面提示信息编辑列表',
+     *     'remark' => '积分规则编辑列表',
      *     'param'  => ''
      * )
      */
@@ -207,15 +215,15 @@ class AdminNoticeController extends AdminInfoController
     }
     
     /**
-     * 页面提示信息审核详情
+     * 积分规则审核详情
      * @adminMenu(
-     *     'name'   => '页面提示信息审核详情',
+     *     'name'   => '积分规则审核详情',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> true,
      *     'order'  => 10,
      *     'icon'   => '',
-     *     'remark' => '页面提示信息审核详情',
+     *     'remark' => '积分规则审核详情',
      *     'param'  => ''
      * )
      */
@@ -225,15 +233,15 @@ class AdminNoticeController extends AdminInfoController
         return $this->fetch();
     }
     /**
-     * 页面提示信息信息编辑审核
+     * 积分规则信息编辑审核
      * @adminMenu(
-     *     'name'   => '页面提示信息编辑审核',
+     *     'name'   => '积分规则编辑审核',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> false,
      *     'order'  => 10,
      *     'icon'   => '',
-     *     'remark' => '页面提示信息编辑审核',
+     *     'remark' => '积分规则编辑审核',
      *     'param'  => ''
      * )
      */
@@ -242,15 +250,15 @@ class AdminNoticeController extends AdminInfoController
         parent::edit_review();
     }
     /**
-     * 页面提示信息编辑记录批量删除
+     * 积分规则编辑记录批量删除
      * @adminMenu(
-     *     'name'   => '页面提示信息编辑记录批量删除',
+     *     'name'   => '积分规则编辑记录批量删除',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> false,
      *     'order'  => 10,
      *     'icon'   => '',
-     *     'remark' => '页面提示信息编辑记录批量删除',
+     *     'remark' => '积分规则编辑记录批量删除',
      *     'param'  => ''
      * )
      */
@@ -260,15 +268,15 @@ class AdminNoticeController extends AdminInfoController
     }
     
     /**
-     * 页面提示信息批量删除
+     * 积分规则批量删除
      * @adminMenu(
-     *     'name'   => '页面提示信息批量删除',
+     *     'name'   => '积分规则批量删除',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> false,
      *     'order'  => 10,
      *     'icon'   => '',
-     *     'remark' => '页面提示信息批量删除',
+     *     'remark' => '积分规则批量删除',
      *     'param'  => ''
      * )
      */
@@ -276,7 +284,7 @@ class AdminNoticeController extends AdminInfoController
     {
         $admin=$this->admin;
         if($admin['id']>1){
-            $this->error('只有超级管理员super能删除');
+            $this->error('只有超级管理员super能操作');
         }
         parent::del_all();
     }
@@ -287,11 +295,17 @@ class AdminNoticeController extends AdminInfoController
      */
     public function cates($type=3){
         parent::cates($type);
-        //分类信息 
-        $where=['status'=>2]; 
-        $cates=Db::name('notice_cate')->where($where)->order('sort asc')->column('id,name');
-       
-        $this->assign('cates',$cates);
+        $this->assign('score_types',config('score_type'));
+        
     }
     
+    public function param_check(&$data){
+        $res=parent::param_check($data);
+        if($res!=1){
+            return $res;
+        }
+        
+        return 1;
+    }
+     
 }

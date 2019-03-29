@@ -6,6 +6,7 @@ use think\Validate;
 use app\user\model\UserModel;
 use app\common\controller\DeskBaseController;
 use think\Db;
+use app\score\model\ScoreUserModel;
 class RegisterController extends DeskBaseController
 {
 
@@ -116,6 +117,9 @@ class RegisterController extends DeskBaseController
             if ($result !== false) {
                 $data   = $m_user->where('id', $result)->find();
                 cmf_update_current_user($data);
+                //注册积分
+                $m_score=new ScoreUserModel();
+                $m_score->score_do($result, 'register');
                 //验证码
                 session('verify',null);
                 $this->success("register_success");

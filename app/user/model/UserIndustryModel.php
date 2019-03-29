@@ -33,5 +33,15 @@ class UserIndustryModel extends Model
         
         return $list;
     }
+    public function get_name($lan1,$lan2,$id){
+       
+        $where=['pid'=>$id,'lid'=>$lan1]; 
+        $name=Db::name('user_industry_val')->where($where)->value('name');
+        if(empty($name)){
+            $name=Db::name('user_industry_val')->where($where)->value('name');
+        }
+        
+        return $name;
+    }
  
 }

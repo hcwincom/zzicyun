@@ -1,0 +1,97 @@
+  		 <include file="public@user_header"/> 	
+			<!--主要内容-->
+			<div class="person-comm">
+				<div class="wraper row totalback">
+					  <include file="score@gift:gift_search"/> 	
+					<div class="exchange-cont">
+						  <include file="score@gift:gift_left"/> 	
+						<div class="col-md-9 col-sm-9 exchange-cont-box" style="padding-right: 0;">
+						 
+							<div class="exchange-cont-item mt20">
+								<div class="exchange-cont-title">
+									<h2>热门搜索</h2>
+									<a href="{:url('score/Gift/gift_list',['cid'=>0])}">
+										更多
+										<i class="iconfont icon-jiantoudown"></i>
+									</a>
+								</div>
+								<div class="exchange-cont-list mt20">
+									<ul class="exchange-ul clear">
+									<foreach name="list_search" item="vo" key="key">
+										<li>
+											<div class="exchange-product">
+												<a href="{:url('score/Gift/gift_detail',['id'=>$key])}">
+													<div class="expro-img">
+														<img src="{$image_url}/{$vo.pic}" alt="" />
+													</div>
+													<div class="expro-intro mt20">
+														<p>{$vo.name}</p>
+														<p><span>{$vo.score}</span>积分</p>
+														<p>已有{$vo.num_use}人领取</p>
+													</div>
+												</a>
+												
+												<div class="expro-btn">
+													<a href="{:url('score/Gift/gift_do',['id'=>$vo.id])}">立即兑换</a>
+												</div>
+											</div>
+										</li>
+									</foreach>
+										 
+										 
+									</ul>
+								</div>
+							</div>
+						<foreach name="list" item="vv" key="kk">
+							<div class="exchange-cont-item mt20" id="exchange-part1">
+								<div class="exchange-cont-title">
+									<h2>{$gift_cates[$kk]}</h2>
+									<a href="{:url('score/Gift/gift_list',['cid'=>$kk])}">
+										更多
+										<i class="iconfont icon-jiantoudown"></i>
+									</a>
+								</div>
+								<div class="exchange-cont-list mt20">
+									<div class="exchange-cont-list">
+										<ul class="exchange-ul clear">
+										<foreach name="vv" item="vo" key="key">
+											<li>
+												<div class="exchange-product">
+													<a href="{:url('score/Gift/gift_detail',['id'=>$key])}">
+														<div class="expro-img">
+															<img src="{$image_url}/{$vo.pic}" alt="" />
+														</div>
+														<div class="expro-intro mt20">
+															<p>{$vo.name}</p>
+															<p><span>{$vo.score}</span>积分</p>
+															<p>已有{$vo.num_use}人领取</p>
+														</div>
+													</a>
+													
+													<div class="expro-btn">
+														<a href="{:url('score/Gift/gift_do',['id'=>$vo.id])}">立即兑换</a>
+													</div>
+												</div>
+											</li>
+										</foreach>
+											 
+										</ul>
+									</div>
+								</div>
+							</div>
+						</foreach>	 
+							  
+						</div>
+					</div>
+				
+				</div>
+			
+			</div>
+			
+			 <include file="public@footer"/>
+			<!---->
+		
+		 <include file="public@user_foot"/>
+	  	
+	</body>
+</html>

@@ -1,0 +1,160 @@
+
+<div style="clear:both"></div>
+
+
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">名称</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="text" class="form-control" name="name" value="{$info.name}" /> 
+      <present name="change.name">
+      	 <input type="text" class="form-control red"  value="{$change.name}" /> 
+      </present>  
+    </div>
+</div>
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">分类</label>
+    <div class="col-md-6 col-sm-10">
+        <select name="cid" class="form-control">
+       <foreach name="cates" item="vo">
+       		<option value="{$key}" <if condition="$key eq $info.cid">selected</if>>{$vo}</option>
+       </foreach>
+       </select>
+      <present name="change.cid">
+      	 <input type="text" class="form-control red"  value="{$cates[$change.cid]|default=$change.cid}" /> 
+      </present>  
+    </div>
+</div>
+ 
+ <div class="form-group">
+    <label for="" class="col-sm-2 control-label">品牌</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="text" class="form-control" name="brand" value="{$info.brand}" /> 
+      <present name="change.brand">
+      	 <input type="text" class="form-control red"  value="{$change.brand}" /> 
+      </present>  
+    </div>
+</div>
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">{$flag}图片</label>
+    <div class="col-md-6 col-sm-10">
+     	<input type="hidden" class="form-control" id="photo" name="pic" value="{$info.pic}">
+        <a href="javascript:uploadOneImage('图片上传','#photo');">上传图片</a>
+          <notempty name="pic_conf"><span class="notice">建议尺寸{$pic_conf.width}*{$pic_conf.height}</span></notempty>
+        <img id="photo-preview" src="{:cmf_get_image_url($info.pic)}" width="{$pic_conf.width}" height="{$pic_conf.height}" >
+         
+      <present name="change.pic">
+      	<p class="red">新图片<img id="photo-preview" src="{:cmf_get_image_url($change.pic)}" width="{$pic_conf.width}" height="{$pic_conf.height}"></p>
+      </present>  
+    </div>
+</div>
+ <div class="form-group">
+    <label for="" class="col-sm-2 control-label">型号</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="text" class="form-control" name="code" value="{$info.code}" /> 
+      <present name="change.code">
+      	 <input type="text" class="form-control red"  value="{$change.code}" /> 
+      </present>  
+    </div>
+</div>
+ <div class="form-group">
+    <label for="" class="col-sm-2 control-label">库存编号</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="text" class="form-control" name="store_code" value="{$info.store_code}" /> 
+      <present name="change.store_code">
+      	 <input type="text" class="form-control red"  value="{$change.store_code}" /> 
+      </present>  
+    </div>
+</div>
+ <div class="form-group">
+    <label for="" class="col-sm-2 control-label">库存数量</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="number" class="form-control" name="store_num" value="{$info.store_num}" /> 
+      <present name="change.store_num">
+      	 <input type="text" class="form-control red"  value="{$change.store_num}" /> 
+      </present>  
+    </div>
+</div>
+ <div class="form-group">
+    <label for="" class="col-sm-2 control-label">已领用数量</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="number" class="form-control" name="num_use" value="{$info.num_use}" /> 
+      <present name="change.num_use">
+      	 <input type="text" class="form-control red"  value="{$change.num_use}" /> 
+      </present>  
+    </div>
+</div>
+ <div class="form-group">
+    <label for="" class="col-sm-2 control-label">领用积分</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="number" class="form-control" name="score" value="{$info.score}" /> 
+      <present name="change.score">
+      	 <input type="text" class="form-control red"  value="{$change.score}" /> 
+      </present>  
+    </div>
+</div>
+ <div class="form-group">
+    <label for="" class="col-sm-2 control-label">市场参考价</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="text" class="form-control" name="price" value="{$info.price}" /> 
+      <present name="change.score">
+      	 <input type="text" class="form-control red"  value="{$change.price}" /> 
+      </present>  
+    </div>
+</div>
+ <div class="form-group">
+    <label for="" class="col-sm-2 control-label">搜索次数</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="number" class="form-control" name="search" value="{$info.search}" /> 
+      <present name="change.search">
+      	 <input type="text" class="form-control red"  value="{$change.search}" /> 
+      </present>  
+    </div>
+</div>
+ <div class="form-group">
+    <label for="" class="col-sm-2 control-label">详情</label>
+    <div class="col-md-6 col-sm-10">
+       <script type="text/plain" id="content" name="content">{$info.content}</script>
+      <present name="change.content">
+      	<div class="red">{$change.content}</div>
+      </present>  
+    </div>
+</div>
+ <div class="form-group">
+    <label for="" class="col-sm-2 control-label">排序</label>
+    <div class="col-md-6 col-sm-10">
+       <input type=money class="form-control" name="sort" value="{$info.sort|default=1000}" />
+       <present name="change.sort">
+      	 <input type="text" class="form-control red"  value="{$change.sort}" /> 
+       </present>    
+    </div>
+</div>
+ 
+
+<div class="form-group "  >
+    <label class="col-sm-2 control-label">备注</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="text" class="form-control" name="dsc" value="{$info.dsc}"  />
+      <present name="change.dsc">
+      	 <input type="text" class="form-control red"  value="{$change.dsc}" /> 
+       </present>    
+    </div>
+</div>
+
+<include file="public@adsc" />
+<script type="text/javascript">
+    //编辑器路径定义
+    var editorURL = GV.WEB_ROOT;
+</script>
+<script type="text/javascript" src="__STATIC__/js/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__STATIC__/js/ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        editorcontent = new baidu.editor.ui.Editor();
+        editorcontent.render('content');
+        try {
+            editorcontent.sync();
+        } catch (err) {
+        }
+        
+    });
+</script>

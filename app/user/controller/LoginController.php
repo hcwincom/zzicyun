@@ -14,6 +14,7 @@ use think\Validate;
 use app\user\model\UserModel;
 use think\Db;
 use app\common\controller\DeskBaseController;
+use app\score\model\ScoreUserModel;
 class LoginController extends DeskBaseController
 {
 
@@ -93,6 +94,9 @@ class LoginController extends DeskBaseController
                 'last_login_ip'   => get_client_ip(0, true),
             ];
             $m_user->where('id',$user['id'])->update($data);
+            //登录积分
+            $m_score=new ScoreUserModel();
+            $m_score->score_do($user['id'], 'login');
             $this->success("login_success");
         } else {
             $this->error("request_error");

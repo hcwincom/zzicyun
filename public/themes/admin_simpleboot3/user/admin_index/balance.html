@@ -1,0 +1,54 @@
+<include file="public@header" />
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+		 	<li ><a href="{:url('index')}">{:lang('USER_INDEXADMIN_INDEX')}</a></li>
+		 
+			<li class="active"><a href="{:url('info',['id'=>$user.id])}">用户资料</a></li>
+			<li class="active"><a href="{:url('balance',['id'=>$user.id])}">用户充值</a></li>
+		</ul>
+		<form method="post" class="form-horizontal js-ajax-form{$zzajax} margin-top-20" action="{:url('balance_do')}">
+			<div class="form-group">
+				<label for="input-user_login" class="col-sm-2 control-label"> 登录用户名</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control" id="input-user_login" value="{$user.user_login}"  >
+				</div>
+			</div>
+		 
+			<div class="form-group">
+				<label for="input-nickname" class="col-sm-2 control-label"> 昵称</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control" id="input-nickname" value="{$user.user_nickname}"  >
+				</div>
+			</div>
+			 
+			 <div class="form-group">
+				<label class="col-sm-2 control-label">余额--充值</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control short"  value="{$user.balance}"  >
+					--
+					<input type="number" class="form-control short" name="balance" value="0"  > 
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">积分--充值</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control short"  value="{$user.score}"  >
+					--
+					<input type="number" class="form-control short"  name="score" value="0"  > 
+				</div>
+			</div>
+			 
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10"> 
+					<input type="hidden" name="id" value="{$user.id}" />
+					<button type="submit" class="btn btn-primary js-ajax-submit">{:lang('SAVE')}</button>
+				 <p class="notice">充值后即时生效，填入负数为扣除对应金额</p>
+				</div>
+			</div>
+		</form>
+	</div>
+	<script src="__STATIC__/js/admin.js"></script>
+</body>
+</html>

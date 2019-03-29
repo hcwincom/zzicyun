@@ -275,7 +275,10 @@ class AdminBannerCateController extends AdminInfoController
      */
     public function del_all()
     {
-        
+        $admin=$this->admin;
+        if($admin['id']>1){
+            $this->error('只有超级管理员super能删除');
+        }
         parent::del_all();
     }
     /**

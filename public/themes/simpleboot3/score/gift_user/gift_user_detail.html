@@ -1,0 +1,66 @@
+   <include file="public@user_header"/> 	
+			<!--主要内容-->
+			<div class="person-content">
+				<div class="wraper row totalback">
+				 <include file="public@user_left"/> 	
+					<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10" style="padding: 0;">
+						<div class="person-right">
+							<div class="person-right-head">
+								<p class="perpadding">
+									<span>礼品中心 </span>
+									<i class="iconfont icon-jiantoudown"></i>
+									<a href="">兑换记录</a>
+								</p>
+							</div>
+							<div class="person-detail-content mt10">
+								<form action="" method="post">
+									<table class="table tableBom extable">
+										<tr>
+											<th width="30%">名称</th>
+											<th width="20%">积分</th>
+											<th width="20%">市场价</th>
+											<th width="20%">数量</th>
+											<th width="20%">总积分</th>
+										</tr>
+										<tr>
+											<td>
+												<p class="expad">{$info.gift_name}</p>
+											</td>
+											<td>
+												<p class="excenter">{$info.score}</p>
+											</td>
+											<td>
+												<p class="excenter">{$info.gift_price}元</p>
+											</td>
+											<td>
+												<p class="excenter">{$info.num}</p>
+											</td>
+											<td>
+												<p class="excenter">{$info.score_count}</p>
+											</td>
+										</tr>
+									</table>
+									 
+									<div class="immed-addr">
+										<h3>收货地址</h3>
+										<ul class="immed-addr-list">
+											<li class="exActive">
+												<p>{$info.accept_name}<span>{$info.address_info}{$info.address}</span><span>手机号码:{$info.tel}</span></p>
+											</li>
+										</ul>
+									</div>
+									<!---->
+								</form>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			 <include file="public@footer"/>
+			<!---->
+		
+		 <include file="public@user_foot"/>
+	  	 
+	</body>
+</html>

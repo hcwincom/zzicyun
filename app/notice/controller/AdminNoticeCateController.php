@@ -272,6 +272,10 @@ class AdminNoticeCateController extends AdminInfoController
      */
     public function del_all()
     {
+        $admin=$this->admin;
+        if($admin['id']>1){
+            $this->error('只有超级管理员super能删除');
+        }
         if(empty($_POST['ids'])){
             $this->error('未选中信息');
         }

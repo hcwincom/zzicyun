@@ -13,6 +13,10 @@ namespace app\user\controller;
 
 use cmf\controller\AdminBaseController;
 use think\Db;
+use app\notice\model\NoticeConfValModel;
+use app\user\model\UserIndustryModel;
+use app\score\model\ScoreUserModel;
+use app\user\model\UserBalanceModel;
 
 /**
  * Class AdminIndexController
@@ -82,7 +86,105 @@ class AdminIndexController extends AdminBaseController
         // 渲染模板输出
         return $this->fetch();
     }
-
+    /**
+     * 用户信息
+     * @adminMenu(
+     *     'name'   => '用户信息',
+     *     'parent' => 'index',
+     *     'display'=> false,
+     *     'hasView'=> true,
+     *     'order'  => 10000,
+     *     'icon'   => '',
+     *     'remark' => '用户信息',
+     *     'param'  => ''
+     * )
+     */
+    public function info()
+    {
+        $id    = $this->request->param('id', 0, 'intval');
+        $lan1=1;
+        $lan2=1;
+        $user = DB::name('user')
+        ->where(["id" => $id])
+        ->find();
+        //会员等级user_rates
+        $m_conf=new NoticeConfValModel();
+        $user_rates=$m_conf->get_one($lan1,$lan2,'user_rates');
+        $user['rate_name']=empty($user_rates[$user['user_rate']])?$user['user_rate']:$user_rates[$user['user_rate']];
+        //用户类型
+        $user_cates=$m_conf->get_one($lan1,$lan2,'user_cates');
+        $user['cate_name']=empty($user_cates[$user['user_cate']])?$user['user_cate']:$user_cates[$user['user_cate']];
+        //用户行业
+        $m_industry=new UserIndustryModel();
+        $user['industry_name']=$m_industry->get_name($lan1, $lan2,$user['user_industry']);
+        $this->assign('user',$user);
+        
+        return $this->fetch();
+    }
+    /**
+     * 后台用户充值
+     * @adminMenu(
+     *     'name'   => '后台用户充值',
+     *     'parent' => 'index',
+     *     'display'=> false,
+     *     'hasView'=> true,
+     *     'order'  => 10000,
+     *     'icon'   => '',
+     *     'remark' => '后台用户充值',
+     *     'param'  => ''
+     * )
+     */
+    public function balance()
+    {
+        $id    = $this->request->param('id', 0, 'intval');
+        
+        $user = DB::name('user')
+        ->where(["id" => $id])
+        ->find();
+        
+        $this->assign('user',$user);
+        
+        return $this->fetch();
+    }
+    /**
+     * 后台用户充值执行
+     * @adminMenu(
+     *     'name'   => '后台用户充值执行',
+     *     'parent' => 'index',
+     *     'display'=> false,
+     *     'hasView'=> true,
+     *     'order'  => 10000,
+     *     'icon'   => '',
+     *     'remark' => '后台用户充值执行',
+     *     'param'  => ''
+     * )
+     */
+    public function balance_do()
+    {
+        $uid= $this->request->param('id', 0, 'intval');
+        $score    = $this->request->param('score', 0, 'intval');
+        $balance    = $this->request->param('balance', 0, 'intval');
+        if(empty($uid)){
+            $this->error('数据错误');
+        }
+        if($score==0 && $balance==0){
+            $this->error('数据错误');
+        }
+        $admin=$this->admin;
+        $m_su=new ScoreUserModel();
+        $m_su->startTrans();
+        //积分充值
+        if($score!=0){
+            $m_su->score_do($uid, 'score_add',0,$score,$admin['id']);
+        }
+        //余额充值
+        if($balance!=0){ 
+            $m_user_balance=new UserBalanceModel(); 
+            $m_user_balance->balance_do($uid,$balance,'管理员后台充值',$admin['id']);
+        }
+        $m_su->commit();
+        $this->success('充值成功');
+    }
     /**
      * 本站用户拉黑
      * @adminMenu(

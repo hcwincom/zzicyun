@@ -1,0 +1,172 @@
+	 <include file="public@user_header"/> 	
+			<!--主要内容-->
+			<div class="person-content">
+				<div class="wraper row totalback">
+					  <include file="public@user_left"/> 	
+					<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10" style="padding: 0;">
+						<div class="person-right">
+							<div class="person-right-head">
+								<p class="perpadding">
+									<a href="{:url('score/Gift/gift')}">礼品中心</a>
+									<i class="iconfont icon-jiantoudown"></i>
+									<a href="">积分兑换</a>
+								</p>
+							</div>
+							<div class="person-detail-content mt10">
+								<form action="" method="post">
+									<table class="table tableBom extable">
+										<tr>
+											<th width="26%">名称</th>
+											<th width="16%">积分</th>
+											<th width="15%">市场价</th>
+											<th width="15%">数量</th>
+											<th width="16%">所需积分</th> 
+										</tr>
+										<tr>
+											<td>
+												<p class="expad">{$info.name}</p>
+											</td>
+											<td>
+												<p class="excenter">{$info.score}</p>
+											</td>
+											<td>
+												<p class="excenter"><empty name="info.price">--<else/>{$info.price}</empty>元</p>
+											</td>
+											<td>
+												<div class="excenter clear">
+													<p class="btn-add omin" onclick="minus(this,'9.9','100');">
+														<span class="glyphicon glyphicon-minus"></span>
+													</p>
+													<input id="num" type="text" class="btn-num onum" value="{$data.num}" name="num" />
+													<p class="btn-add oplus" onclick="plus(this,'9.9','100');">
+														<span class="glyphicon glyphicon-plus"></span>
+													</p>
+												</div>
+											</td>
+											<td>
+												<p class="excenter">{$data['score_count']}</p>
+											</td>
+										 
+										</tr>
+									</table>
+									 
+									<div class="immed-addr">
+										<h3>收货地址</h3>
+										<ul class="immed-addr-list">
+										<foreach name="addresses" item="vo">
+											<li class="<if condition='$key eq $data.address_id'>exActive</if>">
+												<p>{$vo.accept_name}<span>{$vo.address_info}{$vo.address}</span><span>手机号码:{$vo.tel}</span></p>
+											</li>
+										</foreach>
+											
+										</ul>
+									</div>
+									<div class="immed-addr-new mt20">
+										<button type="button" class="new-addr">使用其他地址</button>
+									</div>
+									<div class="immed-addr-btn mt20">
+									<input type="hidden" id="id" value="{$info.id}"/>
+									<input type="hidden" id="address_id" value="{$data.address_id}"/>
+									<input type="hidden" id="score" value="{$info.score}"/>
+									<input type="hidden" id="user_score" value="{$user.score}"/>
+										<button type="button" class="addrBtn">提交兑换</button>
+									</div>
+									<!---->
+								</form>
+								<!--表格-->
+								<div class="invoceForm-list">
+									<form action="" method="post">
+										<div class="added-total">
+											<div class="invoform-box">
+												<span>收货人：</span>
+												<div class="invo-group">
+													<input type="text" name="" class="invo-input" placeholder="请务必填写全名" />
+												</div>
+											</div>
+											<div class="invoform-box">
+												<span>联系电话：</span>
+												<div class="invo-group">
+													<input type="text" name=""class="invo-input" placeholder="手机号或者座机" />
+												</div>
+											</div>
+											<div class="invoform-box">
+												<span>收票地址：</span>
+												<div class="invo-group">
+													<select name="provice">
+														<option value="0">请选择省份</option>
+													</select>
+													<select name="city">
+														<option value="0">请选择城市</option>
+													</select>
+													<select name="country">
+														<option value="0">请选择县/区</option>
+													</select>
+												</div>
+											</div>
+											<div class="invoform-box">
+												<span>详细地址：</span>
+												<div class="invo-group">
+													<textarea name="addrdetail" class="invo-input"></textarea>
+												</div>
+											</div>
+											<p class="info-tip"></p>
+											<div class="invoform-button">
+												<div class="invo-group">
+													<input type="submit" name="" id="" value="保存" class="invo-button" />
+													<a href="javascript:;" class="invo-cancel">取消</a>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+								<!---->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			 <include file="public@footer"/>
+			<!---->
+		
+		 <include file="public@user_foot"/>  
+	</body>
+</html>
+<script type="text/javascript">
+	$(".immed-addr-list li").click(function(){
+		$(this).addClass("exActive").siblings().removeClass("exActive");
+	});
+	
+	$(".new-addr").click(function(){
+		$(".invoceForm-list").fadeIn();
+	});
+	var id="{$info.id}";
+	var score="{$info.score}";
+	var user_score="{$user.score}";
+	var url_gift_add="{:url('score/Gift/gift_exchange')}";
+	$('.addrBtn').click(function(){
+		var num=parseInt($('#num').val());
+		var count_score=score*num;
+		var address_id=$('#address_id').val();
+		if(user_score<count_score){
+			msg('积分不足');
+			return false; 
+		}
+		 $.ajax({
+	 			"url":url_gift_add,
+	 			"type":"POST", 
+	 			"data":{'id':id,'num':num,'address_id':address_id},
+	 			"dataType":"json", 
+	 			"success":function(data){
+	 				msg(data.msg); 
+	 				if(data.code==1){
+	 					location.href="{:url('score/GiftUser/gift_user_list')}";
+	 				} 
+	 				
+	 			},
+	 			 "error": function(event, XMLHttpRequest, ajaxOptions, thrownError){ 
+		        	msg(event.responseText,1); 
+		        }
+	 		});
+		return false; 
+	});
+</script>

@@ -1,0 +1,72 @@
+  <include file="public@user_header"/> 	
+			<!--主要内容-->
+			<div class="person-content">
+				<div class="wraper row totalback">
+				 	<include file="public@user_left"/> 	
+					 
+					<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10" style="padding: 0;">
+						<div class="person-right">
+							<div class="person-right-head">
+								<p class="perpadding">
+									<span>礼品中心</span>
+									<i class="iconfont icon-jiantoudown"></i>
+									<a href="">兑换记录</a>
+								</p>
+							</div>
+							<div class="person-detail-content mt10">
+								<div class="detable mt20">
+									<table class="table tableBom extable ">
+										<tr>
+										 
+											<th width="22%">商品名称</th> 
+											<th width="10%">兑换数量</th>
+											<th width="15%">积分数</th>
+											<th width="14%">兑换日期</th>
+											<th width="11%">兑换状态</th>
+											<th width="12%">操作</th>
+										</tr>
+									<foreach name="list" item="vo">
+										<tr>
+											                                                                  
+											<td class="exdecen"><p>{$vo.gift_name}</p></td>
+											<td class="exdecen"><p>{$vo.num}</p></td>
+											<td class="exdecen"><p>{$vo.score_count}</p></td>
+											<td class="exdecen">
+												<p>{$vo.time|date='Y-m-d H:i',###}</p>
+											</td>
+											<td class="exdecen"><p>{$vo.status}</p></td>
+											<td class="exdecen">
+												<p>
+													<a href="{:url('gift_user_detail',['id'=>$vo.id])}">查看详情</a>
+												</p>
+											</td>
+										</tr>
+									</foreach>
+									</table>
+								</div>
+								<div class="expage padtb">
+									<!--分页-->
+									 <include file="public@page" />
+									<!---->	
+								</div>
+							</div>
+						
+						</div>
+					</div>
+				</div>
+			</div>
+			 <include file="public@footer" />
+			<!---->
+		 <include file="public@user_foot" />
+	  	<script type="text/javascript">
+	  		$(".immed-addr-list li").click(function(){
+	  			$(this).addClass("exActive").siblings().removeClass("exActive");
+	  		});
+	  		
+	  		$(".new-addr").click(function(){
+	  			$(".invoceForm-list").fadeIn();
+	  		});
+	  	</script>
+	  
+	</body>
+</html>

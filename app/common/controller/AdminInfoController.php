@@ -1028,6 +1028,7 @@ class AdminInfoController extends AdminBaseController
      * 分类信息,1-index,2-edit_index,3-add,edit,edit_info
      *   */
     public function cates($type=3){
+        $this->assign('image_url', cmf_get_image_url(''));
         $admin=$this->admin;
          $isshop=$this->isshop;
         if($type<3){

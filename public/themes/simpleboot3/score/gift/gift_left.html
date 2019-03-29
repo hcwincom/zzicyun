@@ -1,0 +1,31 @@
+ 
+						<div class="col-md-3 col-sm-3 exchange-nav-box">
+							<div class="exchange-nav-item mt20">
+								<div class="exchange-nav-title">会员中心</div>
+								<div class="exchange-nav-link padbot">
+									<div class="exchange-nav-img">
+										<p><img src="{$image_url}/{$user.avatar}" alt="会员头像" /></p>
+									</div>
+									<div class="exchange-nav-num">
+										<p>可用积分：<span><i>{$user.score}</i>分</span></p>
+									</div>
+									<div class="exchange-nav-href">
+										<a href="{:url('score/GiftUser/gift_user_list')}">兑换记录</a>
+										<a class="exdetail" href="{:url('score/Gift/score_list')}">积分明细</a>
+									</div>
+								</div>
+							</div>
+							<div class="exchange-nav-item mtem">
+								<div class="exchange-nav-title exchange-orange">全部商品</div>
+								<div class="exchange-nav-link">
+									<ul class="exchange-nav-list">
+									<foreach name="gift_cates" item="vo">
+										<li><a href="{:url('score/Gift/gift_list',['cid'=>$key])}">{$vo}<i class="iconfont icon-jiantoudown"></i></a></li>
+									</foreach>
+										 
+									</ul>
+								</div>
+								
+							</div>
+							<div class="exchange-nav-item mt20"></div>
+						</div> 

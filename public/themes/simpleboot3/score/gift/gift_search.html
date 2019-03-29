@@ -1,0 +1,16 @@
+ 
+					<div class="exchange-head">
+						<div class="col-md-3 col-sm-3 exchange-head-left">
+							<h3>积分兑换</h3>
+						</div>
+						<div class="col-md-7 col-sm-7 exchange-fr">
+							<div class="exchange-fr-input">
+							<form action="{:url('score/Gift/gift_list')}" method="post">
+								<input type="text" name="name" value="{$data.name|default=''}" />
+								<input type="hidden" name="cid" value="{$data.cid|default=0}"/>
+								<button type="submit">查询</button>
+							</form>
+							</div>
+						</div>
+					</div>
+				 

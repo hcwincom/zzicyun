@@ -1,0 +1,63 @@
+ <include file="public@user_header"/> 	
+			<!--主要内容-->
+			<div class="person-comm">
+				<div class="wraper row totalback padbot">
+					   <include file="score@gift:gift_search"/> 	
+					<!--主要内容-->
+					<div class="exchange-cont mt10">
+						<div class="exchange-cont-title">
+							<h2>{$gift_cates[$data['cid']]|default='搜索'}</h2>
+						</div>
+						<div class="exchange-sear">
+							 
+								<div class="exForm-list clear">
+									<p class="fl">积分范畴：</p>
+									<ul class="fl exform-select">
+									<foreach name="scores" item="vo">
+										<li class="<if condition='$key eq $data.score'>redColor</if> redColor">
+											<a href="{:url('score/Gift/gift_list',['cid'=>$data.cid,'score'=>$key])}">{$vo}</a>
+										</li>
+									</foreach>
+										 
+									</ul>
+								</div>
+							 
+						</div>
+						<div class="exchange-more-cont mt20 row">
+						 <foreach name="list" item="vo" >
+						 	<div class="col-xs-2 col-md-2 exmore-list">
+								<div class="exmore-group"> 
+									<a href="{:url('score/Gift/gift_detail',['id'=>$vo.id])}">
+										<div class="expro-img">
+											<img src="{$image_url}/{$vo.pic}" alt="" />
+										</div>
+										<div class="expro-intro mt20">
+											<p>{$vo.name}</p>
+											<p><span>{$vo.score}</span>积分</p>
+											<p>已有{$vo.num_use}人领取</p>
+										</div>
+									</a> 
+									<div class="expro-btn">
+										<a href="{:url('score/Gift/gift_do',['id'=>$vo.id])}">立即兑换</a>
+									</div> 
+								</div>
+							</div> 
+							</foreach> 
+						</div>
+						<div class="expage clear">
+						 <include file="public@page"/>
+							 
+							<!---->	
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			 <include file="public@footer"/>
+			<!---->
+		
+		 <include file="public@user_foot"/>
+	  
+	  	
+	</body>
+</html>
