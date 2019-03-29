@@ -11,7 +11,7 @@
 								<p class="perpadding">
 									<span>会员信息</span>
 									<i class="iconfont icon-jiantoudown"></i>
-									<a href="">大陆收货地址</a>
+									<a href="">收货地址</a>
 								</p>
 							</div>
 							<div class="person-detail-content">
@@ -30,7 +30,7 @@
 											<div class="invo-exhibit-detail">
 												<div class="invo-detail-head clear">
 													<div class="fl">
-														<h3>地址{$k+1}</h3>
+														<h3>地址{$k}</h3>
 													</div>
 													<div class="fr">
 														<a class="address_del" href="javascript:address_del({$vo.id});">删除</a>
@@ -57,14 +57,20 @@
 													<input type="hidden" class="city" value="{$vo.city}"/>
 													<input type="hidden" class="area" value="{$vo.area}"/>
 													<input type="hidden" class="id" value="{$vo.id}"/>
+													<!-- 1是默认 -->
+													<input type="hidden" class="is_first" value="{$vo.is_first}"/>
 												</div>
 												<div class="invo-detail-button">
 												<!-- 添加点击事件，和新增一样弹框，但修改要把信息读取写入到新form里 -->
 													<a href="javascript:void(0);" class="takeChange">修改</a>
 												</div>
 												<div class="invo_detail_dafult">
+												<eq name="vo.is_first" value="1">
 													<a href="javascript:void(0);" class="default_text">默认</a>
+												<else/>
 													<a href="javascript:void(0);" class="default_setting">设为默认</a>
+												</eq>
+												 
 												</div>
 												</div>
 											</volist>
@@ -169,11 +175,10 @@
 		 case 3:
 			 city_js($('#city0'),0,$('#city1'),0,$('#city2'),0,$('#city3'),0); 
 		 }
-
-		 
-			 get_citys($('#city0'),1,22);
+ 
 		 	var url_add="{:url('user/Info/address_do')}";
 			var url_del="{:url('user/Info/address_del')}";
+			var url_first="{:url('user/Info/address_first')}";
 			 $(".takeChange").click(function () {
 				$(".changeAddress").show();
 				$(document.body).toggleClass("html_overflow");
@@ -186,6 +191,7 @@
 				var city = $div.find(".city").val();
 				var area = $div.find(".area").val();
 				var id = $div.find('.id').val();
+				var is_first = $div.find('.is_first').val();
 				 switch (type) {
 					 case 1:
 						 //city_js(0, 1, $('#city1'), 0, $('#city2'), 0, $('#city3'), 0);
@@ -213,7 +219,11 @@
 				 $("#takeName").val(oldName);
 				 $("#takePhone").val(oldTel);
 				 $("#takeAddr").val(oldAddr);
-
+				if(is_first==1){
+					$('#dafult').prop('checked','checked');
+				}else{
+					$('#dafult').prop('checked',false);
+				}
 
 			 });
 
@@ -225,6 +235,7 @@
 				$(document.body).toggleClass("html_overflow");
 				$("#takeName").val("");
 				$("#takePhone").val("");
+				$('#dafult').prop('checked',false);
 				 switch (type) {
 					 case 1:
 						 //city_js(0, 1, $('#city1'), 0, $('#city2'), 0, $('#city3'), 0);
@@ -246,37 +257,9 @@
 						 get_citys($('#city3'), 0, 0);
 				 }
 				$("#takeAddr").val("");
-				
-
-
-
-
-
-
+				 
 			 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
 			//添加修改的ajax做，前端补足 
 			$('#address_do').click(function(){
 				 //根据div获取各参数id
@@ -291,8 +274,7 @@
 				 var city=$('#city2').val();
 				 var area=$('#city3').val();
 				 var address=$('#takeAddr').val();
-				 var id=$('#id').val();
-				 console.log(id);
+				 var id=$('#id').val(); 
 				if (accept_name == "") {
 					$("#takeName").focus();
 					$(".info-tip").text(notice_json.common.job_name);
@@ -312,16 +294,15 @@
 
 
 				 //1默认，2不默认
-				  var is_first = 2;
-				 //参数验证
-				// onsubmit="return orderVerify();";
-				 console.log('id'+id+'type'+type+'country'+country+'province'+province+'city'+city+'area'+area+'address'+address+'accept_name'+accept_name+'tel'+tel);
-				//$('form').submit();
-			 
+				 var is_first =2;
+				 if($('#default').prop('checked')){
+					 is_first=1;
+				 }
+				 
 				 $.ajax({
 		 			"url":url_add,
 		 			"type":"POST", 
-		 			"data":{'id':id,'type':type,'country':country,'province':province,'city':city,'area':area,'address':address,'accept_name':accept_name,'tel':tel},
+		 			"data":{'id':id,'type':type,'country':country,'province':province,'city':city,'area':area,'address':address,'accept_name':accept_name,'tel':tel,'is_first':is_first},
 		 			"dataType":"json", 
 		 			"success":function(data){
 
@@ -335,7 +316,25 @@
 		 		});
 				return false;
 			});
-			 
+			 $('.default_setting').click(function(){
+				 var id=$(this).parents('.invo-exhibit-detail').find('.id').val();
+				 address_first(id);
+			 });
+			function address_first(id){
+				 
+				$.ajax({
+		 			"url":url_first,
+		 			"type":"POST", 
+		 			"data":{'id':id},
+		 			"dataType":"json", 
+		 			"success":function(data){ 
+		            	window.location.reload();
+		 			},
+		 			 "error": function(event, XMLHttpRequest, ajaxOptions, thrownError){ 
+	 		        	msg(event.responseText,1); 
+	 		        }
+		 		});
+			}
 			function address_del(id){
 				 
 				$.ajax({

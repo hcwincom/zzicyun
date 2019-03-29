@@ -33,6 +33,18 @@
 											</div>
 										</div>
 										<div class="basic-box clear">
+											<p class="fl">用户名</p>
+											<div class="fl basicRight">
+												<p>{$user.user_login}</p>
+											</div>
+										</div>
+										<div class="basic-box clear">
+											<p class="fl">昵称</p>
+											<div class="fl basicRight">
+												<p><input type="text" name="user_nickname" id="user_nickname" value="{$user.user_nickname}"/></p>
+											</div>
+										</div>
+										<div class="basic-box clear">
 											<p class="fl">手机号码</p>
 											<div class="fl basicRight">
 												<p>{$user.mobile}</p>
@@ -43,7 +55,7 @@
 											<div class="fl basicRight">
 												<p class="moEmail">
 													<span>{$user.user_email}</span>
-													<a href="modify-email.html">修改邮箱</a>
+													<!-- <a href="modify-email.html">修改邮箱</a> -->
 												</p>
 											</div>
 										</div>

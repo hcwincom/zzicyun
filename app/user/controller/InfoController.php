@@ -53,6 +53,7 @@ class InfoController extends UserBaseController
     
        $data=$this->request->param();
        $update=[
+           'user_nickname'=>$data['user_nickname'],
            'user_industry'=>$data['user_industry'],
            'user_cate'=>$data['user_cate'],
            'company_name'=>$data['company_name'],
@@ -143,6 +144,7 @@ class InfoController extends UserBaseController
             'city'=>intval($data['city']),
             'area'=>intval($data['area']),
             'address'=>$data['address'],
+            'is_first'=>$data['is_first'],
         ];
         //默认中国
         $update['country']=(empty($data['country']))?1:intval($data['country']);
@@ -151,7 +153,10 @@ class InfoController extends UserBaseController
         }
         $m_area=new AreaModel(); 
         $update['address_info']=$m_area->get_addressinfo($update,$lan1,$lan2);
-       
+        $m_address->startTrans();
+        if($update['is_first']==1){
+            $m_address->where('uid',$uid)->setField('is_first',2);
+        }
         if(empty($data['id'])){
             $update['uid']=$uid;
             $update['type']=$data['type'];
@@ -163,7 +168,7 @@ class InfoController extends UserBaseController
             ];
             $m_address->where($where)->update($update);
         }
-       
+        $m_address->commit();
         $this->success('ok');
     }
     /**
@@ -184,6 +189,26 @@ class InfoController extends UserBaseController
         }else{
             $this->error('error_delete');
         } 
+    }
+    /**
+     * 收货地址设为默认
+     */
+    public function address_first()
+    {
+        $id=$this->request->param('id',0,'intval');
+        $uid=session('user.id');
+        if(empty($id)){
+            $this->error('data_error');
+        }
+        //先清除所有默认再单独设置默认
+        $m_address=new UserAddressModel();
+        $where=['uid'=>$uid];
+        $m_address->where($where)->setField('is_first',2);
+        $where['id']=$id;
+        $m_address->where($where)->setField('is_first',1);
+        $row=$m_address->where($where)->update();
+        $this->success('ok');
+        
     }
     /**
      * 密码修改
