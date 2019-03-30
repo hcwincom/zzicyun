@@ -3704,10 +3704,32 @@
 
 
 /* 订单页面地址 */
+.groupList-grid{
+	position: fixed;
+	top: 15%;
+	left: 0;
+	right: 0;
+	margin: auto;
+	background: #fff;
+	width: 750px;
+	box-shadow: 1px 3px 3px #999,1px -3px 3px #999,-1px 3px 3px #999,-1px -3px 3px- #999;
+	-moz-box-shadow: 1px 3px 3px #999,1px -3px 3px #999,-1px 3px 3px #999,-1px -3px 3px #999;
+	-webkit-box-shadow: 1px 3px 3px #999,1px -3px 3px #999,-1px 3px 3px #999,-1px -3px 3px #999;
+	padding-top: 2em;
+	z-index: 99;
+}
+
 .groupInput,.groupList-dscont{
 	width: 100%;
 	padding-left: 40px;
 }
+
+
+
+
+
+
+
 
 .groupList_addr_text{
 	width: 80%;
@@ -3718,14 +3740,6 @@
 .groupList_addr_text>span{
 	padding: 0 5px;
 }
-.groupList-dscont>.address_id{
-	line-height: 34px;
-	vertical-align: middle;
-}
-
-
-
-
 
 
 .groupList-dscont{
@@ -3800,7 +3814,8 @@
 }
 .groupList-dscont{
 	border-bottom: 1px solid #dcdcdc;
-	padding-bottom: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 .groupList-newBtn{
 	text-align: center;

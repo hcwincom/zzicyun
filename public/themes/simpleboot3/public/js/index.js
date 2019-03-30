@@ -29,8 +29,16 @@ $(".proNav .proNav_cap").click(function(){
 	    	    
 //大陆订单页面
 $(".newBtn").click(function(){
-	$(".groupList-dsc").hide().prev(".groupList-grid").show();
+	$(".groupList-grid").show();
+	$(document.body).toggleClass("html_overflow");
 });
+	$(".callOff").click(function () {
+		$(".groupList-grid").hide();
+		$(document.body).toggleClass("html_overflow");
+	});
+
+
+
 $(".orderdelive div").click(function(){
 	var index = $(this).index();
 	$(this).addClass("ordeliveCurrt").siblings("div").removeClass("ordeliveCurrt");
@@ -91,6 +99,13 @@ $(".personBtn>.callOff").click(function(){
 //  订单页面选择优惠券
 
 
+
+
+
+// 门店选择
+	$(".storeAddfr>li").click(function () {
+		$(this).addClass("storeActive").siblings("li").removeClass("storeActive");
+	});
 
 
 

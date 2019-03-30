@@ -4,15 +4,11 @@ $(function(){
 	
 	
 
-	$(".add-invo a").click(function(){
-	  	$(this).parents(".invo-exhibiting").hide();
-	  	$(".invoceForm-list").show();
-	});
-	 
-	$(".invo-cancel").click(function(){
-		$(".invoceForm-list").hide();
-		$(this).parents(".invoceForm-list").prev(".invo-exhibiting").show();
-//		$(document.body).toggleClass("html_overflow");
+	
+	$(".invoform-button .invo-cancel").click(function(){
+		
+		$(this).parents(".invoceForm-list").hide();
+		$(document.body).toggleClass("html_overflow");
 	});
 	
 	//添加收货地址
@@ -26,6 +22,13 @@ $(function(){
 		$(".changeAddress").hide();
 		$(document.body).toggleClass("html_overflow");
 	});
+
+
+
+
+
+
+
 	 
 });
  

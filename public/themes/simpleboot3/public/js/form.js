@@ -118,9 +118,9 @@
 
 
 	// 大陆提交订单页面
-	$("#invo-file").change(function(){
-		$(".box-input .invo-label").html(notice_json.common.apply_file);
-	});
+	// $("#invo-file").change(function(){
+	// 	$(".box-input .invo-label").html(notice_json.common.apply_file);
+	// });
 	
 	$("#keepaddr").click(function(){
 		var takeName = $.trim($("#takeName").val());
@@ -175,7 +175,7 @@
 
 	//会员中心   开票资料
 	$("#invo-file").change(function(){
-	  	$(".invo-group .invo-label").html(notice_json.common.apply_file);
+	  	$(".invo-group .invo-label p").html(notice_json.common.apply_file);
 	});
 
 	// 会员中心  修改密码

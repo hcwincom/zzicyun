@@ -29,57 +29,57 @@
 												<div class="fl">
 													<h3>专用发票{$key}</h3>
 												</div>
-												<div class="fr">
+												<div class="fr deleteBtn">
 												
-													<a href="javascript:;">删除</a>
+													<a class="invodelete" href="javascript:;">删除</a>
 												</div>
 											</div>
 											<div class="invo-detail-cont">
 												<div class="invo-cont-text clear">
 													<p class="fl invoLeft">发票抬头：</p>
 													<input type="hidden" class="id" value="{$vo.id}"/>
-													<p class="fl invoRight">{$vo.name}</p>
+													<p class="fl invoRight invoName">{$vo.name}</p>
 												</div>
 											<neq name="type" value="3">
 												<div class="invo-cont-text clear">
 													<p class="fl invoLeft">公司注册地址：</p>
-													<p class="fl invoRight">{$vo.company_address}</p>
+													<p class="fl invoRight invoComAddr">{$vo.company_address}</p>
 												</div>
 												<div class="invo-cont-text clear">
 													<p class="fl invoLeft">公司电话：</p>
-													<p class="fl invoRight">{$vo.company_tel}</p>
+													<p class="fl invoRight invoComTel">{$vo.company_tel}</p>
 												</div>
 												<div class="invo-cont-text clear">
 													<p class="fl invoLeft">税务登记号：</p>
-													<p class="fl invoRight">{$vo.company_code}</p>
+													<p class="fl invoRight invoComCode">{$vo.company_code}</p>
 												</div>
 												<div class="invo-cont-text clear">
 													<p class="fl invoLeft">开户银行：</p>
-													<p class="fl invoRight">{$vo.bank}</p>
+													<p class="fl invoRight invoBank">{$vo.bank}</p>
 												</div>
 												<div class="invo-cont-text clear">
 													<p class="fl invoLeft">开户银行账号：</p>
-													<p class="fl invoRight">{$vo.bank_num}</p>
+													<p class="fl invoRight invoBankNum">{$vo.bank_num}</p>
 												</div>
 											</neq>
 												<div class="invo-cont-text clear">
 													<p class="fl invoLeft">收票人：</p>
-													<p class="fl invoRight">{$vo.accept_name}</p>
+													<p class="fl invoRight invoAccept">{$vo.accept_name}</p>
 												</div>
 												<div class="invo-cont-text clear">
 													<p class="fl invoLeft">收票人手机号：</p>
-													<p class="fl invoRight">{$vo.accept_tel}</p>
+													<p class="fl invoRight invoAccepTel">{$vo.accept_tel}</p>
 												</div>
 												<div class="invo-cont-text clear">
 													<p class="fl invoLeft">收票地址：</p>
 													<input type="hidden" class="accept_province" value="{$vo.accept_province}" />
 													<input type="hidden" class="accept_city" value="{$vo.accept_city}" />
 													<input type="hidden" class="accept_area" value="{$vo.accept_area}" />
-													<p class="fl invoRight">{$vo.accept_address_info}</p>
+													<p class="fl invoRight invoAccpetAddr">{$vo.accept_address_info}</p>
 												</div>
 												<div class="invo-cont-text clear">
 													<p class="fl invoLeft">详细地址：</p>
-													<p class="fl invoRight">{$vo.accept_address}</p>
+													<p class="fl invoRight invoAccInfoAddr">{$vo.accept_address}</p>
 												</div>
 												<neq name="type" value="3">
 												<div class="invo-cont-text invo-cont-text-file clear">
@@ -96,7 +96,7 @@
 												</neq>
 											</div>
 											<div class="invo-detail-button">
-												<a href="javascript:;">修改</a>
+												<a class="invoChange" href="javascript:;">修改</a>
 											</div>
 										</div>
 										</volist>
@@ -109,7 +109,7 @@
 										
 									</div>
 									<!--表格-->
-									<div class="invoceForm-list" style="display: none;">
+									<div class="invoceForm-list">
 										<form action="{:url('invoice_infos_do')}" method="post">
 											<div class="added-total">
 												<div class="invoform-box">
@@ -129,38 +129,38 @@
 												<div class="invoform-box">
 													<span>公司电话：</span>
 													<div class="invo-group">
-														<input type="text" name="company_tel" id="comtel" value="" class="invo-input" placeholder="区号和号码用“-”隔开，或者不填区号" />
+														<input type="text" name="company_tel" id="comtel" value="" class="invo-input" placeholder="区号和号码用“-”隔开" />
 													</div>
 												</div>
 												<div class="invoform-box">
 													<span>税务登记号：</span>
 													<div class="invo-group">
-														<input type="text" name="company_code" id="regnum" value="" class="invo-input" />
+														<input type="text" name="company_code" id="regnum" value="" class="invo-input" placeholder="请输入税号" />
 													</div>
 												</div>
 												<div class="invoform-box">
 													<span>开户银行：</span>
 													<div class="invo-group">
-														<input type="text" name="bank" id="kbank" value="" class="invo-input" />
+														<input type="text" name="bank" id="kbank" value="" class="invo-input" placeholder="请输入开户银行" />
 													</div>
 												</div>
 												<div class="invoform-box">
 													<span>开户银行账号：</span>
 													<div class="invo-group">
-														<input type="text" name="bank_num" id="bankaccount" value="" class="invo-input" />
+														<input type="text" name="bank_num" id="bankaccount" value="" class="invo-input" placeholder="请输入银行账号" />
 													</div>
 												</div>
 											</neq>
 												<div class="invoform-box">
 													<span>收票人：</span>
 													<div class="invo-group">
-														<input type="text" name="accept_name" id="sname" value="" class="invo-input" />
+														<input type="text" name="accept_name" id="sname" value="" class="invo-input" placeholder="请输入收票人"/>
 													</div>
 												</div>
 												<div class="invoform-box">
 													<span>收票人手机号：</span>
 													<div class="invo-group">
-														<input type="text" name="accept_tel" id="sphone" value="" class="invo-input" />
+														<input type="text" name="accept_tel" id="sphone" value="" class="invo-input" placeholder="请输入收票人联系方式" />
 													</div>
 												</div>
 												<div class="invoform-box">
@@ -172,7 +172,7 @@
 												<div class="invoform-box">
 													<span>详细地址：</span>
 													<div class="invo-group">
-														<textarea name="accept_address" id="addrdetail" class="invo-input"></textarea>
+														<textarea name="accept_address" id="addrdetail" class="invo-input" placeholder="请填写详细地址"></textarea>
 													</div>
 												</div>
 											<neq name="type" value="3">
@@ -194,7 +194,7 @@
 														<a href="invoice-xuzhi.html">《发票须知》</a>
 													</div>
 												</div>
-												<p class="info-tip"></p>
+												<p class="info-tip">fffff</p>
 												<div class="invoform-button">
 													<div class="invo-group">
 														<input type="button" name="" id="invoice_add" value="保存" class="invo-button" />
@@ -223,6 +223,60 @@
 city_js(0,1,$('#city1'),0,$('#city2'),0,$('#city3'),0);
 var url_invoice_do="{:url('invoice_infos_do')}";
 var type=parseInt("{$type}");
+// 点击修改
+$(".invoChange").click(function () {
+	$(".invoceForm-list").show();
+	$(document.body).toggleClass("html_overflow");
+	var $div = $(this).parents(".invo-exhibit-detail");
+	var invoName = $.trim($div.find(".invoName").text());
+	var invoComAddr = $.trim($div.find(".invoComAddr").text());
+	var invoComTel = $.trim($div.find(".invoComTel").text());
+	var invoComCode = $.trim($div.find(".invoComCode").text());
+	var invoBank = $.trim($div.find(".invoBank").text());
+	var invoBankNum = $.trim($div.find(".invoBankNum").text());
+	var invoAccept = $.trim($div.find(".invoAccept").text());
+	var invoAccepTel = $.trim($div.find(".invoAccepTel").text());
+	var accept_province = $.trim($div.find(".accept_province").val());
+	var accept_city = $.trim($div.find(".accept_city").val());
+	var accept_area = $.trim($div.find(".accept_area").val());
+	var invoAccInfoAddr = $.trim($div.find(".invoAccInfoAddr").text());
+	var id = $div.find('.id').val();
+	$('#city1').val(accept_province);
+	get_citys($('#city2'), accept_province, accept_city);
+	get_citys($('#city3'), accept_city, accept_area);
+	$("#id").val(id);
+	$("#intitle").val(invoName);
+	$("#regaddr").val(invoComAddr);
+	$("#comtel").val(invoComTel);
+	$("#regnum").val(invoComCode);
+	$("#kbank").val(invoBank);
+	$("#bankaccount").val(invoBankNum);
+	$("#sname").val(invoAccept);
+	$("#sphone").val(invoAccepTel);
+	$("#addrdetail").val(invoAccInfoAddr);
+});
+// 添加新的发票地址
+$(".add-invo a").click(function () {
+	$(".invoceForm-list").show();
+	$(document.body).toggleClass("html_overflow");
+	$("#id").val(0);
+	$("#intitle").val("");
+	$("#regaddr").val("");
+	$("#comtel").val("");
+	$("#regnum").val("");
+	$("#kbank").val("");
+	$("#bankaccount").val("");
+	$("#sname").val("");
+	$("#sphone").val("");
+	 $('#city1').val(0);
+	get_citys($('#city2'), 0, 0);
+	get_citys($('#city3'), 0, 0);
+	$("#addrdetail").val("");
+
+});
+
+
+
 $('#invoice_add').click(function(){
 	
 	var id=$.trim($('#id').val());
@@ -252,6 +306,18 @@ $('#invoice_add').click(function(){
 			'accept_name':accept_name,'accept_tel':accept_tel,'accept_address':accept_address,
 			'company_address':company_address,'company_tel':company_tel,'company_code':company_code,
 			'bank':bank,'bank_num':bank_num,'file':file};
+	// 表格验证
+	
+
+
+
+
+
+
+
+
+
+	
 	 
 	$.ajax({
 			"url":url_invoice_do,
@@ -261,7 +327,8 @@ $('#invoice_add').click(function(){
 			"success":function(data){
 				console.log(data);
 				msg(data.msg); 
-				
+				$(".invoceForm-list").hide();
+				window.location.reload();
 			},
 			 "error": function(event, XMLHttpRequest, ajaxOptions, thrownError){ 
 	        	msg(event.responseText,1); 
@@ -272,6 +339,7 @@ $('#invoice_add').click(function(){
 	
 });
 $("#invo-file").change(function(e){
+	return false;
 	var file = e.target.files[0];
 	    
 	var reader = new FileReader();
@@ -279,7 +347,7 @@ $("#invo-file").change(function(e){
 	if (file) {
 		reader.readAsDataURL(file); 
 	} else {
-		click=0;
+	 
 		return false;
 	}
 	//组装表单数据
@@ -303,6 +371,7 @@ $("#invo-file").change(function(e){
 					$('#file').val('');
 				} 
 				msg(data.msg); 
+				$(".box-input .invo-label").html(notice_json.common.apply_file);
 			},
 		 	"error": function(event, XMLHttpRequest, ajaxOptions, thrownError){ 
 	        	msg(event.responseText,1); 

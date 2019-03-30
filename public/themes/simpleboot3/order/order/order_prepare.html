@@ -93,35 +93,13 @@
 											 
 											<foreach name="addresses" item="vo">
 												<div class="groupList-dscont clear">
-													
-												<input type="radio" name="address_id" class="address_id fl" value="{$key}" <if condition="$key eq $address_id">checked</if> />
-													<div class="groupList_addr_text fl">
-														<span>{$vo.accept_name}（收）</span>
-														<span>{$vo.tel}</span>
-														<span>{$vo.address_info}{$vo.address}</span>
-													</div>
-
-
-
-
-
-
-
-
-
-													<!-- <div class="groupInput-box clear">
-														<p class="fl">收货人：</p>
-														<div>{$vo.accept_name}</div>
-													</div>
-													<div class="groupInput-box  clear">
-														<p class="fl">收货地址：</p>
-														<div>{$vo.address_info}{$vo.address}</div>
+													<div class="groupList_addr_text">
+														<input type="radio" name="address_id" class="address_id" value="{$key}" <if condition="$key eq $address_id">checked</if> />
+														<span class="addrName">{$vo.accept_name}（收）</span>
+														<span class="addrTel">{$vo.tel}</span>
+														<span class="addrInfo">{$vo.address_info}{$vo.address}</span>
 													</div>
 													
-													<div class="groupInput-box clear">
-														<p class="fl">联系电话：</p>
-														<div>{$vo.tel}</div>
-													</div> -->
 													<div class="groupBtn-order">
 													<eq name="vo.is_first" value="1">
 														<span class="addr-approve">默认</span> 
@@ -178,7 +156,7 @@
 												<div class="orderdelive-store">
 													<ul class="storeAddfr">
 													<foreach name="stations" item="vo">
-														<li class="storeActive">
+														<li class="">
 															<div class="storeTxt">
 															<input type="hidden" value="{$key}"/>
 																<p>地址：{$vo.address_info}{$vo.address}</p>
@@ -696,7 +674,7 @@
 												 
 												<tr>
 													<td class="shopLeftwidth"><p> 商品优惠：</p></td>
-													<td class="shopRightwidth"><p>-{$money_flag}0.00</p></td>
+													<td class="shopRightwidth"><p>-{$money_flag}</p></td>
 												</tr>
 												<tr>
 													<td class="shopLeftwidth"><p>应付金额：</p></td>
@@ -708,7 +686,6 @@
 												<button type="submit" class="pickBtn">提交订单</button>
 											</div>
 										</div>
-										 
 									
 								</div>
 							</form>
@@ -721,6 +698,6 @@
 			<!---->
 		</div>
 		  <include file="public@foot"/>
-	  <!--   <script type="text/javascript" src="__TMPL__/public/js/form.js"></script> -->
+	    <script type="text/javascript" src="__TMPL__/public/js/form.js"></script>
 	</body>
 </html>
