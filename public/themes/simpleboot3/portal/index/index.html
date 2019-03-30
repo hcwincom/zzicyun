@@ -78,22 +78,24 @@
 								</div>												
 							<div class="inx-uBox fr">
 								<div class="login_right">
+								<empty name="Think.session.user">
 									<div class="login-center">
 										<a href="{:url('user/Login/login')}">{$notice.index.plase_login}</a>
 										<a href="{:url('user/Register/register')}">{$notice.index.free_register}</a>
 									</div>
+								<else/>
 									<!--登录之后显示begin-->
-									<div class="login-after" style="display: none;">
+									<div class="login-after" >
 										<div class="login_img">
 											<div class="row">
 												<div class="col-lg-3 col-md-3 col-sm-3">
-													<span class="pic"><img src="images/客服.png" alt="头像" /></span>
+													<span class="pic"><img src="{$image_url}/{$Think.session.user.avatar}" alt="头像" /></span>
 												</div>
 												<div class="col-lg-9 col-md-9 col-sm-9">
 													<div class="memName">
-														<p class="mName">Hi~<span>据工行卡i</span></p>
+														<p class="mName">Hi~<span>{$Think.session.user.user_nickname}</span></p>
 														<p class="memCenter">
-															<a href="memberCenter/member_center.html">{$notice.index.member_center}</a>
+															<a href="{:url('user/Center/center')}">{$notice.index.member_center}</a>
 														</p>
 													</div>	
 												</div>
@@ -109,7 +111,7 @@
 										<a href="{:url('order/Order/myorder')}"><span>{$notice.index.payment}</span></a>
 										<a href="{:url('order/Order/myorder')}"><span>{$notice.index.offer}(<i>0</i>)</span></a>
 									</div>
-								 
+								 </empty>
 									<div class="news">
 									 
 										<div class="news_title">

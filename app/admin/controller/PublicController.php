@@ -96,13 +96,10 @@ class PublicController extends AdminBaseController
                 if ($result["id"] != 1 && (empty($groups) || empty($result['user_status']) )) {
                     $this->error(lang('USE_DISABLED'));
                 }
-                if($result['job_status']==3){
-                    $this->error('已离职用户不能登录');
-                }
+               
                 //登入成功页面跳转
                 session('ADMIN_ID', $result["id"]);
-                session('name', $result["user_login"]);
-                session('shop', $result["shop"]);
+                session('name', $result["user_login"]); 
                 $is_review=Db::name('shop')->where('id',$result["shop"])->value('is_review');
                 session('shop_review', $is_review);
                 //后台多语言

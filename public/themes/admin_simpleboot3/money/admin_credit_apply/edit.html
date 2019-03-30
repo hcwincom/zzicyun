@@ -1,0 +1,101 @@
+<include file="public@header" />
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs"> 
+			 <li ><a href="{:url('index')}">{$flag}列表</a></li>  
+			<li class="active"><a href="{:url('edit',['id'=>$info.id])}">{$flag}详情</a></li>  
+		</ul>
+		<form class="form-horizontal js-ajax-form{$zzajax} margin-top-20" role="form" method="post" action="">
+			<div class="form-group">
+				<label  class="col-sm-2 control-label">id</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control" name="id" value="{$info.id}" readonly/>
+					 
+				</div>
+			</div>
+			<div class="form-group">
+				<label  class="col-sm-2 control-label">申请类型</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control" value="{$money_types[$info.type]}" readonly/>
+					 
+				</div>
+			</div>
+			<div class="form-group">
+				<label  class="col-sm-2 control-label">申请金额</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control" value="{$info.num}" readonly/> 
+				</div>
+			</div>
+			<div class="form-group">
+				<label  class="col-sm-2 control-label">前三月消费金额</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control" value="{$info.buy_old}" readonly/> 
+				</div>
+			</div>
+			<div class="form-group">
+				<label  class="col-sm-2 control-label">未来预期月消费金额</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control" value="{$info.buy_new}" readonly/> 
+				</div>
+			</div>
+			<div class="form-group">
+				<label  class="col-sm-2 control-label">申请时间</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control" value="{$info.utime|date='Y-m-d H:i',###}" readonly/> 
+				</div>
+			</div>
+			<div class="form-group">
+				<label  class="col-sm-2 control-label">申请人</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control" value="{$info.uname}" readonly/> 
+				</div>
+			</div>
+		<gt name="info.status" value="1">
+			<div class="form-group">
+				<label  class="col-sm-2 control-label">审核时间</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control" value="{$info.atime|date='Y-m-d H:i',###}" readonly/> 
+				</div>
+			</div>
+			<div class="form-group">
+				<label  class="col-sm-2 control-label">审核人</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control" value="{$info.aname}" readonly/> 
+				</div>
+			</div>
+		</gt>
+			 
+		 
+			<div class="form-group">
+				<label   class="col-sm-2 control-label">审核状态</label>
+				<div class="col-md-6 col-sm-10">
+				 
+				 <foreach name="review_statuss" item="vo">
+				  	<label class="radio-inline">
+				 		<input type="radio" value="{$key}" name="status" <if condition="$key eq $info.status">checked</if>/>{$vo}
+				 	</label>
+				 </foreach>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10"> 
+				<eq name="info.status" value="1">
+					<button type="submit" class="review btn btn-primary js-ajax-submit"  >审核状态</button> 
+				</eq>	 
+					 <p> </p>
+				</div>
+				
+			</div>
+		</form>
+	 
+	</div>
+	<script src="__STATIC__/js/admin.js"></script> 
+</body>
+</html>
+<script>
+$('.review').click(function(){
+	$('form').attr('action',"{:url('review')}");
+});
+ 
+</script>

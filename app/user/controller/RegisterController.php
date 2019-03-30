@@ -72,6 +72,7 @@ class RegisterController extends DeskBaseController
             
             $data=[
                 'user_login'=>$data1['username'],
+                'user_nickname'=>$data1['username'],
                 'code'=>$data1['code'],
                 'user_pass'=>$data1['psw'],
                 'mobile'=>$data1['mobile'],

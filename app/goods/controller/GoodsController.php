@@ -14,6 +14,7 @@ use app\goods\model\GoodsParamModel;
 use app\goods\model\GoodsTimeModel;
 use app\goods\model\GoodsPriceModel;
 use app\goods\model\GoodsFileModel;
+use app\notice\model\NoticeConfValModel;
 class GoodsController extends DeskBaseController
 {
 
@@ -31,7 +32,10 @@ class GoodsController extends DeskBaseController
          $m_goods=new GoodsModel();
          $goods=$m_goods->get_one($id,$lan1,$lan2);
          $this->assign('info',$goods);
-         $this->assign('pdf_cates',[1=>'数据手册',2=>'AD封装库文件',3=>'PADS封装库文件']);
+         $m_conf=new NoticeConfValModel();
+         $pdf_cates=$m_conf->get_one($lan1, $lan2, 'pdf_cate');
+         
+         $this->assign('pdf_cates',$pdf_cates);
          $this->assign('html','goods_detail');
          //发货时间
          $m_time=new GoodsTimeModel();

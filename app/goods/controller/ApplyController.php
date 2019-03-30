@@ -24,6 +24,7 @@ class ApplyController extends UserBaseController
       */
     public function index()
     {
+        $this->error('暂未开放',url('/'));
          $lan1=$this->lan1;
          $lan2=$this->lan2;
          $this->assign('html','apply_index');

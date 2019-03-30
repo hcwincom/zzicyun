@@ -298,21 +298,7 @@ class UserController extends AdminBaseController
         $user = DB::name('user') 
         ->where(["id" => $id])
         ->find();
-        if(empty($user['in_time'])){
-            $user['in_time']='';
-        }else{
-            $user['in_time']=date('Y-m-d', $user['in_time']);
-        }
-        if(empty($user['on_time'])){
-            $user['on_time']='';
-        }else{
-            $user['on_time']=date('Y-m-d', $user['on_time']);
-        }
-        if(empty($user['out_time'])){
-            $user['out_time']='';
-        }else{
-            $user['out_time']=date('Y-m-d', $user['out_time']);
-        }
+        
         $this->assign($user);
         
         return $this->fetch();
@@ -367,25 +353,12 @@ class UserController extends AdminBaseController
                         'user_nickname'=>$data['user_nickname'],
                         'user_email'=>$data['user_email'], 
                         'mobile'=>$data['mobile'], 
-                        'department'=>$data['department'],
-                        'emergency_mobile'=>$data['emergency_mobile'],
+                        'department'=>$data['department'], 
                         'idcard'=>$data['idcard'],
                         'address'=>$data['address'],
-                        'qq'=>$data['qq'],
-                        'weixin'=>$data['weixin'],
-                        'wangwang'=>$data['wangwang'],
-                        'job_status'=>intval($data['job_status']),
+                        'qq'=>$data['qq'], 
                     ];
-                    if(!empty($data['in_time'])){ 
-                        $data_user['in_time']=strtotime($data['in_time']);
-                    }
-                    if(!empty($data['on_time'])){ 
-                        $data_user['on_time']=strtotime($data['on_time']);
-                    }
-                    if(!empty($data['out_time'])){
-                        $data_user['out_time']=strtotime($data['out_time']);
-                    }
-                    
+                   
                     if(!empty($_POST['user_pass'])){
                         $data_user['user_pass']=$_POST['user_pass'];
                     }

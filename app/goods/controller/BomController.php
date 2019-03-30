@@ -24,10 +24,22 @@ class BomController extends UserBaseController
       */
     public function bom()
     {
+        $this->error('暂未开放',url('/'));
          $lan1=$this->lan1;
          $lan2=$this->lan2;
          $this->assign('html','bom');
          return $this->fetch();
+   }
+   /**
+    * bom
+    */
+   public function mybom()
+   {
+       $this->error('暂未开放',url('/'));
+       $lan1=$this->lan1;
+       $lan2=$this->lan2;
+       $this->assign('html','bom');
+       return $this->fetch();
    }
    
 

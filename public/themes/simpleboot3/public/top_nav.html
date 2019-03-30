@@ -17,19 +17,23 @@
 			</li>
 			<li class="site-nav-menu">
 				<div class="site-nav-menu-hd">
-					<div class="site-nav-sign">
 					 <empty name="Think.session.user">	
+					 
+					<div class="site-nav-sign">
+				
 						<a href="{:url('user/Login/login')}" target="_top">{$notice.index.login}</a>
 						<a href="{:url('user/Register/register')}" target="_top">{$notice.index.register}</a>
-					</empty>
+					
 					</div>
+					<else/>
 					<!--登录之后显示begin-->
-					<div class="sign_after" style="display: none;">
+					<div class="sign_after"  >
 						<p>
 							<i class="iconfont icon-logout-user"></i>
-							<span>{$company.tel}</span>
+							<span>{$Think.session.user.user_nickname}</span>
 						</p>
 					</div>
+					</empty>
 					<!--登录之后显示end-->
 				</div>
 				

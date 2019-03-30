@@ -41,6 +41,11 @@
         'width'=>60,
         'height'=>43
     ],
+    'pic_gift'=>[
+        'width'=>213,
+        'height'=>323
+    ],
+    
     'shop_types'=>[
         1=>'自营',
         2=>'代售', 
@@ -53,6 +58,7 @@
     'is_rohs'=>[1=>'符合标准',2=>'不符合'],
     'user_rates'=>[1=>'铜牌会员',2=>'银牌会员',3=>'金牌会员',4=>'钻石会员'], 
     'user_cates'=>[1=>'企业单位',2=>'个体经营',3=>'事业单位或社会团体'],
+    'money_type'=>[1=>'人民币',2=>'美元'],
      
     /*下面是不用多语言的配置  */
     'coupon_status_use'=>[1=>'未使用',2=>'已使用'],
@@ -64,6 +70,7 @@
     'invoice_status'=>[1=>'不开票',2=>'未开票',3=>'已开票'],  
     'invoice_type'=>[1=>'增值税发票',2=>'普通发票（公司）',3=>'普通发票（个人）'],
     'freight_type'=>[1=>'大陆快递',2=>'香港快递'],
+    'score_type'=>[1=>'不限日期',2=>'每天'],
    
   'info_status' => 
   array (
@@ -110,39 +117,37 @@
   array (
     'system' => '系统任务',
     'order' => '订单',
-    'ordersup' => '采购单',
-   
+    
     'orderback' => '售后',
-    'store_goods' => '仓库库存',
+    
     'store_in' => '入库',
     'store_out' => '出库',
+    'notice'=>'页面提示',
+    'coupon'=>'优惠券',
+    'user_industry'=>'用户行业',
     
-    'cate' => '产品分类',
     'goods' => '产品',
+    'goods_cate' => '产品分类',
     'goods_brand' => '品牌',
     'goods_param' => '技术参数',
     'goods_template' => '参数模板',
-   
-    'compare' => '产品对比',
-    'bank' => '转账银行',
-    'shop_fee' => '店铺费用',
-    'shop_fee_cate' => '店铺费用分类',
-    'shop_fee_month' => '每月费用',
+    'goods_time' => '产品发货时间',
+      'gift' => '礼品',
+      'gift_cate' => '礼品分类',
+    'bank' => '转账银行', 
     'express' => '快递种类',
-    'expressarea' => '配送区域',
-    'freight' => '配送公司',
-    'shop' => '加盟店铺',
-    'paytype' => '支付方式',
     'area' => '地区',
-    'store' => '仓库',
-    'company' => '子公司',
-   
-    'supplier' => '供货商',
-    'supplier_cate' => '供货商分类',
+    'area_custom' => '配送区域',
+    'freight' => '配送公司',
+      
+    'shop' => '供应商',
+    'paytype' => '支付方式',
+     
     'msg' => '消息',
     
-     'department'=>'部门',
-      'order_invoice'=>'发票',
+     'department'=>'部门', 
+      'score_rule'=>'积分规则',
+      'station'=>'自提点',
   ),
   'search_types' => 
   array (

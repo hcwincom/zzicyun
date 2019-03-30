@@ -39,7 +39,7 @@ class NoticeConfValModel extends Model
      * @param array $where
      * @return $list
      */
-    public function get_one($lan=1,$lan1=1,$conf){
+    public function get_one($lan,$lan1,$conf){
         
         $field='key,val';
         $where=['conf'=>$conf];

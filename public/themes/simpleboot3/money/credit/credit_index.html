@@ -1,0 +1,403 @@
+   <include file="public@user_header"/> 	
+			<!--主要内容-->
+			<div class="person-content">
+				<div class="wraper row totalback">
+					 <include file="public@user_left"/> 	
+					<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10" style="padding: 0;">
+						<div class="person-right">
+							<div class="person-right-head borderColor">
+								<p class="perpadding">
+									<span>资产管理</span>
+									<i class="iconfont icon-jiantoudown"></i>
+									<a href="">授信额度</a>
+								</p>
+							</div>
+							<div class="person-detail-content">
+								<!--首次进行额度申请-->
+									<div id="inLimit-form">
+										<div id="inLimit-form-detail">
+								<!-- <div class="credit-limit" style="display: none;"> -->
+									<div class="lineHead">
+										<h3>额度申请：</h3>
+									</div>
+									<div class="lineContent">
+										<form action="" method="post">
+											<div class="line-apply">
+												 
+												<div class="invoform-box">
+													<span>币种：</span>
+													<div class="invo-group">
+														<select id="apply_type" name="type" class="currency"> 
+															<option value="1">{$notice['money_type'][1]}</option>
+															<option value="2">{$notice['money_type'][2]}</option> 
+														</select>
+													</div>
+												</div>
+												<div class="invoform-box">
+													<span>已有授信额度：</span>
+													<div class="invo-group lineBorNone">
+														<span class="linered"></span>
+													</div>
+												</div>
+												<div class="invoform-box">
+													<p>申请额度：</p>
+													<div class="invo-group">
+														<input type="text" name="num" id="apply_num" value="" class="invo-input" />
+													</div>
+												</div>
+												<div class="invoform-box">
+													<p>近三个月已采购金额：</p>
+													<div class="invo-group">
+														<input type="text" name="num_old" id="apply_old" value="" class="invo-input" />
+													</div>
+												</div>
+												<div class="invoform-box">
+													<p>未来预计月平均采购金额：</p>
+													<div class="invo-group">
+														<input type="text" name="num_new" id="apply_new" value="" class="invo-input" />
+													</div>
+												</div>
+												<div class="invoform-box">
+													<div class="invo-check">
+														<input type="checkbox" name="" id="apply_sure" value="" checked="checked" />
+														<span>我已经阅读并同意</span>
+														<a href="invoice-xuzhi.html">《发票须知》</a>
+													</div>
+												</div>
+												<p class="info-tip"></p>
+												<div class="invoform-button">
+													<div class="invo-group">
+														<input type="button" id="apply_btn" value="保存" class="invo-button" />
+														<a href="javascript:;" class="invo-cancel">取消</a>
+													</div>
+												</div>
+												<!---->
+											</div>
+											
+										</form>
+									</div>
+									</div>
+								</div>
+								<!--申请额度之后显示-->
+								<div class="credit-limit-show">
+									<!--授信额度信息-->
+									<div class="credit-limit-intro">
+										<div class="limitTitle">
+											<h3>授信额度</h3>
+										</div>
+										<div class="limit-table">
+											<ul>
+												<li>
+													<div class="limit-table-title">
+														<ul class="clear">
+															<li class="shortLimit">币种</li>
+															<li class="longLimit">授信额度</li>
+															<li class="longLimit">已用额度</li>
+															<li class="longLimit">剩余额度</li>
+															<li class="longLimit">操作</li>
+														</ul>
+													</div>
+												</li>
+												<foreach name="notice['money_type']" item="vo" key="key">
+												<li>
+													<div class="limit-table-cont">
+														<ul class="clear">
+															<li class="shortLimit">
+																<p>{$vo}</p>
+															</li>
+															<li class="longLimit">
+																<p>{$user['credit'.$key]}</p>
+															</li>
+															<li class="longLimit">
+																<p>{$user['credit'.$key.'_use']}</p>
+															</li>
+															<li class="longLimit">
+																<p>{$user['credit'.$key]-$user['credit'.$key.'_use']}</p>
+															</li>
+															<li class="longLimit">
+																<a href="javascript:;" class="limitRrcord">授信记录</a>
+																<a href="javascript:;" class="inLimit" id="inLimit">提高额度</a>
+															</li>
+														</ul>
+														<!--授信记录-->
+														<div id="limitRrcord-detail">
+															<div id="limitRrcord-cont">
+																<ul>
+																	<li>
+																		<div class="limitRrcord-cont-head">
+																			<ul class="clear">
+																				<li>日期</li>
+																				<li>授信额度</li>
+																				<li>备注</li>
+																			</ul>
+																		</div>
+																	</li>
+															  <present name="list_get[$key]">
+															  <foreach name="list_get[$key]" item="vv" key="kk"> 
+																	<li>
+																		<div class="limitRrcord-cont-list">
+																			<ul class="clear">
+																				<li>
+																					<p>{$vv.time|date='Y-m-d H:i',###}</p>
+																				</li>
+																				<li>
+																					<p>{$vv.num}</p>
+																				</li>
+																				<li>
+																					<p>{$vv.dsc}</p>
+																				</li>
+																			</ul>
+																		</div>
+																	</li>
+																</foreach>
+																</present>
+																	 
+																</ul>
+																<div class="limitRrcord-cont-button">
+																	<button type="button">关闭</button>
+																</div>
+															</div>
+														</div>
+														  
+													</div>
+												</li>
+												</foreach>
+											</ul>
+										</div>
+									</div>
+									<!--账单流水-->
+									<div class="credit-limit-bill">
+										<div class="limitTitle">
+											<h3>账单流水</h3>
+										</div>
+										<!--筛选-->
+										<div class="limitFilt clear">
+											<div class="bom-title-list fl">
+												<div class="bom-sjfw fl">
+													<span>收支时间:</span><input name="start" id="start" value="" readonly placeholder="请选择时间范围起始" />
+												</div>
+												<div class="bom-sjjs fl">
+													<span>——</span><input name="end" id="end" value="" readonly placeholder="请选择时间范围结束"  />
+												</div>
+											</div>
+											<div class="bom-title-list fl">
+												<div class="ddzt">
+													<p class="fl">订单状态</p>
+													<div class="fl xzlb">
+														<select name="comcate">
+															<option value="0">全部类别</option>
+														</select>
+													</div>
+												</div>
+											</div>
+											<div class="bom-title-list fl">
+												<div class="bom-sear">
+													<input type="text" name="" id="" value="" placeholder="商品编码/型号" />
+													<button type="button">查询</button>
+												</div>
+											</div>
+										</div>
+										<!--列表-->
+										<div class="limit-bill-detail">
+											<ul class="clear">
+												<li>
+													<div class="limit-bill-title">
+														<ul class="clear">
+															                                                                                                                                                                              
+															<li>日期</li>
+															<li>收入</li>
+															<li>支出</li>
+															<li>余额</li>
+															<li>币种</li>
+															<li>用途</li>
+														</ul>
+													</div>
+												</li>
+												<li>
+													<div class="limit-bill-cont">
+														<ul class="clear">
+															<li>
+																<p>2018-05-30</p>
+															</li>
+															<li>
+																<p>+ 520.123</p>
+															</li>
+															<li>
+																<p>- 123.20</p>
+															</li>
+															<li>
+																<p>￥45213.0</p>
+															</li>
+															<li>
+																<p>人民币</p>
+															</li>
+															<li>
+																<p>支出</p>
+															</li>
+														</ul>
+													</div>
+												</li>
+												<li>
+													<div class="limit-bill-cont">
+														<ul class="clear">
+															<li>
+																<p>2018-05-30</p>
+															</li>
+															<li>
+																<p>+ 520.123</p>
+															</li>
+															<li>
+																<p>- 123.20</p>
+															</li>
+															<li>
+																<p>￥45213.0</p>
+															</li>
+															<li>
+																<p>人民币</p>
+															</li>
+															<li>
+																<p>支出</p>
+															</li>
+														</ul>
+													</div>
+												</li>
+											</ul>
+										
+											<div class="limit-page">
+												<!--分页-->
+												<div class="page">
+													<div class="p-wrap" id="j_bottomPage">
+														<span class="p-num">
+															<a class="pn-prev disabled">
+																<i><</i>
+															</a>
+															<a href="javascript:void(0);" class="num curr">1</a>
+															<a href="javascript:void(0);" class="num">2</a>
+															<a href="javascript:void(0);" class="num">3</a>
+															<a href="javascript:void(0);" class="num">4</a>
+															<a href="javascript:void(0);" class="num">5</a>
+															<a href="javascript:void(0);" class="num">6</a>
+															<a href="javascript:void(0);" class="pn-next ">
+																<i>></i>	
+															</a>
+														</span>
+														<span class="p-skip">
+															<a href="javascript:void(0);">共  <i>10</i>页</a>
+														</span>
+														<span class="page_jump">
+															<i>第</i>
+															<input class="pageInput" type="text" value="1" onkeyup="value=value.replace(/[^\d]/g,'')" onblur="value=value.replace(/[^\d]/g,'')" name="pageNo" id="pageInput">
+															<i>页</i>
+														</span>
+														<span class="page_btn">
+															<button type="button" id="pagebtn" class="btn btn-default">确定</button>
+														</span>
+													</div>
+												</div>
+												<!---->	
+											</div>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			 <include file="public@footer" />
+			<!---->
+		 <include file="public@user_foot" />
+	  	
+	  	
+	</body>
+</html>
+<script type="text/javascript" src="__TMPL__/public/js/laydate.js"></script>
+<script type="text/javascript">
+	//日期范围限制
+     var start = {
+         elem: '#start',
+         format: 'YYYY-MM-DD',
+         max: laydate.now(),  
+         istime: false,
+         istoday: true,
+         choose: function(datas){
+         		end.min = datas; //开始日选好后，重置结束日的最小日期
+            		end.start = datas; //将结束日的初始值设定为开始日
+         }
+     };
+
+   laydate(start);  
+   var end = {
+          elem: '#end',
+          format: 'YYYY-MM-DD',
+          max: laydate.now(), //设定最大日期为当前日期 
+          istime: false,
+           istoday: false,
+          choose: function(datas){ 
+               start.max = datas; //结束日选好后，重置开始日的最大日期   
+          }
+      };
+   laydate(end);  
+	$("#invo-file").change(function(){
+		$(".invo-group .invo-label").html("已上传");
+	});
+	
+	$(".add-invo a").click(function(){
+		$(this).parents(".invo-exhibiting").hide();
+		$(".invoceForm").show();
+	});
+	$(".check-box>div").click(function(){
+		var index = $(this).index();
+		$(this).addClass("checkActive").siblings().removeClass("checkActive");
+		$(".invoceForm-display .invoceForm-list").eq(index).removeClass("checkCate").siblings().addClass("checkCate");
+	});
+	
+	$("#inLimit").click(function(){
+		$("#inLimit-form").show();
+		 $(document.body).toggleClass("html_overflow");
+	});
+	$(".invo-cancel").click(function(){
+		$("#inLimit-form").hide();
+		 $(document.body).toggleClass("html_overflow");
+	});
+	$(".limitRrcord").click(function(){
+		$("#limitRrcord-detail").show();
+		$(document.body).toggleClass("html_overflow");
+	});
+	$(".limitRrcord-cont-button").click(function(){
+		$("#limitRrcord-detail").hide();
+		$(document.body).toggleClass("html_overflow");
+	});
+	
+	var url_apply="{:url('money/Credit/credit_apply')}";
+ 
+	$('#apply_btn').click(function(){
+		
+		var num=parseInt($('#apply_num').val());
+		var num_old=parseInt($('#apply_old').val());
+		var num_new=parseInt($('#apply_new').val());
+		var type=parseInt($('#apply_type').val()); 
+		if($('#apply_sure').prop('checked')==false){
+			return false;
+		}
+		 
+		 $.ajax({
+	 			"url":url_apply,
+	 			"type":"POST", 
+	 			"data":{'num_new':num_new,'num':num,'num_old':num_old,'type':type},
+	 			"dataType":"json", 
+	 			"success":function(data){
+	 				msg(data.msg); 
+	 				 
+	 			},
+	 			 "error": function(event, XMLHttpRequest, ajaxOptions, thrownError){ 
+		        	msg(event.responseText,1); 
+		        }
+	 		});
+		return false;
+		
+	});	  		
+</script>

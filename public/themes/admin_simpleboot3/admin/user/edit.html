@@ -39,12 +39,7 @@
 					<input type="text" class="form-control" id="input-user_mobile" name="mobile" value="{$mobile}" required>
 				</div>
 			</div>
-			<div class="form-group">
-				<label for="emergency_mobile" class="col-sm-2 control-label"><span class="form-required">*</span> 紧急联系人手机号</label>
-				<div class="col-md-6 col-sm-10">
-					<input type="text" class="form-control" id="emergency_mobile" name="emergency_mobile" value="{$emergency_mobile}" required>
-				</div>
-			</div>
+		 
 			<div class="form-group">
 				<label for="input-department" class="col-sm-2 control-label"><span class="form-required">*</span>所属部门和职位</label>
 				<div class="col-md-6 col-sm-10">
@@ -80,18 +75,7 @@
 					<input type="text" class="form-control" id="qq" name="qq" value="{$qq}">
 				</div>
 			</div>
-			<div class="form-group">
-				<label for="weixin" class="col-sm-2 control-label"> 微信</label>
-				<div class="col-md-6 col-sm-10">
-					<input type="text" class="form-control" id="weixin" name="weixin" value="{$weixin}">
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="wangwang" class="col-sm-2 control-label">旺旺</label>
-				<div class="col-md-6 col-sm-10">
-					<input type="text" class="form-control" id="wangwang" name="wangwang" value="{$wangwang}">
-				</div>
-			</div>
+		 
 			<div class="form-group">
 				<label for="address" class="col-sm-2 control-label">地址</label>
 				<div class="col-md-6 col-sm-10">
@@ -105,36 +89,7 @@
 				</div>
 			</div>
 			 
-			<div class="form-group">
-				<label for="in_time" class="col-sm-2 control-label">入职时间</label>
-				<div class="col-md-6 col-sm-10">
-					<input type="text" class="form-control js-date" id="in_time" name="in_time" value="{$in_time}">
-				</div>
-			</div>
-			
-			<div class="form-group">
-				<label for="in_time" class="col-sm-2 control-label">转正时间</label>
-				<div class="col-md-6 col-sm-10">
-					<input type="text" class="form-control js-date" id="on_time" name="on_time" value="{$on_time}">
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="in_time" class="col-sm-2 control-label">离职时间</label>
-				<div class="col-md-6 col-sm-10">
-					<input type="text" class="form-control js-date" id="out_time" name="out_time" value="{$out_time}">
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="in_time" class="col-sm-2 control-label">职位状态</label>
-				<div class="col-md-6 col-sm-10">
-					 
-					  <foreach name="job_statuss" item="vo">
-					 	<label class="radio-line">
-					 		<input type="radio" name="job_status" value="{$key}" <if condition="$key eq $job_status">checked</if>/>{$vo}
-					 	</label>
-					 </foreach>
-				</div>
-			</div>
+			 
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 					<input type="hidden" name="id" value="{$id}" />

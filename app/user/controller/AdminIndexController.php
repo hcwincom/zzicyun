@@ -16,7 +16,9 @@ use think\Db;
 use app\notice\model\NoticeConfValModel;
 use app\user\model\UserIndustryModel;
 use app\score\model\ScoreUserModel;
-use app\user\model\UserBalanceModel;
+use app\user\model\UserBalanceModel; 
+use app\user\model\UserCreditModel;
+use app\money\model\CreditGetModel;
 
 /**
  * Class AdminIndexController
@@ -161,28 +163,40 @@ class AdminIndexController extends AdminBaseController
      */
     public function balance_do()
     {
-        $uid= $this->request->param('id', 0, 'intval');
-        $score    = $this->request->param('score', 0, 'intval');
-        $balance    = $this->request->param('balance', 0, 'intval');
+       
+        
+        $data    = $this->request->param();
+        foreach($data as $k=>$v){
+            $data[$k]=intval($v);
+        }
+        $uid= $data['id'];
         if(empty($uid)){
             $this->error('数据错误');
         }
-        if($score==0 && $balance==0){
-            $this->error('数据错误');
-        }
+        
         $admin=$this->admin;
-        $m_su=new ScoreUserModel();
-        $m_su->startTrans();
+        //授信额度
+        $m_user_credit=new CreditGetModel();
+        $m_user_credit->startTrans();
+        $dsc='管理员后台充值';
+        if($data['credit1'] != 0){
+            $m_user_credit->num_do($uid,$data['credit1'],$dsc,1,$admin['id']);
+        }
+        if($data['credit2'] != 0){
+            $m_user_credit->num_do($uid,$data['credit2'],$dsc,1,$admin['id']);
+        } 
         //积分充值
-        if($score!=0){
-            $m_su->score_do($uid, 'score_add',0,$score,$admin['id']);
+        if($data['score']!=0){
+            $m_su=new ScoreUserModel();
+            $m_su->score_do($uid, 'score_add',0,$data['score'],$admin['id']);
         }
+        
         //余额充值
-        if($balance!=0){ 
-            $m_user_balance=new UserBalanceModel(); 
-            $m_user_balance->balance_do($uid,$balance,'管理员后台充值',$admin['id']);
-        }
-        $m_su->commit();
+        if($data['balance']!=0){
+            $m_user_balance=new UserBalanceModel();
+            $m_user_balance->balance_do($uid,$data['balance'],$dsc,$admin['id']);
+        } 
+        $m_user_credit->commit();
         $this->success('充值成功');
     }
     /**
