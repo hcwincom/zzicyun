@@ -3,7 +3,7 @@
 <body>
 	<div class="wrap">
 		<ul class="nav nav-tabs"> 
-			 <li ><a href="{:url('index')}">{$flag}列表</a></li>  
+			<include file="money@admin_credit_apply:nav" />
 			<li class="active"><a href="{:url('edit',['id'=>$info.id])}">{$flag}详情</a></li>  
 		</ul>
 		<form class="form-horizontal js-ajax-form{$zzajax} margin-top-20" role="form" method="post" action="">

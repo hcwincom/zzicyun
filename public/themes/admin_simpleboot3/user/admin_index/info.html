@@ -71,13 +71,34 @@
 				<div class="col-md-6 col-sm-10">
 					<input type="text" class="form-control short"  value="{$user.balance}"  >
 					-<input type="text" class="form-control short"  value="{$user.score}"  >
-					<a href="{:url('balance',['id'=>$user.id])}">用户充值</a>
+					
 				</div>
 			</div>
-			 
+			 <div class="form-group">
+				<label class="col-sm-2 control-label">余额-积分</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control short"  value="{$user.balance}"  >
+					-<input type="text" class="form-control short"  value="{$user.score}"  > 
+				</div>
+			</div>
+			 <div class="form-group">
+				<label class="col-sm-2 control-label">人民币额度-已用</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control short"  value="{$user.credit1}"  >
+					-<input type="text" class="form-control short"  value="{$user.credit1_use}"  > 
+				</div>
+			</div>
+			  <div class="form-group">
+				<label class="col-sm-2 control-label">美元额度-已用</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control short"  value="{$user.credit2}"  >
+					-<input type="text" class="form-control short"  value="{$user.credit2_use}"  > 
+				</div>
+			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10"> 
-					<button type="submit" class="btn btn-primary js-ajax-submit">{:lang('SAVE')}</button>
+				<a class="btn btn-primary" href="{:url('balance',['id'=>$user.id])}">用户充值</a>
+				<!-- 	<button type="submit" class="btn btn-primary js-ajax-submit">{:lang('SAVE')}</button> -->
 				 
 				</div>
 			</div>

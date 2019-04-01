@@ -40,6 +40,7 @@ class AdminBaseController extends BaseController
         View::share('zzajax', config('zzajax'));
         View::share('zztarget', config('zztarget'));
         View::share('pic_default', 'pic.png');
+      
         $this->assign('html',$this->request->action());
     }
 

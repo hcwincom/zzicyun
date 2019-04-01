@@ -97,7 +97,79 @@ class AdminCreditApplyController extends AdminBaseController
         $this->assign("search_types", $search_types); 
         return $this->fetch();
     }
-    
+    /**
+     * 信用提额记录
+     * @adminMenu(
+     *     'name'   => '信用提额记录',
+     *     'parent' => 'money/AdminIndex/default',
+     *     'display'=> true,
+     *     'hasView'=> true,
+     *     'order'  => 2,
+     *     'icon'   => '',
+     *     'remark' => '信用提额记录',
+     *     'param'  => ''
+     * )
+     */
+    public function record()
+    {
+        $data=$this->request->param();
+        $where=[];
+        //审核状态
+        if(empty($data['status'])){
+            $data['status']=0;
+        }else{
+            $where['ca.status']=$data['status'];
+        }
+        
+        //审核人
+        if(empty($data['aid'])){
+            $data['aid']=0;
+        }else{
+            $where['ca.aid']=$data['aid'];
+        }
+        //申请类型
+        if(empty($data['money_type'])){
+            $data['money_type']=0;
+        }else{
+            $where['ca.type']=$data['money_type'];
+        }
+        //查询字段
+        $types=[2=>['u.user_nickname','用户名'],1=>['ca.uid','用户id']];
+        $search_types=config('search_types');
+        zz_search_param($types,$search_types,$data,$where);
+        
+        
+        //时间类别
+        $times=[1=>['ca.time','提额时间']];
+        zz_search_time($times,$data,$where); 
+        $list=Db::name('credit_get')
+        ->alias('ca')
+        ->join('cmf_user u','u.id=ca.uid')
+        ->field('ca.*,u.user_nickname as uname')
+        ->where($where)
+        ->paginate();
+        $page=$list->appends($data)->render();
+        
+        //显示编辑人和审核人
+        $m_user=Db::name('user');
+        //可以加权限判断，目前未加
+        //创建人
+        $where_aid=[
+            'user_type'=>1,
+            'user_status'=>1,
+            'shop'=>1,
+        ];
+        
+        $aids=$m_user->where($where_aid)->order('id asc')->column('id,user_nickname');
+        $this->assign('list',$list);
+        $this->assign('page',$page);
+        $this->assign('aids',$aids);
+        $this->assign('data',$data);
+        $this->assign('types',$types);
+        $this->assign('times',$times);
+        $this->assign("search_types", $search_types);
+        return $this->fetch();
+    }
     
     
     /**
@@ -212,7 +284,75 @@ class AdminCreditApplyController extends AdminBaseController
      */
     public function review_all()
     {
-        parent::review_all();
+        $data=$this->request->param();
+        if(empty($data['ids'])){
+            $this->error('未选择');
+        }
+        $ids=$data['ids'];
+        $adsc='批量审核通过';
+        $status=2;
+       
+        $m=$this->m;
+        //查找信息
+        $where=[
+            'id'=>['in',$ids],
+            'status'=>1,
+        ];
+        $list=$m->where($where)->column('');
+       
+        if(empty($list) ){
+            $this->error('无可审核信息');
+        }
+        $admin=$this->admin;
+        $ids=array_keys($list);
+        $time=time();
+        $update=[
+            'aid'=>$admin['id'],
+            'atime'=>$time,
+            'status'=>$status,
+            'adsc'=>$adsc
+        ];
+        $m->startTrans();
+        $row=$m->where('id','in',$ids)->update($update);
+        
+        if($row<=0){
+            $m->rollback();
+            $this->error('审核失败，请刷新后重试');
+        }
+        $uids=[];
+        $udscs=[];
+        $money_types=config('money_type');
+        //提额
+        if($status==2){
+            $m_get=new CreditGetModel();
+            foreach($list as $k=>$v){
+                $uids[]=$v['uid'];
+                $udscs[]=date('Y-m-d H:i',$v['utime']).'提交的'.$money_types[$v['type']].$v['num'].'信用提额申请已审核通过';
+                $m_get->num_do($v['uid'], $v['num'], $udsc, $v['type']);
+            }
+           
+        }
+        
+        //审核成功，记录操作记录,发送审核信息
+        $statuss=$this->review_statuss;
+        $admin=$this->admin;
+        
+        $time=time();
+        $data_action=[
+            'aid'=>$admin['id'],
+            'time'=>time(),
+            'ip'=>get_client_ip(),
+            'action'=>$admin['user_nickname'].'批量审核信用提额申请'.implode(',', $ids).'为'.$statuss[$status],
+            'table'=>'credit_apply',
+            'type'=>'review_all',
+            'pid'=>0,
+            'link'=>'',
+            'shop'=>$admin['shop'],
+        ];
+        Db::name('action')->insert($data_action);
+        zz_action_user($data_action,['uscs'=>$udscs,'uids'=>$uids]);
+        $m->commit();
+        $this->success('审核成功');
     }
     
     

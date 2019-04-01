@@ -10,7 +10,7 @@
 		</ul>
 		 <form class="well form-inline margin-top-20" method="post"
 			action="">
-			额度类型: 
+			授信类型: 
 			<select class="form-control" name="money_type" >
 				<option value='0'>全部</option> 
 				 <foreach name="money_types" item="vo" k="key">
@@ -18,16 +18,7 @@
 				</option>
 				</foreach>
 			</select> &nbsp;&nbsp;
-			状态: 
-			<select class="form-control" name="status" >
-				<option value='0'>全部</option> 
-				 <foreach name="review_statuss" item="vo" k="key">
-				<option value="{$key}" <if condition="$key eq $data.status">selected</if>> 
-				 {$vo}
-				</option>
-				</foreach>
-			</select> &nbsp;&nbsp;  
-		  
+		 
 			审核人: 
 			<select class="form-control" name="aid" >
 				<option value='0'>全部</option> 
@@ -63,11 +54,7 @@
 		 
 		<form method="post" class="js-ajax-form{$zzajax} margin-top-20" action="">
 			<div class="table-actions">
- 
-			 	<button type="submit" class="review_all btn-sm btn-primary  js-ajax-submit" >批量同意</button>
-			 	 
-			 	<button type="submit" class="del_all btn-sm btn-primary  js-ajax-submit">批量删除</button>
-			 	<p class='error'></p>
+  
 			</div>
 
 			<table class="table table-hover table-bordered table-list">
@@ -82,20 +69,19 @@
 						<th width="100">{$flag}ID</th>
 						 
 						<th>用户id-昵称</th> 
-						<th>申请类型</th> 
-						<th>申请金额</th> 
+						<th>授信类型</th> 
+						<th>授信金额</th> 
 						 
-						<th>申请时间</th>
-						<th>审核人</th>
-						<th>审核时间</th>  
-						<th>状态</th>
-						 <th>详情</th>
+						<th>授信时间</th>
+						<th>授信人</th>
+						<th>授信说明</th>
+						 
 					</tr>
 				</thead>
 				<tbody>
 					<foreach name="list" item="vo">
 				 
-					<tr class="status{$vo.status}">
+					<tr >
 						<td>
 							<input type="checkbox" class="js-check"
 							data-yid="js-check-y" data-xid="js-check-x" name="ids[]"
@@ -105,21 +91,15 @@
 						{$vo.id} 
 						</td>
 						<td><a href="{:url('user/AdminIndex/info',['id'=>$vo.uid])}" target="{$zztarget.other}">{$vo.uid}-{$vo.uname}</a></td>
-					 	<td>{$money_types[$vo.type]}</td>
-					 	<td>{$vo.num}</td>
-						
-						<td>{$vo.atime|date='Y-m-d H:i',###}</td>
-						<eq name="vo.aid" value="0">
-						<td>-</td>
-						<td>-</td>
-						<else/>
-						<td>{$aids[$vo.aid]|default=$vo.rid}</td>
-						<td>{$vo.atime|date='Y-m-d H:i',###}</td>
-						</eq>
-						 
-						<td>{$review_statuss[$vo.status]}</td>
-						 <td><a href="{:url('edit',['id'=>$vo.id])}"  target="{$zztarget['list']}">详情</a></td>
 					 
+						<td>{$money_types[$vo.type]}</td>
+							<td>{$vo.num}</td>
+						<td>{$vo.time|date='Y-m-d H:i',###}</td>
+						 
+						<td>{$aids[$vo.aid]|default=$vo.rid}</td>
+						<td>{$vo.dsc}</td>
+						 
+						 
 					</tr>
 				 
 					</foreach>
