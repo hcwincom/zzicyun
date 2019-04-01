@@ -57,11 +57,11 @@ $(".orderinvo div").click(function(){
 	$(".orderinvo-group .orderinvo-group-list").eq(index).addClass("cateinvocurrent").siblings("div").removeClass("cateinvocurrent");
 	  			
 });
-$(".invocheckchoice ul li").click(function(){
-	var index = $(this).index();
-	$(this).addClass("catecurrt").siblings("li").removeClass("catecurrt");
-	$(".invocate-box>div").eq(index).addClass("cateinvocurrent").siblings("div").removeClass("cateinvocurrent");
-});
+// $(".invocheckchoice ul li").click(function(){
+// 	var index = $(this).index();
+// 	$(this).addClass("catecurrt").siblings("li").removeClass("catecurrt");
+// 	$(".invocate-box>div").eq(index).addClass("cateinvocurrent").siblings("div").removeClass("cateinvocurrent");
+// });
 	  		
 $(".togginfo").click(function(){
 	$(".groupbox-display").toggle();

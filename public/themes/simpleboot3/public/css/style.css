@@ -3868,7 +3868,7 @@
 	border: 1px solid #dcdcdc;
 }
 .orderdelive>.orderdelive-div:first-child,
-.orderinvo>.orderdelive-div:first-child{
+.orderinvo>.orderdelive-div{
 	margin-right: 10px;
 }
 .orderdelive>.ordeliveCurrt,.orderinvo>.ordeliveCurrt{

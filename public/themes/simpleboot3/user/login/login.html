@@ -129,10 +129,12 @@ $('#psw_submit').click(function(){
 	        	if(data.code==1){
 					//成功提示
 					 msg('成功');
+					 location.href = "index.html";
 				}else{
 					//失败
 					msg(data.msg);
 				}
+
 	        },
 	        error: function(event, XMLHttpRequest, ajaxOptions, thrownError){ 
 	        	msg(event.responseText,1);

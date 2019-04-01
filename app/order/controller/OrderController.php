@@ -154,6 +154,7 @@ class OrderController extends UserBaseController
        //发票
        $m_invoice=new  InvoiceUserModel();
        $invoices=$m_invoice->get_infos_all($uid);
+    //    dump($invoices);
        $this->assign('invoices',$invoices);
        //运费计算
        $m_fr=new FreightAreaModel();

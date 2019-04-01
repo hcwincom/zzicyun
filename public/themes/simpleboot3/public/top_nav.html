@@ -20,7 +20,7 @@
 					 <empty name="Think.session.user">	
 					 
 					<div class="site-nav-sign">
-				
+						
 						<a href="{:url('user/Login/login')}" target="_top">{$notice.index.login}</a>
 						<a href="{:url('user/Register/register')}" target="_top">{$notice.index.register}</a>
 					
@@ -29,8 +29,12 @@
 					<!--登录之后显示begin-->
 					<div class="sign_after"  >
 						<p>
-							<i class="iconfont icon-logout-user"></i>
+							<!-- <i class="iconfont icon-logout-user"></i> -->
+							<span class="sign_img">
+								<img src="{$image_url}/{$Think.session.user.avatar}" alt="" />
+							</span>
 							<span>{$Think.session.user.user_nickname}</span>
+							<a href="">退出</a>
 						</p>
 					</div>
 					</empty>
