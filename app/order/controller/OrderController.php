@@ -157,7 +157,7 @@ class OrderController extends UserBaseController
        $m_fr=new FreightAreaModel();
        $freight=current($freights);
        $address=current($addresses);
-       $fee=$m_fr->get_fee($freight['id'], $address['city'], $count_weight, $count_size,$count_money,$freight['size']);
+       $fee=$m_fr->get_fee($freight['id'], $address['city'], $count_weight, $count_size,$count_money,$type);
        $this->assign('freight_fee',$fee);
        $this->assign('freight_id',$freight['id']);
        $this->assign('address_id',$address['id']);

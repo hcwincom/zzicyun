@@ -32,10 +32,7 @@
 															<textarea name="shopAddr" id="takeAddr" class="shop-area"></textarea>
 														</div>
 													</div>
-													<!-- <input type="hidden" class="province" value="{$vo.province}" />
-													<input type="hidden" class="city" value="{$vo.city}" />
-													<input type="hidden" class="area" value="{$vo.area}" /> -->
-
+											
 													<div class="groupInput-box clear">
 														<p class="fl"></p>
 														<div class="box-input fl">
@@ -62,6 +59,10 @@
 														<input type="radio" name="address_id" class="address_id" value="{$key}" <if condition="$key eq $address_id">checked</if> />
 														<span class="addrName">{$vo.accept_name}（收）</span>
 														<span class="addrTel">{$vo.tel}</span>
+	  													<input type="hidden" class="province" value="{$vo.province}" />
+															<input type="hidden" class="city" value="{$vo.city}" />
+															<input type="hidden" class="area" value="{$vo.area}" />  
+
 														<span class="addrInfo">{$vo.address_info}{$vo.address}</span>
 													</div>
 													
