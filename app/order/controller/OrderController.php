@@ -1,12 +1,9 @@
 <?php
  
 namespace app\order\controller;
- 
-use app\goods\model\GoodsCateModel;
+  
 use think\Db; 
-use app\notice\model\ArticleModel;
-use app\notice\model\ArticleCateModel;
-use app\goods\model\GoodsFileModel;
+ 
 use app\goods\model\GoodsBrandModel;
 use app\goods\model\GoodsModel;
 use app\common\controller\UserBaseController;
@@ -116,7 +113,7 @@ class OrderController extends UserBaseController
        }else{
            $m_coupon=new CouponUserModel(); 
            $coupons=$m_coupon->get_list($uid,$price_type); 
-           dump($coupons);
+           
        }
        $this->assign('goods_list',$goods_list); 
        $this->assign('brands',$brands);
@@ -174,13 +171,35 @@ class OrderController extends UserBaseController
        $data0=$this->request->param();
        dump($data0);
        $data=[
+           'coupon_id'=>1,//优惠券
+           'invoice_id'=>1,
            'freight_type'=>1,//1快递2自提
            'address_id'=>1,//快递和自提地址
            'accept_name'=>'',//自提人
-           'tel'=>'',//
-           'coupon'=>1,
-           'invoice_id'=>1,
-           'address_id'=>1,
+           'tel'=>'',//自提电话 
+           'pay_freight'=>0,//运费
+           'freight_id'=>1,//选择快递
+           'pay_type1'=>1,//在线支付
+           'pay_type2'=>1,//支付宝
+           'pay_type3'=>1,//全额付款
+           'dsc'=>'速度快点',//订单备注
+           'nums'=>[],//产品数量
+           'dscs'=>[],//产品备注
+           'goods'=>[],//产品ids
+           'pay_freight'=>0,//运费
        ];
    }
+   //运费计算
+   public function freight_fee(){
+       $data=$this->request->param();
+       $m_freight_area=new FreightAreaModel();
+       $fee=$m_freight_area->get_fee($data['freight_id'], $data['city'], $data['weight'], $data['size'],$data['money'],$data['type']);
+       if($fee>=0){
+           $this->success($fee);
+       }else{
+           $this->error('快递不配送');
+       }
+        
+   }
+   
 }

@@ -23,14 +23,15 @@ $(function(){
 	 
 		var div='<div class="form-group">'+
 		'<label class="col-sm-2 control-label">'+area_name+'</label>'+
-		'</label><div class="col-md-6 col-sm-10">'+
-		'包邮达标金额：<input type="text" class="form-control short " id="price'+area+'" name="price0['+area+']" />元/'+
-		'包邮极限重量：<input type="text" class="form-control short" name="weight0['+area+']" />kg'+
-		'首重：<input type="text" class="form-control short " name="price1['+area+']" />元/'+
+		'<div class="col-md-6 col-sm-10">'+
+		' <label class="input-inline"> 包邮达标金额：<input type="text" class="form-control short " id="price'+area+'" name="price0['+area+']" />元'+
+		'</label><label class="input-inline">包邮极限重量：<input type="text" class="form-control short" name="weight0['+area+']" />kg'+
+		'</label><label class="input-inline">首重：<input type="text" class="form-control short " name="price1['+area+']" />元/'+
 		'<input type="text" class="form-control short" name="weight1['+area+']" />kg'+
-		'续重：<input type="text" class="form-control short" name="price2['+area+']" />元/'+
+		'</label><label class="input-inline">续重：<input type="text" class="form-control short" name="price2['+area+']" />元/'+
 		'<input type="text" class="form-control short" name="weight2['+area+']" />kg'+
-		'<button class="del" type="button">删除</button></div></div>';
+		'</label><label class="input-inline">体积重量换算比：<input type="number" class="form-control short" name="size_rate['+area+']" value="6000"/>'+
+		'</label><button class="del" type="button">删除</button></div></div>';
         
 		$('#fees').append(div); 
 		 

@@ -129,7 +129,7 @@ class InfoController extends UserBaseController
      */
     public function address_do()
     {
-       
+        $this->success('dd');
         $lan1=$this->lan1;
         $lan2=$this->lan2;
         $uid=session('user.id');

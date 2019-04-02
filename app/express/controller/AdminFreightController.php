@@ -19,7 +19,7 @@ class AdminFreightController extends AdminInfoController
         $this->m=Db::name('freight');
       
         $this->base=['name'=>'str','sort'=>'int','dsc'=>'str','express'=>'int',
-            'type1'=>'int','type2'=>'int','type3'=>'int','size'=>'int'
+            'type1'=>'int','type2'=>'int','type3'=>'int' 
         ];
         
         $this->isshop=0;
@@ -317,6 +317,9 @@ class AdminFreightController extends AdminInfoController
                  $data['price2'][$k]=round($data['price2'][$k],2);
                  $data['weight1'][$k]=round($data['weight1'][$k],2);
                  $data['weight2'][$k]=round($data['weight2'][$k],2);
+                 $data['weight0'][$k]=round($data['weight0'][$k],2);
+                 $data['price0'][$k]=round($data['price0'][$k],2);
+                 $data['size_rate'][$k]=intval($data['size_rate'][$k]);
              }
          }
          
@@ -336,7 +339,10 @@ class AdminFreightController extends AdminInfoController
                  'price1'=>$v,
                  'price2'=>$data['price2'][$k],
                  'weight1'=>$data['weight1'][$k],
-                 'weight2'=>$data['weight2'][$k], 
+                 'weight2'=>$data['weight2'][$k],
+                 'price0'=>$data['price0'][$k],
+                 'weight0'=>$data['weight0'][$k],
+                 'size_rate'=>$data['size_rate'][$k],
              ];
          }
          $m_fr=new FreightAreaModel();
@@ -379,13 +385,22 @@ class AdminFreightController extends AdminInfoController
                      $fee_edit[$k]['price1']=$v;
                  }
                  if($fees[$k]['price2'] != $data['price2'][$k]){
-                     $fee_edit[$k]['price2']=$v;
+                     $fee_edit[$k]['price2']=$data['price2'][$k];
                  }
                  if($fees[$k]['weight1'] != $data['weight1'][$k]){
-                     $fee_edit[$k]['weight1']=$v;
+                     $fee_edit[$k]['weight1']=$data['weight1'][$k];
                  }
                  if($fees[$k]['weight2'] != $data['weight2'][$k]){
-                     $fee_edit[$k]['weight2']=$v;
+                     $fee_edit[$k]['weight2']=$data['weight2'][$k];
+                 }
+                 if($fees[$k]['weight0'] != $data['weight0'][$k]){
+                     $fee_edit[$k]['weight0']=$data['weight0'][$k];
+                 }
+                 if($fees[$k]['price0'] != $data['price0'][$k]){
+                     $fee_edit[$k]['price0']=$data['price0'][$k];
+                 }
+                 if($fees[$k]['size_rate'] != $data['size_rate'][$k]){
+                     $fee_edit[$k]['size_rate']=$data['size_rate'][$k];
                  }
                   
              }else{
@@ -396,6 +411,9 @@ class AdminFreightController extends AdminInfoController
                      'price2'=>$data['price2'][$k],
                      'weight1'=>$data['weight1'][$k],
                      'weight2'=>$data['weight2'][$k],
+                     'weight0'=>$data['weight0'][$k],
+                     'price0'=>$data['price0'][$k],
+                     'size_rate'=>$data['size_rate'][$k], 
                  ];
              }
              

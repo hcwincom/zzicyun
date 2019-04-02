@@ -40,7 +40,7 @@ class AdminInfoController extends AdminBaseController
         //str,int,round1,round2,round3,round4,pic,file
         $this->base=['name'=>'str','sort'=>'int','dsc'=>'str','cid'=>'int'];
         
-        $this->search=[2=>['name','名称'],1=>['id','id']];  
+        $this->search=[2=>['name','名称'],1=>['id','id'],3=>['dsc','备注说明']];  
         $this->isshop=0;
         $this->islan=0;
         

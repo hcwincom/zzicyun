@@ -34,11 +34,10 @@ class FreightAreaModel extends Model
      * @param int $city目的地
      * @param int $count_weight订单重量
      * @param int $count_size订单体积
-     * @param number $count_money订单金额
-     * @param number $size_rate体积换算比
+     * @param number $count_money订单金额 
      * @return float 运费
      */
-    public function get_fee($freight,$city,$count_weight,$count_size,$count_money=0,$size_rate=0){
+    public function get_fee($freight,$city,$count_weight,$count_size,$count_money,$money_type=1){
         //先获取城市所在区域
         $where=[
             'city'=>$city,
@@ -54,14 +53,18 @@ class FreightAreaModel extends Model
         ];
         $price=$this->where($where)->find();
         $price=$price->getData();
-        //如果体积换算比没有就只能自己获取
-        if(empty($size_rate)){
-            $size_rate=Db::name('freight')->where('id',$freight)->value('size');
-            
+        //美元换算
+        if($money_type>1){
+            $rate=Db::name('shop')->where('id',1)->value('rate');
+            $price['price0']=$price['price0']*$rate;
+            $price['price1']=$price['price1']*$rate;
+            $price['price1']=$price['price2']*$rate; 
         }
+      
+         
         //体积比较
-        if($size_rate>0){
-            $weight_tmp=round($count_size/$size_rate,2);
+        if($price['size_rate']>0){
+            $weight_tmp=$count_size/$price['size_rate'];
             if($weight_tmp>$count_weight){
                 $count_weight=$weight_tmp;
             }
@@ -69,22 +72,21 @@ class FreightAreaModel extends Model
         //达到免邮标准
         if($count_money>=$price['price0']){
             if($count_weight<=$price['weight0']){
-                return 0;
+                $fee=0;
             }else{
                 //超重计费
-                $more=round(ceil(($count_weight-$price['weight0'])/$price['weight2'])*$price['price2'],2);
-                return $more;
+                $fee=round(ceil(($count_weight-$price['weight0'])/$price['weight2'])*$price['price2'],2); 
             }
         }else{
             //首重
             if($count_weight<=$price['weight1']){
-                return $price['price1'];
+                $fee=$price['price1'];
             }else{
                 //超重计费
-                $more=round(ceil(($count_weight-$price['weight1'])/$price['weight2'])*$price['price2'],2);
-                return round($more+$price['price1'],2);
+                $fee=$price['price1']+ceil(($count_weight-$price['weight1'])/$price['weight2'])*$price['price2']; 
             }
         }
+        return round($fee,2);
        
     }
     

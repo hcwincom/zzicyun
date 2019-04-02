@@ -49,7 +49,7 @@ class PublicController extends DeskBaseController
         
         $code=Db::name('express')->where('id',$express)->value('code');
         if(empty($code)){
-            $this->error('没有快递类型编码');
+            $this->error('无此快递信息');
         }
         $no=$this->request->param('no');
         if(empty($no)){
@@ -58,5 +58,7 @@ class PublicController extends DeskBaseController
         $url='https://www.kuaidi100.com/chaxun?';
         header('location:'.$url.'com='.$code.'&nu='.$no);
     }
+    
+    
      
 }

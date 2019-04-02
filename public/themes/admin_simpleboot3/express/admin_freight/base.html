@@ -47,16 +47,7 @@
 				 
 				</div>
 			</div>
-			 <div class="form-group">
-				<label class="col-sm-2 control-label">体积重量换算比</label>
-				<div class="col-md-6 col-sm-10"> 
-					<input type="number" class="form-control" name="size" value="{$info.size|default=6000}" /> 
-					<present name="change.size">
-					<input type="number" class="form-control red"  value="{$change.size}" /> 
-					</present>
-					<span class="notice">换算比用于体积大重量小的快递，体积（立方厘米）/换算比=计费重量（kg）</span>
-				</div>
-			</div>
+			 
 		<empty name="info1.id">
 			<include file="express@admin_freight:area_add" />
 		</empty>
@@ -74,18 +65,22 @@
 				</present>
 				</label>
 				<div class="col-md-6 col-sm-10"> 
+			  <label class="input-inline"> 
 				包邮达标金额：
 					<input type="text" class="form-control short" id="price{$key}" name="price0[{$key}]" value="{$vo.price0}" />
 					<present name="change['fee_edit'][$key]['price0']">
 					<span class="red">{$change['fee_edit'][$key]['price0']}</span>
 					</present>
-					元/
+					元
+				</label>
+				 <label class="input-inline"> 
 				包邮极限重量：
 					<input type="text" class="form-control short" name="weight0[{$key}]" value="{$vo.weight0}" />
 					<present name="change['fee_edit'][$key]['weight0']">
 					<span class="red">{$change['fee_edit'][$key]['weight0']}</span>
 					</present>
-					kg
+					kg</label>
+				 <label class="input-inline"> 
 				首重：
 					<input type="text" class="form-control short" name="price1[{$key}]" value="{$vo.price1}" />
 					<present name="change['fee_edit'][$key]['price1']">
@@ -96,7 +91,8 @@
 					<present name="change['fee_edit'][$key]['weight1']">
 					<span class="red">{$change['fee_edit'][$key]['weight1']}</span>
 					</present>
-					kg
+					kg</label>
+				 <label class="input-inline"> 
 				 续重：
 					<input type="text" class="form-control short" name="price2[{$key}]" value="{$vo.price2}" />
 					<present name="change['fee_edit'][$key]['price2']">
@@ -107,7 +103,14 @@
 					<present name="change['fee_edit'][$key]['weight2']">
 					<span class="red">{$change['fee_edit'][$key]['weight2']}</span>
 					</present>
-					kg
+					kg</label>
+				 <label class="input-inline"> 
+					体积重量换算比：
+					<input type="number" class="form-control short" name="size_rate[{$key}]" value="{$vo.size_rate}" />
+					<present name="change['fee_edit'][$key]['size_rate']">
+					<span class="red">{$change['fee_edit'][$key]['size_rate']}</span>
+					</present>
+					</label> 
 					<button class="del" id="del{$key}" type="button">删除</button>
 				</div>
 			</div>
@@ -121,15 +124,38 @@
 					<span class="red">新增</span>
 				</label>
 				<div class="col-md-6 col-sm-10"> 
+				<label class="input-inline"> 
+				包邮达标金额：
+					<input type="text" class="form-control short" id="price{$key}" name="price0[{$key}]" value="{$vo.price0}" />
+					 
+					元
+				</label>
+				 <label class="input-inline"> 
+				包邮极限重量：
+					<input type="text" class="form-control short" name="weight0[{$key}]" value="{$vo.weight0}" />
+					 
+					kg</label>
+				 <label class="input-inline"> 
 				首重：
 					<input type="text" class="form-control short" name="price1[{$key}]" value="{$vo.price1}" />
 					 
 					元/
-					<input type="text" class="form-control short" name="weight1[{$key}]" value="{$vo.weight1}" />kg
-				 续重：
-					<input type="text" class="form-control short" name="price2[{$key}]" value="{$vo.price2}" />元/
-					<input type="text" class="form-control short" name="weight2[{$key}]" value="{$vo.weight2}" />kg
+					<input type="text" class="form-control short" name="weight1[{$key}]" value="{$vo.weight1}" />
 					 
+					kg</label>
+				 <label class="input-inline"> 
+				 续重：
+					<input type="text" class="form-control short" name="price2[{$key}]" value="{$vo.price2}" />
+					 
+					元/
+					<input type="text" class="form-control short" name="weight2[{$key}]" value="{$vo.weight2}" />
+					 
+					kg</label>
+				 <label class="input-inline"> 
+					体积重量换算比：
+					<input type="number" class="form-control short" name="size_rate[{$key}]" value="{$vo.size_rate}" />
+					 
+					</label> 
 				</div>
 			</div>
 		    
@@ -148,14 +174,7 @@
 				</div>
 			</div> 
 		</present>
-		<div class="form-group">
-				<label class="col-sm-2 control-label">
-					 
-				</label>
-				<div class="col-md-6 col-sm-10"> 
-				 <p class="notice">订单达到包邮达标金额后可以免邮，但是超过包邮极限重量后要按续重价格计费</p>
-				</div>
-			</div> 
+		 
 		
 		</div>
 			 <div class="form-group">
