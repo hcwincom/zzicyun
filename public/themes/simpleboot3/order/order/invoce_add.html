@@ -1,0 +1,382 @@
+
+								<div class="shopOrder-groupList">
+									<div class="groupList-head">
+										<h3>发票信息</h3>
+									</div>
+									<div class="groupList-list">
+										<div class="orderinvo clear">
+											<div class="orderdelive-div fl ordeliveCurrt">专用发票</div>
+											<div class="orderdelive-div fl">普通发票（公司）</div>
+											<div class="orderdelive-div fl">普通发票（个人）</div>
+										</div>
+										<div class="orderinvo-group">
+											<!--专用发票-->
+											<div class="orderinvo-group-list cateinvocurrent">
+												<div class="excultxt">
+													<ul class="excultxt-list">
+													<foreach name="invoices[1]" item="vo">
+														<li class="excultxtaddr">
+															<div class="excultxt-list-top">
+																<span> {$vo.title}&nbsp;&nbsp;</span>
+																<span>{$vo.name}</span>
+															</div>
+															<div class="excultxt-list-btn">
+																<button type="button" class="exculdafult">默认</button>
+																<button type="button" class="excultxtbtn">修改</button>
+															</div>
+														</li>
+													</foreach>
+														<li>
+															<div class="excultxt-list-top">
+																<span>谢谢，我不用发票</span>
+															</div>
+														</li>
+													</ul>
+													<div class="exaddinvo">
+														<button type="button">添加发票</button>
+													</div>
+												</div>
+												<div class="exculform" style="display: none;">
+													<div class="exclu-tip">
+														<p>请确保所填开票信息与贵司税务登记证一致，避免不必要的损失。</p>
+														<p>首次开局增值税专用发票或更改信息，需上传加盖公章的开票信息扫描件，客服代表接收到贵司开票信后，我司会在您的订单签</p>
+														<p>满七天开具发票，发票建在每月的22号左右同意寄送，详见：<a href="memberCenter/invoice-xuzhi.html">《发票须知》</a></p>
+													</div>
+												
+														<div class="shopexclu-form">
+															<div class="groupInput-box clear">
+																<p class="fl">发票抬头：</p>
+																<div class="box-input fl">
+																	<input type="text" name="intitle" id="intitle" value="" class="orderbox-input" placeholder="请输入全名" />
+																</div>
+															</div>
+															<!-- <div class="togginfo"><p>（<span>关闭</span>补全发票信息）<i class="iconfont icon-jiantou-copy"></i></p></div> -->
+															<div class="groupbox-display">
+																<div class="groupInput-box clear">
+																	<p class="fl">公司注册地址：</p>
+																	<div class="box-input fl">
+																		<input type="text" name="regaddr" id="regaddr" value="" class="orderbox-input" />
+																	</div>
+																</div>
+																<div class="groupInput-box clear">
+																	<p class="fl">公司电话：</p>
+																	<div class="box-input fl">
+																		<input type="text" name="comtel" id="comtel" value="" class="orderbox-input" placeholder="区号和号码用“-”隔开，或者不填区号" />
+																	</div>
+																</div>
+																<div class="groupInput-box clear">
+																	<p class="fl">税务登记号：</p>
+																	<div class="box-input fl">
+																		<input type="text" name="regnum" id="regnum" value="" class="orderbox-input" />
+																	</div>
+																</div>
+																<div class="groupInput-box clear">
+																	<p class="fl">开户银行：</p>
+																	<div class="box-input fl">
+																		<input type="text" name="kbank" id="kbank" value="" class="orderbox-input" />
+																	</div>
+																</div>
+																<div class="groupInput-box clear">
+																	<p class="fl">开户银行账号：</p>
+																	<div class="box-input fl">
+																		<input type="text" name="bankaccount" id="bankaccount" value="" class="orderbox-input" />
+																	</div>
+																</div>
+																<div class="groupInput-box clear">
+																	<p class="fl">收票人：</p>
+																	<div class="box-input fl">
+																		<input type="text" name="sname" id="sname" value="" class="orderbox-input" />
+																	</div>
+																</div>
+																<div class="groupInput-box clear">
+																	<p class="fl">收票人手机号：</p>
+																	<div class="box-input fl">
+																		<input type="text" name="sphone" id="sphone" value="" class="orderbox-input" />
+																	</div>
+																</div>
+																<div class="groupInput-box clear">
+																	<p class="fl">收票地址：</p>
+																	<div class="box-input fl">
+																		<select name="province" id="city11">
+																			<option value="0">省份</option>
+																		
+																		</select>
+																		<select name="city" id="city22">
+																			<option value="0">地级市</option>
+																		
+																		</select>
+																		<select name="area" id="city33">
+																			<option value="0">县/区</option>
+																		
+																		</select>
+
+
+																	</div>
+																</div>
+																<div class="groupInput-box clear">
+																	<p class="fl">详细地址：</p>
+																	<div class="box-input fl">
+																		<textarea name="addrdetail" id="addrdetail" class="shop-area"></textarea>
+																	</div>
+																</div>
+																<div class="groupInput-box invoformpad clear">
+																	<p class="fl">上传开票资料：</p>
+																	<div class="box-input fl">
+																		<label for="invo-file" class="invo-label">
+																			<p>请选择文件</p>
+																			<input type="file" name="invofile" id="invo-file" value="" class="invo-file hideinp" />
+																		</label>
+																	</div>
+																</div>
+															</div>
+															<div class="groupInput-box clear">
+																<p class="fl"></p>
+																<div class="box-input fl">
+																	<input type="checkbox" name="tolecheck" id="tolecheck" value="" class="orcheck"/>
+																	<span>我已阅读并同意 <a href="memberCenter/invoice-xuzhi.html">《发票须知》</a></span>
+																</div>
+															</div>
+															
+															<div class="groupInput-box clear">
+																<p class="fl"></p>
+																<div class="box-input fl excuBtn">
+																	<button type="button" class="keepInvoce">保存</button>
+																	<button type="button" class="callOffInvoce">取消</button>
+																</div>
+															</div>
+														</div>
+												
+												</div>
+											</div>
+											<!--普通发票公司-->
+											<div class="orderinvo-group-list">
+												<div class="invocateform-total">
+													<ul class="invocateformTxt">
+
+													<foreach name="invoices[2]" item="vo">
+														<li class="incocateaddr">
+															<div class="invocateform-top">
+																<span>公司发票 &nbsp;&nbsp;</span>
+																 <span>{$vo.accept_name} &nbsp;&nbsp; {$vo.accept_tel}&nbsp;&nbsp; {$vo.accept_address_info}{$vo.accept_address}</span> 
+															</div>
+															<div class="invocateform-button">
+																<button type="button">默认</button>
+																<button type="button" class="invoamendbtn">修改</button>
+															</div>
+														</li>
+													</foreach>
+														<li>
+															<div class="invocateform-top">
+																 <span>我不开发票，谢谢！</span> 
+															</div>
+														</li>
+													</ul>
+													<!--添加-->
+													<div class="invocateAdd">
+														<button type="button" class="cate-addbtn">添加发票</button>
+													</div>
+													<!---->
+												</div>
+												<!--表格-->
+												<div class="invocatedisplayform">
+													<div class="invocate-box">
+														<div class="orderinvo-company cateinvocurrent">
+															<div class="invocateform">
+																
+																	<div class="shopexclu-form">
+																		<div class="groupInput-box clear">
+																			<p class="fl">发票抬头：</p>
+																			<div class="box-input fl">
+																				<input type="text" name="intitle" id="intitle" value="" class="orderbox-input" placeholder="请输入全名" />
+																			</div>
+																		</div>
+																		<div class="groupInput-box clear">
+																			<p class="fl">税务登记号：</p>
+																			<div class="box-input fl">
+																				<input type="text" name="regnum" id="regnum" value="" class="orderbox-input" />
+																			</div>
+																		</div>
+																		<!-- <div class="togginfo"><p><span>展开</span>补全发票信息（非必填）<i class="iconfont icon-jiantou-copy"></i></p></div> -->
+																		<div class="groupbox-display">
+																			<div class="groupInput-box clear">
+																				<p class="fl">收票人：</p>
+																				<div class="box-input fl">
+																					<input type="text" name="sname" id="sname" value="" class="orderbox-input" />
+																				</div>
+																			</div>
+																			<div class="groupInput-box clear">
+																				<p class="fl">收票人手机号：</p>
+																				<div class="box-input fl">
+																					<input type="text" name="sphone" id="sphone" value="" class="orderbox-input" />
+																				</div>
+																			</div>
+																			<div class="groupInput-box clear">
+																				<p class="fl">收票地址：</p>
+																				<div class="box-input fl">
+																					<select name="province" id="city111">
+																						<option value="0">省份</option>
+																					
+																					</select>
+																					<select name="city" id="city222">
+																						<option value="0">地级市</option>
+																					
+																					</select>
+																					<select name="area" id="city333">
+																						<option value="0">县/区</option>
+																					
+																					</select>
+
+																				</div>
+																			</div>
+																			<div class="groupInput-box clear">
+																				<p class="fl">详细地址：</p>
+																				<div class="box-input fl">
+																					<textarea name="addrdetail" id="addrdetail" class="shop-area"></textarea>
+																				</div>
+																			</div>
+																		</div>
+																		<div class="groupInput-box clear">
+																			<p class="fl"></p>
+																			<div class="box-input fl">
+																				<input type="checkbox" name="tolecheck" id="tolecheck" value="" class="orcheck"/>
+																				<span>我已阅读并同意 <a href="memberCenter/invoice-xuzhi.html">《发票须知》</a></span>
+																			</div>
+																		</div>
+																		<p class="deml tipMsg"></p>
+																		<div class="groupInput-box clear">
+																			<p class="fl"></p>
+																			<div class="box-input fl personBtn">
+																				<button type="button" class="keepComInvoce">保存</button>
+																				<button type="button" class="callOffCom">取消</button>
+																			</div>
+																		</div>
+																	</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<!-- 普通发票个人 -->
+												<div class="orderinvo-group-list">
+													<div class="invocateform-total">
+														<ul class="invocateformTxt">
+												
+															<foreach name="invoices[2]" item="vo">
+																<li class="incocateaddr">
+																	<div class="invocateform-top">
+																		<span>个人发票 &nbsp;&nbsp;</span>
+																		<span>{$vo.accept_name} &nbsp;&nbsp; {$vo.accept_tel}&nbsp;&nbsp;
+																			{$vo.accept_address_info}{$vo.accept_address}</span>
+																	</div>
+																	<div class="invocateform-button">
+																		<button type="button">默认</button>
+																		<button type="button" class="invoamendbtn">修改</button>
+																	</div>
+																</li>
+															</foreach>
+												
+															<li>
+																<div class="invocateform-top">
+																	<span>我不开发票，谢谢！</span>
+																</div>
+															</li>
+														</ul>
+														<!--添加-->
+														<div class="personInvoAdd">
+															<button type="button" class="person_addbtn">添加发票</button>
+														</div>
+														<!---->
+													</div>
+													<!--表格-->
+													<div class="invoCatePersonForm">
+														<div class="invocate-box">
+															<!--  -->
+															<div class="orderinvo-person cateinvocurrent">
+																<div class="invopersonform">
+												
+																	<div class="shopexclu-form">
+																		<div class="groupInput-box clear">
+																			<p class="fl">发票抬头：</p>
+																			<div class="box-input fl">
+																				<input type="text" name="intitle" id="intitle" value="" class="orderbox-input" placeholder="请输入全名" />
+																			</div>
+																		</div>
+																		<!-- <div class="togginfo">
+																			<p><span>展开</span>补全发票信息（非必填）<i class="iconfont icon-jiantou-copy"></i></p>
+																		</div> -->
+																		<div class="groupbox-display">
+																			<div class="groupInput-box clear">
+																				<p class="fl">收票人：</p>
+																				<div class="box-input fl">
+																					<input type="text" name="sname" id="sname" value="" class="orderbox-input" />
+																				</div>
+																			</div>
+																			<div class="groupInput-box clear">
+																				<p class="fl">收票人手机号：</p>
+																				<div class="box-input fl">
+																					<input type="text" name="sphone" id="sphone" value="" class="orderbox-input" />
+																				</div>
+																			</div>
+																			<div class="groupInput-box clear">
+																				<p class="fl">选择城市：</p>
+																				<div class="box-input fl">
+																					<select name="province" id="city1111">
+																						<option value="0">省份</option>
+																					
+																					</select>
+																					<select name="city" id="city2222">
+																						<option value="0">地级市</option>
+																					
+																					</select>
+																					<select name="area" id="city3333">
+																						<option value="0">县/区</option>
+																					
+																					</select>
+
+																				</div>
+																			</div>
+																			<div class="groupInput-box clear">
+																				<p class="fl">详细地址：</p>
+																				<div class="box-input fl">
+																					<textarea name="addrdetail" id="addrdetail" class="shop-area"></textarea>
+																				</div>
+																			</div>
+																			<!---->
+																		</div>
+																		<div class="groupInput-box clear">
+																			<p class="fl"></p>
+																			<div class="box-input fl">
+																				<input type="checkbox" name="tolecheck" id="tolecheck" value="" class="orcheck" />
+																				<span>我已阅读并同意 <a href="memberCenter/invoice-xuzhi.html">《发票须知》</a></span>
+																			</div>
+																		</div>
+																		<p class="deml tipMsg"></p>
+																		<div class="groupInput-box clear">
+																			<p class="fl"></p>
+																			<div class="box-input fl personBtn">
+																				<button type="button" class="keepCatePerson">保存</button>
+																				<button type="button" class="callOffPerson">取消</button>
+																			</div>
+																		</div>
+																	</div>
+												
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+
+
+											<!--  -->
+										</div>
+									</div>
+								</div>
+							
+								<script type="text/javascript">
+									city_js(0, 1, $('#city11'), 0, $('#city22'), 0, $('#city33'), 0);
+										city_js(0, 1, $('#city111'), 0, $('#city222'), 0, $('#city333'), 0);
+										city_js(0, 1, $('#city1111'), 0, $('#city2222'), 0, $('#city3333'), 0);
+								
+								
+								
+								</script>

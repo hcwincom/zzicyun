@@ -1,0 +1,193 @@
+
+								<div class="shopOrder-groupList">
+									<div class="groupList-head">
+										<h3>收货地址</h3>
+									</div>
+									<div class="groupList-list">
+										<div class="groupList-grid">
+										<!-- 不能用form嵌套 -->
+										 
+												<div class="groupInput">
+													<div class="groupInput-box clear">
+														<p class="fl">收货人：</p>
+														<div class="box-input fl">
+															<input type="text" name="takeName" id="takeName" value="" class="orderbox-input" placeholder="请输入全名" />
+														</div>
+													</div>
+													<div class="groupInput-box clear">
+														<p class="fl">联系电话：</p>
+														<div class="box-input fl">
+															<input type="text" name="takePhone" id="takePhone" value="" class="orderbox-input" />
+														</div>
+													</div>
+													<div class="groupInput-box clear">
+														<p class="fl">选择城市：</p>
+														<div class="box-input fl">
+															<include file="public@city1" />
+														</div>
+													</div>
+													<div class="groupInput-box clear">
+														<p class="fl">详细地址：</p>
+														<div class="box-input fl">
+															<textarea name="shopAddr" id="takeAddr" class="shop-area"></textarea>
+														</div>
+													</div>
+													<!-- <input type="hidden" class="province" value="{$vo.province}" />
+													<input type="hidden" class="city" value="{$vo.city}" />
+													<input type="hidden" class="area" value="{$vo.area}" /> -->
+
+													<div class="groupInput-box clear">
+														<p class="fl"></p>
+														<div class="box-input fl">
+															<input type="checkbox" name="takedafult" value="" id="takedafult" class="orcheck takedafult"/>
+															<span>设为默认</span>
+														</div>
+													</div>
+													<p class="deml tipMsg"></p>
+													<div class="groupInput-box clear">
+														<p class="fl"></p>
+														<div class="box-input fl">
+															<button type="button" class="keepaddr" id="keepaddr" name="keepAddr">保存</button>
+															<button type="button" class="callOffAddr">取消</button>
+														</div>
+													</div>
+												</div>
+											 
+										</div>
+										<div class="groupList-dsc">
+											 
+											<foreach name="addresses" item="vo">
+												<div class="groupList-dscont clear">
+													<div class="groupList_addr_text">
+														<input type="radio" name="address_id" class="address_id" value="{$key}" <if condition="$key eq $address_id">checked</if> />
+														<span class="addrName">{$vo.accept_name}（收）</span>
+														<span class="addrTel">{$vo.tel}</span>
+														<span class="addrInfo">{$vo.address_info}{$vo.address}</span>
+													</div>
+													
+													<div class="groupBtn-order">
+													<eq name="vo.is_first" value="1">
+														<span class="addr-approve">默认</span> 
+													<else/>
+														<button type="button" class="addr-approve">设为默认</button>
+													</eq> 
+														<button type="button" class="addr-amend">修改</button>
+													</div>
+												</div>
+											</foreach>
+											<div class="groupList-newBtn">
+												<button type="button" class="newBtn">新增地址</button>
+											</div>
+										</div>
+									</div>
+								</div>
+<script type="text/javascript">
+$(function(){
+
+	
+			city_js(0, 1, $('#city1'), 0, $('#city2'), 0, $('#city3'), 0);
+	 
+			// 保存地址
+			var url_add = "{:url('user/Info/address_do')}";
+		
+			$("#keepaddr").click(function () {
+				var accept_name = $.trim($("#takeName").val());
+				var tel = $.trim($("#takePhone").val());
+				var province = $('#city1').val();
+				var city = $('#city2').val();
+				var area = $('#city3').val();
+				var address = $.trim($("#takeAddr").val());
+
+				//1默认，2不默认
+				var is_first = 2;
+				if ($('#takedafult').prop('checked')) {
+					is_first = 1;
+				}
+
+
+				var json_addr = { 'type': type, 'province': province, 'city': city, 'area': area, 'address': address, 'accept_name': accept_name, 'tel': tel, 'is_first': is_first };
+				console.log(json_addr);
+				$.ajax({
+					"url": url_add,
+					"type": "POST",
+					"data": json_addr,
+					"dataType": "json",
+					"success": function (data) {
+
+
+							if (data.code == 1) {
+									//成功提示
+									var newAddr = '<div class="groupList-dscont clear">'+
+																		'<div class="groupList_addr_text">'+
+																				'<input type="radio" name="address_id" class="address_id" value="' + data.msg + '"  checked  />' +
+																				'<span class="addrName">' + accept_name + '（收）</span><span class="addrTel">' + tel + '</span>' +
+																				'<span class="addrName">' + province + city + area + address +'</span>' +
+																		'</div>'+
+																	
+
+																		'<div class="groupBtn-order">'+
+
+																				'<eq name="vo.is_first" value="1">'+
+																					'<span class="addr-approve">默认</span>'+
+																					'<else />'+
+																					'<button type="button" class="addr-approve">设为默认</button>'+
+																				'</eq>'+
+																				'<button type="button" class="addr-amend">修改</button>'+
+																		'</div>'+
+																	'</div>'
+									msg(data.msg);
+									$(".groupList-grid").hide();
+									$(document.body).toggleClass("html_overflow");
+									$(".groupList-dsc").prepend(newAddr);
+								
+								} else {
+									//失败
+									msg(data.msg);
+								}
+					},
+					"error": function (event, XMLHttpRequest, ajaxOptions, thrownError) {
+						msg(event.responseText, 1);
+					}
+				});
+				return false;
+
+
+			});
+
+// 修改地址
+$(".addr-amend").click(function () {
+		$(".groupList-grid").show();
+		$(document.body).toggleClass("html_overflow");
+		var $div = $(this).parents('.groupList-dscont');
+		var province = $div.find(".province").val();
+		var city = $div.find(".city").val();
+		var area = $div.find(".area").val();
+
+
+
+
+	$('#city1').val(province);
+	get_citys($('#city2'), province, city);
+	get_citys($('#city3'), city, area);
+
+
+
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+});
+	</script>
