@@ -3704,7 +3704,7 @@
 
 
 /* 订单页面地址 */
-.groupList-grid{
+.groupList-grid,.exculform,.invocatedisplayform,.invoCatePersonForm{
 	position: fixed;
 	top: 15%;
 	left: 0;
@@ -3723,7 +3723,10 @@
 	width: 100%;
 	padding-left: 40px;
 }
-
+.exculform{
+	height: 600px;
+	overflow-y: auto;
+}
 
 
 
@@ -3882,7 +3885,16 @@
 	margin-top: 10px;
 	border: 1px solid #dcdcdc;
 	padding: 10px;
+	position: relative;
 }
+
+
+
+
+
+
+
+
 .orderdelive-expre,.orderdelive-pickup{
 	width: 100%;
 	display: none;
@@ -4049,6 +4061,7 @@
 
 
 .exclu-tip>p{
+	padding-left: 2em;
 	width: 100%;
 	line-height: 2;
 	color: #ff8213;
@@ -4061,16 +4074,16 @@
 	padding-bottom: 2em;
 }
 .orderinvo-company,.orderinvo-person,
-.orderinvo-group-list,.invocatedisplayform{
+.orderinvo-group-list,.invocatedisplayform,.invoCatePersonForm{
 	display: none;
 }
 .shopexclu-form>.groupInput-box>p,
 .groupbox-display>.groupInput-box>p{
-	width: 13%;
+	width: 16%;
 }
 .shopexclu-form>.groupInput-box>div,
 .groupbox-display>.groupInput-box>div{
-	width: 87%;
+	width: 84%;
 }
 .invoformpad{
 	padding-top: 15px;
@@ -4082,11 +4095,11 @@
     line-height: 34px;
     padding-left: 10px;
 }
-.cateselete{
+/* .cateselete{
 	width: 60%;
 	margin: 0 auto;
-}
-.cateselete>li{
+} */
+/* .cateselete>li{
 	width: 20%;
 	margin: 0 auto;
 	font-size: 14px;
@@ -4094,7 +4107,7 @@
 	color: #121212;
 	background: url(../img/choice.png) no-repeat left center;
 	cursor: pointer;
-}
+} */
 .togginfo>p{
 	font-size: 14px;
 	color: #121212;
@@ -4148,11 +4161,12 @@
 .invocateform-button>button.invoamendbtn{
 	color: #198148;
 }
-.exaddinvo,.invocateAdd{
+.exaddinvo,.invocateAdd,.personInvoAdd{
 	padding-top: 1em;
 	width: 100%;
 }
-.exaddinvo>button,.invocateAdd>button{
+.exaddinvo>button,.invocateAdd>button,
+.personInvoAdd>button{
 	margin-left: 8em;
 	width: 104px;
 	height: 36px;

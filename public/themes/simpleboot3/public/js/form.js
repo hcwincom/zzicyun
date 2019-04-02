@@ -122,31 +122,31 @@
 	// 	$(".box-input .invo-label").html(notice_json.common.apply_file);
 	// });
 	
-	$("#keepaddr").click(function(){
-		var takeName = $.trim($("#takeName").val());
-		var takePhone = $.trim($("#takePhone").val());
-		var takeCity = $.trim($("#takeCity").val());
-		var takeAddr = $.trim($("#takeAddr").val());
-		if(takeName == ""){
-			$("#takeName").focus();
-			$(".tipMsg").text(notice_json.common.job_name);
-			return false;
-		}else if(takePhone == "" || isPhoneNo(takePhone) == false){
-			$("#takePhone").focus();
-			$(".tipMsg").text(notice_json.common.applay_phone);
-			return false;
-		}else if(takeCity == ""){
-			$(".tipMsg").text(notice_json.common.city_check);
-			return false;
-		}else if(takeAddr == ""){
-			$(".tipMsg").text(notice_json.common.detail_addr);
-			return false;
-		}else if($("#takedafult").prop('checked') == false){
-			$(".tipMsg").text(notice_json.common.dafult_take);
-			return false;
-		}
+	// $("#keepaddr").click(function(){
+	// 	var takeName = $.trim($("#takeName").val());
+	// 	var takePhone = $.trim($("#takePhone").val());
+	// 	var takeCity = $.trim($("#takeCity").val());
+	// 	var takeAddr = $.trim($("#takeAddr").val());
+	// 	if(takeName == ""){
+	// 		$("#takeName").focus();
+	// 		$(".tipMsg").text(notice_json.common.job_name);
+	// 		return false;
+	// 	}else if(takePhone == "" || isPhoneNo(takePhone) == false){
+	// 		$("#takePhone").focus();
+	// 		$(".tipMsg").text(notice_json.common.applay_phone);
+	// 		return false;
+	// 	}else if(takeCity == ""){
+	// 		$(".tipMsg").text(notice_json.common.city_check);
+	// 		return false;
+	// 	}else if(takeAddr == ""){
+	// 		$(".tipMsg").text(notice_json.common.detail_addr);
+	// 		return false;
+	// 	}else if($("#takedafult").prop('checked') == false){
+	// 		$(".tipMsg").text(notice_json.common.dafult_take);
+	// 		return false;
+	// 	}
 			
-	});
+	// });
 	// 会员中心收货地址页面
 	function orderVerify(){
 		var takeName = $.trim($("#takeName").val());

@@ -129,7 +129,7 @@ $('#psw_submit').click(function(){
 	        	if(data.code==1){
 					//成功提示
 					 msg('成功');
-					 location.href = "index.html";
+					 location.href = "{:url('user/Center/center')}";
 				}else{
 					//失败
 					msg(data.msg);

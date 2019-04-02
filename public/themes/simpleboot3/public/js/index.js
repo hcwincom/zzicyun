@@ -32,7 +32,7 @@ $(".newBtn").click(function(){
 	$(".groupList-grid").show();
 	$(document.body).toggleClass("html_overflow");
 });
-	$(".callOff").click(function () {
+	$(".callOffAddr").click(function () {
 		$(".groupList-grid").hide();
 		$(document.body).toggleClass("html_overflow");
 	});
@@ -63,28 +63,62 @@ $(".orderinvo div").click(function(){
 // 	$(".invocate-box>div").eq(index).addClass("cateinvocurrent").siblings("div").removeClass("cateinvocurrent");
 // });
 	  		
-$(".togginfo").click(function(){
-	$(".groupbox-display").toggle();
-});
+// $(".togginfo").click(function(){
+// 	$(".groupbox-display").toggle();
+// });
 $(".excultxt ul li").click(function(){
 	$(this).addClass("excultxtaddr").siblings("li").removeClass("excultxtaddr");
 });
 $(".exaddinvo>button").click(function(){
-	$(this).parents(".excultxt").hide();
+	// $(this).parents(".excultxt").hide();
 	$(".exculform").show();
+	$(document.body).toggleClass("html_overflow");
 });
-$(".invocateAdd>button").click(function(){
-	$(this).parents(".invocateform-total").hide();
-	$(this).parents(".invocateform-total").next(".invocatedisplayform").show();
-});
-$(".invocateform-total>ul>li").click(function(){
-	$(this).addClass("incocateaddr").siblings("li").removeClass("incocateaddr");
-});
+	$(".callOffInvoce").click(function () {
+		$(".exculform").hide();
+		$(document.body).toggleClass("html_overflow");
+	});
+
+	$(".invocateAdd>.cate-addbtn").click(function () {
+		$(".invocatedisplayform").fadeIn();
+		$(document.body).toggleClass("html_overflow");
+	});
+	$(".callOffCom").click(function () {
+		$(".invocatedisplayform").fadeOut();
+		$(document.body).toggleClass("html_overflow");
+	});
+	$(".personInvoAdd>.person_addbtn").click(function () {
+		$(".invoCatePersonForm").fadeIn();
+		$(document.body).toggleClass("html_overflow");
+	});
+	$(".callOffPerson").click(function () {
+		$(".invoCatePersonForm").fadeOut();
+		$(document.body).toggleClass("html_overflow");
+	});
+
+
+
+
+
+
+
+
+
+
+
+// $(".invocateAdd>button").click(function(){
+// 	$(this).parents(".invocateform-total").hide();
+// 	$(this).parents(".invocateform-total").next(".invocatedisplayform").show();
+// });
+// $(".invocateform-total>ul>li").click(function(){
+// 	$(this).addClass("incocateaddr").siblings("li").removeClass("incocateaddr");
+// });
 	// 表格点击收起展开  		
-$(".orderInfo-discount .infotext").click(function(){
-	$(".orderInfodis-list").toggle();
-	$(this).children("i").toggleClass("icon-icon icon-jiantou-copy");
-});
+// $(".orderInfo-discount .infotext").click(function(){
+// 	$(".orderInfodis-list").toggle();
+// 	$(this).children("i").toggleClass("icon-icon icon-jiantou-copy");
+// });
+
 //专用发票点击取消
 $(".excuBtn>.callOff").click(function(){
 	$(this).parents(".exculform").hide();
