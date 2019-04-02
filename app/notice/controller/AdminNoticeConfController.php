@@ -32,6 +32,7 @@ class AdminNoticeConfController extends AdminInfoController
             'user_rates'=>'用户等级',
             'user_cates'=>'用户类型', 
             'money_type'=>'币种', 
+            'money_type3'=>'币种加通用', 
             
         ];
         

@@ -32,8 +32,8 @@
 						<div class="shop-order mt20">
 							<div class="shopOrder-head clear">
 								<ul class="clear col-xs-6 col-md-6">
-									<li class="shopActive"> <a href="{:url('order/Cart/mycart',['type'=>1])}">内地交货</a></li>
-									<li><a href="{:url('order/Cart/mycart',['type'=>2])}">香港交货</a></li>
+									<li class="<eq name='type' value='1'>shopActive</eq>"> <a href="{:url('order/Cart/mycart',['type'=>1])}">内地交货</a></li>
+									<li class="<eq name='type' value='2'>shopActive</eq>"><a href="{:url('order/Cart/mycart',['type'=>2])}">香港交货</a></li>
 								</ul>
 								<div class="shopOrder-tip col-xs-6 col-md-6">
 									<p>温馨提示： 海外代购和国内现货的需要分开下单 ！</p>

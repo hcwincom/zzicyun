@@ -40,6 +40,23 @@ class CreditController extends UserBaseController
         return $this->fetch();
     }
     /**
+     * 授信还款
+     */
+    public function credit_back()
+    {
+        
+        $uid=session('user.id');
+        $m_user=new UserModel();
+        $user=$m_user->get_user($uid);
+        
+        //授信记录
+        $m_credit_get=new CreditGetModel();
+        $list_get=$m_credit_get->get_list($uid);
+        $this->assign('user',$user);
+        $this->assign('list_get',$list_get);
+        return $this->fetch();
+    }
+    /**
      * 授信额度申请
      */
     public function credit_apply()

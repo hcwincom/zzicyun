@@ -45,6 +45,14 @@ class LoginController extends DeskBaseController
         return $this->fetch();
     }
     /**
+     * 退出登录
+     */
+    public function logout()
+    {
+       session('user',null);
+       $this->redirect(url('/'));
+    }
+    /**
      * 前台用户注册提交
      */
     public function login_ajax()

@@ -14,6 +14,19 @@
       </present>  
     </div>
 </div>
+ <div class="form-group">
+    <label for="" class="col-sm-2 control-label">适用币种</label>
+    <div class="col-md-6 col-sm-10">
+       <select name="money_type" class="form-control">
+       <foreach name="money_types3" item="vo">
+       		<option value="{$key}" <if condition="$key eq $info.money_type">selected</if>>{$vo}</option>
+       </foreach>
+       </select>
+      <present name="change.money_type">
+      	 <input type="text" class="form-control red"  value="{$money_types3[$change.money_type]|default=$change.money_type}" /> 
+      </present>  
+    </div>
+</div>
 <div class="form-group">
     <label for="" class="col-sm-2 control-label">名称</label>
     <div class="col-md-6 col-sm-10">
@@ -67,15 +80,33 @@
     </div>
 </div>
  <div class="form-group">
-    <label for="" class="col-sm-2 control-label">排序</label>
+    <label for="" class="col-sm-2 control-label">可领用总数（0为无限次）</label>
     <div class="col-md-6 col-sm-10">
-       <input type=money class="form-control" name="sort" value="{$info.sort|default=1000}" />
-       <present name="change.sort">
-      	 <input type="text" class="form-control red"  value="{$change.sort}" /> 
+       <input type="number" class="form-control" name="count" value="{$info.count|default=0}" />
+       <present name="change.count">
+      	 <input type="text" class="form-control red"  value="{$change.count}" /> 
        </present>    
     </div>
 </div>
 <div class="form-group">
+    <label for="" class="col-sm-2 control-label">已领用总数</label>
+    <div class="col-md-6 col-sm-10">
+       <input type="number" class="form-control" name="count_get" value="{$info.count_get|default=0}" />
+       <present name="change.count_get">
+      	 <input type="text" class="form-control red"  value="{$change.count_get}" /> 
+       </present>    
+    </div>
+</div>
+ <div class="form-group">
+    <label for="" class="col-sm-2 control-label">每人限领次数（0为无限次）</label>
+    <div class="col-md-6 col-sm-10">
+       <input type="number" class="form-control" name="num" value="{$info.num|default=1}" />
+       <present name="change.num">
+      	 <input type="text" class="form-control red"  value="{$change.num}" /> 
+       </present>    
+    </div>
+</div>
+ <div class="form-group">
     <label for="" class="col-sm-2 control-label">排序</label>
     <div class="col-md-6 col-sm-10">
        <input type="number" class="form-control" name="sort" value="{$info.sort|default=1000}" />
@@ -84,20 +115,11 @@
        </present>    
     </div>
 </div>
-<div class="form-group">
-    <label for="" class="col-sm-2 control-label">排序</label>
-    <div class="col-md-6 col-sm-10">
-       <input type="number" class="form-control" name="sort" value="{$info.sort|default=1000}" />
-       <present name="change.sort">
-      	 <input type="text" class="form-control red"  value="{$change.sort}" /> 
-       </present>    
-    </div>
-</div>
-
+  
 <div class="form-group "  >
-    <label class="col-sm-2 control-label">备注</label>
+    <label class="col-sm-2 control-label">说明</label>
     <div class="col-md-6 col-sm-10">
-        <input type="text" class="form-control" name="dsc" value="{$info.dsc}"  />
+        <input type="text" class="form-control" name="dsc" value="{$info.dsc|default='全场通用'}"  />
       <present name="change.dsc">
       	 <input type="text" class="form-control red"  value="{$change.dsc}" /> 
        </present>    

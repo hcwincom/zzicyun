@@ -7,6 +7,7 @@ use app\common\controller\AdminInfoController;
 use think\Db;
 use app\notice\model\NoticeCateModel;
 use app\coupon\model\CouponModel;
+use app\coupon\model\CouponUserModel;
 
 class AdminCouponUserController extends AdminInfoController
 {
@@ -17,16 +18,14 @@ class AdminCouponUserController extends AdminInfoController
         
         $this->flag='用户优惠券';
         $this->table='coupon_user';
-        $this->m=Db::name('coupon_user');
+        $this->m=new CouponUserModel();
         
         //没有店铺区分
         $this->isshop=0;
-        $this->islan=0;
-       
+        $this->islan=0; 
         $this->assign('flag',$this->flag);
         $this->assign('table',$this->table);
-        
-        
+         
     }
     /**
      * 用户优惠券列表
@@ -49,10 +48,6 @@ class AdminCouponUserController extends AdminInfoController
         
         $data=$this->request->param();
         $where=[];
-        //店铺,分店只能看到自己的数据，总店可以选择店铺
-        if($this->isshop){
-            zz_shop($admin, $data, $where);
-        }
         
         //状态
         if(empty($data['status'])){
@@ -60,11 +55,17 @@ class AdminCouponUserController extends AdminInfoController
         }else{
             $where['status']=['eq',$data['status']];
         }
-        //状态
-        if(empty($data['cid'])){
-            $data['cid']=0;
+        //类型
+        if(empty($data['coupon_type'])){
+            $data['coupon_type']=0;
         }else{
-            $where['cid']=['eq',$data['cid']];
+            $where['type']=['eq',$data['coupon_type']];
+        }
+        //类型
+        if(empty($data['money_type'])){
+            $data['money_type']=0;
+        }else{
+            $where['money_type']=['eq',$data['money_type']];
         }
         
         //添加人
@@ -80,12 +81,6 @@ class AdminCouponUserController extends AdminInfoController
             $where['rid']=['eq',$data['rid']];
         }
         
-        //类型
-        if(empty($data['type'])){
-            $data['type']=0;
-        }else{
-            $where['type']=['eq',$data['type']];
-        }
         //查询字段
         $types=$this->search;
         $search_types=config('search_types');
@@ -182,59 +177,16 @@ class AdminCouponUserController extends AdminInfoController
         $data=$this->request->param();
         
         $url=url('index');
-        
-        $table=$this->table;
-        $time=time();
+         
         $admin=$this->admin;
        
-        //str,int,round1,round2,round3,round4,pic,file
-        $data_add=[];
-        if(empty($data['coupon']) || empty($data['uids'])){
-            $this->error('优惠券和用户为必选');
+        $m->startTrans();
+        $res=$m->user_gets($data, $admin);
+        if(!($res>0)){
+            $m->rollback();
+            $this->error($res);
         }
-        $data_add['status']=2;
-        $data_add['name']=$data['name'];
-        $data_add['dsc']=$data['dsc']; 
-        $data_add['coupon']=$data['coupon']; 
-        $data_add['aid']=$admin['id'];
-        $data_add['atime']=$time;
-        $data_add['rid']=$admin['id'];
-        $data_add['rtime']=$time;
-        $data_add['time']=$time;
-        $m_coupon=Db::name('coupon');
-        $coupon=$m_coupon->where('id',$data['coupon'])->find();
-         if(empty($data['name'])){
-             $data_add['name']=$coupon['name'];
-         }
-         $data_add['sort']=$coupon['sort'];
-         $data_add['type']=$coupon['type'];
-         $data_add['money']=$coupon['money'];
-         $data_add['money_min']=$coupon['money_min'];
-         $data_add['sort']=$coupon['sort'];
-         $time0=strtotime(date('Y-m-d'),$time);
-         if(empty($coupon['time1'])){
-             $data_add['time1']=$time0;
-             $data_add['time2']=$data_add['time1']+24*3600*($coupon['day']-1);
-         }else{
-             $data_add['time1']=$coupon['time1'];
-             $data_add['time2']=$coupon['time2'];
-         }
-         if($data_add['time1']>$data_add['time2'] || $data_add['time2']<$time0){
-             $this->error('起止时间错误');
-         }
-         if($data_add['time1']<$time){
-             $data_add['status_time']=1;
-         }else{
-             $data_add['status_time']=2;
-         }
-         $data_adds=[];
-         foreach($data['uids'] as $v){
-             $data_add['uid']=$v;
-             $data_adds[]=$data_add;
-         }
-        
-        $m->insertAll($data_adds);
-          
+        $m->commit();
         $this->success('添加成功');
         
     }
@@ -350,6 +302,7 @@ class AdminCouponUserController extends AdminInfoController
     public function cates($type=3){
         parent::cates($type);
         $this->assign('coupon_types',config('coupon_type'));
+        $this->assign('money_types3',config('money_type3'));
         $utypes=config('user_search');
         $search_types=config('search_types');
         $this->assign('utypes',$utypes);

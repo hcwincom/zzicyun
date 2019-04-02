@@ -160,16 +160,16 @@ class InfoController extends UserBaseController
         if(empty($data['id'])){
             $update['uid']=$uid;
             $update['type']=$data['type'];
-            $m_address->insert($update);
+            $id=$m_address->insertGetId($update);
         }else{
             $where=[
                 'id'=>$data['id'],
                 'uid'=>$uid
             ];
-            $m_address->where($where)->update($update);
+            $id=$m_address->where($where)->update($update);
         }
         $m_address->commit();
-        $this->success('ok');
+        $this->success($id);
     }
     /**
      * 收货地址删除

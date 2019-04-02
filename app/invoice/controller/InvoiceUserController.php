@@ -71,13 +71,13 @@ class InvoiceUserController extends UserBaseController
        if(empty($data['id'])){
            $update['uid']=$uid;
            $update['type']=$data['type'];
-           $m_invoice->insert($update);
+           $id=$m_invoice->insert($update);
        }else{
            $where=[
                'id'=>$data['id'],
                'uid'=>$uid
            ];
-           $m_invoice->where($where)->update($update);
+           $id=$m_invoice->where($where)->update($update);
        }
        
        $this->success('ok');

@@ -116,6 +116,7 @@ class OrderController extends UserBaseController
        }else{
            $m_coupon=new CouponUserModel(); 
            $coupons=$m_coupon->get_list($uid,$price_type); 
+           dump($coupons);
        }
        $this->assign('goods_list',$goods_list); 
        $this->assign('brands',$brands);
@@ -170,7 +171,16 @@ class OrderController extends UserBaseController
    }
    //转化为订单页面
    public function order_do2(){
-       $data=$this->request->param();
-       dump($data);
+       $data0=$this->request->param();
+       dump($data0);
+       $data=[
+           'freight_type'=>1,//1快递2自提
+           'address_id'=>1,//快递和自提地址
+           'accept_name'=>'',//自提人
+           'tel'=>'',//
+           'coupon'=>1,
+           'invoice_id'=>1,
+           'address_id'=>1,
+       ];
    }
 }

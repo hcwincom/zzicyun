@@ -1,0 +1,77 @@
+    <include file="public@user_header"/> 	
+			<!--主要内容-->
+			<div class="person-content">
+				<div class="wraper row totalback">
+					  <include file="public@user_left"/> 	
+					<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10" style="padding: 0;">
+						<div class="person-right">
+							<div class="person-right-head">
+								<p class="perpadding">
+									<span>资产管理</span>
+									<i class="iconfont icon-jiantoudown"></i>
+									<a href="">优惠券</a>
+								</p>
+							</div>
+							<div class="person-detail-content">
+								<div class="discount-title">
+									<ul class="clear">
+										<li class="disActive"><a href="{:url('coupon/CouponUser/coupon_user')}">未使用<span>（{$data['count1']}）</span></a></li>
+										<li><a href="{:url('coupon/CouponUser/coupon_user',['status'=>3])}">已过期<span>（{$data['count2']}）</span></a></li>
+									</ul>
+								</div>
+								<div class="disco-cont">
+									<div class="disco-cont-list">
+										<ul class="clear">
+										<foreach name="list" item="vo">
+											<li class="">
+												<div class="credis clear">
+													<div class="credis-left fl">
+														<p class="leftLar"><span><eq name="vo.money_type" value="2">$<else/>￥</eq></span>{$vo.money}</p>
+														<p class="leftBot">满{$vo.money_min}元减</p>
+													</div>
+													<div class="credis-mid fl">
+														<p>{$vo.dsc}</p>
+														<p class="midSmall">有效期：{$vo.time1|date='Y.m.d',###}-{$vo.time2|date='Y.m.d',###}</p>
+													</div>
+												<eq name="data.status" value="3">
+													<div class="overdue-right fl">
+														<a href="javascript:;">立即使用</a>
+													</div>
+													<div class="overdu-icon">
+														<img src="__TMPL__/public/img/guoqi.png" alt="" />
+													</div>
+												<else/>
+													<div class="credis-right fl">
+														<a href="{:url('goods/Goods/goods_search')}">立即使用</a>
+													</div>
+												</eq> 
+												</div>
+											</li>
+										</foreach>
+											 
+										</ul>
+									</div>
+									 
+								</div>
+								<div class="disco-cont-more">
+									<a href="{:url('coupon/Coupon/coupon_center')}">
+										<span>更多优惠券，去领券中心看看</span>
+										<i class="iconfont icon-shuangjiantou"></i>
+									</a>
+								</div>
+								 <include file="public@page" />
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+			 <include file="public@footer" />
+			<!---->
+		 <include file="public@user_foot" />
+	  	 
+	</body>
+</html>
+ 

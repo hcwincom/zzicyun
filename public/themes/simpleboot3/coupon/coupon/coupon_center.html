@@ -1,0 +1,94 @@
+  <include file="public@user_header"/> 	
+			<!--领券中心主要内容-->
+			<div class="discountPart">
+				<div class="discount-head">
+					<img src="__TMPL__/Public/img/dis.png" alt="" />
+				</div>
+				<div class="wraper totalback">
+					<div class="dis-center-cont">
+						<div class="row">
+						<foreach name="list" item="vo">
+							<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+								<div class="new-discount">
+									<div class="discount-item clear">
+										<div class="discount-item-left fl">
+											<p class="leftLar"><span><eq name="vo.money_type" value="2">$<else/>￥</eq></span>{$vo.money}</p>
+											<p class="leftBot">满{$vo.money_min}元减</p>
+										</div>
+										<div class="discount-item-mid fl">
+											<p>{$vo.dsc}</p>
+											<p class="midSmall">有效期：<empty name="vo.time1">{$vo.day}天<else/>{$vo.time1|date='Y.m.d',###}-{$vo.time2|date='Y.m.d',###}</empty></p>
+										</div>
+										<div class="discount-item-right fl">
+										 
+											 
+											<p class="disgive">
+											<eq name="vo.is_get" value="1">
+												<eq name="vo.is_uget" value="1">
+													<a href="javascript:coupon_get({$vo.id});">免费领取</a>
+												<else/>
+													<span>已领过，不能再领用</span>
+												</eq> 
+											<else/>
+												<span>已领完</span>
+											</eq>
+											
+											 
+											</p>
+											<present name="gets[$key]">
+											<p class="disgreen" > 
+												<a href="{:url('goods/Goods/goods_search')}">立即使用</a>
+											</p>
+											</present>
+											 
+										</div>
+									</div>
+								</div>
+							</div>
+						</foreach>
+							 
+							 
+							
+						</div>
+						 <include file="public@page" />
+					</div>
+				</div>
+				
+				
+				
+			</div>
+			 <include file="public@footer" />
+			<!---->
+		 <include file="public@user_foot" />
+			 
+	</body>
+</html>
+<script>
+var url_get="{:url('coupon/CouponUser/coupon_get')}";
+function coupon_get(id){
+	 
+	$.ajax({
+			"url":url_get,
+			"type":"POST", 
+			"data":{'id':id},
+			"dataType":"json", 
+			"success":function(data){
+				 
+				if(data.code==1){
+					//领用成功
+					
+				}else{
+					msg(data.msg);
+					if(data.url != ''){
+						location.href=data.url;
+					}
+				}
+				
+        		 
+			},
+			 "error": function(event, XMLHttpRequest, ajaxOptions, thrownError){ 
+	        	msg(event.responseText,1); 
+	        }
+		});
+}
+</script>

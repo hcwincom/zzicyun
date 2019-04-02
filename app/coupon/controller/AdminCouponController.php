@@ -17,8 +17,8 @@ class AdminCouponController extends AdminInfoController
         $this->flag='优惠券';
         $this->table='coupon';
         $this->m=Db::name('coupon');
-        $this->base=['name'=>'str','sort'=>'int','dsc'=>'str','money_min'=>'round2','money'=>'round2',
-            'type'=>'int','day'=>'int','time1'=>'str','time2'=>'str'];
+        $this->base=['name'=>'str','sort'=>'int','dsc'=>'str','money_min'=>'round2','money'=>'round2','money_type'=>'int',
+            'type'=>'int','day'=>'int','time1'=>'str','time2'=>'str','num'=>'int','count'=>'int','count_get'=>'int'];
         
         //没有店铺区分
         $this->isshop=0;
@@ -44,8 +44,72 @@ class AdminCouponController extends AdminInfoController
      */
     public function index()
     {
-        parent::index();
-        return $this->fetch();
+        $table=$this->table;
+        $m=$this->m;
+        $admin=$this->admin;
+        
+        $data=$this->request->param();
+        $where=[];
+        
+        //状态
+        if(empty($data['status'])){
+            $data['status']=0;
+        }else{
+            $where['status']=['eq',$data['status']];
+        }
+        //类型
+        if(empty($data['coupon_type'])){
+            $data['coupon_type']=0;
+        }else{
+            $where['type']=['eq',$data['coupon_type']];
+        }
+        //类型
+        if(empty($data['money_type'])){
+            $data['money_type']=0;
+        }else{
+            $where['money_type']=['eq',$data['money_type']];
+        }
+        
+        //添加人
+        if(empty($data['aid'])){
+            $data['aid']=0;
+        }else{
+            $where['aid']=['eq',$data['aid']];
+        }
+        //审核人
+        if(empty($data['rid'])){
+            $data['rid']=0;
+        }else{
+            $where['rid']=['eq',$data['rid']];
+        }
+         
+        //查询字段
+        $types=$this->search;
+        $search_types=config('search_types');
+        zz_search_param($types,$search_types,$data,$where);
+        
+        //时间类别
+        $times=config('pro_time_search');
+        zz_search_time($times,$data,$where);
+        
+        $list=$m
+        ->where($where)
+        ->order('status asc,sort asc,time desc')
+        ->paginate();
+        
+        // 获取分页显示
+        $page = $list->appends($data)->render();
+        
+        $this->assign('page',$page);
+        $this->assign('list',$list); 
+        
+        $this->assign('data',$data);
+        $this->assign('types',$types);
+        $this->assign('times',$times);
+        $this->assign("search_types", $search_types);
+        
+        $this->cates(1);
+        return $this->fetch(); 
     }
     
     
@@ -287,6 +351,7 @@ class AdminCouponController extends AdminInfoController
     public function cates($type=3){
         parent::cates($type);
         $this->assign('coupon_types',config('coupon_type'));
+        $this->assign('money_types3',config('money_type3'));
         
     }
     
@@ -308,8 +373,8 @@ class AdminCouponController extends AdminInfoController
             } else{
                 $data['time1']=strtotime($data['time1']);
             }
-            $data['time2']=strtotime($data['time2']);
-            if($data['time2'] < $data['time1']){
+            $data['time2']=strtotime($data['time2'])+3600*2400-1;
+            if($data['time2'] <= $data['time1']){
                 return '截止时间填写错误';
             }
         }
