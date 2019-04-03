@@ -56,14 +56,17 @@
 											<foreach name="addresses" item="vo">
 												<div class="groupList-dscont clear">
 													<div class="groupList_addr_text">
-														<input type="radio" name="address_id" class="address_id" value="{$key}" <if condition="$key eq $address_id">checked</if> />
-														<span class="addrName">{$vo.accept_name}（收）</span>
-														<span class="addrTel">{$vo.tel}</span>
-	  													<input type="hidden" class="province" value="{$vo.province}" />
+														<label>
+															<input type="radio" name="address_id" class="address_id" value="{$key}" <if condition="$key eq $address_id">checked</if>/>
+															<span class="addrName"><i>{$vo.accept_name}</i>（收）</span>
+															<span class="addrTel">{$vo.tel}</span>
+															<input type="hidden" class="province" value="{$vo.province}" />
 															<input type="hidden" class="city" value="{$vo.city}" />
-															<input type="hidden" class="area" value="{$vo.area}" />  
-
-														<span class="addrInfo">{$vo.address_info}{$vo.address}</span>
+															<input type="hidden" class="area" value="{$vo.area}" />
+															
+															<span class="addrInfo">{$vo.address_info}<i>{$vo.address}</i></span>
+														</label>
+														
 													</div>
 													
 													<div class="groupBtn-order">
@@ -119,23 +122,28 @@ $(function(){
 							if (data.code == 1) {
 									//成功提示
 									var newAddr = '<div class="groupList-dscont clear">'+
-																		'<div class="groupList_addr_text">'+
-																				'<input type="radio" name="address_id" class="address_id" value="' + data.msg + '"  checked  />' +
-																				'<span class="addrName">' + accept_name + '（收）</span><span class="addrTel">' + tel + '</span>' +
-																				'<span class="addrName">' + province + city + area + address +'</span>' +
-																		'</div>'+
-																	
+														'<div class="groupList_addr_text">'+
+															'<label>'+
+															'<input type="radio" name="address_id" class="address_id" value="' + data.msg + '"  checked  />' +
+															'<span class="addrName">' + accept_name + '（收）</span><span class="addrTel">' + tel + '</span>' +
+															'<input type="hidden" class="province" value="' + province +'" />'+
+															'<input type="hidden" class="city" value="'+ city +'" />'+
+															'<input type="hidden" class="area" value="'+ address +'" />'+  
 
-																		'<div class="groupBtn-order">'+
+															'<span class="addrName">' + province + city + area +'<i>' + address +'</i></span>' +
+															'</label'+
+														'</div>'+
+														
+														'<div class="groupBtn-order">'+
 
-																				'<eq name="vo.is_first" value="1">'+
-																					'<span class="addr-approve">默认</span>'+
-																					'<else />'+
-																					'<button type="button" class="addr-approve">设为默认</button>'+
-																				'</eq>'+
-																				'<button type="button" class="addr-amend">修改</button>'+
-																		'</div>'+
-																	'</div>'
+															'<eq name="vo.is_first" value="1">'+
+																'<span class="addr-approve">默认</span>'+
+															'<else />'+
+																'<button type="button" class="addr-approve">设为默认</button>'+
+															'</eq>'+
+																'<button type="button" class="addr-amend">修改</button>'+
+														'</div>'+
+													'</div>'
 									msg(data.msg);
 									$(".groupList-grid").hide();
 									$(document.body).toggleClass("html_overflow");
@@ -157,26 +165,42 @@ $(function(){
 
 // 修改地址
 $(".addr-amend").click(function () {
-		$(".groupList-grid").show();
-		$(document.body).toggleClass("html_overflow");
-		var $div = $(this).parents('.groupList-dscont');
-		var province = $div.find(".province").val();
-		var city = $div.find(".city").val();
-		var area = $div.find(".area").val();
+	$(".groupList-grid").show();
+	$(document.body).toggleClass("html_overflow");
+	var $div = $(this).parents('.groupList-dscont');
+	var addrName = $div.find(".addrName>i").text();
+	console.log(addrName);
+	var addrTel = $div.find(".addrTel").text();
 
-
-
-
+	var province = $div.find(".province").val();
+	var city = $div.find(".city").val();
+	var area = $div.find(".area").val();
+	var addrInfo = $div.find(".addrInfo>i").text();
 	$('#city1').val(province);
 	get_citys($('#city2'), province, city);
 	get_citys($('#city3'), city, area);
 
-
-
+	$("#takeName").val(addrName);
+	$("#takePhone").val(addrTel);
+	$("#takeAddr").val(addrInfo);
+	if (is_first == 1) {
+		$('#dafult').prop('checked', 'checked');
+	} else {
+		$('#dafult').prop('checked', false);
+	}
 
 
 });
 
+// 新增收货地址
+	$(".newBtn").click(function () {
+		$(".groupList-grid").show();
+		$(document.body).toggleClass("html_overflow");
+		$("#takeName").val("");
+		$("#takePhone").val("");
+		$("#takeAddr").val("");
+		city_js(0, 1, $('#city1'), 0, $('#city2'), 0, $('#city3'), 0);
+	});
 
 
 

@@ -49,7 +49,7 @@
 													<p class="fl">选择快递：</p>
 													<div class="expre-list fl">
 													<foreach name="freights" item="vo">
-													<span><input type="radio" name="freight_id" class="expreRadio" value="{$key}" <if condition="$key eq $freight_id">checked</if>/>{$vo.name}</span>
+													<label><input type="radio" name="freight_id" class="expreRadio" value="{$key}" <if condition="$key eq $freight_id">checked</if>/>{$vo.name}</label>
 														
 													</foreach>
 														 
@@ -59,7 +59,7 @@
 													<p class="fl">可选条件：</p>
 													<div class="expre-list fl">
 													<foreach name="pay_type1s" item="vo">
-														<span><input type="radio" name="pay_type1" class="condition" value="" />{$vo}</span>
+														<label><input type="radio" name="pay_type1" class="condition" value="" />{$vo}</label>
 													</foreach> 
 													</div>
 												</div>

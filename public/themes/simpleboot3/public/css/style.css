@@ -3704,7 +3704,8 @@
 
 
 /* 订单页面地址 */
-.groupList-grid,.exculform,.invocatedisplayform,.invoCatePersonForm{
+.groupList-grid,.invocatedisplayform,
+.exculform,.invoCatePersonForm{
 	position: fixed;
 	top: 15%;
 	left: 0;
@@ -3716,7 +3717,7 @@
 	-moz-box-shadow: 1px 3px 3px #999,1px -3px 3px #999,-1px 3px 3px #999,-1px -3px 3px #999;
 	-webkit-box-shadow: 1px 3px 3px #999,1px -3px 3px #999,-1px 3px 3px #999,-1px -3px 3px #999;
 	padding-top: 2em;
-	z-index: 99;
+	z-index: 1000;
 }
 
 .groupInput,.groupList-dscont{
@@ -3728,23 +3729,25 @@
 	overflow-y: auto;
 }
 
-
-
-
-
-
-
 .groupList_addr_text{
 	width: 80%;
+
+}
+.groupList_addr_text>label{
+	width: 100%;
+	
+	font-weight: 100;
 	line-height: 34px;
 	font-size: 14px;
 	color: #333232;
 }
-.groupList_addr_text>span{
-	padding: 0 5px;
+.groupList_addr_text>label>span{
+	padding: 0 3px;
 }
-
-
+.groupList_addr_text>label>input{
+	vertical-align: middle;
+	margin: 0;
+}
 .groupList-dscont{
 	position: relative;
 }
@@ -3753,7 +3756,7 @@
 	margin-top: 15px;
 }
 .groupInput-box>p{
-	width: 10%;
+	width: 16%;
 	text-align: right;
 	padding-right: 10px;
 	height: 34px;
@@ -3817,8 +3820,8 @@
 }
 .groupList-dscont{
 	border-bottom: 1px solid #dcdcdc;
-	padding-top: 10px;
-	padding-bottom: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
 .groupList-newBtn{
 	text-align: center;
@@ -3904,20 +3907,21 @@
 }
 .orderdelive-expre-box>p,
 .orderdelive-expre-box>.expre-list,
-.orderdelive-expre-box>.expre-list>span>input,
-.orderdelive-expre-box>.expre-list>span{
+.orderdelive-expre-box>.expre-list>label>input,
+.orderdelive-expre-box>.expre-list>label{
 	height: 40px;
 	line-height: 40px;
 	font-size: 14px;
 	color: #121212;
+	font-weight: 100;
 }
 .orderdelive-expre-box>p.redColor{
 	color: #FF0000;
 }
-.orderdelive-expre-box>.expre-list>span{
+.orderdelive-expre-box>.expre-list>label{
 	margin: 0 10px;
 }
-.orderdelive-expre-box>.expre-list>span>input,
+.orderdelive-expre-box>.expre-list>label>input,
 .groupList-pay>ul>li>span>input{
 	vertical-align: middle;
 	margin: 0 5px;
@@ -4077,12 +4081,10 @@
 .orderinvo-group-list,.invocatedisplayform,.invoCatePersonForm{
 	display: none;
 }
-.shopexclu-form>.groupInput-box>p,
-.groupbox-display>.groupInput-box>p{
+.shopexclu-form>.groupInput-box>p{
 	width: 16%;
 }
-.shopexclu-form>.groupInput-box>div,
-.groupbox-display>.groupInput-box>div{
+.shopexclu-form>.groupInput-box>div{
 	width: 84%;
 }
 .invoformpad{

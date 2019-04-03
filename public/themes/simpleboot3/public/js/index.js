@@ -28,10 +28,7 @@ $(".proNav .proNav_cap").click(function(){
 });
 	    	    
 //大陆订单页面
-$(".newBtn").click(function(){
-	$(".groupList-grid").show();
-	$(document.body).toggleClass("html_overflow");
-});
+
 	$(".callOffAddr").click(function () {
 		$(".groupList-grid").hide();
 		$(document.body).toggleClass("html_overflow");

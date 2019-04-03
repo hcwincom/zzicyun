@@ -1573,7 +1573,7 @@ p.oranBorder>a{
 }
 .changeAddress,.invoceForm-list{
 	position: fixed;
-	top: 16%;
+	top: 10%;
 	left: 0;
 	right: 0;
 	margin: auto;
@@ -1589,7 +1589,6 @@ p.oranBorder>a{
 	padding: 2em 0 3em 0;
 }
 .invoceForm-list{
-	top: 20%;
 	width: 750px;
 	height: 600px;
 	overflow-y: auto;
