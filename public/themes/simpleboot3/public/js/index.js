@@ -66,11 +66,11 @@ $(".orderinvo div").click(function(){
 $(".excultxt ul li").click(function(){
 	$(this).addClass("excultxtaddr").siblings("li").removeClass("excultxtaddr");
 });
-$(".exaddinvo>button").click(function(){
-	// $(this).parents(".excultxt").hide();
-	$(".exculform").show();
-	$(document.body).toggleClass("html_overflow");
-});
+// $(".exaddinvo>button").click(function(){
+// 	 $(this).parents(".excultxt").hide();
+// 	$(".exculform").show();
+// 	$(document.body).toggleClass("html_overflow");
+// });
 	$(".callOffInvoce").click(function () {
 		$(".exculform").hide();
 		$(document.body).toggleClass("html_overflow");
@@ -92,7 +92,10 @@ $(".exaddinvo>button").click(function(){
 		$(".invoCatePersonForm").fadeOut();
 		$(document.body).toggleClass("html_overflow");
 	});
-
+	// 选择切换
+	$(".invocateform-total>ul>li").click(function () {
+		$(this).addClass("incocateaddr").siblings("li").removeClass("incocateaddr");
+	});
 
 
 
@@ -107,9 +110,7 @@ $(".exaddinvo>button").click(function(){
 // 	$(this).parents(".invocateform-total").hide();
 // 	$(this).parents(".invocateform-total").next(".invocatedisplayform").show();
 // });
-// $(".invocateform-total>ul>li").click(function(){
-// 	$(this).addClass("incocateaddr").siblings("li").removeClass("incocateaddr");
-// });
+
 	// 表格点击收起展开  		
 // $(".orderInfo-discount .infotext").click(function(){
 // 	$(".orderInfodis-list").toggle();

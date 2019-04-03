@@ -3733,6 +3733,12 @@
 	width: 80%;
 
 }
+.invocateform-top{
+	width: 85%;
+}
+.invocateform-top>span{
+	margin: 0 3px;
+}
 .groupList_addr_text>label{
 	width: 100%;
 	
@@ -4016,6 +4022,13 @@
 .groupList-paylimit>ul>li.shopchoice,.groupList-payway>ul>li.shopchoice{
 	background: url(../img/choice-se.png) no-repeat left center;
 }
+.addressTip{
+	width: 100%;
+	line-height: 34px;
+	font-size: 14px;
+	color: #ff0000;
+}
+
 .groupList-waycredit{
 	width: 100%;
 }
@@ -4110,14 +4123,14 @@
 	background: url(../img/choice.png) no-repeat left center;
 	cursor: pointer;
 } */
-.togginfo>p{
+/* .togginfo>p{
 	font-size: 14px;
 	color: #121212;
 	height: 40px;
 	line-height: 40px;
 	margin-top: 10px;
 	cursor: pointer;
-}
+} */
 .groupInput-box>.box-input>span>a{
 	color: #121212;
 }
