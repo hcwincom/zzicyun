@@ -242,5 +242,24 @@ class CouponUserModel extends Model
         $m_coupon->where('id',$data['coupon'])->setInc('count_get',count($uids));
         return $row;
     }
-    
+    /**
+     * 获取用户优惠券数量
+     * @param int $uid
+     * @param number $status
+     */
+    public function get_count($uid,$status=1){
+        $where=[
+            'uid'=>$uid,
+            'status_use'=>1,
+        ];
+        if($status==3){
+            $where['status_time']=3;
+        }else{
+            $where['status_time']=['lt',3];
+        }
+        
+        $m_coupon_user=new CouponUserModel();
+        $count=$m_coupon_user->where($where)->count(); 
+        return $count;
+    }
 }

@@ -43,8 +43,8 @@ class CouponUserController extends UserBaseController
          $where1=['status_time'=>['lt',3]];
          $where2=['status_time'=>3];
         $m_coupon_user=new CouponUserModel();
-        $data['count1']=$m_coupon_user->where($where)->where($where1)->count();
-        $data['count2']=$m_coupon_user->where($where)->where($where2)->count();
+        $data['count1']=$m_coupon_user->get_count(1);
+        $data['count2']=$m_coupon_user->get_count(3);
         if($data['status']==3){
             $where=array_merge($where,$where2);
         }else{

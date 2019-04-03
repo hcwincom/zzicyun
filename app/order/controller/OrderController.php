@@ -22,8 +22,12 @@ class OrderController extends UserBaseController
     
    public function myorder()
    {
-      
-      
+       $data=$this->request->param();
+       if(empty($data['status'])){
+          $data['status']=0;
+       }
+       $this->assign('data',$data);
+       $this->assign('status',$data['status']);
        return $this->fetch();
    }
    public function order_info()
@@ -66,41 +70,17 @@ class OrderController extends UserBaseController
        $uid=session('user.id');
       
        $m_goods=new GoodsModel();
-       $res=$m_goods->goods_list($lan1,$lan2,$goods_ids);
+       $res=$m_goods->goods_count($nums,$lan1,$lan2,$price_type);
        $goods_list=$res['goods_list'];
        $price_list=$res['price_list'];
-       $shop_ids=[];
-       $brand_ids=[];
+       $count=$res['count']; 
+       $brand_ids=$count['brand_ids'];
        //累加产品数量,金额,重量
-       $count_num=0;
-       $count_money=0;
-       $count_weight=0;
-       $count_size=0;
-       //产品信息，获取价格
-       foreach($goods_list as $k=>$v){
-            
-           $v['price']=$v['price'.$price_type];
-           $v['goods_time']=$v['goods_time'.$price_type];
-           $v['order_num']=$nums[$k];
-         
-           if(isset($price_list[$k])){ 
-               foreach($price_list[$k] as $kk=>$vv){
-                   if($v['num']>=$vv['num']){
-                       $v['price']=$vv['price'.$price_type];
-                   }
-               }
-           } 
-           $v['order_price']=round($nums[$k]* $v['price'],2);
-          
-           $goods_list[$k]=$v; 
-           $brand_ids[$v['brand']]=$v['brand'];
-           //累加产品数量,金额,重量
-           $count_num+=$v['order_num'];
-           $count_money+=$v['order_price'];
-           $count_weight+=$nums[$k]*$v['weight'];
-           $count_size+=$nums[$k]*$v['size'];
-       }
-       $count_money=round($count_money,2);
+       $count_num=$count['num'];
+       $count_money=$count['money'];
+       $count_weight=$count['weight'];
+       $count_size=$count['size'];
+        
        $m_brand=new GoodsBrandModel();
        $brands=$m_brand->get_list($lan1,$lan2,['p.id'=>['in',$brand_ids]]);
        //发货时间
@@ -158,10 +138,11 @@ class OrderController extends UserBaseController
        $freight=current($freights);
        $address=current($addresses);
        $fee=$m_fr->get_fee($freight['id'], $address['city'], $count_weight, $count_size,$count_money,$type);
+       
        $this->assign('freight_fee',$fee);
        $this->assign('freight_id',$freight['id']);
        $this->assign('address_id',$address['id']);
-       
+       dump($fee);
        $money_end=round($fee+$count_money,2);
        $this->assign('money_end',$money_end);
       
@@ -184,10 +165,29 @@ class OrderController extends UserBaseController
            'pay_type3'=>1,//全额付款
            'dsc'=>'速度快点',//订单备注
            'nums'=>[],//产品数量
-           'dscs'=>[],//产品备注
-           'goods'=>[],//产品ids
-           'pay_freight'=>0,//运费
+           'dscs'=>[],//产品备注 
+           'freight_pay'=>0,//运费
+           'type'=>$type,//页面
+           'goods_money'=>1,//运费
        ];
+       $nums=$data['nums'];
+       $lan1=$this->lan1;
+       $lan2=$this->lan2;
+       $goods_ids=array_keys($nums);
+       $price_type=($type==1)?1:2;
+       $uid=session('user.id');
+       $m_goods=new GoodsModel();
+       $res=$m_goods->goods_count($nums,$lan1,$lan2,$price_type);
+       $goods_list=$res['goods_list']; 
+       $count=$res['count']; 
+       
+       //累加产品数量,金额,重量
+       $count_num=$count['num'];
+       $count_money=$count['money'];
+       $count_weight=$count['weight'];
+       $count_size=$count['size'];
+       
+       
    }
    //运费计算
    public function freight_fee(){

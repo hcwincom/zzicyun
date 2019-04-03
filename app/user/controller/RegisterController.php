@@ -35,6 +35,7 @@ class RegisterController extends DeskBaseController
      */
     public function register()
     {
+        $this->error('注册未开放',url('/'));
         return $this->fetch();
     }
     /**

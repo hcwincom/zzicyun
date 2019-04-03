@@ -237,4 +237,52 @@ class GoodsModel extends Model
         } 
         return ['goods_list'=>$list,'price_list'=>$price_list];
     }
+    
+    public function goods_count($nums,$lan1,$lan2,$price_type){
+       
+        $goods_ids=array_keys($nums); 
+        $res=$this->goods_list($lan1,$lan2,$goods_ids);
+        $goods_list=$res['goods_list'];
+        $price_list=$res['price_list'];
+        $shop_ids=[];
+        $brand_ids=[];
+        //累加产品数量,金额,重量
+        $count=[
+            'num'=>0,
+            'money'=>0,
+            'weight'=>0,
+            'size'=>0, 
+            'brand_ids'=>[]
+        ];
+      
+        //产品信息，获取价格
+        foreach($goods_list as $k=>$v){
+            
+            $v['price']=$v['price'.$price_type];
+            $v['goods_time']=$v['goods_time'.$price_type];
+            $v['order_num']=$nums[$k];
+            
+            if(isset($price_list[$k])){
+                foreach($price_list[$k] as $kk=>$vv){
+                    if($v['num']>=$vv['num']){
+                        $v['price']=$vv['price'.$price_type];
+                    }
+                }
+            }
+            $v['order_price']=round($nums[$k]* $v['price'],2);
+            
+            $goods_list[$k]=$v; 
+            $count['brand_ids'][$v['brand']]=$v['brand'];
+            //累加产品数量,金额,重量
+            $count['num']+=$v['order_num'];
+            $count['money']+=$v['order_price'];
+            $count['weight']+=$nums[$k]*$v['weight'];
+            $count['size']+=$nums[$k]*$v['size'];
+        }
+        $count['num']=intval($count['num']);
+        $count['money']=round($count['money'],2);
+        $count['weight']=round($count['weight'],2);
+        $count['size']=round($count['size'],2);
+        return ['goods_list'=>$goods_list,'price_list'=>$price_list,'count'=>$count];
+    }
 }

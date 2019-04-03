@@ -19,46 +19,46 @@
 								<div class="person-infor-content">
 									<ul class="clear">
 										<li>
-											<a href="credits-exchange.html">
+											<a href="{:url('score/Gift/gift')}">
 												<i class="iconfont icon-wodejifen"></i>
 												<p>我的积分</p>
-												<span>700</span>
+												<span>{$user.score}</span>
 											</a>
 										</li>
 										<li>
-											<a href="purchase-order.html">
+											<a href="{:url('order/Order/myorder',['status'=>2])}">
 												<i class="iconfont icon-qian"></i>
 												<p>等待付款的订单数</p>
-												<span>0</span>
+												<span>{$count.order2}</span>
 											</a>
 										</li>
 										<li class="marNone">
-											<a href="purchase-order.html">
+											<a href="{:url('order/Order/myorder',['status'=>3])}">
 												<i class="iconfont icon-daifahuo"></i>
 												<p>等待发货的订单数</p>
-												<span>0</span>
+												<span>{$count.order3}</span>
 											</a>
 										</li>
 										<li>
-											<a href="purchase-order.html">
+												<a href="{:url('order/Order/myorder',['status'=>4])}">
 												<i class="iconfont icon-daishouhuo"></i>
 												<p>待收货</p>
-												<span>0</span>
+												<span>{$count.order4}</span>
 											</a>
 										</li>
 										<li>
-											<a href="credit-discount.html">
+												<a href="{:url('coupon/CouponUser/coupon_user')}">
 												<i class="iconfont icon-youhuiquan"></i>
 												<p>优惠券</p>
-												<span>0</span>
+												<span>{$count.coupon}</span>
 											</a>
 										</li>
 										<li class="marNone">
 											<a href="line-credit.html">
 												<h4>信用额度</h4>
-												<span>￥47604.30</span>
+												<span>￥{$user.credit1}({$user.credit1_use})</span>
 												<h5>(人民币)</h5>
-												<span>$0</span>
+												<span>${$user.credit2}({$user.credit2_use})</span>
 												<h5>(美元)</h5>
 											</a>
 										</li>
