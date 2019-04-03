@@ -15,6 +15,8 @@ use app\express\model\StationModel;
 use app\express\model\FreightModel;
 use app\invoice\model\InvoiceUserModel;
 use app\express\model\FreightAreaModel;
+use app\user\model\UserModel;
+use app\order\model\OrderModel;
 class OrderController extends UserBaseController
 {
 
@@ -22,12 +24,18 @@ class OrderController extends UserBaseController
     
    public function myorder()
    {
+       $lan1=$this->lan1;
+       $lan2=$this->lan2;
+       $uid=session('user.id');
        $data=$this->request->param();
        if(empty($data['status'])){
           $data['status']=0;
        }
        $this->assign('data',$data);
        $this->assign('status',$data['status']);
+       $m_order=new OrderModel();
+       $res=$m_order->get_page($data,$uid);
+       dump($res);
        return $this->fetch();
    }
    public function order_info()
@@ -149,44 +157,15 @@ class OrderController extends UserBaseController
    }
    //转化为订单页面
    public function order_do2(){
-       $data0=$this->request->param();
-       dump($data0);
-       $data=[
-           'coupon_id'=>1,//优惠券
-           'invoice_id'=>1,
-           'freight_type'=>1,//1快递2自提
-           'address_id'=>1,//快递和自提地址
-           'accept_name'=>'',//自提人
-           'tel'=>'',//自提电话 
-           'pay_freight'=>0,//运费
-           'freight_id'=>1,//选择快递
-           'pay_type1'=>1,//在线支付
-           'pay_type2'=>1,//支付宝
-           'pay_type3'=>1,//全额付款
-           'dsc'=>'速度快点',//订单备注
-           'nums'=>[],//产品数量
-           'dscs'=>[],//产品备注 
-           'freight_pay'=>0,//运费
-           'type'=>$type,//页面
-           'goods_money'=>1,//运费
-       ];
-       $nums=$data['nums'];
+       $data=$this->request->param();
+       dump($data);
+       
        $lan1=$this->lan1;
-       $lan2=$this->lan2;
-       $goods_ids=array_keys($nums);
-       $price_type=($type==1)?1:2;
-       $uid=session('user.id');
-       $m_goods=new GoodsModel();
-       $res=$m_goods->goods_count($nums,$lan1,$lan2,$price_type);
-       $goods_list=$res['goods_list']; 
-       $count=$res['count']; 
-       
-       //累加产品数量,金额,重量
-       $count_num=$count['num'];
-       $count_money=$count['money'];
-       $count_weight=$count['weight'];
-       $count_size=$count['size'];
-       
+       $lan2=$this->lan2; 
+       $uid=session('user.id'); 
+        
+       $m_order=new OrderModel();
+       $oid=$m_order->order_add($data,$uid,$lan1,$lan2);
        
    }
    //运费计算
