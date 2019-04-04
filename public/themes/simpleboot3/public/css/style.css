@@ -4146,19 +4146,28 @@
 	padding-left: 2em;
 }
 .excultxt>ul>li,.invocateform-total>ul>li{
-	padding-left: 20px;
+	/* padding-left: 20px; */
+	padding-left: 10px;
 	height: 45px;
 	line-height: 45px;
 	vertical-align: middle;
-	background: url(../img/choice.png) no-repeat left center;
+	/* background: url(../img/choice.png) no-repeat left center; */
 	border-bottom: 1px solid #dcdcdc;
 	font-size: 14px;
 	cursor: pointer;
 	position: relative;
 }
-.excultxt>ul>li.excultxtaddr,.invocateform-total>ul>li.incocateaddr{
-	background: url(../img/choice-se.png) no-repeat left center;
+.excultxt>ul>li>label,.invocateform-total>ul>li>label{
+	width: 100%;
+	font-weight: 100;
 }
+.excultxt>ul>li>label>input,.invocateform-total>ul>li>label>input{
+	margin: 0 3px;
+	vertical-align: middle;
+}
+/* .excultxt>ul>li.excultxtaddr,.invocateform-total>ul>li.incocateaddr{
+	background: url(../img/choice-se.png) no-repeat left center;
+} */
 .excultxt-list-btn,.invocateform-button{
 	position: absolute;
 	top: 0;

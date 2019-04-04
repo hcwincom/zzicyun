@@ -63,9 +63,11 @@ $(".orderinvo div").click(function(){
 // $(".togginfo").click(function(){
 // 	$(".groupbox-display").toggle();
 // });
-$(".excultxt ul li").click(function(){
-	$(this).addClass("excultxtaddr").siblings("li").removeClass("excultxtaddr");
-});
+
+// $(".excultxt ul li").click(function(){
+// 	$(this).addClass("excultxtaddr").siblings("li").removeClass("excultxtaddr");
+// });
+
 // $(".exaddinvo>button").click(function(){
 // 	 $(this).parents(".excultxt").hide();
 // 	$(".exculform").show();
@@ -93,9 +95,9 @@ $(".excultxt ul li").click(function(){
 		$(document.body).toggleClass("html_overflow");
 	});
 	// 选择切换
-	$(".invocateform-total>ul>li").click(function () {
-		$(this).addClass("incocateaddr").siblings("li").removeClass("incocateaddr");
-	});
+	// $(".invocateform-total>ul>li").click(function () {
+	// 	$(this).addClass("incocateaddr").siblings("li").removeClass("incocateaddr");
+	// });
 
 
 

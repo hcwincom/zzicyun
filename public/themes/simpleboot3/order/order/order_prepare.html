@@ -42,9 +42,9 @@
 										<div class="orderdelive clear">
 											<div class="orderdelive-div fl ordeliveCurrt">快递配送</div>
 											<div class="orderdelive-div fl">门店自提</div>
+											<input type="hidden" name="freight_type" id="freight_type" value="1">
 										</div>
 										<div class="orderdelive-cont">
-											<input type="hidden" class="express" value="1">
 											<div class="orderdelive-expre storeCurrent">
 												<div class="orderdelive-expre-box clear">
 													<p class="fl">选择快递：</p>
@@ -87,9 +87,9 @@
 												</div>
 												<div class="storeInfo">
 													<span>自提信息：</span>
-													<input type="hidden" name="station_id" id="station_id" value="{$key}"/>
-													<span class="storeleft">联系人<input type="text" name="lname" value="" class="storeInput" /></span>
-													<span class="storeleft">联系电话<input type="text" name="lphone" value="" class="storeInput" /></span>
+													<input type="hidden" name="station_id" id="station_id" value="0"/>
+													<span class="storeleft">联系人<input type="text" id="station_accept_name" name="station_accept_name" value="" class="storeInput" /></span>
+													<span class="storeleft">联系电话<input type="text" id="station_accept_tel" name="station_accept_tel" value="" class="storeInput" /></span>
 													 
 												</div>
 											</div>
@@ -232,6 +232,7 @@
 													<ul class="clear">
 													<foreach name="coupons" item="vo">
 														<li class="<if condition='$key eq $coupon'>onfodisactive</if> ">
+																<input type="hidden" name="coupon_id" class="coupon_id" value="">
 															<div class="discount-cont">
 																<div class="discountTxt">
 																	<h2><b>{$money_flag}{$vo.money}</b><span>满{$vo.money_min}元</span></h2>
@@ -274,11 +275,18 @@
 												</tr>
 												<tr>
 													<td class="shopLeftwidth"><p>应付金额：</p></td>
-													<td class="shopRightwidth"><p class="shoplarge"><b class="redColor">{$money_flag}{$money_end}</b></p></td>
+													<td class="shopRightwidth">
+														<p class="shoplarge"><b class="redColor">{$money_flag}{$money_end}</b></p>
+													</td>
 												</tr>
 												
 											</table>
 											<div class="shoptotalbtn">
+
+												<input type="hidden" name="freight_pay" value="{$freight_fee}">
+												<input type="hidden" name="coupon_money" value="0">
+												<input type="hidden" name="goods_money" value="{$count_money}">
+												<input type="hidden" name="type" value="{$type}">
 												<button type="submit" class="pickBtn">提交订单</button>
 											</div>
 										</div>

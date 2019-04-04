@@ -16,7 +16,8 @@
 					<ul class="excultxt-list">
 						<foreach name="invoices[1]" item="vo">
 							<li class="">
-								<div class="excultxt-list-top">
+								<label class="excultxt-list-top">
+									<input type="radio" name="invoice_id" class="invoice_id" value="">
 									<span class="speTitle">{$vo.title}</span>
 									<span class="speName">{$vo.name}</span>
 									<input type="hidden" class="province" value="{$vo.accept_province}" />
@@ -31,7 +32,7 @@
 									<input type="hidden" class="specifal_tel" value="{$vo.accept_tel}">
 									<input type="hidden" class="specifal_addr" value="{$vo.accept_address}">
 									<input type="hidden" class="specifal_file" value="{$vo.file}">
-								</div>
+								</label>
 								<div class="excultxt-list-btn">
 									<!-- <button type="button" class="exculdafult">默认</button> -->
 									<!-- <button type="button" class="excultxtbtn">修改</button> -->
@@ -39,9 +40,10 @@
 							</li>
 						</foreach>
 						<li class="excultxtaddr">
-							<div class="excultxt-list-top">
+							<label class="excultxt-list-top">
+								<input type="radio" name="invoice_id" class="invoice_id" value="0" checked>
 								<span>谢谢，我不用发票</span>
-							</div>
+							</label>
 						</li>
 					</ul>
 					<div class="exaddinvo">
@@ -162,7 +164,8 @@
 					<ul class="invocateformTxt">
 						<foreach name="invoices[2]" item="vo">
 							<li class="">
-								<div class="invocateform-top">
+								<label class="invocateform-top">
+									<input type="radio" name="invoice_id" class="invoice_id" value="">
 									<span>公司发票</span>
 									<span class="companyTitle">{$vo.name}</span>
 									<span class="acceptName">{$vo.accept_name}</span>
@@ -173,8 +176,7 @@
 									<span class="acceptAddr"> {$vo.accept_address_info}<i>{$vo.accept_address}</i></span> 
 									<!-- 给隐藏域赋值 -->
 									<input type="hidden" class="" value="{$vo.accept_name}">
-
-								</div>
+								</label>
 								<!-- <div class="invocateform-button">
 									<button type="button">默认</button>
 									<button type="button" class="invoamendbtn">修改</button>
@@ -182,9 +184,10 @@
 							</li>
 						</foreach>
 					<li class="incocateaddr">
-						<div class="invocateform-top">
+						<label class="invocateform-top">
+							<input type="radio" name="invoice_id" class="invoice_id" value="0" >
 							<span>我不开发票，谢谢！</span> 
-						</div>
+						</label>
 					</li>
 					</ul>
 					<!--添加-->
@@ -278,7 +281,8 @@
 						<ul class="invocateformTxt">				
 							<foreach name="invoices[3]" item="vo">
 								<li class="">
-									<div class="invocateform-top">
+									<label class="invocateform-top">
+										<input type="radio" name="invoice_id" class="invoice_id" value="">
 										<span>个人发票 &nbsp;&nbsp;</span>
 										<span class="perTitle">{$vo.name}</span>
 										<span class="perName">{$vo.accept_name}</span>
@@ -287,7 +291,7 @@
 										<input type="hidden" class="province" value="{$vo.accept_province}" />
 										<input type="hidden" class="city" value="{$vo.accept_city}" />
 										<input type="hidden" class="area" value="{$vo.accept_area}" />
-									</div>
+									</label>
 									<!-- <div class="invocateform-button">
 										<button type="button">默认</button>
 										<button type="button" class="invoamendbtn">修改</button>
@@ -295,9 +299,10 @@
 								</li>
 							</foreach>					
 							<li class='incocateaddr'>
-								<div class="invocateform-top">
+								<label class="invocateform-top">
+									<input type="radio" name="invoice_id" class="invoice_id" value="0" >
 									<span>我不开发票，谢谢！</span>
-								</div>
+								</label>
 							</li>
 						</ul>
 						<!--添加-->
@@ -431,7 +436,8 @@
 						console.log(data);
 						
 						var invoceAdd = '<li class="excultxtaddr">'+
-											'<div class="excultxt-list-top" >'+
+											'<label class="excultxt-list-top" >'+
+												'<input type="radio" name="invoice_id" class="invoice_id" value="" checked>'+
 												// '<span class="speTitle">'+  +'</span>'+
 												'<span class="speName">'+ name +'</span>'+
 												'<input type="hidden" class="province" value="'+ province +'" />'+
@@ -446,10 +452,10 @@
 												'<input type="hidden" class="specifal_tel" value="' + accept_tel +'">' +
 												'<input type="hidden" class="specifal_addr" value="' + accept_address +'">' +
 												'<input type="hidden" class="specifal_file" value="' + file +'">' +
-											'</div >'+
-											'<div class="excultxt-list-btn">'+
-												'<button type="button" class="excultxtbtn">修改</button>'+
-											'</div>'+
+											'</label>'+
+											// '<div class="excultxt-list-btn">'+
+											// 	'<button type="button" class="excultxtbtn">修改</button>'+
+											// '</div>'+
 										'</li >';
 						$(".excultxt>ul>li").removeClass("excultxtaddr");
 						msg(data.msg);
@@ -574,11 +580,11 @@
 					console.log(data);
 
 					var invoceAdd = '<li class="excultxtaddr">' +
-										'<div class="excultxt-list-top" >' +
+										'<label class="excultxt-list-top" >' +
 											'<span class="speName">' + name + '</span>' +
 											'<span class="speName">' + name + '</span>' +
 											'<span class="speName">' + name + '</span>' +
-										'</div >' +
+										'</label >' +
 										// '<div class="excultxt-list-btn">' +
 										// '<button type="button" class="excultxtbtn">修改</button>' +
 										// '</div>' +
