@@ -237,8 +237,6 @@ class OrderModel extends Model
             }
            
         }
-        $order_statuss=config('order_status');
-        $info['status_name']=isset($order_statuss[$info['status']])?$order_statuss[$info['status']]:$info['status']; 
         return $info;
     }
 }

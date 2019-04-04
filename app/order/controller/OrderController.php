@@ -31,9 +31,9 @@ class OrderController extends UserBaseController
        $m_order=new OrderModel();
        $where=['o.uid'=>$uid];
        //待审核(2)
-       $where1=['uid'=>$uid,'pay_status'=>['in',[2,4]]];
+       $where1=['uid'=>$uid,'pay_status'=>['in',[2,5]]];
        // 待付款(2)
-       $where2=['uid'=>$uid,'pay_status'=>['in',[1,3]]];
+       $where2=['uid'=>$uid,'pay_status'=>['in',[1,4]]];
        // 待发货(2)
        $where3=['uid'=>$uid,'status'=>['in',[2,3,4]]];
        // 待收货(2)
@@ -139,12 +139,42 @@ class OrderController extends UserBaseController
    }
    public function order_info()
    {
+       $lan1=$this->lan1;
+       $lan2=$this->lan2;
        $id=$this->request->param('id',0,'intval');
        $uid=session('user.id');
        $m_order=new OrderModel();
        $info=$m_order->order_info($id,$uid);
+       $order_statuss=config('order_status');
+       $goods_list=Db::name('order_goods')->where('oid','eq',$id)->column('*','goods');
+       $ids=array_keys($goods_list);
+       $m_goods=new GoodsModel();
+       $goods_list0=$m_goods->goods_list($lan1,$lan2,$ids);
+       //品牌
+       $m_brand=new GoodsBrandModel();
+       $brands=$m_brand->get_list($lan1,$lan2);
        
+       //发货时间
+       $m_time=new GoodsTimeModel();
+       $goods_times=$m_time->get_list($lan1,$lan2);
+       
+       foreach($goods_list as $k=>$v){
+           if(isset($goods_list0[$k])){
+               $goods_list[$k]['brand_name']=$brands[$goods_list0[$k]['brand']];
+               $goods_list[$k]['time_name']=$goods_times[$goods_list0[$k]['goods_time'.$info['type']]];
+               $goods_list[$k]['box']=$goods_list0[$k]['box'];
+           }else{
+               $goods_list[$k]['brand_name']='';
+               $goods_list[$k]['time_name']='';
+               $goods_list[$k]['box']='';
+           }
+           
+       }
+       $send_statuss=config('send_status');
        $this->assign('order',$info);
+       $this->assign('goods_list',$goods_list);
+       $this->assign('order_statuss',$order_statuss);
+       $this->assign('send_statuss',$send_statuss);
        return $this->fetch();
    }
 

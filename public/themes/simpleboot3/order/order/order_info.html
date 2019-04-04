@@ -94,62 +94,26 @@
 												<p>订单号：<span>{$order.name}</span></p>
 											</div>
 											<div class="deatil-state">
-												<p>订单状态：<span>{$order.status_name}</p>
+												<p>订单状态：<span>{$order_statuss[$order.status]|default=$order.status}</p>
 											</div>
 											<div class="detail-order-bz">
 												<ul class="detail-circle clear">
-													<li>
+													<foreach name="order_statuss" item="vo">
+													<li class="<if condition='$key eq $order.status'>circle-active</if> ">
 														<p></p>
 													</li>
-													<li class="circle-active">
-														<p></p>
-													</li>
-													<li>
-														<p></p>
-													</li>
-													<li>
-														<p></p>
-													</li>
-													<li>
-														<p></p>
-													</li>
-													<li>
-														<p></p>
-													</li>
-													<li>
-														<p></p>
-													</li>
-													<li>
-														<p></p>
-													</li>
+												</foreach>
+												 
 												</ul>
 											</div>
 											<div class="detail-dsc clear">
 												<ul class="clear">
-													<li>
-														<p>提交订单</p>
+												<foreach name="order_statuss" item="vo">
+													<li class="<if condition='$key eq $order.status'>dsc-active</if> ">
+														<p>{$vo}</p>
 													</li>
-													<li class="dsc-active">
-														<p>已付款</p>
-													</li>
-													<li>
-														<p>处理中</p>
-													</li>
-													<li>
-														<p>仓库出货 </p>
-													</li>
-													<li>
-														<p>已完成</p>
-													</li>
-													<li>
-														<p>处理中</p>
-													</li>
-													<li>
-														<p>仓库出货 </p>
-													</li>
-													<li>
-														<p>已完成</p>
-													</li>
+												</foreach>
+													 
 												</ul>
 											</div>
 										</div>
@@ -182,101 +146,92 @@
 													<th width="8%">状态 </th>
 													<th width="8.8%">运单号</th>
 												</tr>
+											<foreach name="goods_list" item="vo">
 												<tr>
 													<td>
-														<p>1</p>
+														<p>{$key}</p>
 													</td>
 													<td>
-														<p>GN1234</p>
+														<p>{$vo.store_code}</p>
 													</td>
 													<td>
-														<p>BZX84-C11.215</p>
+														<p>{$vo.goods_code}</p>
 													</td>
 													<td>
-														<p>NEXPERIA</p>
+														<p>{$vo.brand_name}</p>
 													</td>
 													<td>
-														<p>0412</p>
+														<p>{$vo.box}</p>
 													</td>
 													<td>
-														<p>100</p>
+														<p>{$vo.num}</p>
 													</td>
 													<td>
-														<p>￥0.1566</p>
+														<p>
+														<eq name="order.type" value="1">
+														￥
+														<else/>
+														$
+														</eq>
+														{$vo.price}</p>
 													</td>
 													<td>
-														<p>￥15.66</p>
+														<p><eq name="order.type" value="1">
+														￥
+														<else/>
+														$
+														</eq>{$vo.pay}</p>
 													</td>
 													<td>
-														<p>66666</p>
+														<p>{$vo.udsc}</p>
 													</td>
 													<td>
-														<p>三~四天</p>
+														<p>{$vo.time_name}</p>
 													</td>
 													<td>
-														<p>已发货</p>
+														<p>{$send_statuss[$vo.send_status]|default=$vo.send_status}</p>
 													</td>
 													<td>
-														<p>123456987</p>
+														<p>{$vo.express_no}</p>
 													</td>
 												</tr>
-												<tr>
-													<td>
-														<p>2</p>
-													</td>
-													<td>
-														<p>GN1234</p>
-													</td>
-													<td>
-														<p>BZX84-C11.215</p>
-													</td>
-													<td>
-														<p>NEXPERIA</p>
-													</td>
-													<td>
-														<p>0412</p>
-													</td>
-													<td>
-														<p>100</p>
-													</td>
-													<td>
-														<p>￥0.1566</p>
-													</td>
-													<td>
-														<p>￥15.66</p>
-													</td>
-													<td>
-														<p>66666</p>
-													</td>
-													<td>
-														<p>三~四天</p>
-													</td>
-													<td>
-														<p>已发货</p>
-													</td>
-													<td>
-														<p>123456987</p>
-													</td>
-												</tr>
+											</foreach>
+												 
 											</table>
 										</div>
 										<div class="detail-group-total">
 											<div class="getail-text clear">
 												<p class="textLeft">商品总金额：</p>
-												<p class="textRight">￥152.96</p>
+												<p class="textRight"><p><eq name="order.type" value="1">
+														￥
+														<else/>
+														$
+														</eq>{$order.goods_money}</p>
 											</div>
 											<div class="getail-text clear">
 												<p class="textLeft">运费：</p>
-												<p class="textRight">￥0.00</p>
+												<p class="textRight"><p><eq name="order.type" value="1">
+														￥
+														<else/>
+														$
+														</eq>{$order.freight_pay}</p>
 											</div>
 											<div class="getail-text clear">
 												<p class="textLeft">优惠券抵扣金额：</p>
-												<p class="textRight">-￥0.00</p>
+												<p class="textRight">-<p><eq name="order.type" value="1">
+														￥
+														<else/>
+														$
+														</eq>{$order.coupon_money}</p>
 											</div>
 											 
 											<div class="getail-text clear">
 												<p class="textLeft">应付金额：</p>
-												<p class="textRight">￥0</p>
+												<p class="textRight"><p><eq name="order.type" value="1">
+														￥
+														<else/>
+														$
+														</eq>{$order.order_pay}</p>
 											</div>
 											
 										</div>
