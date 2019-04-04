@@ -27,6 +27,21 @@ class InvoiceUserModel extends Model
           return $list;
      }
      /**
+      * 按id获取用户发票  
+      * @param int $id发票id
+      * @param int $uid用户
+      * @return $info
+      */
+     public function get_info($id,$uid){
+         $where=[ 
+             'id'=>$id,
+             'uid'=>$uid,
+         ];
+         
+         $info=$this->where($where)->find();
+         return $info->getData();
+     }
+     /**
       * 获取用户发票
       * @param int $uid
       * @return array[]

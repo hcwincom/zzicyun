@@ -29,6 +29,17 @@ class FreightModel extends Model
         return $list;
          
     }
+    /**
+     *  快递名称
+     * @return $name
+     */
+    public function get_name($id,$lan1=1,$lan2=1){
+        
+       $name=$this->where('id',$id)->value('name');
+        
+       return $name;
+        
+    }
     
     
 }

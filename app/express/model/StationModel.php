@@ -29,6 +29,18 @@ class StationModel extends Model
         return $list;
          
     }
+    /**
+     * 获取自提点信息
+     * @return array
+     */
+    public function get_info($id){
+        
+         
+        $info=$this->where('id',$id)->find();
+        
+        return $info->getData();
+        
+    }
     
     
 }

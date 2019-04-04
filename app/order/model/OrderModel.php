@@ -216,7 +216,28 @@ class OrderModel extends Model
         $pay_type2s=config('pay_type2');
         //付款金额比例
         $pay_type3s=config('pay_type3');
-        
+        $info['pay_type1_name']=isset($pay_type1s[$info['pay_type1']])?$pay_type1s[$info['pay_type1']]:$info['pay_type1'];
+        $info['pay_type2_name']=isset($pay_type2s[$info['pay_type2']])?$pay_type2s[$info['pay_type2']]:$info['pay_type2'];
+        $info['pay_type3_name']=isset($pay_type3s[$info['pay_type3']])?$pay_type3s[$info['pay_type3']]:$info['pay_type3']; 
+        if($info['freight_type']==1){
+            $m_freight=new FreightModel();
+            $info['freight_name']=$m_freight->get_name($info['freight_id']);
+        }else{
+            $m_station=new StationModel();
+            $station=$m_station->get_info($info['station_id']);
+            $info['station_address']=empty($station)?'':($station['address_info'].$station['address']);
+        }
+        if(!empty($info['invoice_id'])){
+            $m_invoice=new InvoiceUserModel();
+            $info['invoice_info']=$m_invoice->get_info($info['invoice_id'], $info['uid']);
+            if(!empty($info['invoice_info'])){
+                $invoice_types=config('invoice_type');
+                $info['invoice_info']['type_name']=isset($invoice_types[$info['invoice_info']['type']])?$invoice_types[$info['invoice_info']['type']]:$info['invoice_info']['type']; 
+            }
+           
+        }
+        $order_statuss=config('order_status');
+        $info['status_name']=isset($order_statuss[$info['status']])?$order_statuss[$info['status']]:$info['status']; 
         return $info;
     }
 }

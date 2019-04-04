@@ -210,7 +210,7 @@
 																		<button type="button" data-toggle="modal" data-target="#myModal">立即付款</button>
 																	</p>
 																	<p class="orange">
-																		<a href="{:url('order/Order/order_info')}">查看详情</a>
+																		<a href="{:url('order/Order/order_info',['id'=>$key])}">查看详情</a>
 																	</p>
 																	<p class="green">
 																		<a href="javascript:;" class="canaelOrder">取消订单</a>
@@ -401,8 +401,8 @@
 		       var start = {
 		           elem: '#start',
 		           format: 'YYYY-MM-DD',
-		           min: '', //设定最小日期为当前日期
-		           max: laydate.now(), //最大日期
+		         
+		           max:laydate.now(), //最大日期
 		           istime: false,
 		           istoday: true,
 		           choose: function(datas){
@@ -415,8 +415,8 @@
 		    var end = {
 		           elem: '#end',
 		           format: 'YYYY-MM-DD',
-		           min: '', //设定最小日期为当前日期
-		           max: laydate.now(), //最大日期
+		          
+		           max:laydate.now(), //最大日期
 		           istime: false,
 		            istoday: false,
 		           choose: function(datas){ 

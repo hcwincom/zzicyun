@@ -60,7 +60,11 @@ class OrderController extends UserBaseController
    public function order_info()
    {
        $id=$this->request->param('id',0,'intval');
+       $uid=session('user.id');
+       $m_order=new OrderModel();
+       $info=$m_order->order_info($id,$uid);
        
+       $this->assign('order',$info);
        return $this->fetch();
    }
 

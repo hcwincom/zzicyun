@@ -44,7 +44,7 @@
 									<eq name="order.freight_type" value="2">
 										<div class="box-list-cont clear">
 											<p class="titlist">自提点：</p>
-											<p class="listcont">{$order.address_info}{$order.address}</p>
+											<p class="listcont">{$order.station_address}</p>
 										</div>
 										<div class="box-list-cont clear">
 											<p class="titlist">自提联系人：</p>
@@ -58,19 +58,27 @@
 									</eq>
 										<div class="box-list-cont clear">
 											<p class="titlist">支付方式：</p>
-											<p class="listcont">全部预付（支付宝）</p>
+											<p class="listcont">{$order.pay_type3_name}（{$order.pay_type2_name}）</p>
 										</div>
 										<div class="box-list-cont clear">
 											<p class="titlist">发票种类： </p>
-											<p class="listcont">增值税普通发票</p>
+											<p class="listcont">
+											<empty name="order.invoice_info">
+												不要发票
+											<else/>
+												{$order['invoice_info']['type_name']}
+											</empty> 
+											</p>
 										</div>
+									<notempty name="order.invoice_info">
 										<div class="box-list-cont clear">
 											<p class="titlist">发票信息：  </p>
-											<p class="listcont">深圳广诺科技有限公司  </p>
+											<p class="listcont">{$order['invoice_info']['title']} </p>
 										</div>
+									</notempty>
 										<div class="box-list-cont clear">
 											<p class="titlist">订单备注：</p>
-											<p class="listcont">xxxxxxx</p>
+											<p class="listcont">{$order.udsc}</p>
 										</div>
 									</div>
 								</div>
@@ -83,10 +91,10 @@
 									<div class="detail-box-list">
 										<div class="detail-list">
 											<div class="detail-order-num">
-												<p>订单号：<span>SC1709242637584</span></p>
+												<p>订单号：<span>{$order.name}</span></p>
 											</div>
 											<div class="deatil-state">
-												<p>订单状态：<span>订单关闭</span><a href="back-order-detail.html">退款详情</a></p>
+												<p>订单状态：<span>{$order.status_name}</p>
 											</div>
 											<div class="detail-order-bz">
 												<ul class="detail-circle clear">
@@ -240,21 +248,14 @@
 												<p class="textRight">￥152.96</p>
 											</div>
 											<div class="getail-text clear">
-												<p class="textLeft">附加费：</p>
+												<p class="textLeft">运费：</p>
 												<p class="textRight">￥0.00</p>
 											</div>
 											<div class="getail-text clear">
-												<p class="textLeft">优惠券/折扣券抵扣金额：</p>
+												<p class="textLeft">优惠券抵扣金额：</p>
 												<p class="textRight">-￥0.00</p>
 											</div>
-											<div class="getail-text clear">
-												<p class="textLeft">活动优惠金额：</p>
-												<p class="textRight">-￥0.00</p>
-											</div>
-											<div class="getail-text clear">
-												<p class="textLeft">芯付通： </p>
-												<p class="textRight">￥0.00</p>
-											</div>
+											 
 											<div class="getail-text clear">
 												<p class="textLeft">应付金额：</p>
 												<p class="textRight">￥0</p>
