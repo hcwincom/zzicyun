@@ -183,6 +183,30 @@
 				$(".hidSort").val("store1");
 				$("#filterForm").submit();
 			});
+
+				// 直接购买
+				$(".outright>.purBuy>a").click(function () {
+
+					var type=1;
+
+						// 数量
+						var num = parseInt($(this).parents("tr").find(".btn-num").val());
+						console.log(num);
+						var id = $(this).parents("tr").find(".id").val();
+						console.log(id);
+
+						var data_value = $(this).parents("tr").find(".selected").attr("data-value");
+						if(data_value == "HK"){
+							type = 2;
+						}
+
+						location.href="{:url('order/Order/buy_order','',false,false)}/id/"+id+'/num/'+num+'/type/'+type;
+						
+
+					});
+				
+
+
 			
 		</script>
 	</body>
