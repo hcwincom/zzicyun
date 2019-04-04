@@ -18,7 +18,7 @@
 								<div class="title-nav">
 									<ul class="login_type clear">
 										<li class="active">账号密码登录</li>
-										<li>手机免密登录</li>
+										<!-- <li>手机免密登录</li> -->
 									</ul>
 								</div>
 								<!---->
@@ -128,7 +128,7 @@ $('#psw_submit').click(function(){
 	        success: function(data){ 
 	        	if(data.code==1){
 					//成功提示
-					 msg('成功');
+					//  msg('成功');
 					 location.href = "{:url('user/Center/center')}";
 				}else{
 					//失败

@@ -2647,13 +2647,24 @@ p.oranBorder>a{
 }
 .userType>li{
 	float: left;
-	padding-left: 20px;
+	/* padding-left: 20px; */
 	margin-right: 20px;
-	background: url(../img/choice.png) no-repeat left center;
+	font-size: 14px;
+	/* background: url(../img/choice.png) no-repeat left center; */
 }
-.userType>li.typeActive{
+/* .userType>li.typeActive{
 	background: url(../img/choice-gray.png) no-repeat left center;
+} */
+.userType>li>label{
+	font-weight: 100;
+	margin: 0;
 }
+.userType>li>label>input{
+	margin: 0 3px;
+	vertical-align: middle;
+}
+
+
 .basic-input,.induty-select,.addr-select{
 	width: 55%;
 	height: 40px;

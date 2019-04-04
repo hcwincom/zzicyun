@@ -41,7 +41,7 @@
 										<div class="basic-box clear">
 											<p class="fl">昵称</p>
 											<div class="fl basicRight">
-												<p><input type="text" name="user_nickname" id="user_nickname" value="{$user.user_nickname}"/></p>
+												<p class="nickName"><input type="text" name="user_nickname" id="user_nickname" class="basic-input" value="{$user.user_nickname}"/></p>
 											</div>
 										</div>
 										<div class="basic-box clear">
@@ -70,9 +70,12 @@
 											<div class="fl basicRight">
 												<ul class="userType clear">
 												<foreach name="user_cates" item="vo" >
-													<li class="<if condition='$key eq $user.user_cate'>typeActive</if> ">{$vo}</li>
-													
-													<li><input type="radio" name="user_cate" value="{$key}" <if condition='$key eq $user.user_cate'>checked</if>/>{$vo}</li>
+													<li>
+														<label>
+															<input type="radio" name="user_cate" value="{$key}" <if condition='$key eq $user.user_cate'>checked</if>/>{$vo}
+														</label>
+														
+													</li>
 												</foreach>
 													 
 												</ul>

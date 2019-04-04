@@ -146,7 +146,7 @@
 								<span>我已阅读并同意 <a href="memberCenter/invoice-xuzhi.html">《发票须知》</a></span>
 							</div>
 						</div>
-															
+						<p class="deml tipMsg"></p>
 						<div class="groupInput-box clear">
 							<p class="fl"></p>
 							<div class="box-input fl excuBtn">
@@ -316,7 +316,7 @@
 								<li class="">
 									<label class="invocateform-top">
 										<input type="radio" name="invoice_id" class="invoice_id" value="">
-										<span>个人发票 &nbsp;&nbsp;</span>
+										<span>个人发票</span>
 										<span class="perTitle">{$vo.name}</span>
 										<span class="perName">{$vo.accept_name}</span>
 										<span class="perTel">{$vo.accept_tel}</span>
@@ -392,14 +392,14 @@
 									<div class="groupInput-box clear">
 										<p class="fl">详细地址：</p>
 										<div class="box-input fl">
-											<textarea name="addrdetail" id="psaddr" class="shop-area"></textarea>
+											<textarea name="addrdetail" id="peraddr" class="shop-area"></textarea>
 										</div>
 									</div>
 								
 									<div class="groupInput-box clear">
 										<p class="fl"></p>
 										<div class="box-input fl">
-											<input type="checkbox" name="tolecheck" id="pscheck" value="" class="orcheck" checked />
+											<input type="checkbox" name="tolecheck" id="percheck" value="" class="orcheck" checked />
 											<span>我已阅读并同意 <a href="memberCenter/invoice-xuzhi.html">《发票须知》</a></span>
 										</div>
 									</div>
@@ -571,6 +571,12 @@
 			'company_address': company_address, 'company_tel': company_tel, 'company_code': company_code,
 			'bank': bank, 'bank_num': bank_num, 'file': file
 		};
+		// 表格验证
+		if (name == "") {
+			$("#comTitle").focus();
+			$(".tipMsg").html("请输入发票抬头");
+			return false;
+		}
 
 		$.ajax({
 			"url": url_invoice_do,
@@ -616,7 +622,71 @@
 
 	// 普通个人发票
 
+	$(".keepCatePerson").click(function () {
+			var name = $.trim($("#pertitle").val());
+			var province = $('#city1111').val();
+			var city = $('#city2222').val();
+			var area = $('#city3333').val();
+			var accept_name = $.trim($("#pername").val());
+			var accept_tel = $.trim($("#pertel").val());
+			var accept_address = $.trim($("#peraddr").val());
 
+			var data_json = {
+				'type': 3, 'name': name, 'province': province, 'city': city, 'area': area,
+				'accept_name': accept_name, 'accept_tel': accept_tel, 'accept_address': accept_address
+			};
+
+			// 表格验证
+			if(name == ""){
+				$("#pertitle").focus();
+				$(".tipMsg").html("请输入发票抬头");
+				return false;
+			}
+
+
+
+
+			$.ajax({
+				"url": url_invoice_do,
+				"type": "POST",
+				"data": data_json,
+				"dataType": "json",
+				"success": function (data) {
+					if (data.code == 1) {
+						console.log(data);
+
+						var invoceAdd = '<li class="">' +
+											'<label class="invocateform-top" >' +
+												'<input type="radio" name="invoice_id" class="invoice_id" value="" checked>' +
+												'<span>个人发票</span>' +
+												'<span class="perTitle">' + name + '</span>' +
+												'<span class="perName">' + accept_name + '</span>' +
+												'<span class="perTel">' + accept_tel + '</span>' +
+												'<span class="perAddr">' + province + city + area + '<i>' + accept_address + '</i></span>' +
+											'</label >' +
+										// '<div class="excultxt-list-btn">' +
+										// '<button type="button" class="excultxtbtn">修改</button>' +
+										// '</div>' +
+										'</li >';
+						msg(data.msg);
+						$(".invoCatePersonForm").hide();
+						$(document.body).toggleClass("html_overflow");
+						$(".invocateform-total>.invocateformTxt").prepend(invoceAdd);
+
+					} else {
+						//失败
+						msg(data.msg);
+					}
+				},
+				"error": function (event, XMLHttpRequest, ajaxOptions, thrownError) {
+					msg(event.responseText, 1);
+				}
+			});
+
+			return false;
+
+
+		});
 
 
 
