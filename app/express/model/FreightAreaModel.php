@@ -38,6 +38,8 @@ class FreightAreaModel extends Model
      * @return float 运费
      */
     public function get_fee($freight,$city,$count_weight,$count_size,$count_money,$money_type=1){
+        //暂时免运费
+        return 0;
         //先获取城市所在区域
         $where=[
             'city'=>$city,

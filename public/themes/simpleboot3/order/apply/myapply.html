@@ -10,7 +10,7 @@
 								<p class="perpadding">
 									<span>订单管理</span>
 									<i class="iconfont icon-jiantoudown"></i>
-									<a href="sampling-order.html">样品订单</a>
+									<a href="url('order/Apply/myapply')">样品订单</a>
 								</p>
 							</div>
 							<div class="person-sampling">
@@ -81,7 +81,7 @@
 														</td>
 														<td class="sampling-shaort">
 															<div class="sampling-list">
-																<p class="orange"><a href="sampling-order-detail.html">查看详情</a></p>
+																<p class="orange"><a href="{:url('apply_info')}">查看详情</a></p>
 															</div>
 														</td>
 													</tr>
@@ -103,7 +103,7 @@
 			  <include file="public@footer"/>
 			<!---->
 		  <include file="public@user_foot"/>
-	  	<script type="text/javascript" src="../js/laydate.js"></script>
+	  <script type="text/javascript" src="__TMPL__/public/js/laydate.js"></script>
 	  	<script type="text/javascript">
 	  		$(".order-sort-title ul li").click(function(){
 	  			$(this).addClass("sampling-active").siblings().removeClass("sampling-active");

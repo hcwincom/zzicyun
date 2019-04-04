@@ -139,9 +139,84 @@ class OrderModel extends Model
         ->alias('o')
         ->join('cmf_order_goods og','og.oid=o.id')
         ->where($where) 
+        ->field('o.id')
         ->paginate($page_row); 
         // 获取分页显示
         $page = $list->appends($data)->render();
-        return ['list'=>$list,'page'=>$page];
+        $orders=[];
+        $oids=[];
+        foreach($list as $k=>$v){
+            $oids[]=$v['id'];
+           /*  $orders[$v['id']]=[
+                'id'=>$v['id'],
+                'name'=>$v['name'],
+                'type'=>$v['type'],
+                'status'=>$v['status'],
+                'accept_name'=>$v['accept_name'],
+                'coupon_money'=>$v['coupon_money'],
+                'goods_money'=>$v['goods_money'],
+                'order_pay'=>$v['order_pay'],
+                'create_time'=>$v['create_time'],
+                'send_time'=>$v['send_time'],
+                'accept_time'=>$v['accept_time'],
+                'create_time'=>$v['create_time'],
+                'completion_time'=>$v['completion_time'],
+                'udsc'=>$v['udsc'],
+                'is_back'=>$v['is_back'],
+                'pay_id'=>$v['pay_id'],
+                'invoice_status'=>$v['invoice_status'],
+                'pay_type1'=>$v['pay_type1'],
+                'pay_type2'=>$v['pay_type2'],
+                'pay_type3'=>$v['pay_type3'],
+                'pay_status'=>$v['pay_status'],
+                'pay_review'=>$v['pay_review'],
+                'pay_time_end'=>$v['pay_time_end'],
+                'pay_time2'=>$v['pay_time2'],
+                'pay_time1'=>$v['pay_time1'],
+                'pay1'=>$v['pay1'],
+                'pay2'=>$v['pay2'],
+                'freight_pay'=>$v['freight_pay'],
+                'freight_type'=>$v['freight_type'],
+                'freight_id'=>$v['freight_id'],
+                'goods_num'=>$v['goods_num'],
+                'goods_list'=>[]
+            ];  */
+        }
+        if(empty($oids)){
+            $orders=[];
+        }else{
+            $orders=$this->where('id','in',$oids)->column('');
+            $goods_list=Db::name('order_goods')->where('oid','in',$oids)->column('');
+            foreach($goods_list as $k=>$v){
+                $orders[$v['oid']]['goods_list'][$k]=$v;
+            }
+        }
+        
+        return ['list'=>$orders,'page'=>$page];
+    }
+    //订单添加
+    public function order_pay_info($oid,$uid){
+        $where=['id'=>$oid,'uid'=>$uid];
+        $info=$this->where($where)->find();
+        if(empty($info)){
+             return [];
+         }
+         return $info->getData();
+    }
+    //订单添加
+    public function order_info($oid,$uid){
+        
+        $info=$this->order_pay_info($oid,$uid);
+        if(empty($info)){
+            return [];
+        }
+        //付款方式
+        $pay_type1s=config('pay_type1');
+        //在线付款方式
+        $pay_type2s=config('pay_type2');
+        //付款金额比例
+        $pay_type3s=config('pay_type3');
+        
+        return $info;
     }
 }

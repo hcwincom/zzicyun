@@ -25,15 +25,7 @@
 
     </style>
     
-    <script type="text/javascript">
-    	function copyLink(){
-		var e = document.getElementById("copy");
-		var copyRe = document.getElementById("copyRe");
-		e.select(); // 选择对象
-		document.execCommand("Copy"); // 执行浏览器复制命令
-			copyRe.value="复制成功";
-		}
-    </script>
+   
   </head>
   <body>
   	<div class="perPart"> 
@@ -126,18 +118,20 @@
 								<div class="order-sort-content">
 									<div class="order-list-detail">
 										<ul class="order-detail-ul">
+										<foreach name="orders" item="vo" key="key">
+									 
 											<li>
 												<table class="table orderTable" >
 													<thead>
 														<tr>
 															<th width="56%" class="clear">
 																<div class="listLeft fl">
-																	<p>2018-06-14 16:36:55</p>
+																	<p>{$vo.create_time|date='Y-m-d H:i',###}</p>
 																</div>
 																<div class="listMid fl">
 																	<p>
 																		<span>订单编号：</span>
-																		<a href="purchase-order-detail.html">SO1806141852</a>
+																		<a href="{:url('order_info',['id'=>$key])}">{$vo.name}</a>
 																	</p>
 																</div>
 															</th>
@@ -165,83 +159,49 @@
 														<tr>
 															<td class="item-long">
 																<ul class="item-order-group">
+																<foreach name="vo.goods_list" item="vv" key="kk">
 																	<li class="clear">
 																		<div class="item-order-title fl">
-																			<p><a href="../product_detail.html">ERJ-3GEYJ472V</a></p>
-																			<p>库存编号：GN1234</p>
+																			<p><a href="{:url('goods/Goods/detail',['id'=>$kk])}">{$vv.goods_code}</a></p>
+																			<p>库存编号：{$vv.store_code}</p>
 																		</div>
 																		<div class="item-order-num itemOderShort fl">
-																			<p>数量：<span>1000</span></p>
+																			<p>数量：<span>{$vv.num}</span></p>
 																		</div>
 																		<div class="item-order-price itemOderShort  fl">
-																			<p>单价：<span>￥0.87</span></p>
+																			<p>单价：<span><eq name="vo.type" value="1">￥<else/>$</eq>{$vv.price}}</span></p>
 																		</div>
 																		<div class="item-order-press itemOderShort  fl">
-																			<p>物料进程：<span>已发货</span></p>
-																			<p class="backSerive"><a href="device-back.html">申请售后</a></p>
-																		</div>
-																	</li>
-																	<li class="clear">
-																		<div class="item-order-title fl">
-																			<p><a href="../product_detail.html">ERJ-3GEYJ472V</a></p>
-																			<p>库存编号：GN1234</p>
-																		</div>
-																		<div class="item-order-num itemOderShort fl">
-																			<p>数量：<span>1000</span></p>
-																		</div>
-																		<div class="item-order-price itemOderShort  fl">
-																			<p>单价：<span>￥0.87</span></p>
-																		</div>
-																		<div class="item-order-press itemOderShort  fl">
-																			<p>物料进程：<span>已发货</span></p>
-																			<p>物料进程：<span>已出库</span></p>
-																			<p>物料进程：<span class="dispose">无状态</span></p>
-																			<p>物料进程：<span class="dispose">备货中</span></p>
-																			<p>物料进程：<span class="dispose">订货在途</span></p>
-																			<p>物料进程：<span class="dispose">仓库拣货</span></p>
-																			<p>物料进程：<span class="dispose">已取消</span></p>
+																			<p>物料进程：<span>{$send_statuss[$vv.send_status]|default=$vv.send_status}</span></p>
 																			<p class="backSerive">
-																				<a href="device-back.html">
-																					<span>申请售后</span>
-																				</a>
-																			</p>
-																			<p class="backSerive">
-																				<a href="device-back.html">
-																					<span class="qred">退款中</span>
-																				</a>
-																			</p>
-																			<p class="backSerive">
-																				<a href="device-back.html">
-																					<span>退款成功</span>
-																				</a>
+																			<!-- <a href="">申请售后</a> -->
 																			</p>
 																		</div>
 																	</li>
+																</foreach>
+																	 
 																</ul>
 															</td>
 															<td class="item-short">
 																<div class="item-order-total">
-																	<strong>赖鹏飞</strong>
-																	<p>总额：<span>￥56.12</span></p>
-																	<i>（全部预付）</i>
-																	<i style="display: none;">（预付30%）</i>
+																	<strong>{$vo.accept_name}</strong>
+																	<p>总额：<span><eq name="vo.type" value="1">￥<else/>$</eq>{$vo.order_pay}</span></p>
+																	<i>{$pay_type3s[$vo.pay_type3]|default=$vo.pay_type3}</i> 
 																</div>
 															</td>
 															<td class="item-short">
 																<div class="item-order-name">
-																	<p>已付款<span>￥31.00</span></p>
+																<p>{$pay_statuss[$vo.pay_status]|default=$vo.pay_status}
+																<eq name="vo.pay_status" value="2">
+																	{$vo.pay1}
+																</eq>
+																</p>
 																</div>
 															</td>
 															<td class="item-short">
 																<div class="item-group">
-																	<p>订单关闭</p>
-																	<p>待付款</p>
-																	<p>待处理</p>
-																	<p>备货中</p>
-																	<p>付尾款</p>
-																	<p>部分发货</p>
-																	<p>全部发货</p>
-																	<p>已完成</p>
+																	<p>{$order_statuss[$vo.status]}</p>
+																	 
 																</div>
 															</td>
 															<td class="item-short">
@@ -255,165 +215,20 @@
 																	<p class="green">
 																		<a href="javascript:;" class="canaelOrder">取消订单</a>
 																	</p>
-																	<p class="oranBorder">
+																	<!-- <p class="oranBorder">
 																		<a href="javascript:;" class="tackOrder">确认收货</a>
 																	</p>
 																	<p class="green">
 																		<a href="../product.html" class="buyOrder">再次购买</a>
-																	</p>
+																	</p> -->
 																</div>
 															</td>
 														</tr>
 													</tbody>
 												</table>
 											</li>
-											<li>
-												<table class="table orderTable" >
-													<thead>
-														<tr>
-															<th width="56%" class="clear">
-																<div class="listLeft fl">
-																	<p>2018-06-14 16:36:55</p>
-																</div>
-																<div class="listMid fl">
-																	<p>
-																		<span>订单编号：</span>
-																		<a href="purchase-order-detail.html">SO1806141852</a>
-																	</p>
-																</div>
-															</th>
-															<th width="11%"></th>
-															<th width="11%"></th>
-															<th width="11%">
-																<div class="listRight">
-																	<a href="">
-																		<i class="iconfont icon-xiazai"></i>
-																		<span>合同下载</span>
-																	</a>
-																</div>
-															</th>
-															<th width="11%">
-																<div class="listRight">
-																	<a href="">
-																		<i class="iconfont icon-shangchuan"></i>
-																		<span>合同上传</span>
-																	</a>
-																</div>
-															</th>
-														</tr>
-													</thead>
-													<tbody>
-														<tr>
-															<td class="item-long">
-																<ul class="item-order-group">
-																	<li class="clear">
-																		<div class="item-order-title fl">
-																			<p><a href="../product_detail.html">ERJ-3GEYJ472V</a></p>
-																			<p>库存编号：GN1234</p>
-																		</div>
-																		<div class="item-order-num itemOderShort fl">
-																			<p>数量：<span>1000</span></p>
-																		</div>
-																		<div class="item-order-price itemOderShort  fl">
-																			<p>单价：<span>￥0.87</span></p>
-																		</div>
-																		<div class="item-order-press itemOderShort  fl">
-																			<p>物料进程：<span>已发货</span></p>
-																			<p class="backSerive"><a href="device-back.html">申请售后</a></p>
-																		</div>
-																	</li>
-																	<li class="clear">
-																		<div class="item-order-title fl">
-																			<p><a href="../product_detail.html">ERJ-3GEYJ472V</a></p>
-																			<p>库存编号：GN1234</p>
-																		</div>
-																		<div class="item-order-num itemOderShort fl">
-																			<p>数量：<span>1000</span></p>
-																		</div>
-																		<div class="item-order-price itemOderShort  fl">
-																			<p>单价：<span>￥0.87</span></p>
-																		</div>
-																		<div class="item-order-press itemOderShort  fl">
-																			<p>物料进程：<span>已发货</span></p>
-																			<p>物料进程：<span>已出库</span></p>
-																			<p>物料进程：<span class="dispose">无状态</span></p>
-																			<p>物料进程：<span class="dispose">备货中</span></p>
-																			<p>物料进程：<span class="dispose">订货在途</span></p>
-																			<p>物料进程：<span class="dispose">仓库拣货</span></p>
-																			<p>物料进程：<span class="dispose">已取消</span></p>
-																			<p class="backSerive">
-																				<a href="device-back.html">
-																					<span>申请售后</span>
-																				</a>
-																			</p>
-																			<p class="backSerive">
-																				<a href="device-back.html">
-																					<span class="qred">退款中</span>
-																				</a>
-																			</p>
-																			<p class="backSerive">
-																				<a href="device-back.html">
-																					<span>退款成功</span>
-																				</a>
-																			</p>
-																		</div>
-																	</li>
-																</ul>
-															</td>
-															<td class="item-short">
-																<div class="item-order-total">
-																	<strong>赖鹏飞</strong>
-																	<p>总额：<span>￥56.12</span></p>
-																	<i>（全部预付）</i>
-																	<i style="display: none;">（预付30%）</i>
-																</div>
-															</td>
-															<td class="item-short">
-																<div class="item-order-name">
-																	<p>已付款<span>￥31.00</span></p>
-																</div>
-															</td>
-															<td class="item-short">
-																<div class="item-group">
-																	<p>订单关闭</p>
-																	<p>待付款</p>
-																	<p>待处理</p>
-																	<p>备货中</p>
-																	<p>付尾款</p>
-																	<p>部分发货</p>
-																	<p>全部发货</p>
-																	<p>已完成</p>
-																</div>
-																<div class="item-upload">
-																	<label for="transfer">
-																		<p>上传水单</p>
-																		<input type="file" name="transfer" id="transfer" value="" class="hideinp" />
-																	</label>
-																</div>
-															</td>
-															<td class="item-short">
-																<div class="item-order-button">
-																	<p class="orderRed">
-																		<button type="button" data-toggle="modal" data-target="#myModal">立即付款</button>
-																	</p>
-																	<p class="orange">
-																		<a href="purchase-order-detail.html">查看详情</a>
-																	</p>
-																	<p class="green">
-																		<a href="javascript:;" class="canaelOrder">取消订单</a>
-																	</p>
-																	<p class="oranBorder">
-																		<a href="javascript:;" class="tackOrder">确认收货</a>
-																	</p>
-																	<p class="green">
-																		<a href="../product.html" class="buyOrder">再次购买</a>
-																	</p>
-																</div>
-															</td>
-														</tr>
-													</tbody>
-												</table>
-											</li>
+										</foreach>
+											 
 										</ul>
 										<!--取消订单弹窗-->
 										<div id="cancel-order">
@@ -490,51 +305,16 @@
 					       				<i></i>
 					       				<em></em>
 					       				<ul class="clear">
+					       					 
 					       					<li>
 					       						<div class="bank-img">
-					       							<img src="../img/bank.png" alt="" />
-					       							<p>工商银行</p>
-					       						</div>
-					       					</li>
-					       					<li>
-					       						<div class="bank-img">
-					       							<img src="../img/bank.png" alt="" />
-					       							<p>工商银行</p>
-					       						</div>
-					       					</li>
-					       					<li>
-					       						<div class="bank-img">
-					       							<img src="../img/bank.png" alt="" />
-					       							<p>工商银行</p>
-					       						</div>
-					       					</li>
-					       					<li>
-					       						<div class="bank-img">
-					       							<img src="../img/bank.png" alt="" />
-					       							<p>工商银行</p>
-					       						</div>
-					       					</li>
-					       					<li>
-					       						<div class="bank-img">
-					       							<img src="../img/bank.png" alt="" />
-					       							<p>工商银行</p>
-					       						</div>
-					       					</li>
-					       					<li>
-					       						<div class="bank-img">
-					       							<img src="../img/bank.png" alt="" />
-					       							<p>工商银行</p>
-					       						</div>
-					       					</li>
-					       					<li>
-					       						<div class="bank-img">
-					       							<img src="../img/bank.png" alt="" />
+					       							<img src="__TMPL__/public/img/bank.png" alt="" />
 					       							<p>农业银行</p>
 					       						</div>
 					       					</li>
 					       					<li>
 					       						<div class="bank-img">
-					       							<img src="../img/bank.png" alt="" />
+					       							<img src="__TMPL__/public/img/bank.png" alt="" />
 					       							<p>工商银行</p>
 					       						</div>
 					       					</li>
@@ -610,7 +390,11 @@
 			</div>
 			
 		  <include file="public@user_foot"/>
-	  	<script type="text/javascript" src="../js/laydate.js"></script>
+	  	
+	  	
+	</body>
+</html>
+<script type="text/javascript" src="__TMPL__/public/js/laydate.js"></script>
 	  
 	  	<script type="text/javascript">
 		       //日期范围限制
@@ -665,8 +449,12 @@
 		    	$(".bank p span").html(pHtml);
 		    });
 				
-			
-	  	</script>
-	  	
-	</body>
-</html>
+		 
+    	function copyLink(){
+		var e = document.getElementById("copy");
+		var copyRe = document.getElementById("copyRe");
+		e.select(); // 选择对象
+		document.execCommand("Copy"); // 执行浏览器复制命令
+			copyRe.value="复制成功";
+		}
+    </script>

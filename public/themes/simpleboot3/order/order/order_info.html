@@ -1,197 +1,15 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	   	<!-- <meta name="viewport" content="width=device-width, initial-scale=1">-->
-	    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-	    <title>采购订单详情</title>
-		<meta name="applicable-device" content="pc">
-	    <!-- Bootstrap -->
-	   	<link href="../css/bootstrap.min.css" rel="stylesheet">
-	    <link rel="stylesheet" type="text/css" href="../css/comm.css"/>
-	   	<link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
-	    <link rel="stylesheet" type="text/css" href="../css/person_style.css"/>
-	    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
-	    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
-	    <!--[if lt IE 9]>
-	      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-	      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
-    <![endif]-->
-	</head>
-	<body>
-		<div class="perPart">
-			<div class="site-nav clear">
-				<div class="site-nav-bd">
-				  	<ul class="site-nav-bd-l">
-				  		<li class="site-nav-menu">
-				  			<div class="site-nav-menu-hd">
-				  				<span>您好！欢迎来到器械商城!</span>
-				  			</div>
-				  			<!--登录之后显示begin-->
-				  			<div class="sign_index" style="display: none;">
-				  				<a href="../index.html">
-				  					<i class="glyphicon glyphicon-home"></i>
-				  					首页
-				  				</a>
-				  			</div>
-						<!--登录之后显示end-->
-				  		</li>
-				  		<li class="site-nav-menu">
-				  			<div class="site-nav-menu-hd">
-				  				<div class="site-nav-sign">
-				  					<a href="../login.html" target="_top">登录</a>
-				  					<a href="../register.html" target="_top">注册</a>
-				  				</div>
-				  				<!--登录之后显示begin-->
-				  				<div class="sign_after" style="display: none;">
-				  					<p>
-				  						<i class="iconfont icon-logout-user"></i>
-				  						<span><a href="member_center.html">151****2316</a></span>
-				  					</p>
-				  				</div>
-				  				<!--登录之后显示end-->
-				  			</div>
-				  		</li>
-				  		<li class="site-nav-menu">
-				  			<div class="site-nav-menu-hd">	
-				  				<div class="site-nav-bom">
-				  					<a href="../copy.html" target="_blank">BOM批量导入型号</a>
-				  				</div>								
-				  			</div>
-				  		</li>
-				  	</ul>
-				  	<ul class="site-nav-bd-r">
-				  		<li class="site-nav-menu">
-				  			<div class="site-nav-menu-hd">
-				  				<div class="site-nav-menu-order">
-				  					<a href="purchase-order.html" target="_top">
-				  						<span class="site-nav-icon site-nav-myorder"></span>
-				  						<span>我的订单</span>
-				  					</a>
-				  				</div>
-				  			</div>					
-				  		</li>
-				  		<li class="site-nav-menu">
-				  			<div class="site-nav-menu-hd">
-				  				<div class="site-nav-member">
-				  					<a href="member_center.html" target="_top">
-				  						<span class="site-nav-icon site-nav-center"></span>
-				  						<span>会员中心</span>
-				  					</a>
-				  				</div>
-				  			</div>			
-				  		</li>
-				  		<li class="site-nav-menu">
-				  			<div class="site-nav-menu-hd">
-				  				<div class="site-nav-phone">
-				  					<a href="tel:0551-8888888">
-				  						<span class="site-nav-icon site-nav-tel"></span>
-				  						<span>: 0551-8888888</span>
-				  					</a>
-				  				</div>
-				  			</div>				
-				  		</li>
-				  	</ul>
-				</div>
-			</div>
-			<!--头部-->
-			<div class="person-head">
-				<div class="wraper">
-					<div class="person-head-list">
-						<a href="../index.html">
-							<div class="person-logo">
-								<img src="../images/logo.png" alt="" />
-							</div>
-						</a>
-						<div class="person-title">
-							<h3>会员中心</h3>
-						</div>
-					</div>
-				</div>
-			</div>
+   <include file="public@user_header"/> 	
 			<!--主要内容-->
 			<div class="person-content">
 				<div class="wraper row totalback">
-					<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-						<div class="person-left-nav">
-							<ul class="person-left-ul">
-								<li>
-									<div class="person-left-nav-list">
-										<h3>订单管理</h3>
-										<ul>
-											<li><a class="per-active" href="purchase-order.html"><i></i>采购订单</a></li>
-											<li><a href="sampling-order.html"><i></i>样品订单</a></li>
-										</ul>
-									</div>
-								</li>
-								<li>
-									<div class="person-left-nav-list">
-										<h3>询价管理</h3>
-										<ul>
-											<li><a href="bominquiry-list.html"><i></i>BOM单询价</a></li>
-											<li><a href="cominquiry-list.html"><i></i>元器件询价</a></li>
-										</ul>
-									</div>
-								</li>
-								<li>
-									<div class="person-left-nav-list">
-										<h3>发票管理</h3>
-										<ul>
-											<li><a href="invoice-process.html"><i></i>开票进程</a></li>
-											<li><a href="invoice-information.html"><i></i>开票资料</a></li>
-										</ul>
-									</div>
-								</li>
-								<li>
-									<div class="person-left-nav-list">
-										<h3>资产管理</h3>
-										<ul>
-											<li><a href="line-credit.html"><i></i>授信额度</a></li>
-											<li><a href="credit-payment.html"><i></i>信用还款</a></li>
-											<li><a href="credit-statement.html"><i></i>对账单</a></li>
-											<li><a href="credit-discount.html"><i></i>优惠券</a></li>
-										</ul>
-									</div>
-								</li>
-								<li>
-									<div class="person-left-nav-list">
-										<h3>会员信息</h3>
-										<ul>
-											<li><a href="basic-information.html"><i></i>基本信息</a></li>
-											<li><a href="receiver-address.html"><i></i>收货地址</a></li>
-											<li><a href="change-password.html"><i></i>修改密码</a></li>
-										</ul>
-									</div>
-								</li>
-								<li>
-									<div class="person-left-nav-list">
-										<h3>礼品中心</h3>
-										<ul>
-											<li><a href="credits-exchange.html"><i></i>积分兑换</a></li>
-											<li><a href="exchange-record.html"><i></i>兑换记录</a></li>
-										</ul>
-									</div>
-								</li>
-								<li>
-									<div class="person-left-nav-list">
-										<h3>售后服务</h3>
-										<ul>
-											<li><a href="device-back-info.html"><i></i>元器件售后</a></li>
-											<li><a href="complaint-advice.html"><i></i>投诉建议</a></li>
-										</ul>
-									</div>
-								</li>
-							</ul>	
-						</div>
-					</div>
+					 	 <include file="public@user_left"/> 	
 					<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10" style="padding: 0;">
 						<div class="person-right">
 							<div class="person-right-head">
 								<p class="perpadding">
 									<span>订单管理</span>
 									<i class="iconfont icon-jiantoudown"></i>
-									<a href="purchase-order.html">采购订单</a>
+									<a href="{:url('myorder')}">采购订单</a>
 								</p>
 							</div>
 							<div class="person-detail-content">
@@ -202,20 +20,42 @@
 									<div class="detail-box-list">
 										<div class="box-list-cont clear">
 											<p class="titlist">收货人姓名：</p>
-											<p class="listcont">赖鹏飞</p>
+											<p class="listcont">{$order.accept_name}</p>
 										</div>
 										<div class="box-list-cont clear">
 											<p class="titlist">收货人电话：</p>
-											<p class="listcont">0755-86969992 18825777790</p>
+											<p class="listcont">{$order.tel}</p>
 										</div>
 										<div class="box-list-cont clear">
 											<p class="titlist">收货人地址：</p>
-											<p class="listcont">广东省 深圳市 福田区 华强北路深纺大厦C座西8楼F40</p>
+											<p class="listcont">{$order.address_info}{$order.address}</p>
 										</div>
 										<div class="box-list-cont clear">
 											<p class="titlist">配送方式：</p>
-											<p class="listcont">顺丰快递（运费寄付）</p>
+											
+											<p class="listcont">
+											<eq name="order.freight_type" value="1">
+											{$order.freight_name} （{$order.pay_type1_name}）
+											<else/>
+											自提点
+											</eq>
+											</p>
 										</div>
+									<eq name="order.freight_type" value="2">
+										<div class="box-list-cont clear">
+											<p class="titlist">自提点：</p>
+											<p class="listcont">{$order.address_info}{$order.address}</p>
+										</div>
+										<div class="box-list-cont clear">
+											<p class="titlist">自提联系人：</p>
+											<p class="listcont">{$order.station_accept_name}</p>
+										</div>
+										<div class="box-list-cont clear">
+											<p class="titlist">自提联系点阿虎：</p>
+											<p class="listcont">{$order.station_accept_tel}</p>
+										</div>
+									
+									</eq>
 										<div class="box-list-cont clear">
 											<p class="titlist">支付方式：</p>
 											<p class="listcont">全部预付（支付宝）</p>
@@ -429,22 +269,10 @@
 					</div>
 				</div>
 			</div>
-			
-			<div id="bottomFooter"></div>
+			 <include file="public@footer" />
 			<!---->
-		</div>
-		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
-	    <script src="../js/jquery-1.12.1.min.js"></script>
-	    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
-	    <script src="../js/bootstrap.min.js"></script>
-	  	<script type="text/javascript" src="../js/person.js"></script>
-	  	<script type="text/javascript" src="../js/laydate.js"></script>
-	  	<script type="text/javascript">
-		   
-		 
-		    
-		    
-	  	</script>
+		 <include file="public@user_foot" />
+			 
 	  	
 	</body>
 </html>

@@ -35,11 +35,31 @@ class OrderController extends UserBaseController
        $this->assign('status',$data['status']);
        $m_order=new OrderModel();
        $res=$m_order->get_page($data,$uid);
-       dump($res);
+        
+       $this->assign('orders',$res['list']);
+       $this->assign('page',$res['page']);
+       //付款方式
+       $pay_type1s=config('pay_type1');
+       //在线付款方式
+       $pay_type2s=config('pay_type2');
+       //付款金额比例
+       $pay_type3s=config('pay_type3');
+       $send_statuss=config('send_status');
+       $pay_statuss=config('pay_status');
+       $order_statuss=config('order_status');
+      
+       
+       $this->assign('pay_type1s',$pay_type1s);
+       $this->assign('pay_type2s',$pay_type2s);
+       $this->assign('pay_type3s',$pay_type3s);
+       $this->assign('send_status',$send_statuss);
+       $this->assign('pay_statuss',$pay_statuss);
+       $this->assign('order_statuss',$order_statuss);
        return $this->fetch();
    }
    public function order_info()
    {
+       $id=$this->request->param('id',0,'intval');
        
        return $this->fetch();
    }
@@ -178,16 +198,17 @@ class OrderController extends UserBaseController
    //转化为订单页面
    public function order_do2(){
        $data=$this->request->param();
-       dump($data);
-       
+      
        $lan1=$this->lan1;
        $lan2=$this->lan2; 
        $uid=session('user.id'); 
         
        $m_order=new OrderModel();
        $res=$m_order->order_add($data,$uid,$lan1,$lan2);
-       exit($res);
-       if(!($res>0)){
+      
+       if($res>0){
+           $this->redirect(url('order_pay',['id'=>$res]));
+       }else{
            $this->error($res);
        }
    }
@@ -204,4 +225,15 @@ class OrderController extends UserBaseController
         
    }
    
+   public function order_pay(){
+       $oid=$this->request->param('id',0,'intval');
+       $uid=session('user.id');
+       $m_order=new OrderModel();
+       $order=$m_order->order_pay_info($oid, $uid);
+       
+       $this->assign('order',$order);
+       
+       return $this->fetch('order_pay4');
+       
+   }
 }
