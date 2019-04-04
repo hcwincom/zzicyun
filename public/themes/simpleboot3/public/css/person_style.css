@@ -1138,7 +1138,7 @@ p.oranBorder>a{
 }
 .detail-circle>li{
 	float: left;
-	width: 14%;
+	width: 12.2%;
 }
 .detail-circle>li:last-child{
 	width: 2%;
@@ -1159,7 +1159,7 @@ p.oranBorder>a{
 }
 .detail-dsc>ul>li{
 	float: left;
-	width: 13.4%;
+	width: 11%;
 	font-size: 14px;
 }
 .detail-dsc>ul>li:last-child{
