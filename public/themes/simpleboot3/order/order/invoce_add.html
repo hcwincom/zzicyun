@@ -161,7 +161,7 @@
 			<!--普通发票公司-->
 			<div class="orderinvo-group-list">
 				<div class="invocateform-total">
-					<ul class="invocateformTxt">
+					<ul class="invoce_company">
 						<foreach name="invoices[2]" item="vo">
 							<li class="">
 								<label class="invocateform-top">
@@ -209,24 +209,48 @@
 											<input type="text" name="intitle" id="comTitle" value="" class="orderbox-input" placeholder="请输入全名" />
 										</div>
 									</div>
+									
+									<div class="groupInput-box clear">
+										<p class="fl">公司注册地址：</p>
+										<div class="box-input fl">
+											<input type="text" name="regaddr" id="comregaddr" value="" class="orderbox-input" />
+										</div>
+									</div>
+									<div class="groupInput-box clear">
+										<p class="fl">公司电话：</p>
+										<div class="box-input fl">
+											<input type="text" name="comtel" id="companyTel" value="" class="orderbox-input" placeholder="区号和号码用“-”隔开，或者不填区号" />
+										</div>
+									</div>
 									<div class="groupInput-box clear">
 										<p class="fl">税务登记号：</p>
 										<div class="box-input fl">
-											<input type="text" name="regnum" id="comregnum" value="" class="orderbox-input" />
+											<input type="text" name="company_code" id="comregnum" value="" class="orderbox-input" />
 										</div>
 									</div>
-									<!-- <div class="togginfo"><p><span>展开</span>补全发票信息（非必填）<i class="iconfont icon-jiantou-copy"></i></p></div> -->
+									<div class="groupInput-box clear">
+										<p class="fl">开户银行：</p>
+										<div class="box-input fl">
+											<input type="text" name="bank" id="companyBank" value="" class="orderbox-input" />
+										</div>
+									</div>
+									<div class="groupInput-box clear">
+										<p class="fl">开户银行账号：</p>
+										<div class="box-input fl">
+											<input type="text" name="bank_num" id="company_bank_num" value="" class="orderbox-input" />
+										</div>
+									</div>
 									
 									<div class="groupInput-box clear">
 										<p class="fl">收票人：</p>
 										<div class="box-input fl">
-											<input type="text" name="sname" id="comsname" value="" class="orderbox-input" />
+											<input type="text" name="accept_name" id="comsname" value="" class="orderbox-input" />
 										</div>
 									</div>
 									<div class="groupInput-box clear">
 										<p class="fl">收票人手机号：</p>
 										<div class="box-input fl">
-											<input type="text" name="sphone" id="comatel" value="" class="orderbox-input" />
+											<input type="text" name="accept_tel" id="comatel" value="" class="orderbox-input" />
 										</div>
 									</div>
 									<div class="groupInput-box clear">
@@ -250,7 +274,16 @@
 									<div class="groupInput-box clear">
 										<p class="fl">详细地址：</p>
 										<div class="box-input fl">
-										<textarea name="addrdetail" id="comAddress" class="shop-area"></textarea>
+										<textarea name="accept_address" id="comAddress" class="shop-area"></textarea>
+										</div>
+									</div>
+									<div class="groupInput-box invoformpad clear">
+										<p class="fl">上传开票资料：</p>
+										<div class="box-input fl">
+											<label for="invo-file" class="invo-label">
+												<p>请选择文件</p>
+												<input type="file" name="invofile" id="company_file" value="" class="invo-file hideinp" />
+											</label>
 										</div>
 									</div>
 									
@@ -322,23 +355,20 @@
 									<div class="groupInput-box clear">
 										<p class="fl">发票抬头：</p>
 										<div class="box-input fl">
-											<input type="text" name="intitle" id="intitle" value="" class="orderbox-input" placeholder="请输入全名" />
+											<input type="text" name="intitle" id="pertitle" value="" class="orderbox-input" placeholder="请输入全名" />
 										</div>
 									</div>
-									<!-- <div class="togginfo">
-										<p><span>展开</span>补全发票信息（非必填）<i class="iconfont icon-jiantou-copy"></i></p>
-									</div> -->
-								
+									
 									<div class="groupInput-box clear">
 										<p class="fl">收票人：</p>
 										<div class="box-input fl">
-											<input type="text" name="sname" id="psname" value="" class="orderbox-input" />
+											<input type="text" name="sname" id="pername" value="" class="orderbox-input" />
 										</div>
 									</div>
 									<div class="groupInput-box clear">
 										<p class="fl">收票人手机号：</p>
 										<div class="box-input fl">
-											<input type="text" name="sphone" id="pstel" value="" class="orderbox-input" />
+											<input type="text" name="sphone" id="pertel" value="" class="orderbox-input" />
 										</div>
 									</div>
 									<div class="groupInput-box clear">
@@ -419,7 +449,7 @@
 			var file = $("#invo_file").val();
 			
 			var data_json = {
-				'type': type, 'name': name, 'province': province, 'city': city, 'area': area,
+				'type': 1, 'name': name, 'province': province, 'city': city, 'area': area,
 				'accept_name': accept_name, 'accept_tel': accept_tel, 'accept_address': accept_address,
 				'company_address': company_address, 'company_tel': company_tel, 'company_code': company_code,
 				'bank': bank, 'bank_num': bank_num, 'file': file
@@ -435,29 +465,15 @@
 					if(data.code == 1){
 						console.log(data);
 						
-						var invoceAdd = '<li class="excultxtaddr">'+
+						var invoceAdd = '<li class="">'+
 											'<label class="excultxt-list-top" >'+
 												'<input type="radio" name="invoice_id" class="invoice_id" value="" checked>'+
-												// '<span class="speTitle">'+  +'</span>'+
 												'<span class="speName">'+ name +'</span>'+
-												'<input type="hidden" class="province" value="'+ province +'" />'+
-												'<input type="hidden" class="city" value="' + city +'" />' +
-												'<input type="hidden" class="area" value="' + area +'" />' +
-												'<input type="hidden" class="company_addr" value="' + company_address +'">'+
-												'<input type="hidden" class="company_phone" value="' + company_tel +'">' +
-												'<input type="hidden" class="company_num" value="' + company_code +'">'+
-												'<input type="hidden" class="company_bank" value="' + bank +'">' +
-												'<input type="hidden" class="company_banknum" value="' + bank_num +'">' +
-												'<input type="hidden" class="specifal_name" value="' + accept_name +'">' +
-												'<input type="hidden" class="specifal_tel" value="' + accept_tel +'">' +
-												'<input type="hidden" class="specifal_addr" value="' + accept_address +'">' +
-												'<input type="hidden" class="specifal_file" value="' + file +'">' +
 											'</label>'+
 											// '<div class="excultxt-list-btn">'+
 											// 	'<button type="button" class="excultxtbtn">修改</button>'+
 											// '</div>'+
 										'</li >';
-						$(".excultxt>ul>li").removeClass("excultxtaddr");
 						msg(data.msg);
 						$(".exculform").hide();
 						$(document.body).toggleClass("html_overflow");
@@ -536,39 +552,25 @@
 
 	$(".keepComInvoce").click(function () {
 		var name = $.trim($("#comTitle").val());
-		var company_address = $.trim($("#regaddr").val());
+		var company_address = $.trim($("#comregaddr").val());
 		var province = $('#city111').val();
 		var city = $('#city222').val();
 		var area = $('#city333').val();
-		var company_tel = $.trim($("#comtel").val());
+		var company_tel = $.trim($("#companyTel").val());
 		var company_code = $.trim($("#comregnum").val());
-		var bank = $.trim($("#kbank").val());
-		var bank_num = $.trim($("#bankaccount").val());
-		var accept_name = $.trim($("#sname").val());
-		var accept_tel = $.trim($("#sphone").val());
-		var accept_address = $.trim($("#addrdetail").val());
-		var file = $("#invo_file").val();
-
-
-
-
-
-
-
-
-
-
-
-
-
+		var bank = $.trim($("#companyBank").val());
+		var bank_num = $.trim($("#company_bank_num").val());
+		var accept_name = $.trim($("#comsname").val());
+		var accept_tel = $.trim($("#comatel").val());
+		var accept_address = $.trim($("#comAddress").val());
+		var file = $("#company_file").val();
 
 		var data_json = {
-			'type': type, 'name': name, 'province': province, 'city': city, 'area': area,
+			'type': 2, 'name': name, 'province': province, 'city': city, 'area': area,
 			'accept_name': accept_name, 'accept_tel': accept_tel, 'accept_address': accept_address,
 			'company_address': company_address, 'company_tel': company_tel, 'company_code': company_code,
 			'bank': bank, 'bank_num': bank_num, 'file': file
 		};
-
 
 		$.ajax({
 			"url": url_invoice_do,
@@ -579,21 +581,23 @@
 				if (data.code == 1) {
 					console.log(data);
 
-					var invoceAdd = '<li class="excultxtaddr">' +
-										'<label class="excultxt-list-top" >' +
-											'<span class="speName">' + name + '</span>' +
-											'<span class="speName">' + name + '</span>' +
-											'<span class="speName">' + name + '</span>' +
+					var invoceAdd = '<li class="">' +
+										'<label class="invocateform-top" >' +
+											'<input type="radio" name="invoice_id" class="invoice_id" value="" checked>'+
+											'<span>公司发票</span>'+
+											'<span class="acceptName">' + name + '</span>' +
+											'<span class="acceptName">' + accept_name + '</span>' +
+											'<span class="acceptTel">' + accept_tel + '</span>' +
+											'<span class="acceptAddr">'+ province + city + area + '<i>'+ accept_address +'</i></span>' +
 										'</label >' +
 										// '<div class="excultxt-list-btn">' +
 										// '<button type="button" class="excultxtbtn">修改</button>' +
 										// '</div>' +
 									'</li >';
-					$(".excultxt>ul>li").removeClass("excultxtaddr");
 					msg(data.msg);
-					$(".exculform").hide();
+					$(".invocatedisplayform").hide();
 					$(document.body).toggleClass("html_overflow");
-					$(".excultxt>ul").prepend(invoceAdd);
+					$(".invocateform-total>.invoce_company").prepend(invoceAdd);
 
 				} else {
 					//失败
@@ -608,16 +612,9 @@
 		return false;
 
 
-
-
-
-
-
-
-
-
 	});
 
+	// 普通个人发票
 
 
 

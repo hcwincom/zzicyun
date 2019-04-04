@@ -3707,7 +3707,7 @@
 .groupList-grid,.invocatedisplayform,
 .exculform,.invoCatePersonForm{
 	position: fixed;
-	top: 15%;
+	top: 13%;
 	left: 0;
 	right: 0;
 	margin: auto;
@@ -3717,14 +3717,14 @@
 	-moz-box-shadow: 1px 3px 3px #999,1px -3px 3px #999,-1px 3px 3px #999,-1px -3px 3px #999;
 	-webkit-box-shadow: 1px 3px 3px #999,1px -3px 3px #999,-1px 3px 3px #999,-1px -3px 3px #999;
 	padding-top: 2em;
-	z-index: 1000;
+	z-index: 10000;
 }
 
 .groupInput,.groupList-dscont{
 	width: 100%;
 	padding-left: 40px;
 }
-.exculform{
+.exculform,.invocatedisplayform{
 	height: 600px;
 	overflow-y: auto;
 }
