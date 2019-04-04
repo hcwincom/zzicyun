@@ -32,12 +32,12 @@ class CouponUserModel extends Model
         if($type==2 && !empty($list)){
             //获取美元汇率
             $rate=Db::name('shop')->where('id',1)->value('rate');
-            //得到供应商和品牌id
+            //计算人民币对应的美元价值
             foreach($list as $k=>$v){
                 //通用价格计算
                 if($v['money_type']==3){
-                    $list[$k]['money']=round($v['money']*$rate,5);
-                    $list[$k]['money_min']=round($v['money_min']*$rate,5);
+                    $list[$k]['money']=round($v['money']*$rate,2);
+                    $list[$k]['money_min']=round($v['money_min']*$rate,2);
                 }
                
             }
@@ -217,17 +217,12 @@ class CouponUserModel extends Model
         }else{
             $data_add['time1']=$coupon['time1'];
             $data_add['time2']=$coupon['time2'];
-            if($time>=$data_add['time1'] && $time<=$data_add['time1']){
-                $data_add['status_time']=2;
-            }elseif($time<$data_add['time1']){
-                $data_add['status_time']=1;
-            }else{
-                $this->error('起止时间错误');
-            }
-           
+            if($data_add['time1']>=$data_add['time2'] || $time>=$data_add['time2']){
+                return ('起止时间错误'); 
+            } 
         }
         
-        if($data_add['time1']<$time){
+        if($data_add['time1']>$time){
             $data_add['status_time']=1;
         }else{
             $data_add['status_time']=2;
@@ -257,9 +252,51 @@ class CouponUserModel extends Model
         }else{
             $where['status_time']=['lt',3];
         }
-        
-        $m_coupon_user=new CouponUserModel();
-        $count=$m_coupon_user->where($where)->count(); 
+         
+        $count=$this->where($where)->count(); 
         return $count;
+    }
+    /**
+     * 推荐用户优惠券
+     * @param int $uid用户
+     * @param float $money产品金额
+     */
+    public function get_recommend($uid,$money,$price_type){
+        $where=[
+            'uid'=>$uid,
+            'status_use'=>1,
+            'status_time'=>2,
+            'money_min'=>['elt',$money]
+        ];
+        $rate=Db::name('shop')->where('id',1)->value('rate');
+        if($price_type==1){
+            $where['money_type']=['in',[1,3]];
+            $where['money_min']=['elt',$money];
+            $id=$this->where($where)->order('money desc')->value('id');
+        }else{
+            //美元情况复杂,先获取美元再获取通用,比较优惠金额
+            $where['money_type']=['eq',2];
+            $where['money_min']=['elt',$money];
+            $id2=$this->where($where)->order('money desc')->find();
+            $where['money_type']=['eq',3];
+            $where['money_min']=['elt',$money*$rate];
+            $id1=$this->where($where)->order('money desc')->find();
+            if(empty($id2)){
+                if(empty($id1)){
+                    $id=0;
+                }else{
+                    $id=$id1['id'];
+                }
+            }else{
+                if(empty($id1)){
+                    $id=$id2['id'];
+                }else{
+                    $money1=$id1['money']*$rate;
+                    $id=($money1>$id2['money'])?$id1['id']:$id2['id'];
+                }
+            }
+        }
+         
+        return $id;
     }
 }

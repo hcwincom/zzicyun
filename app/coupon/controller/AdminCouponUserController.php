@@ -309,6 +309,8 @@ class AdminCouponUserController extends AdminInfoController
         $this->assign('search_types',$search_types); 
         $this->assign('user_rates',config('user_rates')); 
         $this->assign('user_cates',config('user_cates')); 
+        $this->assign('statuss_use',[1=>'未使用',2=>'已使用']); 
+        $this->assign('statuss_time',[1=>'未到使用时间',2=>'可使用',3=>'已过期']); 
        
     }
     

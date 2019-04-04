@@ -97,18 +97,24 @@ class OrderController extends UserBaseController
       
        //优惠券
        $coupon_money=0;
+       $coupon_recommend=0;
        if($type>2){
            $coupons=[];
        }else{
            $m_coupon=new CouponUserModel(); 
-           $coupons=$m_coupon->get_list($uid,$price_type); 
+           $coupons=$m_coupon->get_list($uid,$price_type);  
            if(isset($coupons[$coupon_id])){
                if($coupons[$coupon_id]['money_min']<$count['money']){
                    $coupon_money=$coupons[$coupon_id]['money'];
-               } 
-           }
-          
+               }  
+           }  
+           //推荐优惠
+           if($coupon_money==0){
+               $coupon_id=0;
+               $coupon_recommend=$m_coupon->get_recommend($uid, $count['money'],$price_type); 
+           }   
        }
+       
        $this->assign('goods_list',$goods_list); 
        $this->assign('brands',$brands);
        $this->assign('goods_times',$goods_times);
@@ -116,6 +122,7 @@ class OrderController extends UserBaseController
        $this->assign('type',$type);
        $this->assign('coupons',$coupons);
        $this->assign('coupon_id',$coupon_id);
+       $this->assign('coupon_recommend',$coupon_recommend);
        $this->assign('coupon_money',$coupon_money);
        $this->assign('money_flag',($type==1)?'￥':'$');
       
@@ -128,7 +135,7 @@ class OrderController extends UserBaseController
        $m_address=new UserAddressModel();
        $addresses=$m_address->get_all($uid,$type);
        $this->assign('addresses',$addresses);
-       //快递和自提选择
+       //快递和自提选择.3
        $m_station=new StationModel();
        $stations=$m_station->get_all($type);
        $m_freight=new FreightModel();

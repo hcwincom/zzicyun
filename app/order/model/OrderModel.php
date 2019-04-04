@@ -28,8 +28,7 @@ class OrderModel extends Model
             'uid'=>$uid,
             'coupon_id'=>$data['coupon_id'],//优惠券id
             'invoice_id'=>$data['invoice_id'],//发票资料id
-            'freight_type'=>$data['freight_type'],//1快递2自提
-            'address_id'=>$data['address_id'],//快递地址
+            'freight_type'=>$data['freight_type'],//1快递2自提 
             'station_id'=>$data['station_id'],// 自提地址
             'station_accept_name'=>$data['station_accept_name'],//自提人
             'station_accept_tel'=>$data['station_accept_tel'],//自提电话
@@ -121,7 +120,7 @@ class OrderModel extends Model
                 'goods_code'=>$v['code'],
                 'store_code'=>$v['store_code'],
                 'price'=>$v['price'],
-                'num'=>$v['num'],
+                'num'=>$v['order_num'],
                 'pay'=>$v['order_price'],
                 'udsc'=>$data['udscs'][$k]
             ];
