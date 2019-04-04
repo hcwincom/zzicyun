@@ -64,17 +64,18 @@
 								<div class="order-sort-title clear">
 									<ul>
 										<li class="<if condition='$data.status eq 0'>order-active</if>"><a href="{:url('order/Order/myorder')}">全部</a></li>
-										<li class="<if condition='$data.status eq 1'>order-active</if>"><a href="{:url('order/Order/myorder',['status'=>1])}">待审核(<span>2</span>)</a></li>
-										<li class="<if condition='$data.status eq 2'>order-active</if>"><a href="{:url('order/Order/myorder',['status'=>2])}">待付款(<span>2</span>)</a></li>
-										<li class="<if condition='$data.status eq 3'>order-active</if>"><a href="{:url('order/Order/myorder',['status'=>3])}">待收货(<span>2</span>)</a></li>
-										<li class="<if condition='$data.status eq 4'>order-active</if>"> <a href="{:url('order/Order/myorder',['status'=>4])}">未完成(<span>2</span>)</a></li>
+										<li class="<if condition='$data.status eq 1'>order-active</if>"><a href="{:url('order/Order/myorder',['status'=>1])}">待审核(<span>{$data.count1}</span>)</a></li>
+										<li class="<if condition='$data.status eq 2'>order-active</if>"><a href="{:url('order/Order/myorder',['status'=>2])}">待付款(<span>{$data.count2}</span>)</a></li>
+										<li class="<if condition='$data.status eq 3'>order-active</if>"><a href="{:url('order/Order/myorder',['status'=>3])}">待发货(<span>{$data.count3}</span>)</a></li>
+										<li class="<if condition='$data.status eq 4'>order-active</if>"> <a href="{:url('order/Order/myorder',['status'=>4])}">待收货(<span>{$data.count4}</span>)</a></li>
+										<li class="<if condition='$data.status eq 5'>order-active</if>"> <a href="{:url('order/Order/myorder',['status'=>5])}">已完成(<span>{$data.count5}</span>)</a></li>
 									</ul>
 								</div>
 								<div class="order-sort-search">
 								<form action="" method="post">
 								<input type="hidden" name="status" value="{$data.status}"/>
 									<ul class="row">
-										<li class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+										<li class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-right: 0;">
 											<div class="date-ds clear">
 												<div class="data-ksd fl">
 													<span>购买时间:</span><input name="time1" id="start" value="{$data.time1}" readonly />
@@ -84,7 +85,7 @@
 												</div>
 											</div>
 										</li>
-										<li class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+										<li class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="padding-right: 0;">
 											<div class="qbfl">
 												<span>订单状态:</span>
 												<select name="order_status">
@@ -95,7 +96,7 @@
 												</select>
 											</div>
 										</li>
-										<li class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+										<li class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="padding-right: 0;">
 											<div class="qbfl">
 												<span>物料进程:</span>
 												<select name="send_status">
@@ -106,7 +107,7 @@
 												</select>
 											</div>
 										</li>
-										<li class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+										<li class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="padding-right: 0;">
 											<div class="qbfl">
 												<span>支付状态:</span>
 												<select name="pay_status">

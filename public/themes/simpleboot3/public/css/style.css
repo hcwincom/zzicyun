@@ -3849,7 +3849,7 @@
 	right: 20px;
 	bottom: 10%;
 }
-.groupBtn-order>button{
+.groupBtn-order>button,.groupBtn-order>span{
 	width: 82px;
 	height: 36px;
 	line-height: 36px;
@@ -3859,10 +3859,17 @@
 	text-align: center;
 	outline: none;
 }
-.groupBtn-order>button.addr-approve{
+.groupBtn-order>button.addr-approve,
+.groupBtn-order>span.addr-approve{
 	color: #FF9500;
 	margin-right: -3px;
 }
+.groupBtn-order>span{
+	display: inline-block;
+}
+
+
+
 .groupBtn-order>button.addr-amend{
 	color: #198148;
 }

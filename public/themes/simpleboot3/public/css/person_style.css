@@ -665,7 +665,7 @@ input.register-input{
 	padding-left: 5px;
 }
 .data-ksd>input{
-	width: 55%;
+	width: 54%;
 }
 .date-jsd>input{
 	width: 79%;
@@ -1128,7 +1128,7 @@ p.oranBorder>a{
 }
 .detail-order-bz{
 	width: 100%;
-	padding: 20px 100px;
+	padding: 20px 80px;
 }
 .detail-order-bz>.detail-circle{
 	width: 100%;
@@ -1138,7 +1138,7 @@ p.oranBorder>a{
 }
 .detail-circle>li{
 	float: left;
-	width: 24.5%;
+	width: 14%;
 }
 .detail-circle>li:last-child{
 	width: 2%;
@@ -1159,7 +1159,7 @@ p.oranBorder>a{
 }
 .detail-dsc>ul>li{
 	float: left;
-	width: 23.5%;
+	width: 13.4%;
 	font-size: 14px;
 }
 .detail-dsc>ul>li:last-child{
@@ -3576,7 +3576,7 @@ p.oranBorder>a{
 
 @media screen and (min-width: 700px) and (max-width: 1000px) {
 	.data-ksd>input{
-		width: 47%;
+		width: 44%;
 	}
 	.date-jsd>input{
 		width: 79%;

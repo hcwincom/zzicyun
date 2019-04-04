@@ -176,14 +176,14 @@
 													<td class="detail_radio">
 														<neq name="info.goods_time1" value="100">
 														<label for="checkra">
-															<input type="radio" name="checkra" id="checkra" value="checkra" checked="checked"/>
+															<input type="radio" name="checkra" id="checkra" value="1" checked="checked"/>
 															{$notice.goods_search.mainland}
 															<input type="hidden" value="{$goods_times[$info['goods_time1']]|default=''}"/>
 														</label>
 														</neq>
 														<neq name="info.goods_time2" value="100">
 														<label for="checkrad">
-															<input type="radio" name="checkra" id="checkrad" value="checkrad" />
+															<input type="radio" name="checkra" id="checkrad" value="2" />
 															{$notice.goods_search.hongkong}
 															<input type="hidden" value="{$goods_times[$info['goods_time2']]|default=''}"/>
 														</label>
@@ -237,7 +237,8 @@
 												</div>
 												<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="padding-left: 0;">
 													<div class="detail_buy">
-														<p><a id="cart_add">{$notice.goods_search.buy}</a></p>
+														<input type="hidden" name="id" class="id" value="{$info.id}">
+														<p><a href="javascript:void(0);" id="cart_add">{$notice.goods_search.buy}</a></p>
 													</div>
 												</div>
 											</div>
@@ -588,6 +589,23 @@
 				$(".innerClose>span").click(function () {
 					$(".outDiv").hide();
 				});
+
+				//  点击购买
+				$("#cart_add").click(function () {
+					
+					var num = parseInt($(".btn-num").val());
+					
+					var id = $(".id").val();
+					console.log(id);
+					var type  = $('input:radio[name="checkra"]:checked').val();
+	
+					location.href = "{:url('order/Order/buy_order','',false,false)}/id/" + id + '/num/' + num + '/type/' + type;
+
+				});
+
+
+
+
 		</script>
 	</body>
 </html>
