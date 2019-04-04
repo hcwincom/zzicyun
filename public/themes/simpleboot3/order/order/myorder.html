@@ -63,32 +63,34 @@
 							<div class="order-sort">
 								<div class="order-sort-title clear">
 									<ul>
-										<li class="<if condition='$status eq 0'>order-active</if>"><a href="{:url('order/Order/myorder')}">全部</a></li>
-										<li class="<if condition='$status eq 1'>order-active</if>"><a href="{:url('order/Order/myorder',['status'=>1])}">待审核(<span>2</span>)</a></li>
-										<li class="<if condition='$status eq 2'>order-active</if>"><a href="{:url('order/Order/myorder',['status'=>2])}">待付款(<span>2</span>)</a></li>
-										<li class="<if condition='$status eq 3'>order-active</if>"><a href="{:url('order/Order/myorder',['status'=>3])}">待收货(<span>2</span>)</a></li>
-										<li class="<if condition='$status eq 4'>order-active</if>"> <a href="{:url('order/Order/myorder',['status'=>4])}">未完成(<span>2</span>)</a></li>
+										<li class="<if condition='$data.status eq 0'>order-active</if>"><a href="{:url('order/Order/myorder')}">全部</a></li>
+										<li class="<if condition='$data.status eq 1'>order-active</if>"><a href="{:url('order/Order/myorder',['status'=>1])}">待审核(<span>2</span>)</a></li>
+										<li class="<if condition='$data.status eq 2'>order-active</if>"><a href="{:url('order/Order/myorder',['status'=>2])}">待付款(<span>2</span>)</a></li>
+										<li class="<if condition='$data.status eq 3'>order-active</if>"><a href="{:url('order/Order/myorder',['status'=>3])}">待收货(<span>2</span>)</a></li>
+										<li class="<if condition='$data.status eq 4'>order-active</if>"> <a href="{:url('order/Order/myorder',['status'=>4])}">未完成(<span>2</span>)</a></li>
 									</ul>
 								</div>
 								<div class="order-sort-search">
+								<form action="" method="post">
+								<input type="hidden" name="status" value="{$data.status}"/>
 									<ul class="row">
 										<li class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 											<div class="date-ds clear">
 												<div class="data-ksd fl">
-													<span>购买时间:</span><input name="start" id="start" value="" readonly />
+													<span>购买时间:</span><input name="time1" id="start" value="{$data.time1}" readonly />
 												</div>
 												<div class="date-jsd fl">
-													<span>至</span><input name="end" id="end" value="" readonly />
+													<span>至</span><input name="time2" id="end" value="{$data.time2}" readonly />
 												</div>
 											</div>
 										</li>
 										<li class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
 											<div class="qbfl">
 												<span>订单状态:</span>
-												<select name="orstau">
+												<select name="order_status">
 													<option value="0">全部类别</option>
 												<foreach name="order_statuss" item="vo">
-													<option value="{$key}">{$vo}</option>
+													<option value="{$key}" <if condition='$key eq $data.order_status'>selected</if>>{$vo}</option>
 												</foreach>
 												</select>
 											</div>
@@ -96,10 +98,10 @@
 										<li class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
 											<div class="qbfl">
 												<span>物料进程:</span>
-												<select name="">
+												<select name="send_status">
 													<option value="0">全部类别</option>
 												<foreach name="send_statuss" item="vo">
-													<option value="{$key}">{$vo}</option>
+													<option value="{$key}" <if condition='$key eq $data.send_status'>selected</if>>{$vo}</option>
 												</foreach>
 												</select>
 											</div>
@@ -107,21 +109,22 @@
 										<li class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
 											<div class="qbfl">
 												<span>支付状态:</span>
-												<select name="">
+												<select name="pay_status">
 													<option value="0">全部类别</option>
 												<foreach name="pay_statuss" item="vo">
-													<option value="{$key}">{$vo}</option>
+													<option value="{$key}" <if condition='$key eq $data.pay_status'>selected</if>>{$vo}</option>
 												</foreach>
 												</select>
 											</div>
 										</li>
 										<li class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 											<div class="spss">
-												<input type="text" name="" id="" value="" placeholder="商品编号/型号/名称" />
-												<button type="button">搜索</button>
+												<input type="text" name="goods_name" id="" value="{$data.goods_name}" placeholder="商品编号/型号/名称" />
+												<button type="submit">搜索</button>
 											</div>
 										</li>
 									</ul>
+									</form>
 								</div>
 								<!--主要内容-->
 								<div class="order-sort-content">
@@ -178,7 +181,7 @@
 																			<p>数量：<span>{$vv.num}</span></p>
 																		</div>
 																		<div class="item-order-price itemOderShort  fl">
-																			<p>单价：<span><eq name="vo.type" value="1">￥<else/>$</eq>{$vv.price}}</span></p>
+																			<p>单价：<span><eq name="vo.type" value="1">￥<else/>$</eq>{$vv.price}</span></p>
 																		</div>
 																		<div class="item-order-press itemOderShort  fl">
 																			<p>物料进程：<span>{$send_statuss[$vv.send_status]|default=$vv.send_status}</span></p>

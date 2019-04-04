@@ -792,7 +792,8 @@
 		       var start = {
 		           elem: '#start',
 		           format: 'YYYY-MM-DD',
-		           max: laydate.now(), //设定最大日期为当前日期
+		           min: laydate.now(), //设定最小日期为当前日期
+		           max:'', //最大日期
 		           istime: false,
 		           istoday: true,
 		           choose: function(datas){
@@ -805,7 +806,8 @@
 		    var end = {
 		           elem: '#end',
 		           format: 'YYYY-MM-DD',
-		           max: laydate.now(), //设定最大日期为当前日期
+		           min: laydate.now(), //设定最小日期为当前日期
+		           max:'', //最大日期
 		           istime: false,
 		            istoday: false,
 		           choose: function(datas){ 

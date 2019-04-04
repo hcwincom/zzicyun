@@ -28,13 +28,93 @@ class OrderController extends UserBaseController
        $lan2=$this->lan2;
        $uid=session('user.id');
        $data=$this->request->param();
+       $m_order=new OrderModel();
+       $where=['o.uid'=>$uid];
+       //待审核(2)
+       $where1=['uid'=>$uid,'pay_status'=>['in',[2,4]]];
+       // 待付款(2)
+       $where2=['uid'=>$uid,'pay_status'=>['in',[1,3]]];
+       // 待发货(2)
+       $where3=['uid'=>$uid,'status'=>['in',[2,3,4]]];
+       // 待收货(2)
+       $where4=['uid'=>$uid,'status'=>['in',[4,5]]];
+       //已完成(2)
+       $where5=['uid'=>$uid,'status'=>['in',[7,10,11]]];
+       $data['count1']=$m_order->where($where1)->count();
+       $data['count2']=$m_order->where($where2)->count();
+       $data['count3']=$m_order->where($where3)->count();
+       $data['count4']=$m_order->where($where4)->count();
+       $data['count5']=$m_order->where($where5)->count();
        if(empty($data['status'])){
           $data['status']=0;
+       } else{
+           switch($data['status']){
+               case 1:
+                   $where['o.pay_status']=['in',[2,4]];
+                   break;
+               case 2:
+                   $where['o.pay_status']=['in',[1,3]];
+                   break;
+               case 3:
+                   $where['o.status']=['in',[2,3,4]];
+                   break;
+               case 4:
+                   $where['o.status']=['in',[4,5]];
+                   break; 
+               case 5:
+                   $where['o.status']=['in',[7,10,11]];
+                   break;
+           }
        }
+       if(empty($data['order_status'])){
+           $data['order_status']=0;
+       }else{
+           $where['o.status']=$data['order_status'];
+       }
+       if(empty($data['pay_status'])){
+           $data['pay_status']=0;
+       }else{
+           $where['o.pay_status']=$data['pay_status'];
+       }
+       if(empty($data['send_status'])){
+           $data['send_status']=0;
+       }else{
+           $where['og.send_status']=$data['send_status'];
+       }
+       if(empty($data['send_status'])){
+           $data['send_status']=0;
+       }else{
+           $where['og.send_status']=$data['send_status'];
+       }
+       if(empty($data['goods_name'])){
+           $data['goods_name']='';
+       }else{
+           $where['og.goods_name|og.goods_code|og.store_code']=['like','%'.$data['goods_name'].'%'];
+       }
+       //创建时间
+       if(empty($data['time1'])){
+           $data['time1']=''; 
+           if(empty($data['time2'])){
+               $data['time2']=''; 
+           } else{
+               $time2=strtotime($data['time2']);
+               $where['o.create_time']=['lt',$time2];
+           }
+       } else{
+           $time1=strtotime($data['time1']);
+           if(empty($data['time2'])){
+               $data['time2']='';
+               $where['o.create_time']=['gt',$time1];
+           } else{
+               $time2=strtotime($data['time2']);
+               $where['o.create_time']=['between',[$time1,$time2]];
+           }
+       }
+       
        $this->assign('data',$data);
        $this->assign('status',$data['status']);
-       $m_order=new OrderModel();
-       $res=$m_order->get_page($data,$uid);
+      
+       $res=$m_order->get_page($data,$where,$uid);
         
        $this->assign('orders',$res['list']);
        $this->assign('page',$res['page']);

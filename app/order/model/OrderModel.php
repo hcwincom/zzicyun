@@ -130,11 +130,12 @@ class OrderModel extends Model
         return $oid;
     }
     
-    public function get_page($data,$uid=0,$page_row=5){
-        $where=[];
+    public function get_page($data,$where,$uid=0,$page_row=5){
+        
         if($uid>0){
             $where['o.uid']=$uid;
         }
+        
         $list=$this
         ->alias('o')
         ->join('cmf_order_goods og','og.oid=o.id')
