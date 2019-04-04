@@ -96,7 +96,8 @@ class LoginController extends DeskBaseController
             if ($user['user_status'] == 0) {
                 $this->error("login_ban");
             }
-            session('user', $user);
+           
+            $m_user->startTrans();
             $data = [
                 'last_login_time' => time(),
                 'last_login_ip'   => get_client_ip(0, true),
@@ -105,6 +106,8 @@ class LoginController extends DeskBaseController
             //登录积分
             $m_score=new ScoreUserModel();
             $m_score->score_do($user['id'], 'login');
+            $m_user->commit();
+            session('user', $user);
             $this->success("login_success");
         } else {
             $this->error("request_error");
