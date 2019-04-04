@@ -70,7 +70,7 @@ class OrderController extends UserBaseController
        return $this->fetch('order_prepare');
    }
    //转化为订单页面
-   public function order_do1($nums,$type=1,$coupon=0){
+   public function order_do1($nums,$type=1,$coupon_id=0){
        $lan1=$this->lan1;
        $lan2=$this->lan2;
        $goods_ids=array_keys($nums);
@@ -96,12 +96,18 @@ class OrderController extends UserBaseController
        $goods_times=$m_time->get_list($lan1,$lan2);
       
        //优惠券
+       $coupon_money=0;
        if($type>2){
            $coupons=[];
        }else{
            $m_coupon=new CouponUserModel(); 
            $coupons=$m_coupon->get_list($uid,$price_type); 
-           
+           if(isset($coupons[$coupon_id])){
+               if($coupons[$coupon_id]['money_min']<$count['money']){
+                   $coupon_money=$coupons[$coupon_id]['money'];
+               } 
+           }
+          
        }
        $this->assign('goods_list',$goods_list); 
        $this->assign('brands',$brands);
@@ -109,7 +115,8 @@ class OrderController extends UserBaseController
        $this->assign('coupons',$coupons);
        $this->assign('type',$type);
        $this->assign('coupons',$coupons);
-       $this->assign('coupon',$coupon);
+       $this->assign('coupon_id',$coupon_id);
+       $this->assign('coupon_money',$coupon_money);
        $this->assign('money_flag',($type==1)?'￥':'$');
       
        $this->assign('count_num',$count_num);
@@ -145,13 +152,19 @@ class OrderController extends UserBaseController
        $m_fr=new FreightAreaModel();
        $freight=current($freights);
        $address=current($addresses);
-       $fee=$m_fr->get_fee($freight['id'], $address['city'], $count_weight, $count_size,$count_money,$type);
-       
+       $fee=$m_fr->get_fee($freight['id'], $address['city'], $count_weight, $count_size,$count_money-$coupon_money,$type);
+       if($fee<0){
+           $fee=0;
+           $freight_ok=0;
+       }else{
+           $freight_ok=1;
+       }
        $this->assign('freight_fee',$fee);
+       $this->assign('freight_ok',$freight_ok);
        $this->assign('freight_id',$freight['id']);
        $this->assign('address_id',$address['id']);
-       dump($fee);
-       $money_end=round($fee+$count_money,2);
+      
+       $money_end=round($fee+$count_money-$coupon_money,2);
        $this->assign('money_end',$money_end);
       
    }

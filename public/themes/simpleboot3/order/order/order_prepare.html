@@ -65,8 +65,8 @@
 													</div>
 												</div>
 												<div class="orderdelive-expre-box clear">
-															<input type="hidden" id="freight_ok" value="<lt name='freight_fee' value='0'>0<else/>1</lt>">
-															<div class="addressTip"><lt name='freight_fee' value='0'>请重新选择地址或者快递</lt></div>
+															<input type="hidden" id="freight_ok" value="{$freight_ok}">
+															<div class="addressTip"><lt name='freight_ok' value='0'>请重新选择地址或者快递</lt></div>
 												</div>
 											</div>
 											<div class="orderdelive-pickup">
@@ -232,7 +232,7 @@
 												<div class="orderInfodis-list">
 													<ul class="clear">
 													<foreach name="coupons" item="vo">
-														<li class="<if condition='$key eq $coupon'>onfodisactive</if> ">
+														<li class="<if condition='$key eq $coupon_id'>onfodisactive</if> ">
 																<input type="hidden" class="coupon_id" value="{$vo.id}">
 															<div class="discount-cont">
 																<div class="discountTxt">
@@ -272,7 +272,7 @@
 												 
 												<tr>
 													<td class="shopLeftwidth"><p> 商品优惠：</p></td>
-													<td class="shopRightwidth"><p>-{$money_flag}</p></td>
+													<td class="shopRightwidth"><p>-{$money_flag}{$coupon_money}</p></td>
 												</tr>
 												<tr>
 													<td class="shopLeftwidth"><p>应付金额：</p></td>
