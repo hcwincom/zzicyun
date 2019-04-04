@@ -241,7 +241,8 @@ class GoodsModel extends Model
     public function goods_count($nums,$lan1,$lan2,$price_type){
        
         $goods_ids=array_keys($nums); 
-        $res=$this->goods_list($lan1,$lan2,$goods_ids);
+       
+        $res=$this->goods_list($lan1,$lan2,$goods_ids); 
         $goods_list=$res['goods_list'];
         $price_list=$res['price_list'];
         $shop_ids=[];

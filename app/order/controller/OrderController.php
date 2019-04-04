@@ -52,7 +52,7 @@ class OrderController extends UserBaseController
        $this->assign('pay_type1s',$pay_type1s);
        $this->assign('pay_type2s',$pay_type2s);
        $this->assign('pay_type3s',$pay_type3s);
-       $this->assign('send_status',$send_statuss);
+       $this->assign('send_statuss',$send_statuss);
        $this->assign('pay_statuss',$pay_statuss);
        $this->assign('order_statuss',$order_statuss);
        return $this->fetch();
@@ -93,6 +93,31 @@ class OrderController extends UserBaseController
        $this->order_do1($nums,$data['type'],$data['coupon']);
        return $this->fetch('order_prepare');
    }
+   //直接购买
+   public function buy_order(){
+       $lan1=$this->lan1;
+       $lan2=$this->lan2;
+       //goods,num,type,coupon
+       $data=$this->request->param();
+       if(empty($data['type'])){
+           $data['type']=1;
+       }
+       $data['num']=1;
+       $data['id']=2664;
+       if(empty($data['id']) || empty($data['num'])){
+           $this->error('error_data');
+       }
+       $uid=session('user.id');
+       $where=[
+           'id'=>['eq',$data['id']],
+           'uid'=>$uid
+       ];
+        
+       $nums=[$data['id']=>$data['num']];
+       
+       $this->order_do1($nums,$data['type']);
+       return $this->fetch('order_prepare');
+   }
    //转化为订单页面
    public function order_do1($nums,$type=1,$coupon_id=0){
        $lan1=$this->lan1;
@@ -103,6 +128,7 @@ class OrderController extends UserBaseController
       
        $m_goods=new GoodsModel();
        $res=$m_goods->goods_count($nums,$lan1,$lan2,$price_type);
+       
        $goods_list=$res['goods_list'];
        $price_list=$res['price_list'];
        $count=$res['count']; 

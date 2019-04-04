@@ -188,7 +188,7 @@ class OrderModel extends Model
             $orders=$this->where('id','in',$oids)->column('');
             $goods_list=Db::name('order_goods')->where('oid','in',$oids)->column('');
             foreach($goods_list as $k=>$v){
-                $orders[$v['oid']]['goods_list'][$k]=$v;
+                $orders[$v['oid']]['goods_list'][$v['goods']]=$v;
             }
         }
         

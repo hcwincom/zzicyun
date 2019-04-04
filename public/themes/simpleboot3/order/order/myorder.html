@@ -87,6 +87,9 @@
 												<span>订单状态:</span>
 												<select name="orstau">
 													<option value="0">全部类别</option>
+												<foreach name="order_statuss" item="vo">
+													<option value="{$key}">{$vo}</option>
+												</foreach>
 												</select>
 											</div>
 										</li>
@@ -95,6 +98,9 @@
 												<span>物料进程:</span>
 												<select name="">
 													<option value="0">全部类别</option>
+												<foreach name="send_statuss" item="vo">
+													<option value="{$key}">{$vo}</option>
+												</foreach>
 												</select>
 											</div>
 										</li>
@@ -103,6 +109,9 @@
 												<span>支付状态:</span>
 												<select name="">
 													<option value="0">全部类别</option>
+												<foreach name="pay_statuss" item="vo">
+													<option value="{$key}">{$vo}</option>
+												</foreach>
 												</select>
 											</div>
 										</li>
