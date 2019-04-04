@@ -60,12 +60,13 @@
 													<p class="fl">可选条件：</p>
 													<div class="expre-list fl">
 													<foreach name="pay_type1s" item="vo">
-														<label><input type="radio" name="pay_type1" class="condition" value="" />{$vo}</label>
+														<label><input type="radio" name="pay_type1" class="condition" value="{$key}" <eq name='key' value='1'>checked</eq>	/>{$vo}</label>
 													</foreach> 
 													</div>
 												</div>
 												<div class="orderdelive-expre-box clear">
-															<div class="addressTip">请重新选择地址或者快递</div>
+															<input type="hidden" id="freight_ok" value="<lt name='freight_fee' value='0'>0<else/>1</lt>">
+															<div class="addressTip"><lt name='freight_fee' value='0'>请重新选择地址或者快递</lt></div>
 												</div>
 											</div>
 											<div class="orderdelive-pickup">
@@ -232,7 +233,7 @@
 													<ul class="clear">
 													<foreach name="coupons" item="vo">
 														<li class="<if condition='$key eq $coupon'>onfodisactive</if> ">
-																<input type="hidden" name="coupon_id" class="coupon_id" value="">
+																<input type="hidden" class="coupon_id" value="{$vo.id}">
 															<div class="discount-cont">
 																<div class="discountTxt">
 																	<h2><b>{$money_flag}{$vo.money}</b><span>满{$vo.money_min}元</span></h2>
@@ -282,10 +283,10 @@
 												
 											</table>
 											<div class="shoptotalbtn">
-
-												<input type="hidden" name="freight_pay" value="{$freight_fee}">
-												<input type="hidden" name="coupon_money" value="0">
-												<input type="hidden" name="goods_money" value="{$count_money}">
+												<input type="hidden" name="coupon_id" id="coupon_id" value="{$coupon_id}">
+												<input type="hidden" name="freight_pay" id="freight_pay" value="{$freight_fee}">
+												<input type="hidden" name="coupon_money" id="coupon_money" value="{$coupon_money}">
+												<input type="hidden" name="goods_money" id="goods_money" value="{$count_money}">
 												<input type="hidden" name="type" value="{$type}">
 												<button type="submit" class="pickBtn">提交订单</button>
 											</div>
