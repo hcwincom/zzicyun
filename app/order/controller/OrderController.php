@@ -165,8 +165,11 @@ class OrderController extends UserBaseController
        $uid=session('user.id'); 
         
        $m_order=new OrderModel();
-       $oid=$m_order->order_add($data,$uid,$lan1,$lan2);
-       
+       $res=$m_order->order_add($data,$uid,$lan1,$lan2);
+       exit($res);
+       if(!($res>0)){
+           $this->error($res);
+       }
    }
    //运费计算
    public function freight_fee(){

@@ -32,7 +32,7 @@ class OrderModel extends Model
             'address_id'=>$data['address_id'],//快递地址
             'station_id'=>$data['station_id'],// 自提地址
             'station_accept_name'=>$data['station_accept_name'],//自提人
-            'station_tel'=>$data['station_tel'],//自提电话
+            'station_accept_tel'=>$data['station_accept_tel'],//自提电话
             'freight_id'=>$data['freight_id'],//选择快递 
             'pay_type1'=>$data['pay_type1'],//在线支付
             'pay_type2'=>$data['pay_type2'],//支付宝

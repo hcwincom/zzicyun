@@ -114,18 +114,20 @@ class RegisterController extends DeskBaseController
             if(!empty($tmp2)){
                 $this->error('username_used');
             }
-            
+            $m_user->startTrans();
             $result  = $m_user->insertGetId($data);
-            if ($result !== false) {
-                $data   = $m_user->where('id', $result)->find();
-                cmf_update_current_user($data);
+            if ($result !== false) { 
                 //注册积分
                 $m_score=new ScoreUserModel();
                 $m_score->score_do($result, 'register');
                 //验证码
                 session('verify',null);
+                $m_user->commit();
+                $data   = $m_user->where('id', $result)->find();
+                cmf_update_current_user($data);
                 $this->success("register_success");
             } else {
+                $m_user->rollback();
                 $this->error("register_error");
             }
              
