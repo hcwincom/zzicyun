@@ -180,75 +180,97 @@ $(".personBtn>.callOff").click(function(){
 
 
 // 商品详情页面的价格变化
-function setTotal(){
-	var allPrice = 0; // 总价格
-	$(".stepItem").each(function(){
-		var singleNum = parseInt($(".totalNum").val());   //单个商品的购买数量
-		var stepNum = parseInt($(this).find("span").text());
-		if(singleNum >= stepNum){
-			var singlePrice = parseFloat($(this).next("td").find("span").text());
-			// console.log(singlePrice);
-			$(".detail_pri").find("i").text(singlePrice);
-			allPrice = singleNum*singlePrice;
-		}
-		$(".allPrice").html(allPrice.toFixed(2));
-	});
+// function setTotal(){
+// 	var allPrice = 0; // 总价格
+// 	$(".stepItem").each(function(){
+// 		var singleNum = parseInt($(".totalNum").val());   //单个商品的购买数量
+// 		var stepNum = parseInt($(this).find("span").text());
+// 		if(singleNum >= stepNum){
+// 			var singlePrice = parseFloat($(this).next("td").find("span").text());
+// 			// console.log(singlePrice);
+// 			$(".detail_pri").find("i").text(singlePrice);
+// 			allPrice = singleNum*singlePrice;
+// 		}
+// 		$(".allPrice").html(allPrice.toFixed(2));
+// 	});
 	
-}
-setTotal();
-
-
-
-//手动修改文本框商品数量与库存的限制
-function amount_input(tag,sellprice,stock){
-	var amount=parseInt($(tag).val());
-	if(isNaN(amount)){
-		alert('最少购买量为1');
-		$(tag).val(1);
-	}else{
-		if(amount>stock){
-			alert('购买数量不能大于库存');
-			$(tag).val(stock);
-		}else if(amount<1){
-			alert('最少购买量为1');
-			$(tag).val(1);
-		}
-	}
-	var val=parseFloat(sellprice)*parseInt($(tag).val());
-	setTotal();
-}
-
-// 购买数量加
-function plus(tag,sellprice,stock){
-	var _this=$(tag);
-	var input=_this.prev('input');
-	var amount=parseInt(input.val());
-	amount++;
-	if(amount>stock){
-		alert('购买数量不能大于库存');
-	}else{
-		input.val(amount);
-		setTotal();
-	}
-}
-// 购买数量减
- function minus(tag,sellprice,stock){
-	var _this=$(tag);
-	var input=_this.next('input');
-	var amount=parseInt(input.val());
-		amount--;
-	if(amount<=0){
-		return alert('购买数量不能小于1');
-	}else{
-		input.val(amount);
-		setTotal();
-	}
-}
- 
+// }
+// setTotal();
 
 
 
 // 购物车页面订单结算
+
+// 购物车减少数量
+$(".cartMin").click(function () {
+	var _this = $(this);
+	// 倍数
+	var multipleNum = parseInt(_this.parents("tr").find(".multipleNum span").text());
+	// 数量
+	var startNum = parseInt(_this.next("input").val());
+	// 最小数量，即起订量
+	var lessNum = parseInt(_this.parents("tr").find(".minimum span").text());
+
+	if (startNum == lessNum){
+		return false;
+	}
+	startNum = startNum - multipleNum;
+	_this.next("input").val(startNum);
+
+	$(".ladderNum").each(function () {
+		var ladderNum = $(this).attr("num");
+
+		if (startNum >= ladderNum){
+			var ladderPrice = $(this).val();
+			$(".shopList .signPrice").find("span").html(ladderPrice);
+
+		}
+
+	});
+
+	setTotalScart();
+	checkNum();
+	allPrice();
+
+
+});
+
+// 购物车增加数量
+$(".cartPlus").click(function () {
+	var _this = $(this);
+	// 倍数
+	var multipleNum = parseInt(_this.parents("tr").find(".multipleNum span").text());
+	// 数量
+	var startNum = parseInt(_this.prev("input").val());
+	// 库存数量
+	var stock = parseInt(_this.parent(".addBtn").next(".stock").find("span").text());
+	console.log(stock);
+	
+	if(startNum == stock){
+		return false;
+	}
+	startNum = startNum + multipleNum;
+	console.log(startNum);
+	_this.prev("input").val(startNum);
+	$(".ladderNum").each(function () {
+		var ladderNum = $(this).attr("num");
+
+		if (startNum >= ladderNum) {
+			var ladderPrice = $(this).val();
+			console.log(ladderPrice);
+			$(".shopList .signPrice").find("span").html(ladderPrice);
+
+		}
+
+	});
+	setTotalScart();
+	checkNum();
+	allPrice();
+
+});
+
+
+
 function setTotalScart(){
 	$(".shopTable tr.shopdetail").each(function(){
 		var scartPrice =$(this).children(".scartPrice").find("span").text();
@@ -362,12 +384,19 @@ function allPrice(){
 
 
 // 商品详情页加入购物车计算
+
+// 一开始给合计赋值
+var startNum = parseInt($(".de_onum").val());
+var startPrice = parseFloat($(".priceRmb").find("i").text());
+var startTotal = startNum * startPrice;
+$(".totalRmb").find("i").text(startTotal.toFixed(2));
+
 $("input[name='checkra']").click(function(){
 	var _this = $(this);
 	var checked = $("input[name='checkra']:checked").val();
 	var count = _this.parents(".detail_form").find(".de_onum").val();
 	console.log(count);
-	if(checked == "checkrad"){
+	if(checked == 2){
 		$(".priceRmb").hide().next(".priceUsd").show();
 		$(".totalRmb").hide().next(".totalUsd").show();
 
@@ -409,7 +438,7 @@ $(".de_oplus").click(function () {
 		// 阶梯价格
 		var stepNum = parseInt($(this).find("span").text());
 		if (count >= stepNum) {
-			if(checked == "checkra"){
+			if(checked == 1){
 				$(".priceUsd").hide().prev(".priceRmb").show();
 				$(".totalUsd").hide().prev(".totalRmb").show();
 				// 阶梯单价
@@ -451,7 +480,7 @@ $(".de_omin").click(function(){
 		// 阶梯价格
 		var stepNum = parseInt($(this).find("span").text());
 		if (count >= stepNum) {
-			if(checked == "checkra"){
+			if(checked == 1){
 				$(".priceUsd").hide().prev(".priceRmb").show();
 				$(".totalUsd").hide().prev(".totalRmb").show();
 				// 阶梯单价

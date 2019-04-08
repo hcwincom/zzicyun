@@ -70,12 +70,13 @@
 										  </th>                                                                                                                                
 									</tr>
 								</table>
-								<div class="shop-empty-img">
+								
+								<!-- <div class="shop-empty-img">
 									<p><img src="img/emtrygo.png" alt="" /></p>
 									<div class="shop-empty-txt">
 										<p>购物车内是空的，请添加您所需的商品哦~</p>
 									</div>
-								</div>
+								</div> -->
 							</div>
 							<div class="shopOrder-cont">
 								<div class="shopOrder-list">
@@ -139,43 +140,41 @@
 													<td>
 														<div class="shopList-left">
 															<p>整包：{$vo.goods_info.num_one}</p>
-															<p>起订：{$vo.goods_info.num_min}</p>
-															<p>倍数：{$vo.goods_info.num_times}</p>
+															<p class="minimum">起订：<span>{$vo.goods_info.num_min}</span></p>
+															<p class="multipleNum">倍数：<span>{$vo.goods_info.num_times}</span></p>
 														</div>
 													</td>
 													<td class="scartPrice">
 														<div class="shopList">
 													<eq name="type" value="1">
-															<input type="hidden" value="{$vo.goods_info.price1}" num="1"/>
+															<input type="hidden" class="ladderNum" value="{$vo.goods_info.price1}" num="1"/>
 														<foreach name="vo.price_list" item="vprice">
-															<input type="hidden" value="{$vprice.price1}" num="{$vprice.num}"/>
+															<input type="hidden" class="ladderNum" value="{$vprice.price1}" num="{$vprice.num}"/>
 													 
 														</foreach>
-															<p>￥ <span>{$vo.price}</span></p>
-														 
+															<p class="signPrice">￥ <span>{$vo.price}</span></p>
 													<else/>
 															<input type="hidden" value="{$vo.goods_info.price2}" num="1"/>
 														<foreach name="vo.price_list" item="vprice">
 															<input type="hidden" value="{$vprice.price2}" num="{$vprice.num}"/>
 													 
 														</foreach>
-															<p>$ <span>{$vo.price}</span></p>
-														
+															<p class="signPrice">$ <span>{$vo.price}</span></p>
 													</eq>
 														</div>
 													</td>
 													<td>
 														<div class="shopList shopNum">
 															<div class="addBtn clear">
-																<p class="btn-add omin" onclick="minusScart(this,'9.9','100');">
+																<p class="btn-add omin cartMin">
 																	<span class="glyphicon glyphicon-minus"></span>
 																</p>
 																<input type="text" class="btn-num onum" value="{$vo.num}" onblur='amount_input_Scart(this,"9.9","10000")' />
-																<p class="btn-add oplus" onclick="plusScart(this,'9.9}','100}');">
+																<p class="btn-add oplus cartPlus">
 																	<span class="glyphicon glyphicon-plus"></span>
 																</p>
 															</div>
-															<p class="qred">库存：  <span>{$vo.goods_info.store_num}</span></p>
+															<p class="qred stock">库存：<span>{$vo.goods_info.store_num}</span></p>
 														</div>	
 													</td>
 													<td class="subtotal">
@@ -259,11 +258,6 @@
 		  <include file="public@foot"/>
 		 
 	  	<script type="text/javascript">
-//	  		$(".shopOrder-head ul li").click(function(){
-//	  			var index = $(this).index();
-//	  			$(this).addClass("shopActive").siblings().removeClass("shopActive");
-//	  		    $(".shopOrder-cont .shopOrder-list").eq(index).addClass("shopOrder-active").siblings().removeClass("shopOrder-active");
-//	  		});
 
 var url_cart_change="{:url('order/cart/cart_change')}";
 var url_cart_changes="{:url('order/cart/cart_changes')}";

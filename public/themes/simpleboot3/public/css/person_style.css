@@ -1126,7 +1126,7 @@ p.oranBorder>a{
 .deatil-state>p>a{
 	margin-left: 30px;
 }
-.detail-order-bz{
+/* .detail-order-bz{
 	width: 100%;
 	padding: 20px 80px;
 }
@@ -1167,7 +1167,61 @@ p.oranBorder>a{
 }
 .detail-dsc>ul>li.dsc-active>p{
 	color: #ff9500;
+} */
+/* 测试样式 */
+.detail_text{
+	width: 92%;
+	margin-left: 8%;
+	padding: 20px 0;
 }
+.detail_text>ul{
+	width: 100%;
+	position: relative;
+}
+.detail_text>ul>li{
+	float: left;
+	position: relative;
+	width: 11%;
+	padding-top: 20px;
+	border-top: 2px dashed #008000;
+	margin-bottom: 25px;
+}
+.detail_text>ul>li>p.deCircle{
+	width: 18px;
+	height: 18px;
+	background: #008000;
+	border-radius: 50%;
+	position: absolute;
+	left: 0;
+	top: -11px;
+}
+.detail_text>ul>li>p.deStatus{
+	font-size: 14px;
+}
+.detail_text>ul>li>p.deCircle.circle-active{
+	background: #ff9500;
+}
+.detail_text>ul>li:last-child{
+	border-top: none;
+	/* position: absolute;
+	right: -8%; */
+}
+.detail_text>ul>li:last-child>p.deCircle{
+	top: -9px;
+}
+.detail_text>ul>li>p.deStatus.dsc-active{
+	color: #ff9500;
+}
+
+
+
+
+
+
+
+
+
+
 .detail-search{
 	padding-left: 25px;
 	line-height: 36px;

@@ -96,7 +96,7 @@
 											<div class="deatil-state">
 												<p>订单状态：<span>{$order_statuss[$order.status]|default=$order.status}</p>
 											</div>
-											<div class="detail-order-bz">
+											<!-- <div class="detail-order-bz">
 												<ul class="detail-circle clear">
 													<foreach name="order_statuss" item="vo">
 													<li class="<if condition='$key eq $order.status'>circle-active</if> ">
@@ -115,7 +115,24 @@
 												</foreach>
 													 
 												</ul>
+											</div> -->
+											<!-- 测试修改 -->
+											<div class="detail_text">
+												<ul class="clear">
+
+													<foreach name="order_statuss" item="vo">
+														<li class="<if condition='$key eq $order.status'>dsc-active</if> ">
+															<p class="deCircle <if condition='$key eq $order.status'>circle-active</if> "></p>
+															<p class="deStatus <if condition='$key eq $order.status'>dsc-active</if>">{$vo}</p>
+														</li>
+													</foreach>
+												</ul>
 											</div>
+
+
+
+
+
 										</div>
 									</div>
 								</div>
