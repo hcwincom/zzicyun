@@ -1,0 +1,8 @@
+  <li class=" "><a href="javascript:history.go(-1);">上一页</a></li>  
+<li class="<eq name='html' value='index'>active</eq> "><a href="{:url('index')}">{$flag}列表</a></li>  
+<li class="<eq name='html' value='add'>active</eq> "><a href="{:url('add')}">添加{$flag}</a></li> 
+<eq name='html' value='edit'>
+	<li class="active"><a href="{:url('edit',['id'=>$info.id])}">{$flag}详情</a></li> 
+</eq> 
+ <li ><a href="{:url('coupon/Task/coupon_old')}">{$flag}状态检测</a></li> 
+		 

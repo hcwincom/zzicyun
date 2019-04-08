@@ -93,6 +93,8 @@ class DeskBaseController extends HomeBaseController
         View::share('company',$company);
         View::share('notice',$notice);
         View::share('notice_json',$notice_json);
+        View::share('lan1',$lan1);
+        View::share('lan2',$lan2);
         $this->assign('html',$this->request->action());
         $this->assign('module',$this->request->module());
         $this->assign('controller',$this->request->controller());

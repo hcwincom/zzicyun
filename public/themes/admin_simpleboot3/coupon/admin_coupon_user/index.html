@@ -5,7 +5,7 @@
 
 	<div class="wrap js-check-wrap">
 		<ul class="nav nav-tabs"> 
-		<include file="public@nav" />
+		<include file="coupon@admin_coupon_user:nav" />
 	 
 		</ul>
 		 <form class="well form-inline margin-top-20" method="post"
@@ -101,6 +101,7 @@
 								data-checklist="js-check-x">
 						</label>
 						</th>
+						<th >用户ID-用户名</th>
 						<th >{$flag}ID-备注</th>
 					 
 						<th>{$flag}名</th> 
@@ -109,13 +110,15 @@
 					  <th>优惠金额（满减）</th> 
 						
 						 <th>有效时间</th> 
+						<th>审核-使用-时间</th>
+						 
 						<th>创建人</th>
 						<th>创建时间</th>
 						<th>审核人</th>
 						<th>审核时间</th>
 						<th>最近更新时间</th>
 						<th>排序</th>
-						<th>状态</th>
+						
 						 
 					</tr>
 				</thead>
@@ -129,11 +132,15 @@
 							value="{$vo.id}">
 						</td>
 						<td > 
-						<a href="{:url('edit',['id'=>$vo.id])}"  target="{$zztarget['list']}">
-						{$vo.id}-{$vo.dsc}
+						<a href="{:url('user/AdminIndex/info',['id'=>$vo.uid])}"  target="{$zztarget['other']}">
+						{$vo.uid}-{$unames[$vo.uid]|default=''}
 						</a>
 						</td>
-					 
+					 	<td > 
+							<a href="{:url('edit',['id'=>$vo.id])}"  target="{$zztarget['list']}">
+							{$vo.id}-{$vo.dsc}
+							</a>
+						</td>
 						<td>{$vo.name}</td>
 						  <td>{$coupon_types[$vo.type]|default=$vo.type}</td>
 						    <td>{$money_types3[$vo.money_type]|default=$vo.money_type}</td>
@@ -145,6 +152,10 @@
 					    <else/>
 					    {$vo.time1|date='Y-m-d',###}--{$vo.time2|date='Y-m-d',###}
 					    </empty>
+					    </td>
+					    <td>{$statuss[$vo.status]}
+					    -{$statuss_use[$vo.status_use]}
+					    -{$statuss_time[$vo.status_time]}
 					    </td>
 						<td>{$aids[$vo.aid]|default=$vo.aid}</td>
 						<td>{$vo.atime|date='Y-m-d H:i',###}</td>
@@ -158,7 +169,7 @@
 						
 						<td>{$vo.time|date='Y-m-d H:i',###}</td>
 						<td>{$vo.sort}</td>
-						<td>{$statuss[$vo.status]}</td>
+						
 						 
 					</tr>
 				 

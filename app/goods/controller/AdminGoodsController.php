@@ -28,7 +28,7 @@ class AdminGoodsController extends AdminInfoController
         $this->m=new GoodsModel();
         $this->base=['name'=>'str','sort'=>'int','dsc'=>'str','cid'=>'int','num_min'=>'int','brand'=>'int',
             'num_times'=>'int','price1'=>'round5','store_code'=>'str','pic'=>'str','pic0'=>'str','code'=>'str',
-            'goods_time1'=>'int','goods_time2'=>'int','store_sure'=>'int','shop_type'=>'int','is_rohs'=>'int'
+            'goods_time1'=>'int','goods_time2'=>'int','goods_time3'=>'int','store_sure'=>'int','shop_type'=>'int','is_rohs'=>'int'
         ];
          
         $this->isshop=1;

@@ -123,6 +123,12 @@ class GoodsModel extends Model
             $v['price2']=round($v['price1']*$rate,5);
             $info['prices'][$k]=$v;
         }
+        $info['money']=round($info['price1'],5);
+        if($info['goods_time1']==100){
+            $info['money']=round($info['price2']*$info['num_min'],2);
+        }else{
+            $info['money']=round($info['price1']*$info['num_min'],2);
+        }
        
         return $info;
     }

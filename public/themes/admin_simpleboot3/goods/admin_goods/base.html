@@ -116,6 +116,19 @@
     </div>
 </div>
 <div class="form-group">
+    <label for="" class="col-sm-2 control-label">国外发货时间</label>
+    <div class="col-md-6 col-sm-10">
+       <select name="goods_time3" class="form-control">
+       		<foreach name="goods_times" item="vo">
+       		<option value="{$key}" <if condition="$key eq $info.goods_time3">selected</if>>{$vo}</option>
+       		</foreach>
+       </select>
+      <present name="change.goods_time3">
+      	 <input type="text" class="form-control red"  value="{$goods_times[$change.goods_time3]|default=$change.goods_time3}" /> 
+      </present>  
+    </div>
+</div>
+<div class="form-group">
     <label for="" class="col-sm-2 control-label">计数单位</label>
     <div class="col-md-6 col-sm-10">
        <select name="" id="">
