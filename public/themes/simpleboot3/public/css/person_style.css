@@ -1168,7 +1168,7 @@ p.oranBorder>a{
 .detail-dsc>ul>li.dsc-active>p{
 	color: #ff9500;
 } */
-/* 测试样式 */
+/* 状态样式 */
 .detail_text{
 	width: 92%;
 	margin-left: 8%;
@@ -1181,10 +1181,11 @@ p.oranBorder>a{
 .detail_text>ul>li{
 	float: left;
 	position: relative;
-	width: 11%;
+	width: 10%;
 	padding-top: 20px;
 	border-top: 2px dashed #008000;
 	margin-bottom: 25px;
+	
 }
 .detail_text>ul>li>p.deCircle{
 	width: 18px;
