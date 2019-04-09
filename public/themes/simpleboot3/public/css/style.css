@@ -4000,6 +4000,9 @@
 	width: 100%;
 	border-bottom: 1px solid #dcdcdc;
 }
+.groupList-payway{
+	position: relative;
+}
 .groupList-paylimit>h3,.groupList-payway>h3{
 	width: 12%;
 	padding-left: 10px;
@@ -4070,12 +4073,75 @@
 /*银行弹窗*/
 .netbankPop{
 	position: absolute;
-	top: 40px;
-	width: 100px;
-	height: 100px;
-	background: #008000;
-	/* display: none; */
+	top: 50px;
+	left: 10%;
+	width: 80%;
+	background: #fff;
+	border: 1px solid #b5b5b5;
+	padding: 10px 15px;
+	z-index: 999;
+	border: 1px solid #b5b5b5;
+	display: none;
 }
+.bankpopcont{
+	width: 100%;
+	position: relative;
+}
+.bankpopcont>i{
+	position: absolute;  
+	left: 260px;  
+	height: 0px;  
+	width: 0px; 
+	line-height: 0;  
+	border-width: 10px;  
+	border-color: transparent transparent #CCC transparent;  
+	border-style: dashed dashed solid dashed;  
+	top: -30px;   
+}
+.bankpopcont>em{
+	position: absolute;  
+	left: 260px;  
+	height: 0px;  
+	width: 0px; 
+	border-width: 10px;  
+	border-color: #fff transparent #FFF transparent;  
+	border-style: dashed dashed solid dashed;  
+	top: -29px;  
+}
+.bankGroup{
+	width: 100%;
+	padding: 10px 0;
+}
+.bankGroup>li{
+	float: left;
+    width: 23%;
+    margin: 1%;
+    border: 1px solid #bfbfbf;
+    padding: 10px;
+    cursor: pointer;
+}
+.bankGroup>li.bankActive{
+	border: 1px solid #FF9500;
+}
+.bankGroup>li>.bankList{
+	width: 106px;
+    height: 30px;
+    margin: 0 auto;
+}
+.bankGroup>li>.bankList>img{
+	width: 100%;
+	height: 100%;
+}
+.bankGroup>li>.bankList>p{
+	text-indent: -9999em;
+}
+
+
+
+
+
+
+
 
 
 

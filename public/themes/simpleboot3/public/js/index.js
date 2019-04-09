@@ -42,11 +42,16 @@ $(".orderdelive div").click(function(){
 	  			
 	$(".orderdelive-cont>div").eq(index).addClass("storeCurrent").siblings().removeClass("storeCurrent")
 });
-$(".groupList-paylimit ul li").click(function(){
+$(".groupList-paylimit>ul>li").click(function(){
 	$(this).addClass("shopchoice").siblings().removeClass("shopchoice");
 });
-$(".groupList-payway ul li").click(function(){
+$(".groupList-payway>ul>li").click(function(){
 	$(this).addClass("shopchoice").siblings().removeClass("shopchoice");
+	// 付款方式选择
+	$(".netbank").click(function () {
+		$(".netbankPop").show();
+	});
+	$(".netbankPop").hide();
 });
 $(".orderinvo div").click(function(){
 	var index = $(this).index();
@@ -144,9 +149,14 @@ $(".personBtn>.callOff").click(function(){
 
 
 
+// 订单页面选择支付方式
 
-
-
+	$(".bankpopcont>ul>li").click(function () {
+		$(this).addClass("bankActive").siblings().removeClass("bankActive");
+		var bankHtml = $.trim($(this).find("p").text());
+		$(".netbank>a>i").html(bankHtml);
+		$(".netbankPop").hide();
+	});
 
 
 

@@ -127,11 +127,7 @@
 													</li>
 													<li class="netbank">
 														<input type="hidden" class="pay_type2" value="3" />
-														<a href="javascript:;">网银 中国工商<span>（切换银行）</span></a>
-															<!-- 银行弹窗 -->
-														<div class="netbankPop">
-															
-														</div>
+														<a href="javascript:;">网银 <i>农业银行</i><span>（切换银行）</span></a>
 													</li>
 													<li>
 														<input type="hidden" class="pay_type2" value="4" />
@@ -139,6 +135,30 @@
 													</li>
 													
 												</ul>
+													<!-- 网银弹窗 -->
+													<div class="netbankPop">
+														<div class="bankpopcont">
+															<i></i>
+															<em></em>
+															<ul class="bankGroup clear">
+																<li class="bankActive">
+																	<div class="bankList">
+																			<img src="__TMPL__/public/img/bank.png" alt="农业银行">
+																			<p>农业银行</p>
+																	</div>
+																</li>
+																<li>
+																	<div class="bankList">
+																		<img src="__TMPL__/public/img/bank.png" alt="工商银行">
+																		<p>工商银行</p>
+																	</div>
+																</li>
+															</ul>
+
+														</div>
+													</div>
+
+
 											</div>
 											<div class="groupList-waycredit">
 												<div class="defaultgray">
@@ -347,15 +367,7 @@
 
 // 付款方式选择
 $(".netbank").click(function () {
-	
-	alert("oo");
-
-
-
-
-
-
-
+	$(".netbankPop").show();
 });
 
 
