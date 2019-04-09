@@ -9,8 +9,8 @@
 						<div class="row">
 							<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
 								<div class="loginImg">
-									<a href="" title="优惠券">
-										<img src="images/login_left.png" alt="" />
+									<a href="{$banner.url}" >
+										<img src="{$image_url}/{$banner.pic}" alt="" />
 									</a>
 								</div>
 							</div>
@@ -95,6 +95,7 @@
 <script>
 
 var url_register="{:url('user/Register/register_ajax')}";
+var url_refer="{$url}";
 $('.reg-btn').click(function(){
 	var mobile=$.trim($('.phone-input').val());
 	var username=$.trim($('.username').val());
@@ -145,7 +146,7 @@ $('.reg-btn').click(function(){
 	        	if(data.code==1){
 							//成功提示
 							msg('成功');
-							location.href = "{:url('portal/Index/index')}"+/id/id/num/num;
+							location.href = url_refer;
 
 				}else{
 					//失败

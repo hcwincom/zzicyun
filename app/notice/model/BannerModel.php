@@ -21,7 +21,7 @@ class BannerModel extends Model
         ->join('cmf_banner_cate bc','bc.id=banner.cid')
         ->where($where)
         ->order('banner.sort asc')
-        ->column('banner.id,banner.pic,banner.url,bc.num');
+        ->column('banner.id,banner.pic,banner.name,banner.url,bc.num');
         if(empty($list)){
             return [];
         }
@@ -38,6 +38,30 @@ class BannerModel extends Model
              }
          }
         return $list;
+    }
+    
+    /**
+     * 获取单个banner图
+     * @param string $cname分类
+     * @return $info
+     */
+    public function get_banner_by_cname($cname){
+        $where=[
+            'banner.status'=>2,
+            'bc.name'=>$cname
+        ];
+        $info=$this
+        ->alias('banner')
+        ->join('cmf_banner_cate bc','bc.id=banner.cid')
+        ->where($where)
+        ->order('banner.sort asc')
+        ->field('banner.id,banner.pic,banner.name,banner.url')
+        ->find();
+        if(empty($info)){
+            return null;
+        }
+        $info=$info->getData(); 
+        return $info;
     }
    
 }

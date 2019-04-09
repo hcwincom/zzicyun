@@ -1,7 +1,47 @@
+//文件上传
+function file_change($file_file,$file_input,url_file){
+	$file_file.change(function(e){
+		 
+		var file = e.target.files[0]; 
+		var reader = new FileReader(); 
+		if (file) {
+			reader.readAsDataURL(file); 
+		} else { 
+			return false;
+		}
+		//组装表单数据
+			var fordata=new FormData();
+			fordata.append("file",file); 
+			//ajax
+			$.ajax({
+				"url":url_file,
+				"type":"POST",
+				"processData":false,
+				"contentType":false,
+				"data":fordata,
+				"dataType":"json", 
+				"success":function(data){
+					console.log(data);
+					if(data.code==1){
+						//上传成功后要给隐藏域赋值
+						$file_input.val(data.data); 
+					}else{
+						$file_input.val('');
+					}  
+					$(".box-input .invo-label").html(notice_json.common.apply_file);
+				},
+			 	"error": function(event, XMLHttpRequest, ajaxOptions, thrownError){ 
+		        	msg(event.responseText,1); 
+		        }
+			});
+	});
+}
+ //消息提示，关闭调试后把1统一弹出服务器错误
 function msg(text,type=0){
 	switch(type){
 	case 1:
 		$('body').append(text);
+		alert('data_error');
 		break;
 	case 0:
 		alert(text);

@@ -22,12 +22,12 @@
 								</div>
 								<div class="invoceForm">
 									<div class="invo-exhibiting">
-										
-										<volist name="list" id="vo" key="key">
+									 
+										<volist name="list" id="vo" key="k">
 										<div class="invo-exhibit-detail">
 											<div class="invo-detail-head clear">
 												<div class="fl">
-													<h3>专用发票{$key}</h3>
+													<h3>专用发票{$k}</h3>
 												</div>
 												<div class="fr deleteBtn">
 												
@@ -88,7 +88,7 @@
 													<empty name="vo.file">
 														<span>无</span>
 													<else/>
-														<a href="{:url('file_load',['id'=>$vo.id])}">下载资料</a>
+														<a href="{:url('invoice/Public/file_load',['id'=>$vo.id])}">下载资料</a>
 													</empty>
 													 
 													</p>
@@ -221,7 +221,9 @@
 </html>
 <script>
 city_js(0,1,$('#city1'),0,$('#city2'),0,$('#city3'),0);
-var url_invoice_do="{:url('invoice_infos_do')}";
+var url_invoice_do="{:url('invoice/InvoiceUser/invoice_infos_do')}";
+var url_invoice_file="{:url('invoice/InvoiceUser/file_do')}";
+var url_invoice_del="{:url('invoice/InvoiceUser/invoice_infos_del')}";
 var type=parseInt("{$type}");
 // 点击修改
 $(".invoChange").click(function () {
@@ -313,11 +315,7 @@ $('#invoice_add').click(function(){
 		$(".info-tip").html("请输入公司注册地址");
 		return false;
 	} */
-
-
-
-	
-	 
+ 
 	$.ajax({
 			"url":url_invoice_do,
 			"type":"POST", 
@@ -337,44 +335,23 @@ $('#invoice_add').click(function(){
 	return false;
 	
 });
-$("#invo-file").change(function(e){
-	return false;
-	var file = e.target.files[0];
-	    
-	var reader = new FileReader();
-	 
-	if (file) {
-		reader.readAsDataURL(file); 
-	} else {
-	 
-		return false;
-	}
-	//组装表单数据
-		var fordata=new FormData();
-		fordata.append("file",file);
-		 
-		//ajax
-		$.ajax({
-			"url":"{:url('file_do')}",
-			"type":"POST",
-			"processData":false,
-			"contentType":false,
-			"data":fordata,
-			"dataType":"json", 
-			"success":function(data){
-				if(data.code==1){
-					//上传成功后要给隐藏域赋值，但是页面元素不见了??
-					$('#file').val(data.data);
-					
-				}else{
-					$('#file').val('');
-				} 
-				msg(data.msg); 
-				$(".box-input .invo-label").html(notice_json.common.apply_file);
-			},
-		 	"error": function(event, XMLHttpRequest, ajaxOptions, thrownError){ 
-	        	msg(event.responseText,1); 
-	        }
-		});
+//文件上传
+file_change($("#invo-file"),$('#file'),url_invoice_file);
+$('.invodelete').click(function(){
+	var id=$(this).parents('.invo-exhibit-detail').find('.id').val();
+	$.ajax({
+		"url":url_invoice_del,
+		"type":"POST", 
+		"data":{'id':id},
+		"dataType":"json", 
+		"success":function(data){ 
+    		window.location.reload();
+		},
+		 "error": function(event, XMLHttpRequest, ajaxOptions, thrownError){ 
+        	msg(event.responseText,1); 
+        }
+	});
 });
+ 
+
 </script>

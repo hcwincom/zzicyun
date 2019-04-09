@@ -76,8 +76,7 @@ class InfoController extends UserBaseController
         if(empty($_FILES['avatar'])){
             $this->error('file_chose');
         }
-        $file=$_FILES['avatar'];
-        zz_log(json_encode($file));
+        $file=$_FILES['avatar']; 
         if($file['error']==0){
             if($file['size']>5000000){
                 $this->error('file_too_long');

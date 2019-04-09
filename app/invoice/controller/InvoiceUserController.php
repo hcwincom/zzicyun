@@ -73,6 +73,7 @@ class InvoiceUserController extends UserBaseController
            $update['type']=$data['type'];
            $id=$m_invoice->insert($update);
        }else{
+           $this->error('error_input');
            $where=[
                'id'=>$data['id'],
                'uid'=>$uid
@@ -80,6 +81,28 @@ class InvoiceUserController extends UserBaseController
            $id=$m_invoice->where($where)->update($update);
        }
        
+       $this->success('ok');
+   }
+   /**
+    * 开票资料删除
+    */
+   public function invoice_infos_del()
+   {
+       $id=$this->request->param('id',0,'intval');
+       $uid=session('user.id');
+       $m_invoice=new InvoiceUserModel();
+       $where=['id'=>$id,'uid'=>$uid];
+       $info=$m_invoice->where($where)->find();
+       if(empty($info)){
+           $this->error('error_data');
+       }
+       $res=$m_invoice->where($where)->delete();
+       if($res==1 && !empty($info['file'])){
+           $path='upload/';
+           if(is_file($path.$info['file'])){
+               unlink($path.$info['file']);
+           }
+       }
        $this->success('ok');
    }
    /* 文件上传 */
@@ -90,7 +113,7 @@ class InvoiceUserController extends UserBaseController
            $this->error('file_chose');
        }
        $file=$_FILES['file'];
-       zz_log(json_encode($file));
+       
        if($file['error']==0){
            if($file['size']>10000000){
                $this->error('file_too_long');
@@ -116,4 +139,5 @@ class InvoiceUserController extends UserBaseController
            $this->error('file_upload_faild');
        }
    }
+   
 }

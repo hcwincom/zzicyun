@@ -127,6 +127,7 @@ class OrderController extends UserBaseController
        $send_statuss=config('send_status');
        $pay_statuss=config('pay_status');
        $order_statuss=config('order_status');
+       $order_types=config('order_type');
       
        
        $this->assign('pay_type1s',$pay_type1s);
@@ -135,6 +136,7 @@ class OrderController extends UserBaseController
        $this->assign('send_statuss',$send_statuss);
        $this->assign('pay_statuss',$pay_statuss);
        $this->assign('order_statuss',$order_statuss);
+       $this->assign('order_types',$order_types);
        return $this->fetch();
    }
    public function order_info()

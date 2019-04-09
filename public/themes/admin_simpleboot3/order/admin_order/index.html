@@ -35,9 +35,7 @@
 	<div class="wrap js-check-wrap">
 		<ul class="nav nav-tabs"> 
 		<include file="public@nav" />
-	 
-		<li id="taobao"><a >淘宝{$flag}导入</a></li>
-		 
+	  
 		</ul>
 		
 		 <form class="well form-inline margin-top-20" method="post"
@@ -61,55 +59,10 @@
 				</option>
 				</foreach>
 			</select> &nbsp;&nbsp;  
-		   <notempty name="shops"> 
-	  	店铺:<select class="form-control" id="shop" name="shop" >
-				<option value='0'>全部</option> 
-			 <foreach name="shops" item="vo" k="key">
-				<option value="{$key}" <if condition="$key eq $data.shop">selected</if>> 
-			 	{$vo}
-				</option>
-			</foreach>
-			</select> &nbsp;&nbsp; 
-		</notempty>
-			 创建人: 
-			<select class="form-control" name="aid" id="aid">
-				<option value='0'>全部</option> 
-				 <foreach name="aids" item="vo" k="key">
-				<option class="shop shop{$vo.shop}" value="{$key}" <if condition="$key eq $data.aid">selected</if>>{$vo.name}
-				</option>
-				</foreach>
-			</select> &nbsp;&nbsp; 
-		 
-		
-			<select class="form-control" name="company" id="company">
-				<option value='0'>所属公司</option> 
-				 <foreach name="companys" item="vo" k="key">
-				<option class="shop shop{$vo.shop}" value="{$key}" <if condition="$key eq $data.company">selected</if>>{$vo.name}
-				</option>
-				</foreach>
-			</select> &nbsp;&nbsp;
+		   
+		  
 			
-			<select class="form-control" name="paytype" id="paytype">
-				<option value='0'>付款类型</option> 
-				 <foreach name="paytypes" item="vo" k="key">
-				<option class="shop shop{$vo.shop}" value="{$key} " <if condition="$key eq $data.paytype">selected</if>>{$vo.name}
-				</option>
-				</foreach>
-			</select> &nbsp;&nbsp;
-			  省：<select class="form-control" name="province" id="province" style="width:100px;display:inline-block;"  >
-				  	<option value="0">请选择</option>
-				  </select>
-			  市：<select  class="form-control" name="city" id="city"  style="width:100px;display:inline-block;"  >
-				  	<option value="0">请选择</option>
-				  </select>	 
-			<br/>
-			<select class="form-control" name="cid" >
-				<option value='0'>客户类型</option> 
-				 <foreach name="custom_cates" item="vo" k="key">
-				<option value="{$key}" <if condition="$key eq $data.custom_cate">selected</if>>{$vo}
-				</option>
-				</foreach>
-			</select> &nbsp;&nbsp;
+			 
 			<select class="form-control" name="type1" id="">
 	        <foreach name="types" item="vo">
 	        	<option value="{$key}" <if condition="$key eq $data.type1">selected</if>>{$vo[1]}</option>
@@ -150,16 +103,14 @@
 								data-checklist="js-check-x">
 						</label>
 						</th>
-						<th width="100">{$flag}ID</th> 
-						<th>{$flag}类型</th>
+						<th width="100">{$flag}ID-类型</th>  
 						<th>{$flag}号</th>  
-						<th>主{$flag}</th>
-						 <th>物流号</th>
-						<th>下单人</th>
-						<th>所属公司</th>
-						<th>产品数量</th>
-						<th>付款类型</th>
-						<th>客户</th>
+					 	<th>用户名</th>
+						 <th>收货信息</th> 
+						 
+						<th>产品数量-金额</th>
+						<th>优惠金额</th>
+						
 						<th>总金额</th>
 						<th>支付状态</th>  
 					 
@@ -177,53 +128,42 @@
 							value="{$vo.id}">
 						</td>
 						<td class='id'> 
-						{$vo.id} 
-						<if condition="$vo.status eq 30 ||  $vo.status eq 26"> 
-						<a href="{:url('orderback/AdminOrderback/add',['oid'=>$vo.id,'order_type'=>1])}">申请售后</a>
-						</if>
+						<a href="{:url('edit',['id'=>$vo.id])}" target="{$zztarget.list}">{$vo.id} -{$order_types[$vo.type]} </a>
 						</td>
-						<td > 
-						{$order_types[$vo.order_type]}
-						</td>
-						<td><a href="{$order_url}/id/{$vo.id}" target="{$zztarget['list']}" >{$vo.name}</a></td>
-					 	<td>
-					 	<eq name="vo.fid" value="0">
-					 		<eq name="vo.is_real" value="2">已拆分</eq>
-					 	<else/> 
-					 		<a href="{$order_url}/id/{$vo.fid}" target="{$zztarget['other']}" >{$vo.fid}</a>
-					 	</eq>
-					 	</td>
-					 	
-					 	<td>{$vo.express_no}</td>
-					  	<td>{$aids[$vo['aid']]['name']|default=$vo['aid']}</td>
-					  	<td>{$companys[$vo['company']]['name']|default=$vo['company']}</td>
+						  
+					 	<td>{$vo.name} </td>
+					 	<td>{$vo.uname} </td>
+					 	<td>{$vo.accept_name}-{$vo.tel}-{$vo.address_info} </td>
+					 	 
 					  	<td  class="clickInfo"> 
 							<div style="position:relative;" class="goInfo" data-width="0">
-								{$vo.goods_num}
+								{$vo.goods_num}-{$vo.goods_money}
 							</div>
-						<notempty name="vo.infos">
+						<notempty name="vo.goods_list">
 							<div class="goodsInfo">
 								<table class="table table-hover table-bordered">
 									<thead>
 										<tr>
 											<th class="nameWidth" width="30%">产品名称</th>
-											<th>编号</th>
-											 <th>零售价</th>
-											<th>实际价</th>
+											<th>库存编号</th>
+											 <th>单价</th> 
 											<th>数量</th>
 											<th>总价</th>
+											<th>物料状态</th>
+											<th>快递单号</th>
 											 
 										</tr>
 									</thead>
 									<tbody>
-									<foreach name="vo.infos" item="vv" key="kk">
+									<foreach name="vo.goods_list" item="vv" key="kk">
 										<tr>
-											<td><a href="{$goods_url}/id/{$vv.goods}" target="{$zztarget.other}">{$vv.goods_name}</a></td>
-											<td>{$vv.goods_code}</td>
-											 <td>{$vv.price_sale}</td>
-											<td>{$vv.price_real}</td>
-											<td>{$vv.num}</td>
+											<td> {$vv.goods_name} </td>
+											<td>{$vv.store_code}</td>
+											 <td>{$vv.price}</td>
+											<td>{$vv.num}</td> 
 											<td>{$vv.pay}</td>
+											<td> {$send_statuss[$vv.send_status]|default=$vv.send_status}</td>
+											<td> {$vv.express_no}</td>
 											 
 										</tr>
 									</foreach>
@@ -232,16 +172,15 @@
 							</div>
 						</notempty>
 						</td>
-					  	<td>{$paytypes[$vo['paytype']]['name']|default=$vo['paytype']}</td>
-					   
-					  	<td><a href="{$order_user_url}/id/{$vo.uid}" target="{$zztarget.other}">{$vo.custom_name}</a></td>
-						<td>{$vo.order_amount}</td>
+					  	<td>{$vo.coupon_money}</td>
+					    
+						<td>{$vo.order_pay}</td>
 						<td>{$pay_status[$vo.pay_status]|default=$vo.pay_status}</td>
 					 
 						<td>{$vo.create_time|date='Y-m-d H:i',###}</td>
 					 
-						<td>{$statuss[$vo.status]|default=$vo.status}
-							<eq name="vo.is_real" value="2">-已拆分</eq> 
+						<td>{$order_statuss[$vo.status]|default=$vo.status}
+						 
 						</td>
 						 
 					</tr>
@@ -254,21 +193,10 @@
 		</form>
 	 	<div class="pagination">{$page}</div>
 	 	<p class="notice">
-	 	 sort排序，待发货10，已准备发货9，管理员有改动8，员工有改动7，待确认货款5，待付款4，退货退款中3，提交待确认2，未提交1，其他0 
+	 	 
 	 	</p>
 	</div>
 	<script src="__STATIC__/js/admin.js"></script>
-<script>
-city_js($('#province'),"{$data.province|default=0}",$('#city'),"{$data.city|default=0}");
-$('#taobao').click(function(){
-	 
-	if(($(this).attr('id'))!='taobao'){
-		return false;
-	} 
-	$(this).html('淘宝订单正在同步，请等待...');
-	$(this).attr('id','taobao_old');
-	location.href="{:url('order/AdminTaobao/index')}";
-});
-</script>
+ 
 </body>
 </html>

@@ -15,6 +15,7 @@ use app\user\model\UserModel;
 use think\Db;
 use app\common\controller\DeskBaseController;
 use app\score\model\ScoreUserModel;
+use app\notice\model\BannerModel;
 class LoginController extends DeskBaseController
 {
 
@@ -42,6 +43,17 @@ class LoginController extends DeskBaseController
      */
     public function login()
     {
+        if(empty($_SERVER['HTTP_REFERER'])){
+            $url=url('user/Center/center');
+        }else{
+            $url=$_SERVER['HTTP_REFERER'];
+        }
+      
+        //广告图
+        $m_banner=new BannerModel();
+        $banner=$m_banner->get_banner_by_cname('login_banner');
+        $this->assign('banner',$banner);
+        $this->assign('url',$url);
         return $this->fetch();
     }
     /**
@@ -108,6 +120,7 @@ class LoginController extends DeskBaseController
             $m_score->score_do($user['id'], 'login');
             $m_user->commit();
             session('user', $user);
+            
             $this->success("login_success");
         } else {
             $this->error("request_error");

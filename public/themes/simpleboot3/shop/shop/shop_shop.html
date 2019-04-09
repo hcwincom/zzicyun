@@ -1,0 +1,201 @@
+ 	  <include file="public@head"/> 
+  </head>
+  <body>
+  	<div class="topBanner">
+  		<!--公共头部-->		
+  		 <include file="public@header"/> 		
+			<!--导航-->
+			<div class="l-nav l_proNav">
+				<div class="nav">
+					<div class="clear">
+						<div id="allNav" class="allNav allNav_list fl"></div>							
+						 	<include file="public@nav"/>   	
+					</div>
+				</div>
+			</div>	
+			<!--招募供应商主要内容-->
+			<div class="partMain">
+				<div class="supBack" style="background: url({$image_url}/{$banner.pic}) no-repeat;background-size: cover;">
+					<div class="wraper">
+						<div class="supback_con">
+							<h1>诚邀入驻供应商 </h1>
+							<p>共享平台资源</p>
+							<a href="#applicationIn">申请入驻</a>
+						</div>
+					</div>
+				</div>
+				<div class="wraper mt10">
+					<!--入驻流程-->
+					<div class="sup_process clear">
+						<div class="sup_title">
+							<h3>入驻ICYUN平台</h3>
+						</div>
+						<div class="sup_title_line clear">
+							<div class="sup_line_three"><p>原厂代理</p></div>	
+							<div class="sup_line_three"><p>库存寄售</p></div>	
+							<div class="sup_line_three"><p>原装分销商</p></div>	
+						</div>
+						<ul class="sup_img clear">
+						<foreach name="banners" item="vo">
+							<li>
+								<img src="{$image_url}/{$vo.pic}" alt="" />
+								<p>{$vo.name}</p>
+							</li>
+						</foreach>
+							 
+						</ul>	
+					</div>
+				</div>
+				<!--入驻申请-->
+				<div class="sup_apply_group">
+					<div class="wraper">
+						<div class="sup_apply">
+							<div class="sup_title">
+								<h3>申请流程</h3>
+							</div>
+							<div class="hd">
+								<div class="hd_img">
+									<img src="__TMPL__/public/images/step_index_line.png" alt="" />
+								</div>
+								<ul class="apply_line clear">
+									<li>
+										<span>提交申请</span>
+									</li>
+									<li>
+										<span>专属客服联系</span>
+									</li>
+									<li>
+										<span>提交资料</span>
+									</li>
+									<li>
+										<span>审核资质签订协议</span>
+									</li>
+									<li>
+										<span>物料入仓</span>
+									</li>
+									<li>
+										<span>产品上架</span>
+									</li>
+									<li>
+										<span>销售回款</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				<!--申请入驻-->
+				<div id="applicationIn" class="applicationIn clear">
+					<div class="wraper">
+						<div class="sup_title">
+							<h3>入驻申请</h3>
+						</div>
+						<div class="apply_form">
+							<form action="" method="post" onsubmit="return verify();">
+								<div class="form form-width clear">
+									<span class="form_span"><i>*</i>联系人：</span>
+									<div class="form_div">
+										<input type="text" name="aname" id="aname" class="form-control" value="" />
+									</div>
+								</div>
+								<p class="ml apmsg"></p>
+								<div class="form form-width clear">
+									<span class="form_span"><i>*</i>手机号码：</span>
+									<div class="form_div">
+										<input type="text" name="aiphone" id="aiphone" class="form-control" value="" />
+									</div>
+								</div>
+								<p class="ml apmsg1"></p>
+								<div class="form form-width clear">
+									<span class="form_span"><i>*</i>公司名称：</span>
+									<div class="form_div">
+										<input type="text" name="apname" id="apname" class="form-control" value="" />
+									</div>
+								</div>
+								<p class="ml apmsg2"></p>
+								<div class="form form-width clear">
+									<span class="form_span"><i>*</i>邮箱：</span>
+									<div class="form_div">
+										<input type="email" name="aemail" id="aemail" class="form-control" value="" />
+									</div>
+								</div>
+								<p class="ml apmsg3"></p>
+								<div class="form form-width clear">
+									<span class="form_span">申请类型:</span>
+									<div class="form_div1">
+										<input type="radio" name="appli_type" id="choice1" value="" class="hideinp" checked/>
+										<label for="choice1">库存代售</label>
+										<input type="radio" name="appli_type" id="choice2" value="" class="hideinp" />
+										<label for="choice2">原厂代理</label>
+										<input type="radio" name="appli_type" id="choice3" value="" class="hideinp"/>
+										<label for="choice3">实力经销商</label>
+									</div>
+								</div>
+								<div class="form form-width clear">
+									<span class="form_span">营业执照:</span>
+									<div class="form_div2">
+										<input type="file" name="apic" id="trading" accept="image/*" class="hideinp" />
+										<input type="hidden" name="trading_val" id="trading_val" />
+										<label for="trading">上传照片</label>
+										<p>支持jpq，qif,png格式，不超过10m</p>
+									</div>
+								</div>
+								<p class="ml fileMsg"></p>
+								<div class="form form-width clear">
+									<span class="form_span">代理证书:</span>
+									<div class="form_div2">
+										<input type="file" name="apic1" id="agency" accept="image/*" class="hideinp" />
+											<input type="hidden" name="agency_val" id="agency_val" />
+										<label for="agency">上传照片</label>
+										<p>支持jpq，qif,png格式，不超过10m</p>
+									</div>
+								</div>
+								<p class="ml file1Msg"></p>
+								<div class="form form-width clear">
+									<div class="form_check">
+										<input type="checkbox" name="acheck" id="acheck" value="" />
+										<span>同意ICYUN商城</span>
+										<a href="{:url('notice/Article/article_detail',['id'=>12])}">《入驻协议》</a>
+									</div>
+								</div> 
+								<p class="ml apmsg4"></p>
+								<div class="form form-width clear">
+									<div class="form_btn">
+										<input type="submit" value="提交申请" class="formBtn"/>
+									</div>
+								</div>
+								<div class="form form-width">
+									<div class="form_kefu">
+										<p>客服电话：400-800-5383  QQ：237297643</p>
+										<p>工作时间：周一至周五9:00-18:00   我们将在24小时内联系您！</p>
+									</div>
+								</div>
+							</form>
+							
+						</div>
+						<!--入驻条件-->
+						<div class="apply_condition" style="margin-top: 5px;">
+							<h3>入驻条件</h3>
+							<p>1.有正式注册的电子元器件生产企业、原厂授权代理商和原装正品经销商</p>
+							<p>2.有完善的质量管理和质量控制体系</p>
+							<p>3.对所售产品能提供良好的售后服务保障</p>
+							<p>4.拥有较强的电子商务能力和共同理念</p>
+						</div>
+					</div>	
+				</div>	
+			</div>
+			
+			 <include file="public@footer"/> 
+			<!---->
+  	</div>
+  
+  <include file="public@foot"/> 
+	    <script type="text/javascript" src="__TMPL__/public/js/form.js"></script>
+	</body>
+</html>
+<script>
+//文件上传
+var url_shop_file="{:url('shop/Shop/file_do')}";
+file_change($("#agency"),$('#agency_val'),url_shop_file);
+</script>

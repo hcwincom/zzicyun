@@ -348,5 +348,56 @@ class ShopController extends DeskBaseController
        $this->assign('file_list',$file_list);
        return $this->fetch();
    }
-
+    //供应商加盟
+   public function shop_shop(){
+       //广告图
+       $m_banner=new BannerModel();
+       $banner=$m_banner->get_banner_by_cname('shop_shop_banner');
+       $this->assign('banner',$banner);
+       $banners=$m_banner->get_banners_by_cname('shop_shop_pics');
+       $this->assign('banners',$banners);
+     
+       return $this->fetch();
+   }
+   //供应商文件上传
+   public function file_do(){
+       $uid=session('user.id');
+       if(empty($uid)){ 
+           $this->error('no_login',url('user/Login/login'));
+       }
+       set_time_limit(300);
+       
+       if(empty($_FILES['file'])){
+           $this->error('file_chose');
+       }
+       $file=$_FILES['file'];
+       
+       if($file['error']==0){
+           if($file['size']>10480000){
+               $this->error('file_too_long');
+           }
+           $pathid='shopshop/'.$uid.'/';
+           
+           $path='upload/';
+           //没有目录创建目录
+           if(!is_dir($path.$pathid)){
+               mkdir($path.$pathid);
+           }
+           //获取后缀名,复制文件
+           $ext=substr($file['name'], strrpos($file['name'],'.'));
+           //存到临时文件
+           $file_new=$pathid.time().$ext;
+           $destination=$path.$file_new;
+           
+           if(move_uploaded_file($file['tmp_name'], $destination)){
+               
+               $this->success('success','',$file_new);
+           }else{
+               $this->error('file_upload_faild');
+           }
+       }else{
+           $this->error('file_upload_faild');
+       }
+   }
+   
 }

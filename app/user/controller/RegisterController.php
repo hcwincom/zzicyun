@@ -7,6 +7,7 @@ use app\user\model\UserModel;
 use app\common\controller\DeskBaseController;
 use think\Db;
 use app\score\model\ScoreUserModel;
+use app\notice\model\BannerModel;
 class RegisterController extends DeskBaseController
 {
 
@@ -35,7 +36,17 @@ class RegisterController extends DeskBaseController
      */
     public function register()
     {
-        $this->error('注册未开放',url('/'));
+        if(empty($_SERVER['HTTP_REFERER'])){
+            $url=url('portal/Index/index');
+        }else{
+            $url=$_SERVER['HTTP_REFERER'];
+        }
+        
+        //广告图
+        $m_banner=new BannerModel();
+        $banner=$m_banner->get_banner_by_cname('login_banner');
+        $this->assign('banner',$banner);
+        $this->assign('url',$url);
         return $this->fetch();
     }
     /**
@@ -125,6 +136,7 @@ class RegisterController extends DeskBaseController
                 $m_user->commit();
                 $data   = $m_user->where('id', $result)->find();
                 cmf_update_current_user($data);
+               
                 $this->success("register_success");
             } else {
                 $m_user->rollback();

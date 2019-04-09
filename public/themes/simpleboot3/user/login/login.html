@@ -9,8 +9,8 @@
 						<div class="row">
 							<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
 								<div class="loginImg">
-									<a href="" title="优惠券">
-										<img src="images/login_left.png" alt="" />
+									<a href="{$banner.url}" >
+										<img src="{$image_url}/{$banner.pic}" alt="" />
 									</a>
 								</div>
 							</div>
@@ -98,6 +98,7 @@
 </html>
 <script>
 var url_login="{:url('user/Login/login_ajax')}";
+var url_refer="{$url}";
 $('#psw_submit').click(function(){
 	//密码提交
 	var name=$.trim($('#pwdPhontInput').val());
@@ -126,10 +127,11 @@ $('#psw_submit').click(function(){
 	        dataType: 'json',
 	        data: {'name':name,'psw':psw},
 	        success: function(data){ 
+	        	 
 	        	if(data.code==1){
 					//成功提示
 					//  msg('成功');
-					 location.href = "{:url('user/Center/center')}";
+					 location.href =url_refer;
 				}else{
 					//失败
 					msg(data.msg);
@@ -167,9 +169,10 @@ $('#code_submit').click(function(){
 	        dataType: 'json',
 	        data: {'name':name,'code':code},
 	        success: function(data){ 
+	        	 
 	        	if(data.code==1){
-					//成功提示
-					 msg('成功');
+					//成功提示 
+					 location.href =url_refer;
 				}else{
 					//失败
 					msg(data.msg);
@@ -183,34 +186,5 @@ $('#code_submit').click(function(){
 	    });
 		return false;
 });
-$('.reg-btn').click(function(){
-	var mobile=$.trim($('.phone-input').val());
-	var username=$.trim($('.username').val());
-	var psw=$.trim($('.psw').val());
-	var psw_sure=$.trim($('.psw_sure').val());
-	var email=$.trim($('.email').val());
-	var code=$.trim($('.code-input').val());
-	 //验证输入
-	 $.ajax({
-	        type: 'POST',
-	        url: url_register,
-	        dataType: 'json',
-	        data: {'mobile':mobile,'username':username,'psw':psw,'email':email,'code':code},
-	        success: function(data){ 
-	        	if(data.code==1){
-					//成功提示
-					 msg('成功');
-				}else{
-					//失败
-					msg(data.msg);
-				}
-	        },
-	        error: function(event, XMLHttpRequest, ajaxOptions, thrownError){ 
-	        	msg(event.responseText,1);
-	        	 
-	        }
-	        
-	    });
-		return false;
-});
+ 
 </script>
