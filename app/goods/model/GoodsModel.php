@@ -88,20 +88,13 @@ class GoodsModel extends Model
         
         $info=$info->getData();
         //店铺信息
-        $value='val.name';
+        $value='p.name';
         $where=['p.id'=>$info['shop']];
         $info['shop_name']=Db::name('shop')
         ->alias('p') 
-        ->join('cmf_shop_val val','val.pid=p.id and val.lid='.$lan)
         ->where($where)
         ->value($value);
-        if(empty($info['shop_name'])){
-            $info['shop_name']=Db::name('shop')
-            ->alias('p')
-            ->join('cmf_shop_val val','val.pid=p.id and val.lid='.$lan1)
-            ->where($where)
-            ->value($value);
-        }
+       
         //数据手册
         $m_file=new GoodsFileModel();
         $info['files']=$m_file->get_all_by_id($id);

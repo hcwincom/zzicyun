@@ -399,5 +399,31 @@ class ShopController extends DeskBaseController
            $this->error('file_upload_faild');
        }
    }
-   
+   //申请加盟
+   public function shop_do(){
+       $uid=session('user.id');
+       if(empty($uid)){
+           $this->error('no_login',url('user/Login/login'));
+       }
+       //{'tel_name':tel_name,'tel':tel,'company_name':company_name,'email':email,'type':type};
+       $data=$this->request->param();
+       $time=time();
+       $data_add=[
+           'uid'=>$uid,
+           'tel_name'=>$data['tel_name'],
+           'tel'=>$data['tel'],
+           'company_name'=>$data['company_name'],
+           'email'=>$data['email'],
+           'type'=>$data['type'],
+           'name'=>$data['company_name'],
+           'file1'=>$data['file1'],
+           'file2'=>$data['file2'],
+           'time'=>$time,
+           'aid'=>0,
+           'atime'=>$time,
+           'status'=>1
+       ];
+       Db::name('shop')->insert($data_add);
+       $this->success('ok');
+   }
 }

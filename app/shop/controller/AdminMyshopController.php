@@ -40,9 +40,9 @@ class AdminMyshopController extends AdminInfoController
     public function index()
     {
         $m=$this->m;
-        $id=session('shop');
-        $this->redirect(url('shop/AdminShop/edit',['id'=>$id]));
-        exit;
+        $admin=$this->admin;
+        $id=$admin['shop'];
+       
         $info=$m
         ->alias('p')
         ->field('p.*,a.user_nickname as aname,r.user_nickname as rname')
@@ -94,7 +94,70 @@ class AdminMyshopController extends AdminInfoController
      * )
      */
     public function edit_list(){
-        parent::edit_list();
+        $table=$this->table;
+        $m_edit=Db::name('edit');
+        $flag=$this->flag;
+        $data=$this->request->param();
+        $admin=$this->admin;
+        //查找当前表的编辑
+        $where=['e.table'=>['eq',$table]];
+        $join=[
+            ['cmf_'.$table.' p','e.pid=p.id','left'],
+        ];
+        
+        $field='e.*,p.name as pname';
+        //店铺
+        
+        $where['p.id']=['eq',$admin['shop']];
+        //状态
+        if(empty($data['status'])){
+            $data['status']=0;
+        }else{
+            $where['e.rstatus']=['eq',$data['status']];
+        }
+        //编辑人
+        if(empty($data['aid'])){
+            $data['aid']=0;
+        }else{
+            $where['e.aid']=['eq',$data['aid']];
+        }
+        //审核人
+        if(empty($data['rid'])){
+            $data['rid']=0;
+        }else{
+            $where['e.rid']=['eq',$data['rid']];
+        }
+        //所属分类
+        if(empty($data['cid'])){
+            $data['cid']=0;
+        }else{
+            $where['p.cid']=['eq',$data['cid']];
+        }
+        
+        
+        //时间类别
+        $times=config('edit_time_search');
+        zz_search_time($times,$data,$where,['alias'=>'e.']);
+        
+        $list=$m_edit
+        ->alias('e')
+        ->field($field)
+        ->join($join)
+        ->where($where)
+        ->order('e.rstatus asc,e.atime desc')
+        ->paginate();
+        
+        // 获取分页显示
+        $page = $list->appends($data)->render();
+        
+        $this->cates(2);
+        
+        $this->assign('page',$page);
+        $this->assign('list',$list);
+        
+        $this->assign('data',$data); 
+        $this->assign('times',$times);
+       
         return $this->fetch();  
     }
     

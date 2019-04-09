@@ -30,15 +30,11 @@ class AdminShopController extends AdminInfoController
             'icon'=>'str',
             'show_time'=>'str',
             'rate'=>'round4',
+            'pros'=>'str',
+            'brands'=>'str', 
         ];
-        $this->islan=1;
-        $this->vals=[
-            'name'=>'多语言名称',
-            'char'=>'名称首字母',
-            'dsc'=>'多语言说明',
-            'pros'=>'产品线', 
-            'brands'=>'主营产品', 
-        ];
+        $this->islan=0;
+        
         $this->assign('flag',$this->flag);
         $this->assign('table',$this->table);
         $this->assign('is_review',[1=>'二次审核',2=>'直接审核']);
@@ -397,6 +393,11 @@ class AdminShopController extends AdminInfoController
          
         return 1;
     }
-    
+    /* 查看详情 */
+    public function edit_after($info){
+        if($info['uid']>0){
+            
+        }
+    }
     
 }

@@ -336,7 +336,7 @@ $('#invoice_add').click(function(){
 	
 });
 //文件上传
-file_change($("#invo-file"),$('#file'),url_invoice_file);
+file_change($("#invo-file"),$('#file'),url_invoice_file,$(".box-input .invo-label"));
 $('.invodelete').click(function(){
 	var id=$(this).parents('.invo-exhibit-detail').find('.id').val();
 	$.ajax({

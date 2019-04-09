@@ -37,6 +37,7 @@
 				</option>
 				</foreach>
 			</select> &nbsp;&nbsp;
+		<notempty name="types"> 
 			<select class="form-control" name="type1" id="">
 	        <foreach name="types" item="vo">
 	        	<option value="{$key}" <if condition="$key eq $data.type1">selected</if>>{$vo[1]}</option>
@@ -46,9 +47,9 @@
 	         <foreach name="search_types" item="vo">
 	        	<option value="{$key}" <if condition="$key eq $data.type2">selected</if>>{$vo}</option>
 	        </foreach>  
-	        </select> 
-           
+	        </select>  
             <input type="text" class="form-control" name="name" style="width: 120px;" value="{$data.name}">
+        </notempty>
 			<select class="form-control" name="time" id="">
 	        <foreach name="times" item="vo">
 	        	<option value="{$key}" <if condition="$key eq $data.time">selected</if>>{$vo[1]}</option>

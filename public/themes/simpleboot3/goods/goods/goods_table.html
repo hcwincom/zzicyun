@@ -36,7 +36,9 @@
 						<p class="tblue"><a href="{:url('goods/Goods/detail',['id'=>$kgoods])}">{$kgoods}--{$vgoods.name}</a></p>
 						<p>{$notice.goods_search.standard}:{$vgoods.box}</p>
 						<p>{$notice.index.hand}{$notice.index.hand_num}:{$vgoods.store_code}</p>
-						<p class="sorange">{$notice.goods_search.supplier}:<a href="">{$shop_names[$vgoods['shop']]['name']|default=''}</a></p>
+					<eq name="lan1" value="1">
+						<p class="sorange">{$notice.goods_search.supplier}:<a href="{:url('shop/Shop/shop_goods',['id'=>$vgoods.shop])}">{$shop_names[$vgoods['shop']]['name']|default=''}</a></p>
+					</eq>
 					</div>
 				</td>
 				<td>

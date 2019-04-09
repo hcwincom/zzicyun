@@ -1,5 +1,5 @@
 //文件上传
-function file_change($file_file,$file_input,url_file){
+function file_change($file_file,$file_input,url_file,$span=null){
 	$file_file.change(function(e){
 		 
 		var file = e.target.files[0]; 
@@ -28,7 +28,10 @@ function file_change($file_file,$file_input,url_file){
 					}else{
 						$file_input.val('');
 					}  
-					$(".box-input .invo-label").html(notice_json.common.apply_file);
+					if($span){
+						$span.html(notice_json.common.apply_file);
+					}
+					
 				},
 			 	"error": function(event, XMLHttpRequest, ajaxOptions, thrownError){ 
 		        	msg(event.responseText,1); 

@@ -11,6 +11,32 @@
     </div>
 </div>
 <div class="form-group">
+    <label for="" class="col-sm-2 control-label">公司全称</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="text" class="form-control" name="company_name" value="{$info.company_name}" /> 
+        <present name='change.company_name'>
+            <input type="text" class="red form-control" value="{$change.company_name}" />
+        </present> 
+    </div>
+</div>
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">名称首字母</label>
+    <div class="col-md-6 col-sm-10">
+     
+   		 <select class=" form-control" name="char"> 
+			<foreach name="chars" item="vchar" key="kchar">
+			<option value="{$vchar}" <if condition="$vchar eq $info.char">selected</if>>{$vchar}</option>
+			</foreach>
+		</select>  
+	       <present name="change.char">
+	      	 <input type="text" class="form-control  red"  value="{$change.char}" /> 
+	       </present>   
+    
+    
+     
+    </div>
+</div>
+<div class="form-group">
     <label for="" class="col-sm-2 control-label">{$flag}编号</label>
     <div class="col-md-6 col-sm-10">
         <input type="text" class="form-control" name="code" value="{$info.code}" /> 
@@ -19,6 +45,7 @@
         </present> 
     </div>
 </div>
+
 <div class="form-group">
     <label for="" class="col-sm-2 control-label">加盟类型</label>
     <div class="col-md-6 col-sm-10">
@@ -59,44 +86,56 @@
 
     </div>
 </div>
- <foreach name="vals" item="vo" key="key">
-<div class="form-group">
-    <label for="" class="col-sm-2 control-label">{$vo}</label>
+ <div class="form-group">
+    <label for="" class="col-sm-2 control-label">产品线</label>
     <div class="col-md-6 col-sm-10">
-    <eq name="key" value="char">
-    <foreach name="lans" item="vv" key="kk"> 
-	    <if condition="empty($lans_info[$kk][$key])">
-	    	<assign name="lans_info[$kk][$key]" value="#"/>
-	    </if>
-   		{$vv} 
-   		 <select class=" form-control" name="lan-{$key}[{$kk}]"> 
-			<foreach name="chars" item="vchar" key="kchar">
-			<option value="{$vchar}" <if condition="$vchar eq $lans_info[$kk][$key]">selected</if>>{$vchar}</option>
-			</foreach>
-		</select>  
-	       <present name="change['lans'][$kk][$key]">
-	      	 <input type="text" class="form-control  red"  value="{$change['lans'][$kk][$key]}" /> 
-	       </present>   
-    </foreach> 
-   <else/> 
-    <foreach name="lans" item="vv" key="kk"> 
-   		{$vv}
-	       <input type="text" class="form-control " name="lan-{$key}[{$kk}]" value="{$lans_info[$kk][$key]|default=''}" />
-	       <present name="change['lans'][$kk][$key]">
-	      	 <input type="text" class="form-control  red"  value="{$change['lans'][$kk][$key]}" /> 
-	       </present>   
-    </foreach> 
-      </eq>
-     
+        <input type="text" class="form-control" name="pros" value="{$info.pros}" /> 
+        <present name='change.pros'>
+            <input type="text" class="red form-control" value="{$change.pros}" />
+        </present> 
     </div>
 </div>
-</foreach>
+ <div class="form-group">
+    <label for="" class="col-sm-2 control-label">主营产品</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="text" class="form-control" name="brands" value="{$info.brands}" /> 
+        <present name='change.brands'>
+            <input type="text" class="red form-control" value="{$change.brands}" />
+        </present> 
+    </div>
+</div>
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">申请人</label>
+    <div class="col-md-6 col-sm-10"> 
+        <input type="text" class="form-control" name="tel_name" value="{$info.uname|default=''}" /> 
+        
+    </div>
+</div>
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">联系人</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="text" class="form-control" name="tel_name" value="{$info.tel_name}" /> 
+        <present name='change.tel_name'>
+            <input type="text" class="red form-control" value="{$change.tel_name}" />
+        </present> 
+    </div>
+</div>
+
  <div class="form-group">
     <label for="" class="col-sm-2 control-label">联系电话</label>
     <div class="col-md-6 col-sm-10">
         <input type="text" class="form-control" name="tel" value="{$info.tel}" /> 
         <present name='change.tel'>
             <input type="text" class="red form-control" value="{$change.tel}" />
+        </present> 
+    </div>
+</div>
+ <div class="form-group">
+    <label for="" class="col-sm-2 control-label">联系邮箱</label>
+    <div class="col-md-6 col-sm-10">
+        <input type="text" class="form-control" name="email" value="{$info.email}" /> 
+        <present name='change.email'>
+            <input type="text" class="red form-control" value="{$change.email}" />
         </present> 
     </div>
 </div>
@@ -111,7 +150,17 @@
 
     </div>
 </div>
- 
+ <div class="form-group">
+    <label for="" class="col-sm-2 control-label">文件下载</label>
+    <div class="col-md-6 col-sm-10">
+        <notempty name="info.file1">
+        	<a href="{:url('shop/Public/file_load',['id'=>$info.id,'file'=>'file1'])}">营业执照</a>
+        </notempty>
+ 		<notempty name="info.file2">
+        	<a href="{:url('shop/Public/file_load',['id'=>$info.id,'file'=>'file2'])}">代理证书</a>
+        </notempty>
+    </div>
+</div>
 <div class="form-group">
     <label for="" class="col-sm-2 control-label">店铺logo</label>
     <div class="col-md-6 col-sm-10">

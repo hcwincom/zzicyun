@@ -124,11 +124,11 @@
 								<div class="form form-width clear">
 									<span class="form_span">申请类型:</span>
 									<div class="form_div1">
-										<input type="radio" name="appli_type" id="choice1" value="" class="hideinp" checked/>
+										<input type="radio" name="appli_type" id="choice1" value="2" class="hideinp" checked/>
 										<label for="choice1">库存代售</label>
-										<input type="radio" name="appli_type" id="choice2" value="" class="hideinp" />
+										<input type="radio" name="appli_type" id="choice2" value="3" class="hideinp" />
 										<label for="choice2">原厂代理</label>
-										<input type="radio" name="appli_type" id="choice3" value="" class="hideinp"/>
+										<input type="radio" name="appli_type" id="choice3" value="4" class="hideinp"/>
 										<label for="choice3">实力经销商</label>
 									</div>
 								</div>
@@ -162,7 +162,7 @@
 								<p class="ml apmsg4"></p>
 								<div class="form form-width clear">
 									<div class="form_btn">
-										<input type="submit" value="提交申请" class="formBtn"/>
+										<input type="button" value="提交申请" class="formBtn"/>
 									</div>
 								</div>
 								<div class="form form-width">
@@ -191,11 +191,46 @@
   	</div>
   
   <include file="public@foot"/> 
-	    <script type="text/javascript" src="__TMPL__/public/js/form.js"></script>
+	   <!--  <script type="text/javascript" src="__TMPL__/public/js/form.js"></script> -->
 	</body>
 </html>
 <script>
 //文件上传
 var url_shop_file="{:url('shop/Shop/file_do')}";
-file_change($("#agency"),$('#agency_val'),url_shop_file);
+var url_shop_do="{:url('shop/Shop/shop_do')}"; 
+file_change($("#trading"),$('#trading_val'),url_shop_file,$('#trading').siblings('label'));
+file_change($("#agency"),$('#agency_val'),url_shop_file,$('#agency').siblings('label'));
+$('.formBtn').click(function(){
+	var tel_name=$.trim($('#aname').val());
+	var tel=$.trim($('#aiphone').val());
+	var company_name=$.trim($('#apname').val());
+	var email=$.trim($('#aemail').val());
+	var type=$('.hideinp:checked').val();
+	var file1=$('#trading_val').val();
+	var file2=$('#agency_val').val();
+	var data_json={'tel_name':tel_name,'tel':tel,'company_name':company_name,'email':email,'type':type,'file1':file1,'file2':file2};
+	$.ajax({
+		"url":url_shop_do,
+		"type":"POST", 
+		"data":data_json,
+		"dataType":"json", 
+		"success":function(data){ 
+    		 
+    		msg(data.msg);
+    		if(data.code==1){
+    			
+    		}else{
+    			
+    		}
+    		
+    		if(data.url!=''){
+    			location.href=data.url;
+    		}
+		},
+		 "error": function(event, XMLHttpRequest, ajaxOptions, thrownError){ 
+        	msg(event.responseText,1); 
+        }
+	});
+	
+});
 </script>
