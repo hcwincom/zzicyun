@@ -233,8 +233,8 @@
 																	<span>{$vo.time1|date='Y-m-d',###}—{$vo.time2|date='Y-m-d',###}</span>
 																</div>
 																<div class="col-xs-3 col-md-3 shopHerf">
-																	<button type="button">领取</button>
-																	<!-- <button type="button">领取</button> -->
+																	<button class="invoGet" type="button">领取</button>
+																	<p class="yetGet">已领取</p>
 																</div>
 															</li>
 														</foreach>
@@ -333,6 +333,14 @@ function cart_changes(type=0){
 	  		$(".shopqu").click(function(){
 	  			$(".shopPop").toggle();
 	  		});
+
+
+
+
+			  // 点击领取优惠券
+			  $(".shopHerf>button").click(function () {
+				  $(this).hide().next("p").show();
+			  });
 	  	</script>
 	</body>
 </html>

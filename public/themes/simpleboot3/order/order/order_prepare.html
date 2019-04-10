@@ -249,7 +249,7 @@
 											<div class="orderInfo-discount">
 												<p class="infotext">使用优惠/礼品卡/抵用 <i class="iconfont icon-icon"></i></p>
 												<p class="redColor mt10 infotext">优惠券</p>
-												<div class="infodivtxt"><i class="iconfont icon-weibiaoti"></i>优惠组合推荐，共抵用300.00元：使用优惠券一张</div>
+												<div class="infodivtxt"><i class="iconfont icon-weibiaoti"></i>优惠组合推荐，共抵用<span>300.00</span>元：使用优惠券一张</div>
 												<div class="orderInfodis-list">
 													<ul class="clear">
 													<foreach name="coupons" item="vo">
@@ -257,7 +257,7 @@
 																<input type="hidden" class="coupon_id" value="{$vo.id}">
 															<div class="discount-cont">
 																<div class="discountTxt">
-																	<h2><b>{$money_flag}{$vo.money}</b><span>满{$vo.money_min}元</span></h2>
+																	<h2><b>{$money_flag}<em>{$vo.money}</em></b><span>满<i class="moneyOff">{$vo.money_min}</i>元</span></h2>
 																	<p>有效期至{$vo.time2|date='Y-m-d',###}</p>
 																	<h3>{$vo.name}</h3>
 																</div>

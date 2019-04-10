@@ -2,7 +2,7 @@
 <div class="nav_menu">
 	<ul>
 		<li><a class="navItem <eq name='html' value='index'>active</eq>" href="/">{$notice.index.index|default='index'}</a></li>
-		<li><a class="navItem <eq name='html' value='goods_search'>active</eq>" href="{:url('goods/Goods/goods_search')}">被动选型</a></li>
+		<li><a class="navItem <eq name='html' value='goods_search'>active</eq>" href="{:url('goods/Goods/goods_search')}">{$notice.index.online}</a></li>
 		<li class="drop_menu">
 			<a class="navItem" href="javascript:void(0);">
 				<span>{$notice.index.manufacturer|default='manufacturer'}&{$notice.index.catalogue|default='catalogue'}</span>

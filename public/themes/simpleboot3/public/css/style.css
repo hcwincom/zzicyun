@@ -3646,6 +3646,15 @@
 .shopPop-part>ul>li>div.shopHerf{
 	text-align: center;
 }
+.shopHerf>p.yetGet{
+	width: 97px;
+	margin: 0 auto;
+	font-size: 18px;
+	background: #b3b3b3;
+	color: #fff;
+	line-height: 40px;
+	display: none;
+}
 .shopPop-part>ul>li>div.shopLeft{
 	text-align: left;
 }
