@@ -4378,8 +4378,10 @@
 	padding: 0 5px;
 	height: 110px;
 	font-size: 14px;
-	background: url(../img/orquan.png) no-repeat;
+	background: url(../img/xuanzhong.png) no-repeat;
 	background-size: 100% 100%;
+	border: 1px solid #9ecab2;
+	position: relative;
 }
 .discountTxt>h2{
 	color: #fff;
@@ -4391,32 +4393,32 @@
 	padding-right: 10px;
 }
 .discountTxt>p{
-	color: #7f7f7f;
+	color: #fff;
 }
 .discountTxt>h3{
 	font-size: 12px;
 	margin-top: 18px;
 	line-height: 30px;
-	color: #b3b3b3;
+	color: #7c9e8b;
 }
 .orderInfodis-list{
 	width: 100%;
 	display: none;
 }
 .orderInfodis-list>ul>li.onfodisactive>.discount-cont>.discountTxt{
-	background: url(../img/xuanzhong.png) no-repeat;
-	background-size: 100% 100%;
+	border: 1px solid #ff0000;
 }
 .orderInfodis-list>ul>li.onfodisactive>.discount-cont{
 	padding-bottom: 1em;
 	height: 140px;
 }
-.orderInfodis-list>ul>li.onfodisactive>.discount-cont>.discountTxt>p{
-	color: #fff;
-}
-.orderInfodis-list>ul>li.onfodisactive>.discount-cont>.discountTxt>h3{
-	color: #7c9e8b;
-}
+
+
+
+
+
+
+
 .discounttxt-notip{
 	width: 100%;
 	font-size: 12px;
