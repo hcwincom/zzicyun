@@ -7,6 +7,8 @@ use think\Db;
 use think\View;
 use app\notice\model\NoticeConfValModel;
 use app\goods\model\GoodsModel;
+use app\notice\model\ArticleCateModel;
+use app\notice\model\ArticleModel;
  
 class DeskBaseController extends HomeBaseController
 {
@@ -63,10 +65,10 @@ class DeskBaseController extends HomeBaseController
             foreach($list0 as $k=>$v){
                 $notice[$k]=$v;
             }
-           //获取底部的文章名称cid=[7,8,9,10]
-            $where=['id'=>['in',[7,8,9,10]]];
-            
-            
+           //获取底部的文章名称cid=[7,8,9,10] 
+           $m_articel=new ArticleModel();
+           $notice['foot_article']=$m_articel->get_names_by_cids($lan1,$lan2,[7,8,9,10]);
+          
             //底部图片
 //             9-底部微信二维码	foot_qr,1
 //             8-底部图片	foot_img,6

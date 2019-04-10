@@ -41,7 +41,7 @@ class OrderModel extends Model
         ];
         //产品数据获取
         $m_goods=new GoodsModel();
-        $res=$m_goods->goods_count($data['nums'],$lan1,$lan2,$price_type);
+        $res=$m_goods->goods_count($data['nums'],$lan1,$lan2,$data_order['type']);
         $goods_list=$res['goods_list'];
         $count=$res['count'];
         $data_order['goods_num']=$count['num'];
@@ -122,6 +122,9 @@ class OrderModel extends Model
                 'price'=>$v['price'],
                 'num'=>$v['order_num'],
                 'pay'=>$v['order_price'],
+                'brand'=>$v['brand'],
+                'box'=>$v['box'],
+                'goods_time'=>$v['goods_time'], 
                 'udsc'=>$data['udscs'][$k]
             ];
         }
@@ -141,6 +144,7 @@ class OrderModel extends Model
         ->join('cmf_order_goods og','og.oid=o.id')
         ->where($where) 
         ->field('o.id')
+        ->group('o.id')
         ->paginate($page_row); 
         // 获取分页显示
         $page = $list->appends($data)->render();

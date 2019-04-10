@@ -37,6 +37,62 @@ class ArticleModel extends Model
         return $list;
     }
     /**
+     * 获取文章标题
+     * @param number $lan
+     * @param number $lan1
+     * @param array $cids
+     * @return $list
+     */
+    public function get_names_by_cids($lan=1,$lan1=1,$cids){
+        //获取底部的文章名称cid=[7,8,9,10]
+        $where_cate=['p.id'=>['in',$cids],'p.status'=>2];
+        // $articles=Db::name('articel')
+        $m_articel_cate=new ArticleCateModel();
+        $field_cate='p.id,val.name as lan_name';
+        $order_cate='p.sort asc';
+        $cates=$m_articel_cate
+        ->alias('p')
+        ->join('cmf_article_cate_val val','val.pid=p.id and val.lid='.$lan)
+        ->where($where_cate)
+        ->order($order_cate)
+        ->column($field_cate,'p.id');
+        $field='p.id,val.name,p.cid';
+        $order='p.cid asc,p.sort asc';
+        $where=['p.cid'=>['in',$cids],'p.status'=>2];
+       
+        if(empty($cates)){
+            $cates=$this
+            ->alias('p')
+            ->join('cmf_article_cate_val val','val.pid=p.id and val.lid='.$lan1)
+            ->where($where_cate)
+            ->order($order_cate)
+            ->column($field_cate,'p.id');
+            $list=$this
+            ->alias('p')
+            ->join('cmf_article_val val','val.pid=p.id and val.lid='.$lan1)
+            ->where($where)
+            ->order($order)
+            ->column($field);
+        }else{
+            $list=$this
+            ->alias('p')
+            ->join('cmf_article_val val','val.pid=p.id and val.lid='.$lan)
+            ->where($where)
+            ->order($order)
+            ->column($field);
+        }
+       
+        $list0=[]; 
+        if(!empty($list)){  
+            foreach($list as $k=>$v){
+                if(isset($cates[$v['cid']])){ 
+                    $list0[$cates[$v['cid']]][$k]=$v['name'];  
+                } 
+            }
+        }  
+        return $list0;
+    }
+    /**
      * 获取文章列表和分页
      * @param number $lan
      * @param number $lan1

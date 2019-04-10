@@ -15,78 +15,32 @@
 		 
 			<div class="form-group fleft-all">
 				<div class="col-sm-offset-2 col-sm-10"> 
-				 <p>
+				 
 				 <input type="hidden"  name="id" value="{$info.id}" />
 				 
-					<button type="submit" action="{:url('edit_do')}" class="save btn btn-primary js-ajax-submit" >提交编辑信息</button>
-					  
-					 <if condition="$info.pay_status elt 2 && $info.status elt 22">
-					 	 <button type="submit" action="{:url('order_abandon')}" class="save btn btn-primary js-ajax-submit" >废弃订单</button>
-					 </if>
-					
-				</p>
-				
-					<p> 
-					<eq name="info.is_real" value="1">
-					   <switch name="info.status">
-					    <case value="1">
-						 	<button type="submit" action="{:url('status_do1')}" class="save btn btn-primary js-ajax-submit" >提交下单</button>
-						 </case>
-						 <case value="2">
-						 	<button type="submit" action="{:url('status_do2')}" class="save btn btn-primary js-ajax-submit" >确认订单</button>
-						 </case>
-						 <case value="10"> 
-						 	<button type="submit" action="{:url('status_do10')}" class="save btn btn-primary js-ajax-submit" >手动转为待发货</button>
-						 	 
-						 </case>
-						  <case value="20"> 
-						 	<button type="submit" action="{:url('status_do20')}" class="save btn btn-primary js-ajax-submit" >准备发货</button>
-						 	 
-						 </case>
-						  <case value="22"> 
-						 	<button type="submit" action="{:url('status_do22')}" class="save btn btn-primary js-ajax-submit" >仓库发货</button>
-						 	 
-						 </case>
-						  <case value="24"> 
-						 	<button type="submit" action="{:url('status_do24')}" class="save btn btn-primary js-ajax-submit" >确认收货</button>
-						 	 
-						 </case>
-						  <case value="26"> 
-						 	<button type="submit" action="{:url('status_do30')}" class="save btn btn-primary js-ajax-submit" >订单售后关闭</button>
-						 	 
-						 </case>
-						  <case value="30"> 
-						 	<button type="submit" action="{:url('status_do30')}" class="save btn btn-primary js-ajax-submit" >订单售后关闭</button>
-						 	 
-						 </case>
-						  
-					 </switch> 
-					 
-					 <button type="submit" action="{:url('status_do0')}" class="save btn btn-primary js-ajax-submit" >超管还原订单状态</button>
-					<else/>
-					 	<eq name="info.status" value="2"> 
-						 	<button type="submit" action="{:url('status_do2')}" class="save btn btn-primary js-ajax-submit" >确认下单</button>
-						 </eq>
-					</eq>
+					<button type="submit" action="{:url('edit_do')}" op="save"  class="save btn btn-primary js-ajax-submit" >提交编辑信息</button>
+					 <p>			  
+				     <eq name="info.pay_status" value="2">
+				     	<button type="submit" action="{:url('pay_do21')}" op="pay" class="save btn btn-primary js-ajax-submit" >确认付款</button>
+				     	<button type="submit" action="{:url('pay_do22')}" op="pay" class="save btn btn-primary js-ajax-submit" >驳回付款</button>
+				     </eq>
+				      <eq name="info.pay_status" value="5">
+				     	<button type="submit" action="{:url('pay_do51')}" op="pay" class="save btn btn-primary js-ajax-submit" >确认尾款</button>
+				     	<button type="submit" action="{:url('pay_do52')}" op="pay" class="save btn btn-primary js-ajax-submit" >驳回尾款</button>
+				     </eq>
+					 </p>
+      
+				    <p>
+				    <if condition="$info.status eq 20 && $info.status eq 22">
+				    	<button type="submit" action="{:url('send_do3')}" op="send" class="save  btn btn-primary js-ajax-submit" >{$order_statuss[3]}</button>
+				     	<button type="submit" action="{:url('send_do4')}" op="send" class="save btn btn-primary js-ajax-submit" >{$order_statuss[4]}</button>
+				     	<button type="submit" action="{:url('send_do5')}" op="send" class="save btn btn-primary js-ajax-submit" >{$order_statuss[5]}</button>
+				     	<button type="submit" action="{:url('send_do6')}" op="send" class="save btn btn-primary js-ajax-submit" >{$order_statuss[6]}</button>
+				    	
+				    </if>
 					</p>
-			 	<lt name="info.status" value="80">
-					<p>  
-					  <switch name="info.pay_status">
-						 <case value="1">
-						 	<button type="submit" action="{:url('pay_do1')}" class="save btn btn-primary js-ajax-submit" >用户付款提交</button> 
-						 </case>
-						 <case value="2">
-						 	<button type="submit" action="{:url('pay_do2')}" class="save btn btn-primary js-ajax-submit" >财务确认付款</button>
-						 </case>
-						 
-					 </switch> 
-				 
-					 <button type="submit" action="{:url('pay_do0')}" class="save btn btn-primary js-ajax-submit" >超管还原支付状态</button>
-					</p>
-			 	</lt>
-					 
-				</div>
-				
+					<p class="notice">物料状态操作要先选中要操作的物料，可填写快递单号和备注。所有操作都可以填写订单备注和修改备注。</p>
+				</div> 
 			</div>
 		</form>
 	 
@@ -99,12 +53,14 @@
 city_js($('#country'),'{$info.country}',$('#province'),'{$info.province}',$('#city'),'{$info.city}',$('#area'),'{$info.area}');
  
 $('.save').click(function(){
-	//addressinfo
-	if($('#area').val()=='0'){
-		$('#area').focus();
-		return false;
-	}
-	 
+	 if($(this).attr('op')=='send'){
+		 var check=$('.check:checked').val();
+		 if(!(check>0)){
+			 $('.check').focus();
+			 return false;
+		 }
+	 }
 	$(this).parents('form').attr('action',$(this).attr('action'));
+	 
 });
 </script>

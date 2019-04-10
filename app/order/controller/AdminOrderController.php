@@ -219,20 +219,58 @@ class AdminOrderController extends AdminInfoController
      */
     public function edit()
     {
-        $id=$this->request->param('id',0,'intval'); 
-        $uid=session('user.id');
+        
+        $lan1=1;
+        $lan2=1;
+        $id=$this->request->param('id',0,'intval');
+       
         $m_order=new OrderModel();
         $info=$m_order->where('id',$id)->find();
-       
-        $info=$info->getData();
-      
+        $uid=$info['uid'];
+        
         $goods_list=Db::name('order_goods')->where('oid','eq',$id)->column('*','goods');
         $ids=array_keys($goods_list);
         $m_goods=new GoodsModel();
-        $goods_list0=$m_goods->goods_list(1,1,$ids);
-        
+        $goods_list0=$m_goods->goods_list($lan1,$lan2,$ids);
+        $m_brand=new GoodsBrandModel();
+        $brands=$m_brand->get_list($lan1,$lan2);
+        //循环添加品牌名和库存
+        foreach($goods_list as $k=>$v){
+            
+            if(isset($brands[$v['brand']])){
+                $goods_list[$k]['brand_name']=$brands[$v['brand']]['name'];
+            }else{
+                $goods_list[$k]['brand_name']='';
+            }
+            if(isset($goods_list0[$k])){
+                $goods_list[$k]['store_num']=$goods_list0[$k]['store_num'];
+            }else{
+                $goods_list[$k]['store_num']=0;
+            } 
+        }
+        //状态操作记录
+        $status_dos=Db::name('order_status')->where('oid',$info['id'])->column('');
+        //获取用户名和管理员操作人
+         $uids=[];
+         $unames=[];
+         if($info['uid']>0){
+             $uids[]=$info['uid'];
+         }
+         if($info['aid']>0){
+             $uids[]=$info['aid'];
+         }
+         if($info['rid']>0){
+             $uids[]=$info['rid'];
+         }
+         foreach($status_dos as $k=>$v){
+             $uids[]=$v['aid'];
+         }
+         
+         $unames=Db::name('user')->where('id','in',$uids)->column('id,user_nickname as name');
         $this->assign('info',$info);
-        $this->assign('goods_list',$goods_list0);
+        $this->assign('goods_list',$goods_list);
+        $this->assign('unames',$unames);
+        $this->assign('status_dos',$status_dos);
         $this->cates();
         return $this->fetch();
     }

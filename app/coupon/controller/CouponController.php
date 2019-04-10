@@ -65,9 +65,7 @@ class CouponController extends DeskBaseController
         $this->assign('list',$list); 
         $this->assign('page',$res['page']);  
         $this->assign('gets',$gets);  
-        dump($counts_get);
-      dump($gets);
-      dump($list);
+        
  
         return $this->fetch();
     }

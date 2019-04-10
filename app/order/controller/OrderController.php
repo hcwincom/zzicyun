@@ -115,7 +115,7 @@ class OrderController extends UserBaseController
        $this->assign('status',$data['status']);
       
        $res=$m_order->get_page($data,$where,$uid);
-        
+       dump($where); 
        $this->assign('orders',$res['list']);
        $this->assign('page',$res['page']);
        //付款方式
@@ -149,26 +149,22 @@ class OrderController extends UserBaseController
        $info=$m_order->order_info($id,$uid);
        $order_statuss=config('order_status');
        $goods_list=Db::name('order_goods')->where('oid','eq',$id)->column('*','goods');
-       $ids=array_keys($goods_list);
-       $m_goods=new GoodsModel();
-       $goods_list0=$m_goods->goods_list($lan1,$lan2,$ids);
-       //品牌
-       $m_brand=new GoodsBrandModel();
-       $brands=$m_brand->get_list($lan1,$lan2);
        
        //发货时间
        $m_time=new GoodsTimeModel();
        $goods_times=$m_time->get_list($lan1,$lan2);
-       
+       $m_brand=new GoodsBrandModel();
+       $brands=$m_brand->get_list($lan1,$lan2);
        foreach($goods_list as $k=>$v){
-           if(isset($goods_list0[$k])){
-               $goods_list[$k]['brand_name']=$brands[$goods_list0[$k]['brand']];
-               $goods_list[$k]['time_name']=$goods_times[$goods_list0[$k]['goods_time'.$info['type']]];
-               $goods_list[$k]['box']=$goods_list0[$k]['box'];
+           if(isset($goods_times[$v['goods_time']])){ 
+               $goods_list[$k]['time_name']=$goods_times[$v['goods_time']];  
+           }else{ 
+               $goods_list[$k]['time_name']=''; 
+           }
+           if(isset($brands[$v['brand']])){
+               $goods_list[$k]['brand_name']=$brands[$v['brand']]['name'];
            }else{
-               $goods_list[$k]['brand_name']='';
-               $goods_list[$k]['time_name']='';
-               $goods_list[$k]['box']='';
+               $goods_list[$k]['brand_name']=''; 
            }
            
        }
@@ -346,11 +342,14 @@ class OrderController extends UserBaseController
        $uid=session('user.id'); 
         
        $m_order=new OrderModel();
+       $m_order->startTrans();
        $res=$m_order->order_add($data,$uid,$lan1,$lan2);
       
        if($res>0){
+           $m_order->commit();
            $this->redirect(url('order_pay',['id'=>$res]));
        }else{
+           $m_order->rollback();
            $this->error($res);
        }
    }

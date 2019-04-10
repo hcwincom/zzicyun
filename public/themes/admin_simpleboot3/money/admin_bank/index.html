@@ -10,7 +10,7 @@
 		</ul>
 		 <form class="well form-inline margin-top-20" method="post"
 			action="">
-			状态: 
+			状态:  <input type="hidden" name="page" value="1"/>
 			<select class="form-control" name="status" >
 				<option value='0'>全部</option> 
 				 <foreach name="statuss" item="vo" k="key">
@@ -18,8 +18,9 @@
 				 {$vo}
 				</option>
 				</foreach>
-			</select> &nbsp;&nbsp;  
-		   <input type="hidden" name="page" value="1"/>
+			</select> &nbsp;&nbsp;
+			 
+		 
 			 创建人: 
 			<select class="form-control" name="aid"  >
 				<option value='0'>全部</option> 
@@ -38,7 +39,7 @@
 			</select> &nbsp;&nbsp;
 			<select class="form-control" name="type1" id="">
 	        <foreach name="types" item="vo">
-	        	<option value="{$key}" <if condition="$key eq $data.type1">selected</if>>{$vo}</option>
+	        	<option value="{$key}" <if condition="$key eq $data.type1">selected</if>>{$vo[1]}</option>
 	        </foreach> 
 	        </select>
 	        <select class="form-control" name="type2" id=""> 
@@ -50,7 +51,7 @@
             <input type="text" class="form-control" name="name" style="width: 120px;" value="{$data.name}">
             <select class="form-control" name="time" id="">
 	        <foreach name="times" item="vo">
-	        	<option value="{$key}" <if condition="$key eq $data.time">selected</if>>{$vo}</option>
+	        	<option value="{$key}" <if condition="$key eq $data.time">selected</if>>{$vo[1]}</option>
 	        </foreach> 
 	        </select>
 			<input class="js-datetime form-control" type="text" id="datetime1" name="datetime1" value="{$data.datetime1}">
@@ -82,10 +83,11 @@
 								data-checklist="js-check-x">
 						</label>
 						</th>
-						<th width="100">{$flag}ID</th>
-						 
+						<th >{$flag}ID-备注</th>
+					 <th>银联在线</th> 
 						<th>{$flag}名</th> 
-						 <th>{$flag}编码</th> 
+					  
+						 
 						<th>创建人</th>
 						<th>创建时间</th>
 						<th>审核人</th>
@@ -105,18 +107,21 @@
 							data-yid="js-check-y" data-xid="js-check-x" name="ids[]"
 							value="{$vo.id}">
 						</td>
-						<td class='id'> 
-						{$vo.id}
+						<td > 
+						<a href="{:url('edit',['id'=>$vo.id])}"  target="{$zztarget['list']}">
+						{$vo.id}-{$vo.dsc}
+						</a>
 						</td>
-						<td><a href="{:url('edit',['id'=>$vo.id])}"  target="{$zztarget['list']}">{$vo.name}</a></td>
-						 <td>{$vo.code}</td>
-						<td>{$vo.aname|default=$vo.aid}</td>
+					 	<td>{$is_shows[$vo.is_show]|default=$vo.is_show}</td>
+						<td>{$vo.name}</td>
+					  
+						<td>{$aids[$vo.aid]|default=$vo.aid}</td>
 						<td>{$vo.atime|date='Y-m-d H:i',###}</td>
 						<eq name="vo.rid" value="0">
 						<td>-</td>
 						<td>-</td>
 						<else/>
-						<td>{$vo.rname|default=$vo.rid}</td>
+						<td>{$rids[$vo.rid]|default=$vo.aid}</td>
 						<td>{$vo.rtime|date='Y-m-d H:i',###}</td>
 						</eq>
 						
@@ -136,6 +141,7 @@
 	</div>
 	<script src="__STATIC__/js/admin.js"></script>
 <script>
+
     $('.ban').click(function(){
         $(this).parents('form').attr('action',"{:url('ban')}");
         return is_check('批量禁用');

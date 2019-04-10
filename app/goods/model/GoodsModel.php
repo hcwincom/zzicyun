@@ -236,11 +236,18 @@ class GoodsModel extends Model
         } 
         return ['goods_list'=>$list,'price_list'=>$price_list];
     }
-    
-    public function goods_count($nums,$lan1,$lan2,$price_type){
+    /**
+     * 累加产品数量,金额,重量
+     * @param array $nums产品数量
+     * @param int $lan1
+     * @param int $lan2
+     * @param int $price_type
+     * @return ['goods_list'=>$goods_list,'price_list'=>$price_list,'count'=>$count]
+     */
+    public function goods_count($nums,$lan1,$lan2,$order_type){
        
         $goods_ids=array_keys($nums); 
-       
+        $price_type=($order_type==1)?1:2;
         $res=$this->goods_list($lan1,$lan2,$goods_ids); 
         $goods_list=$res['goods_list'];
         $price_list=$res['price_list'];
@@ -259,7 +266,7 @@ class GoodsModel extends Model
         foreach($goods_list as $k=>$v){
             
             $v['price']=$v['price'.$price_type];
-            $v['goods_time']=$v['goods_time'.$price_type];
+            $v['goods_time']=$v['goods_time'.$order_type];
             $v['order_num']=$nums[$k];
             
             if(isset($price_list[$k])){
