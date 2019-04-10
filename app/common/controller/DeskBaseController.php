@@ -18,10 +18,19 @@ class DeskBaseController extends HomeBaseController
         
         View::share('zzsite', config('zzsite'));
         View::share('image_url', cmf_get_image_url(''));
-         
-        $lan1=1;
-        //没有数据找默认
-        $lan2=1;
+        
+       $web=trim($_SERVER['HTTP_HOST']);
+       
+       if($web=='zzicyun.cc'){
+           $lan1=1;
+           //没有数据找默认
+           $lan2=1;
+       }else{
+           $lan1=1;
+           //没有数据找默认
+           $lan2=1;
+       }
+        
         session('lan1',$lan1);
         session('lan2',$lan2);
         $this->lan1=$lan1;

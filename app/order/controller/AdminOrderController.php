@@ -33,6 +33,84 @@ class AdminOrderController extends AdminInfoController
         $this->assign('flag','订单');
          
     }
+    //测试列表
+    public function index1()
+    {
+        $table=$this->table;
+        $m=$this->m;
+        $admin=$this->admin;
+        
+        $data=$this->request->param();
+        $where=[];
+        
+        //状态
+        if(empty($data['status'])){
+            $data['status']=0;
+        }else{
+            $where['status']=['eq',$data['status']];
+        }
+        if(empty($data['order_type'])){
+            $data['order_type']=0;
+        }else{
+            $where['type']=['eq',$data['order_type']];
+        }
+        
+        //父类cid1,cid2
+        $cid1=0;
+        $cid2=0;
+        $cid3=0;
+        if(!empty($data['cid1'])){
+            $m_cate=new GoodsCateModel();
+            $cid1=$data['cid1'];
+            if(empty($data['cid2'])){
+                $cids=$m_cate->get_cids_by_fid($cid1);
+                $where_goods['cid']=['in',$cids];
+            }else{
+                $cid2=$data['cid2'];
+                if(empty($data['cid3'])){
+                    $cids=$m_cate->get_cids_by_fid($cid2);
+                    $where_goods['cid']=['in',$cids];
+                }else{
+                    $cid3=$data['cid3'];
+                    $where_goods['cid']=['eq',$cid3];
+                }
+            }
+        }
+        $this->assign('cid1',$cid1);
+        $this->assign('cid2',$cid2);
+        $this->assign('cid3',$cid3);
+        
+        //类型
+        if(empty($data['type'])){
+            $data['type']=0;
+        }else{
+            $where['type']=['eq',$data['type']];
+        }
+        //查询字段
+        $types=$this->search;
+        $search_types=config('search_types');
+        zz_search_param($types,$search_types,$data,$where);
+        
+        
+        //时间类别
+        $times=config('pro_time_search');
+        zz_search_time($times,$data,$where);
+        
+        $res=$m->get_page($data,$where);
+        
+        $this->assign('list',$res['list']);
+        $this->assign('page',$res['page']);
+        
+        $this->assign('data',$data);
+        $this->assign('types',$types);
+        $this->assign('times',$times);
+        $this->assign("search_types", $search_types);
+        
+        $this->cates(1);
+        
+        
+        return $this->fetch(); 
+    }
     /**
      * 订单列表
      * @adminMenu(
