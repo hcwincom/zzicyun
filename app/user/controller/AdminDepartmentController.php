@@ -1,45 +1,44 @@
 <?php
  
-namespace app\shop\controller;
+namespace app\user\controller;
 
  
 use app\common\controller\AdminInfoController; 
 use think\Db; 
   
-class AdminPaytypeController extends AdminInfoController
+class AdminDepartmentController extends AdminInfoController
 {
     
     public function _initialize()
     {
         parent::_initialize();
        
-        $this->flag='收付款账号';
-        $this->table='paytype';
-        $this->m=Db::name('paytype');
-       
-        $this->base=['name'=>'str','sort'=>'int','dsc'=>'str','bank'=>'int',
-            'location'=>'str','num'=>'str', 'account'=>'str','address'=>'str', 'tel'=>'str',
-            'company_name'=>'str', 'feenum'=>'str',
+        $this->flag='部门';
+        $this->table='department';
+        $this->m=Db::name('department');
+        $this->base=['name'=>'str',
+            'sort'=>'int',
+            'dsc'=>'str', 
+            
         ];
-        
-        $this->search=[2=>['name','名称'],1=>['id','id']];  
-        //店铺区分
-        $this->isshop=1;
-        $this->islan=0; 
+        //没有店铺区分
+        $this->isshop=0;
+        $this->islan=0;
         $this->assign('flag',$this->flag);
         $this->assign('table',$this->table);
-       
+        
+        
     }
     /**
-     * 收付款账号列表
+     * 部门列表
      * @adminMenu(
-     *     'name'   => '收付款账号列表',
-     *     'parent' => 'shop/AdminIndex/default',
+     *     'name'   => '部门列表',
+     *     'parent' => 'admin/User/default',
      *     'display'=> true,
      *     'hasView'=> true,
      *     'order'  => 2,
      *     'icon'   => '',
-     *     'remark' => '收付款账号列表',
+     *     'remark' => '部门列表',
      *     'param'  => ''
      * )
      */
@@ -51,15 +50,15 @@ class AdminPaytypeController extends AdminInfoController
      
    
     /**
-     * 收付款账号添加
+     * 部门添加
      * @adminMenu(
-     *     'name'   => '收付款账号添加',
+     *     'name'   => '部门添加',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> true,
      *     'order'  => 10,
      *     'icon'   => '',
-     *     'remark' => '收付款账号添加',
+     *     'remark' => '部门添加',
      *     'param'  => ''
      * )
      */
@@ -70,15 +69,15 @@ class AdminPaytypeController extends AdminInfoController
         
     }
     /**
-     * 收付款账号添加do
+     * 部门添加do
      * @adminMenu(
-     *     'name'   => '收付款账号添加do',
+     *     'name'   => '部门添加do',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> false,
      *     'order'  => 10,
      *     'icon'   => '',
-     *     'remark' => '收付款账号添加do',
+     *     'remark' => '部门添加do',
      *     'param'  => ''
      * )
      */
@@ -88,15 +87,15 @@ class AdminPaytypeController extends AdminInfoController
         
     }
     /**
-     * 收付款账号详情
+     * 部门详情
      * @adminMenu(
-     *     'name'   => '收付款账号详情',
+     *     'name'   => '部门详情',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> true,
      *     'order'  => 10,
      *     'icon'   => '',
-     *     'remark' => '收付款账号详情',
+     *     'remark' => '部门详情',
      *     'param'  => ''
      * )
      */
@@ -106,15 +105,15 @@ class AdminPaytypeController extends AdminInfoController
         return $this->fetch();  
     }
     /**
-     * 收付款账号状态审核
+     * 部门状态审核
      * @adminMenu(
-     *     'name'   => '收付款账号状态审核',
+     *     'name'   => '部门状态审核',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> false,
      *     'order'  => 10,
      *     'icon'   => '',
-     *     'remark' => '收付款账号状态审核',
+     *     'remark' => '部门状态审核',
      *     'param'  => ''
      * )
      */
@@ -123,15 +122,15 @@ class AdminPaytypeController extends AdminInfoController
         parent::review();
     }
     /**
-     * 收付款账号状态批量同意
+     * 部门状态批量同意
      * @adminMenu(
-     *     'name'   => '收付款账号状态批量同意',
+     *     'name'   => '部门状态批量同意',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> false,
      *     'order'  => 10,
      *     'icon'   => '',
-     *     'remark' => '收付款账号状态批量同意',
+     *     'remark' => '部门状态批量同意',
      *     'param'  => ''
      * )
      */
@@ -140,7 +139,7 @@ class AdminPaytypeController extends AdminInfoController
         parent::review_all();
     }
     /**
-     * 收付款账号禁用
+     * 部门禁用
      * @adminMenu(
      *     'name'   => '信息状态禁用',
      *     'parent' => 'index',
@@ -157,15 +156,15 @@ class AdminPaytypeController extends AdminInfoController
         parent::ban();
     }
     /**
-     * 收付款账号信息状态恢复
+     * 部门信息状态恢复
      * @adminMenu(
-     *     'name'   => '收付款账号信息状态恢复',
+     *     'name'   => '部门信息状态恢复',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> false,
      *     'order'  => 10,
      *     'icon'   => '',
-     *     'remark' => '收付款账号信息状态恢复',
+     *     'remark' => '部门信息状态恢复',
      *     'param'  => ''
      * )
      */
@@ -174,32 +173,33 @@ class AdminPaytypeController extends AdminInfoController
         parent::cancel_ban();
     }
     /**
-     * 收付款账号编辑提交
+     * 部门编辑提交
      * @adminMenu(
-     *     'name'   => '收付款账号编辑提交',
+     *     'name'   => '部门编辑提交',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> false,
      *     'order'  => 10,
      *     'icon'   => '',
-     *     'remark' => '收付款账号编辑提交',
+     *     'remark' => '部门编辑提交',
      *     'param'  => ''
      * )
      */
     public function edit_do()
     {
+       
         parent::edit_do();
     }
     /**
-     * 收付款账号编辑列表
+     * 部门编辑列表
      * @adminMenu(
-     *     'name'   => '收付款账号编辑列表',
+     *     'name'   => '部门编辑列表',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> true,
      *     'order'  => 10,
      *     'icon'   => '',
-     *     'remark' => '收付款账号编辑列表',
+     *     'remark' => '部门编辑列表',
      *     'param'  => ''
      * )
      */
@@ -209,15 +209,15 @@ class AdminPaytypeController extends AdminInfoController
     }
     
     /**
-     * 收付款账号审核详情
+     * 部门审核详情
      * @adminMenu(
-     *     'name'   => '收付款账号审核详情',
+     *     'name'   => '部门审核详情',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> true,
      *     'order'  => 10,
      *     'icon'   => '',
-     *     'remark' => '收付款账号审核详情',
+     *     'remark' => '部门审核详情',
      *     'param'  => ''
      * )
      */
@@ -227,15 +227,15 @@ class AdminPaytypeController extends AdminInfoController
         return $this->fetch();  
     }
     /**
-     * 收付款账号信息编辑审核
+     * 部门信息编辑审核
      * @adminMenu(
-     *     'name'   => '收付款账号编辑审核',
+     *     'name'   => '部门编辑审核',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> false,
      *     'order'  => 10,
      *     'icon'   => '',
-     *     'remark' => '收付款账号编辑审核',
+     *     'remark' => '部门编辑审核',
      *     'param'  => ''
      * )
      */
@@ -244,15 +244,15 @@ class AdminPaytypeController extends AdminInfoController
         parent::edit_review();
     }
     /**
-     * 收付款账号编辑记录批量删除
+     * 部门编辑记录批量删除
      * @adminMenu(
-     *     'name'   => '收付款账号编辑记录批量删除',
+     *     'name'   => '部门编辑记录批量删除',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> false,
      *     'order'  => 10,
      *     'icon'   => '',
-     *     'remark' => '收付款账号编辑记录批量删除',
+     *     'remark' => '部门编辑记录批量删除',
      *     'param'  => ''
      * )
      */
@@ -262,33 +262,45 @@ class AdminPaytypeController extends AdminInfoController
     }
     
     /**
-     * 收付款账号批量删除
+     * 部门批量删除
      * @adminMenu(
-     *     'name'   => '收付款账号批量删除',
+     *     'name'   => '部门批量删除',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> false,
      *     'order'  => 10,
      *     'icon'   => '',
-     *     'remark' => '收付款账号批量删除',
+     *     'remark' => '部门批量删除',
      *     'param'  => ''
      * )
      */
     public function del_all()
     {
-         
+        if(empty($_POST['ids'])){
+            $this->error('未选中信息');
+        }
+        $ids=$_POST['ids'];
+        
+        $m=$this->m;
+      
+        $admin=$this->admin;
+        //其他店铺检查,如果没有shop属性就只能是1号主站操作,有shop属性就带上查询条件
+        if($admin['shop']!=1){
+            $this->error('店铺不能操作系统数据');
+        } 
+        if(in_array(1, $ids)){
+            $this->error('总部门不能删除');
+        }
+        //彻底删除
+        $where=['department'=>['in',$ids]];
+       //检查是否有用户
+        $user=Db::name('user')->where($where)->find();
+        if(!empty($user)){
+            $this->error('部门下有用户，不能删除');
+        }
         parent::del_all();
     }
-    /**
-     * 公共元素
-     */
-    public function cates($type=3)
-    {
-        
-        parent::cates($type);
-        $banks=Db::name('bank')->column('id,name');
-        $this->assign('banks',$banks);
-    }
    
+     
      
 }

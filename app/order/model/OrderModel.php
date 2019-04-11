@@ -133,7 +133,7 @@ class OrderModel extends Model
         return $oid;
     }
     
-    public function get_page($data,$where,$uid=0,$page_row=5){
+    public function get_page($data,$where,$uid=0,$page_row=10){
         
         if($uid>0){
             $where['o.uid']=$uid;
@@ -143,49 +143,14 @@ class OrderModel extends Model
         ->alias('o')
         ->join('cmf_order_goods og','og.oid=o.id')
         ->where($where) 
-        ->field('o.id')
-        ->group('o.id')
+        ->field('o.id') 
         ->paginate($page_row); 
         // 获取分页显示
         $page = $list->appends($data)->render();
         $orders=[];
         $oids=[];
         foreach($list as $k=>$v){
-            $oids[]=$v['id'];
-           /*  $orders[$v['id']]=[
-                'id'=>$v['id'],
-                'name'=>$v['name'],
-                'type'=>$v['type'],
-                'status'=>$v['status'],
-                'accept_name'=>$v['accept_name'],
-                'coupon_money'=>$v['coupon_money'],
-                'goods_money'=>$v['goods_money'],
-                'order_pay'=>$v['order_pay'],
-                'create_time'=>$v['create_time'],
-                'send_time'=>$v['send_time'],
-                'accept_time'=>$v['accept_time'],
-                'create_time'=>$v['create_time'],
-                'completion_time'=>$v['completion_time'],
-                'udsc'=>$v['udsc'],
-                'is_back'=>$v['is_back'],
-                'pay_id'=>$v['pay_id'],
-                'invoice_status'=>$v['invoice_status'],
-                'pay_type1'=>$v['pay_type1'],
-                'pay_type2'=>$v['pay_type2'],
-                'pay_type3'=>$v['pay_type3'],
-                'pay_status'=>$v['pay_status'],
-                'pay_review'=>$v['pay_review'],
-                'pay_time_end'=>$v['pay_time_end'],
-                'pay_time2'=>$v['pay_time2'],
-                'pay_time1'=>$v['pay_time1'],
-                'pay1'=>$v['pay1'],
-                'pay2'=>$v['pay2'],
-                'freight_pay'=>$v['freight_pay'],
-                'freight_type'=>$v['freight_type'],
-                'freight_id'=>$v['freight_id'],
-                'goods_num'=>$v['goods_num'],
-                'goods_list'=>[]
-            ];  */
+            $oids[$v['id']]=$v['id']; 
         }
         if(empty($oids)){
             $orders=[];

@@ -115,8 +115,8 @@ class OrderController extends UserBaseController
        $this->assign('status',$data['status']);
       
        $res=$m_order->get_page($data,$where,$uid);
-       dump($where); 
-       $this->assign('orders',$res['list']);
+       $orders=$res['list'];
+       $this->assign('orders',$orders);
        $this->assign('page',$res['page']);
        //付款方式
        $pay_type1s=config('pay_type1');
@@ -129,6 +129,7 @@ class OrderController extends UserBaseController
        $order_statuss=config('order_status');
        $order_types=config('order_type');
       
+       //
        
        $this->assign('pay_type1s',$pay_type1s);
        $this->assign('pay_type2s',$pay_type2s);
@@ -377,4 +378,5 @@ class OrderController extends UserBaseController
        return $this->fetch('order_pay4');
        
    }
+   
 }

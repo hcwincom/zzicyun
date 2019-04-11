@@ -148,11 +148,70 @@
 																	</p>
 																</div>
 															</th>
-															<th width="11%"></th>
+														<switch name="vo.pay_status" >
+															<case value="1">
+															<th width="11%">
+																<div class="listRight">
+																	<a href="{:url('order/Public/file_do',['oid'=>$key,'type'=>2])}">
+																		<i class="iconfont icon-xiazai"></i>
+																		<span>付款水单上传</span>
+																	</a>
+																</div>
+															</th>
+															</case>
+															<case value="2">
+															<th width="11%">
+																<div class="listRight">
+																	<a href="{:url('order/Public/file_load',['oid'=>$key,'type'=>2])}">
+																		<i class="iconfont icon-xiazai"></i>
+																		<span>付款水单下载</span>
+																	</a>
+																</div>
+															</th>
+															</case>
+															<case value="3">
+															<th width="11%">
+																<div class="listRight">
+																	<a href="{:url('order/Public/file_do',['oid'=>$key,'type'=>3])}">
+																		<i class="iconfont icon-xiazai"></i>
+																		<span>尾款水单上传</span>
+																	</a>
+																</div>
+															</th>
+															</case>
+															<case value="4">
+															<th width="11%">
+																<div class="listRight">
+																	<a href="{:url('order/Public/file_load',['oid'=>$key,'type'=>3])}">
+																		<i class="iconfont icon-xiazai"></i>
+																		<span>尾款水单下载</span>
+																	</a>
+																</div>
+															</th>
+															</case>
+														</switch>
+														<eq name="vo.pay_status" value="2">
+															<th width="11%"><div class="listRight">
+																	<a href="{:url('order/Public/file_load',['oid'=>$key,'type'=>2])}">
+																		<i class="iconfont icon-xiazai"></i>
+																		<span>水单下载</span>
+																	</a>
+																</div>
+															</th>
+														</eq>
+														<eq name="vo.pay_status" value="2">
+															<th width="11%"><div class="listRight">
+																	<a href="{:url('order/Public/file_load',['oid'=>$key,'type'=>2])}">
+																		<i class="iconfont icon-xiazai"></i>
+																		<span>水单下载</span>
+																	</a>
+																</div>
+															</th>
+														</eq>
 															<th width="11%"></th>
 															<th width="11%">
 																<div class="listRight">
-																	<a href="">
+																	<a href="{:url('order/Public/file_load',['oid'=>$key,'type'=>1])}">
 																		<i class="iconfont icon-xiazai"></i>
 																		<span>合同下载</span>
 																	</a>
@@ -267,7 +326,7 @@
 										<!--分页-->
 										<div class="order-page">
 											<!--分页-->
-											 
+											 <include file="public@page" />
 											<!---->	
 										</div>
 									</div>
