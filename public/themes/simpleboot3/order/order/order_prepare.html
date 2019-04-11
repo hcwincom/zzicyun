@@ -257,7 +257,7 @@
 																<input type="hidden" class="coupon_id" value="{$vo.id}">
 															<div class="discount-cont">
 																<div class="discountTxt">
-																	<h2><b>{$money_flag}<em>{$vo.money}</em></b><span>满<i class="moneyOff">{$vo.money_min}</i>元</span></h2>
+																	<h2><b>{$money_flag}<em class="couponAmount">{$vo.money}</em></b><span>满<i class="moneyOff">{$vo.money_min}</i>元</span></h2>
 																	<p>有效期至{$vo.time2|date='Y-m-d',###}</p>
 																	<h3>{$vo.name}</h3>
 																</div>
@@ -364,6 +364,32 @@
 		});
 
 	}
+// 点击使用优惠券
+$(".orderInfodis-list>ul>li").click(function () {
+	$(this).addClass("onfodisactive").siblings().removeClass();
+	var coupon_val = $(this).find(".coupon_id").val();
+	var cound_price = parseInt($(this).find(".couponAmount").text());
+	var cound_total = parseInt($(this).find(".moneyOff").text());
+
+
+
+
+
+$("#coupon_id").val(coupon_val);
+$("#coupon_money").val(cound_price);
+
+
+});
+
+
+
+
+
+
+
+
+
+
 
 
 
