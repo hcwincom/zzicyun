@@ -1,3 +1,4 @@
+
 $(function(){
 // 顶部广告点击删除
 	$(".banner-wrap>span").click(function () {
@@ -141,9 +142,11 @@ $(".personBtn>.callOff").click(function(){
 		$(this).addClass("storeActive").siblings("li").removeClass("storeActive");
 	});
 
-
-
-
+	
+	$("#shopqu").on("click",function () {
+	
+		$("#shopPop").toggle();
+	});
 
 
 

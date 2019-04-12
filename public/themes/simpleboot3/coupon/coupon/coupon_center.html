@@ -11,6 +11,7 @@
 							<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 								<div class="new-discount">
 									<div class="discount-item clear">
+										<div class="credis_bg"></div>
 										<div class="discount-item-left fl">
 											<p class="leftLar"><span><eq name="vo.money_type" value="2">$<else/>￥</eq></span>{$vo.money}</p>
 											<p class="leftBot">满{$vo.money_min}元减</p>
@@ -20,28 +21,38 @@
 											<p class="midSmall">有效期：<empty name="vo.time1">{$vo.day}天<else/>{$vo.time1|date='Y.m.d',###}-{$vo.time2|date='Y.m.d',###}</empty></p>
 										</div>
 										<div class="discount-item-right fl">
-										 
 											 
-											<p class="disgive">
-											<eq name="vo.is_get" value="1">
-												<eq name="vo.is_uget" value="1">
-													<a href="javascript:coupon_get({$vo.id});">免费领取</a>
-												<else/>
-													<span>已领过，不能再领用</span>
-												</eq> 
-											<else/>
-												<span>已领完</span>
-											</eq>
-											
-											 
-											</p>
-											<present name="gets[$key]">
-											<p class="disgreen" > 
+										<present name="gets[$key]">
+											<p class="disgreen">
 												<a href="{:url('goods/Goods/goods_search')}">立即使用</a>
 											</p>
-											</present>
+										<else/>
+											<eq name="vo.is_get" value="1">
+												<p class="disgive">
+												<eq name="vo.is_uget" value="1">
+													<a href="javascript:coupon_get({$vo.id});">免费领取</a>
+													<else />
+													<span>已超过领过次数，不能再领用</span>
+												</eq>
+												</p>
+											<else />
+												<!-- 领完 -->
+												<div class="discount-item-imgover">
+													<img src="__TMPL__/public/img/linover.png" alt="" />
+												</div>
+											
+											</eq>
+
+										</present>
 											 
+										  
 										</div>
+										<present name="gets[$key]">
+											<div class="discount-item-img">
+												<img src="__TMPL__/public/img/lin.png" alt="" />
+											</div>
+											 
+										</present>
 									</div>
 								</div>
 							</div>

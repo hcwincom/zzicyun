@@ -214,12 +214,12 @@
 											</div>
 											<div class="shop-action-right col-xs-8 col-md-8">
 											<notempty name="coupons">
-												<p class="shopqu">优惠券</p>
+												<p class="shopqu" id="shopqu">优惠券</p>
 											</notempty>
 												<p>已选<span class="allNum">2</span>个型号</p>
 												<p class="shopjs">总金额（不含运费）：<b class="redColor"><eq name="type" value="1">￥<else/>$</eq><span class="allPrice1"> 0.00</span></b></p>
 												<button type="submit" class="jsBtn">结算</button>
-												<div class="shopPop">
+												<div class="shopPop" id="shopPop">
 													<i class="iconfont icon-icon"></i>
 													<div class="shopPop-part">
 														<ul>
@@ -330,9 +330,7 @@ function cart_changes(type=0){
         }
 	});
 }
-	  		$(".shopqu").click(function(){
-	  			$(".shopPop").toggle();
-	  		});
+	  	
 
 
 
