@@ -1,0 +1,53 @@
+<div style="clear:both"></div>
+<notempty name="info.id">
+    <div class="form-group fleft-all">
+        <label for="" class="col-sm-2 control-label">管理员</label>
+        <div class="col-md-6 col-sm-10">
+        
+          <label class="input-inline"> 
+            	创建人：
+            <input type="text" class="form-control short"  value="{$unames[$info.aid]|default=$info['aid']}" />
+          </label>
+         <label class="input-inline"> 
+            	审核人：
+            <input type="text" class="form-control short"  value="{$unames[$info.rid]|default=$info['rid']}" />
+          </label>
+		
+		<notempty name="info1.aid">
+           <label class="input-inline"> 
+         	 修改人： 
+            <input type="text" class="form-control short" value="{$unames[$info1.aid]|default=$info1['aid']}" />
+          </label>	
+		</notempty>
+		
+		<notempty name="info1.rid">
+           <label class="input-inline"> 
+         	 修改审核人： 
+            <input type="text" class="form-control short" value="{$unames[$info1.rid]|default=$info1['rid']}" />
+          </label>	
+		</notempty>
+		
+        </div>
+    </div>
+</notempty>
+  
+
+<present name="info.id">
+    <div class="form-group  fleft-all">
+        <label class="col-sm-2 control-label">修改备注</label>
+        <div class="col-md-6 col-sm-10">
+            <input type="text" class="form-control" name="adsc" value="{$info1.adsc|default=''}"  />
+            <p class="notice">操作人修改信息或状态时填写此栏</p>
+        </div>
+    </div>
+</present>
+<present name="change">
+    <div class="form-group  fleft-all"  >
+        <label class="col-sm-2 control-label">审核意见</label>
+        <div class="col-md-6 col-sm-10">
+            <input type="text" class="form-control" name="rdsc" value="{$info1.rdsc|default=''}"  />
+            <p class="notice">审核人审核信息时可以填写</p>
+        </div>
+    </div>
+</present>
+<div style="clear:both"></div>

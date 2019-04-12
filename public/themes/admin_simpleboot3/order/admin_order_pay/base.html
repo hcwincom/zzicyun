@@ -1,0 +1,263 @@
+ 		<notempty name="info1.id">
+ 			 <div class="form-group fleft">
+				<label  class="col-sm-2 control-label">编辑id</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control" value="{$info1.id}" readonly/> 
+					<a href="{:url('edit',['id'=>$info.id])}" target="{$zztarget['edit']}">编辑</a> 
+				</div>
+			</div>
+ 		</notempty>
+ 		 
+			  <div class="form-group fleft">
+				<label  class="col-sm-2 control-label">订单id</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control" value="{$info.id}" readonly/>
+				 
+					<a href="{:url('edit_list',['type1'=>'1','name'=>$info.id])}" target="{$zztarget['edit']}">编辑记录</a>
+			 
+				 
+				<if condition="$info.status eq 30 ||  $info.status eq 26"> 
+				&nbsp;&nbsp;<a href="{:url('orderback/AdminOrderback/add',['oid'=>$info.id,'order_type'=>1])}" target="{$zztarget['edit']}">申请售后</a>
+				</if>
+				<eq name="info.is_back" value="1">
+				&nbsp;&nbsp;<a href="{:url('orderback/AdminOrderback/index',['type1'=>'p.about','name'=>$info.id])}" target="{$zztarget['edit']}">售后记录</a>
+				</eq>
+				</div>
+			</div>
+			<div class="form-group fleft">
+				<label  class="col-sm-2 control-label">订单编号</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control"  value="{$info.name}" readonly/> 
+				</div>
+			</div>
+			<div class="form-group fleft">
+				<label  class="col-sm-2 control-label">订单类型</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control"  value="{$order_types[$info.type]}" readonly/> 
+				</div>
+			</div>
+	 
+		    
+	 	 
+		 	<div class="form-group fleft-all">
+				<label  class="col-sm-2 control-label">客户</label>
+				<div class="col-md-6 col-sm-10"> 
+					 <input type="text" class="form-control"  value="{$info.uname}" readonly/> 
+					<a href="{:url('user/AdminIndex/edit',['id'=>$info.uid])}" target="{$zztarget['other']}" >客户详情</a>
+				</div>
+			</div>
+			<div class="form-group fleft-all accept">
+				<label  class="col-sm-2 control-label">收货人-电话</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control" value="{$info.accept_name}-{$info.tel}"/>
+				</div>
+			</div>
+			<div class="form-group fleft-all accept">
+				<label  class="col-sm-2 control-label">收货城市</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control" value="{$info.address_info}"/>
+				</div>
+			</div>
+			<div class="form-group fleft-all accept">
+				<label  class="col-sm-2 control-label">收货地址</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control" value="{$info.address}"/>
+				</div>
+			</div>
+	 
+			 
+			<div class="form-group fleft-all"  >
+				<label  class="col-sm-2 control-label">用户留言</label>
+				<div class="col-md-6 col-sm-10" > 
+				  <input type="text" class="form-control" name="udsc" value="{$info.udsc}" />
+				<present name="change.udsc">
+					<input type="text" class="form-control red"  value="{$change.udsc}" />
+				</present>
+				</div>
+			</div>
+			<div class="form-group fleft-all accept">
+				<label  class="col-sm-2 control-label">订单备注</label>
+				<div class="col-md-6 col-sm-10"> 
+					<input type="text" class="form-control " name="dsc" value="{$info.dsc}" id="dsc"/> 
+				<present name="change.dsc">
+					<input type="text" class="form-control red"  value="{$change.dsc}" />
+				</present>
+				</div>
+			</div>
+	  		 <div class="form-group fleft-all accept">
+				<label  class="col-sm-2 control-label">订单产品</label>
+				<div class="col-md-6 col-sm-10"> 
+					
+				</div>
+			</div>
+			<div style="clear:both"></div> 
+ <table class="table table-hover table-bordered table-list goods-list"  > 
+  	<tr class="goods0">
+	 	 <td class="order_name">
+	 	 	 <label class="checkbox-inline">
+	 	 	 	<input type="checkbox" id="check" /> ID
+	 	 	 </label>  
+	 	 </td>
+	 	 <td >产品型号</td> 
+	 	 <td >库存编码</td>  
+	 	 <td  >品牌</td> 
+	 	 <td >封装参数</td>
+		 <td >数量</td> 
+	 	 <td  >含税单价</td>
+		 <td >总金额</td> 
+		 <td >客户物料</td>
+		 <td >货期</td>
+		 <td >库存数</td>
+		 <td >状态</td>
+		 <td >运单号</td>
+		 <td >备注</td>
+		  
+ 	</tr> 
+<foreach name="goods_list" item="vo" key="key">
+	<tr class="goods">
+	 	 <td class="order_name">
+	 	 	 <label class="checkbox-inline">
+	 	 	 	<input type="checkbox" name="check[{$key}]" class="check" value="{$key}"/>{$key}
+	 	 	 </label>  
+	 	 </td>
+	 	 <td >{$vo.goods_code}</td> 
+	 	 <td >{$vo.store_code}</td>  
+	 	 <td  >{$vo.brand_name}</td> 
+	 	 <td >{$vo.box}</td>
+		 <td >{$vo.num}</td> 
+	 	 <td  >{$vo.price}</td>
+		 <td >{$vo.pay}</td> 
+		 <td >{$vo.udsc}</td>
+		 <td >{$goods_times[$vo.goods_time]|default=$vo.goods_time}</td>
+		 <td >{$vo.store_num}</td>
+		 <td >{$send_statuss[$vo.send_status]|default=$vo.send_status}</td>
+		 <td ><input type="text" name="express[{$key}]" value="{$vo.express_no}"/></td>
+		 <td ><input type="text" name="ogdsc[{$key}]" value="{$vo.dsc}"/></td>
+		  
+ 	</tr> 
+</foreach>
+</table>	
+ 			<div class="form-group fleft-all accept">
+				<label  class="col-sm-2 control-label"> </label>
+				<div class="col-md-6 col-sm-10"> 
+					
+				</div>
+			</div>		
+			<div class="form-group fleft-all order_pay" id="order_pay" >
+		 
+				<label class="col-sm-2 control-label">订单总计</label>
+				<div class="col-md-6 col-sm-10">
+				 
+					<label class="input-inline"> 
+					 用户支付运费：<input type="number" step="0.01" class="form-control short freight_pay" name="freight_pay" id="freight_pay" value="{$info.freight_pay}" required/> 
+					 <present name="change.freight_pay">
+					 	<input type="text" class="form-control short red"  value="{$change.freight_pay}"  />  
+					 </present>
+					</label>
+				 	 
+				 	<label class="input-inline">
+					 产品总数量：<input type="number" class="form-control short goods_num" id="goods_num" name="goods_num" value="{$info.goods_num}" readonly/> 
+					<present name="change.goods_num">
+						<input type="text" class="form-control short red"  value="{$change.goods_num}"/> 
+					</present>
+					</label>
+				 	 <label class="input-inline">
+					 产品总金额：<input type="number" step="0.01" class="form-control short goods_money" id="goods_money" name="goods_money" value="{$info.goods_money}" readonly/> 
+					<present name="change.goods_money">
+						<input type="text" class="form-control short red"  value="{$change.goods_money}"/> 
+					</present>
+					</label>
+				 	 <label class="input-inline">
+					 优惠金额：<input type="number" step="0.01" class="form-control short coupon_money" id="coupon_money" name="coupon_money" value="{$info.coupon_money}" /> 
+					<present name="change.coupon_money">
+						<input type="text" class="form-control short red"  value="{$change.coupon_money}"/> 
+					</present>
+					</label>
+					  
+					 
+				 	 <label class="input-inline"> 
+					 用户总付款：<input type="number" step="0.01" class="form-control short order_amount" id="order_pay" name="order_pay" value="{$info.order_pay}" required/> 
+					 
+					  <present name="change.order_pay">
+						<input type="text" class="form-control short red"  value="{$change.order_pay}"/> 
+					</present>
+				 	</label> 
+				</div>
+			 
+			</div> 
+	  
+		<div class="form-group fleft-all">
+			<label   class="col-sm-2 control-label">支付状态</label>
+			<div class="col-md-6 col-sm-10">
+			 
+			 <foreach name="pay_statuss" item="vo">
+			  	<label class="radio-inline">
+			 		<input type="radio" value="{$key}" name="pay_status" <if condition="$key eq $info.pay_status">checked</if>/>{$vo}
+			 		<if condition="isset($change.pay_status) && ($key eq $change.pay_status)">
+			 		<span class="red">新状态</span>
+			 		</if>
+			 	</label>
+			 </foreach>
+			</div>
+		</div>
+		 
+		<div class="form-group fleft-all">
+			<label   class="col-sm-2 control-label">订单状态</label>
+			<div class="col-md-6 col-sm-10">
+			 
+			 <foreach name="order_statuss" item="vo">
+			  	<label class="radio-inline">
+			 		<input type="radio" value="{$key}" name="status" <if condition="$key eq $info.status">checked</if>/>{$vo}
+			 		<if condition="isset($change.status) && ($key eq $change.status)">
+			 		<span class="red">新状态</span>
+			 		</if>
+			 	</label>
+			 </foreach>
+			</div>
+		</div>
+		<div class="form-group fleft-all">
+			<label   class="col-sm-2 control-label">状态更新记录</label>
+			<div class="col-md-6 col-sm-10">
+			 	<table class="table table-hover table-bordered table-list"  > 
+				  	<tr > 
+					 	 <td >更新类型</td>  
+					 	 <td >操作人</td>  
+					 	 <td  >原状态</td> 
+					 	 <td >新状态</td>
+						 <td >操作时间</td>  
+						 <td >操作备注</td> 
+				 	</tr> 
+				 
+				<foreach name="status_dos" item="vo"> 
+				  	<tr > 
+				  	 	<td >{$unames[$vo.aid]|default=$vo.aid}</td>  
+					 	
+			 	 <switch name="vo.type" >
+			 	 	<case value="1">
+			 	 	 	<td >付款 </td>  
+			 	 	  	<td  >{$pay_statuss[$vo.status_old]|default=$vo.status_old}</td> 
+			 	 		<td >{$pay_statuss[$vo.status_new]|default=$vo.status_new}</td>
+			 	 	</case>
+			 	 	<case value="2">
+			 	 		<td >{$goods_list[$vo.goods]['goods_name']|default='产品'}发货 </td>  
+			 	 	  	<td  >{$send_statuss[$vo.status_old]|default=$vo.status_old}</td> 
+			 	 		<td >{$send_statuss[$vo.status_new]|default=$vo.status_new}</td>
+			 	 	 
+			 	 	</case>
+			 	 	<case value="3">
+			 	 		<td >订单</td>  
+			 	 	  	<td  >{$order_statuss[$vo.status_old]|default=$vo.status_old}</td> 
+			 	 		<td >{$order_statuss[$vo.status_new]|default=$vo.status_new}</td>
+			 	 	</case>
+			 	 </switch> 
+						 <td >{$vo.time|date='Y-m-d H:i',###}</td>  
+						 <td >{$vo.dsc}</td> 
+				 	</tr>  
+			 	</foreach>
+			 </table> 
+			</div>
+		</div>
+	  <include file="order@admin_order:adsc_fleft" /> 
+ 
+ 
+ 

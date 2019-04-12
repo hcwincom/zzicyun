@@ -1,57 +1,12 @@
 <include file="public@header" />
-<style>
-.order10 {
-	background: #f21534;
-}
-.order9 {
-	background: #999;
-}
-.order8 {
-	background: #2057f4;
-	color: #fff;
-}
-.order6{
-	background: #ff7733;
-}
-.order5 {
-	background: #ebe41f;
-}
-.order4 {
-	background: #3deb2b;
-}
-.order3{
-	background: #26e9ab;
-}
-.order2{
-	background: #f62c74;
-}
-.order1{
-	background: #020202;
-}
-.orderList>ul{
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	clear: both;
-}
-.orderList>ul>li{
-	clear: both;
-}
-.liTitle>p{
-	float: left;
-	width: 11%;
-}
-.table-list>tbody>tr>td.orderList{
-	padding: 0;
-}
-</style>
+ 
 </head>
 <body>
 
 	<div class="wrap js-check-wrap">
 		<ul class="nav nav-tabs"> 
 		<include file="public@nav" />
-	  <a href="{:url('order/AdminOrderPay/index')}">测试页面</a>
+	 
 		</ul>
 		
 		 <form class="well form-inline margin-top-20" method="post"
@@ -120,24 +75,21 @@
 						</label>
 						</th>
 						<th width="100">{$flag}ID-类型</th>  
-						<th>{$flag}号</th>  
+						<th>订单号</th>  
 					 	<th>用户名</th>
-						 <th>收货信息</th> 
 						 
-						<th > 订单产品（产品名称-库存编号-单价-数量-总价-物料状态-快递单号）</th>
-						<th>优惠金额</th>
+						<th>金额</th>
+						<th>前后状态</th>   
 						
-						<th>总金额</th>
-						<th>支付状态</th>  
 					 
-					    <th>下单时间</th>
-					  <th>{$flag}状态</th>
+					    <th>支付时间</th> 
+					    <th>审核状态</th>  
 					</tr>
 				</thead>
 				<tbody>
 					<foreach name="list" item="vo">
 				 
-					<tr class="order{$vo.sort}">
+					<tr class="status{$vo.status}">
 						<td>
 							<input type="checkbox" class="js-check"
 							data-yid="js-check-y" data-xid="js-check-x" name="ids[]"
@@ -147,37 +99,16 @@
 						<a href="{:url('edit',['id'=>$vo.id])}" target="{$zztarget.list}">{$vo.id} -{$order_types[$vo.type]} </a>
 						</td>
 						  
-					 	<td>{$vo.name} </td>
+					 	<td>{$vo.oname} </td>
 					 	<td>{$vo.uname} </td>
-					 	<td>{$vo.accept_name}-{$vo.tel}-{$vo.address_info} </td>
-					 	 <td class="orderList" >
-							<div class="orTable	">
-
-								<table class="table table-hover table-bordered table-list">
-										 
-										<foreach name="vo.goods_list" item="vv" key="kk">
-											<tr>
-												<td> {$vv.goods_name} </td>
-												<td>{$vv.store_code}</td>
-												<td>{$vv.price}</td>
-												<td>{$vv.num}</td>
-												<td>{$vv.pay}</td>
-												<td> {$send_statuss[$vv.send_status]|default=$vv.send_status}</td>
-												<td> {$vv.express_no}</td>
-											</tr>
-										</foreach>
-								</table>
-							</div>
-						</td>
-					  	 
-					  	<td>{$vo.coupon_money}</td>
-					    
-						<td>{$vo.order_pay}</td>
-						<td>{$pay_statuss[$vo.pay_status]|default=$vo.pay_status}</td>
+					 	 
+					  	<td>{$vo.money}</td>
+					     
+						<td>{$pay_statuss[$vo.pay_status_old]|default=$vo.pay_status_old}=>{$pay_statuss[$vo.pay_status_new]|default=$vo.pay_status_new}</td>
 					 
-						<td>{$vo.create_time|date='Y-m-d H:i',###}</td>
+						<td>{$vo.utime|date='Y-m-d H:i',###}</td>
 					 
-						<td>{$order_statuss[$vo.status]|default=$vo.status}
+						<td>{$review_statuss[$vo.status]|default=$vo.status}
 						 
 						</td>
 						 

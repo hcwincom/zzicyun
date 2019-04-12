@@ -1,0 +1,38 @@
+<script>
+ var url_file="{:url('order/Public/file_do')}";
+//文件上传
+$('.file_upload').change(function(e){
+	var type=$(this).attr('ftype');
+	var oid=$(this).attr('oid');
+	var file = e.target.files[0]; 
+	var reader = new FileReader(); 
+	if (file) {
+		reader.readAsDataURL(file); 
+	} else { 
+		return false;
+	}
+	//组装表单数据
+	var fordata=new FormData();
+	fordata.append("file",file); 
+	fordata.append("type",type); 
+	fordata.append("oid",oid); 
+	 
+	//ajax
+	$.ajax({
+		"url":url_file,
+		"type":"POST",
+		"processData":false,
+		"contentType":false,
+		"data":fordata,
+		"dataType":"json", 
+		"success":function(data){
+			console.log(data);
+			 
+			
+		},
+	 	"error": function(event, XMLHttpRequest, ajaxOptions, thrownError){ 
+        	msg(event.responseText,1); 
+        }
+	});
+}); 
+</script>

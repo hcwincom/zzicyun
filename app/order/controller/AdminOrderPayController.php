@@ -15,112 +15,35 @@ use PHPExcel;
 use PHPExcel_Cell_DataType;
 use PHPExcel_Style_Border;
 use app\order\model\OrderModel;
-/* 订单的添加 */
-class AdminOrderController extends AdminInfoController
+/* 订单支付的添加 */
+class AdminOrderPayController extends AdminInfoController
 {
    
     public function _initialize()
     {
         parent::_initialize();
        
-        $this->flag='订单';
-        $this->table='order';
-        $this->m=new OrderModel();
+        $this->flag='订单支付';
+        $this->table='order_pay';
+        $this->m=Db::name('order_pay');
         
         $this->isshop=0;
         $this->islan=0;
         
-        $this->assign('flag','订单');
+        $this->assign('flag','订单支付');
          
     }
-    //测试列表
-    public function index1()
-    {
-        $table=$this->table;
-        $m=$this->m;
-        $admin=$this->admin;
-        
-        $data=$this->request->param();
-        $where=[];
-        
-        //状态
-        if(empty($data['status'])){
-            $data['status']=0;
-        }else{
-            $where['status']=['eq',$data['status']];
-        }
-        if(empty($data['order_type'])){
-            $data['order_type']=0;
-        }else{
-            $where['type']=['eq',$data['order_type']];
-        }
-        
-        //父类cid1,cid2
-        $cid1=0;
-        $cid2=0;
-        $cid3=0;
-        if(!empty($data['cid1'])){
-            $m_cate=new GoodsCateModel();
-            $cid1=$data['cid1'];
-            if(empty($data['cid2'])){
-                $cids=$m_cate->get_cids_by_fid($cid1);
-                $where_goods['cid']=['in',$cids];
-            }else{
-                $cid2=$data['cid2'];
-                if(empty($data['cid3'])){
-                    $cids=$m_cate->get_cids_by_fid($cid2);
-                    $where_goods['cid']=['in',$cids];
-                }else{
-                    $cid3=$data['cid3'];
-                    $where_goods['cid']=['eq',$cid3];
-                }
-            }
-        }
-        $this->assign('cid1',$cid1);
-        $this->assign('cid2',$cid2);
-        $this->assign('cid3',$cid3);
-        
-        //类型
-        if(empty($data['type'])){
-            $data['type']=0;
-        }else{
-            $where['type']=['eq',$data['type']];
-        }
-        //查询字段
-        $types=$this->search;
-        $search_types=config('search_types');
-        zz_search_param($types,$search_types,$data,$where);
-        
-        
-        //时间类别
-        $times=config('pro_time_search');
-        zz_search_time($times,$data,$where);
-        
-        $res=$m->get_page($data,$where);
-        
-        $this->assign('list',$res['list']);
-        $this->assign('page',$res['page']);
-        
-        $this->assign('data',$data);
-        $this->assign('types',$types);
-        $this->assign('times',$times);
-        $this->assign("search_types", $search_types);
-        
-        $this->cates(1);
-        
-        
-        return $this->fetch(); 
-    }
+   
     /**
-     * 订单列表
+     * 订单支付列表
      * @adminMenu(
-     *     'name'   => '订单列表',
+     *     'name'   => '订单支付列表',
      *     'parent' => 'order/AdminIndex/default',
      *     'display'=> true,
      *     'hasView'=> true,
      *     'order'  => 10,
      *     'icon'   => '',
-     *     'remark' => '订单列表',
+     *     'remark' => '订单支付列表',
      *     'param'  => ''
      * )
      */
@@ -143,33 +66,25 @@ class AdminOrderController extends AdminInfoController
         if(empty($data['order_type'])){
             $data['order_type']=0;
         }else{
-            $where['type']=['eq',$data['order_type']];
+            $where['oid_type']=['eq',$data['order_type']];
+        }
+        if(empty($data['pay_type'])){
+            $data['pay_type']=0;
+        }else{
+            $where['pay_type']=['eq',$data['pay_type']];
+        }
+        if(empty($data['paytype'])){
+            $data['paytype']=0;
+        }else{
+            $where['paytype']=['eq',$data['paytype']];
         }
         
-        //父类cid1,cid2
-        $cid1=0;
-        $cid2=0;
-        $cid3=0;
-        if(!empty($data['cid1'])){
-            $m_cate=new GoodsCateModel();
-            $cid1=$data['cid1'];
-            if(empty($data['cid2'])){
-                $cids=$m_cate->get_cids_by_fid($cid1); 
-                $where_goods['cid']=['in',$cids];
-            }else{
-                $cid2=$data['cid2'];
-                if(empty($data['cid3'])){
-                    $cids=$m_cate->get_cids_by_fid($cid2);
-                    $where_goods['cid']=['in',$cids];
-                }else{
-                    $cid3=$data['cid3'];
-                    $where_goods['cid']=['eq',$cid3];
-                } 
-            } 
+        if(empty($data['typetype'])){
+            $data['typetype']=0;
+        }else{
+            $where['type']=['eq',$data['typetype']];
         }
-        $this->assign('cid1',$cid1);
-        $this->assign('cid2',$cid2); 
-        $this->assign('cid3',$cid3); 
+        
         
         //类型
         if(empty($data['type'])){
@@ -183,14 +98,26 @@ class AdminOrderController extends AdminInfoController
         zz_search_param($types,$search_types,$data,$where);
         
         
-        //时间类别
-        $times=config('pro_time_search');
+        //时间类别 
+        $times=
+        array (
+            1 =>
+            array (
+                0 => 'utime',
+                1 => '支付时间',
+            ),
+            2 =>
+            array (
+                0 => 'rtime',
+                1 => '审核时间',
+            ), 
+        );
         zz_search_time($times,$data,$where);
-      
-        $res=$m->get_page($data,$where);
         
-        $this->assign('list',$res['list']);
-        $this->assign('page',$res['page']);
+        $list=$m->where($where)->order('id desc')->paginate();
+        $page=$list->appends($data)->render();
+        $this->assign('list',$list);
+        $this->assign('page',$page);
         
         $this->assign('data',$data);
         $this->assign('types',$types);
@@ -205,15 +132,15 @@ class AdminOrderController extends AdminInfoController
      
     
     /**
-     * 订单详情
+     * 订单支付详情
      * @adminMenu(
-     *     'name'   => '订单详情',
+     *     'name'   => '订单支付详情',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> true,
      *     'order'  => 10,
      *     'icon'   => '',
-     *     'remark' => '订单详情',
+     *     'remark' => '订单支付详情',
      *     'param'  => ''
      * )
      */
@@ -277,15 +204,15 @@ class AdminOrderController extends AdminInfoController
     }
     
     /**
-     * 订单支付批量同意
+     * 订单支付支付批量同意
      * @adminMenu(
-     *     'name'   => '订单支付批量同意',
+     *     'name'   => '订单支付支付批量同意',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> false,
      *     'order'  => 10,
      *     'icon'   => '',
-     *     'remark' => '订单支付批量同意',
+     *     'remark' => '订单支付支付批量同意',
      *     'param'  => ''
      * )
      */
@@ -296,15 +223,15 @@ class AdminOrderController extends AdminInfoController
     
     
     /**
-     * 订单编辑提交
+     * 订单支付编辑提交
      * @adminMenu(
-     *     'name'   => '订单编辑提交',
+     *     'name'   => '订单支付编辑提交',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> false,
      *     'order'  => 10,
      *     'icon'   => '',
-     *     'remark' => '订单编辑提交',
+     *     'remark' => '订单支付编辑提交',
      *     'param'  => ''
      * )
      */
@@ -313,15 +240,15 @@ class AdminOrderController extends AdminInfoController
         parent::edit_do();
     }
     /**
-     * 订单编辑列表
+     * 订单支付编辑列表
      * @adminMenu(
-     *     'name'   => '订单编辑列表',
+     *     'name'   => '订单支付编辑列表',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> true,
      *     'order'  => 10,
      *     'icon'   => '',
-     *     'remark' => '订单编辑列表',
+     *     'remark' => '订单支付编辑列表',
      *     'param'  => ''
      * )
      */
@@ -331,15 +258,15 @@ class AdminOrderController extends AdminInfoController
     }
     
     /**
-     * 订单审核详情
+     * 订单支付审核详情
      * @adminMenu(
-     *     'name'   => '订单审核详情',
+     *     'name'   => '订单支付审核详情',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> true,
      *     'order'  => 10,
      *     'icon'   => '',
-     *     'remark' => '订单审核详情',
+     *     'remark' => '订单支付审核详情',
      *     'param'  => ''
      * )
      */
@@ -349,15 +276,15 @@ class AdminOrderController extends AdminInfoController
         return $this->fetch();
     }
     /**
-     * 订单信息编辑审核
+     * 订单支付信息编辑审核
      * @adminMenu(
-     *     'name'   => '订单编辑审核',
+     *     'name'   => '订单支付编辑审核',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> false,
      *     'order'  => 10,
      *     'icon'   => '',
-     *     'remark' => '订单编辑审核',
+     *     'remark' => '订单支付编辑审核',
      *     'param'  => ''
      * )
      */
@@ -369,17 +296,8 @@ class AdminOrderController extends AdminInfoController
     
     public function cates($type=3){
         parent::cates($type);
-        
          
-        $m_brand=new GoodsBrandModel();
-        $brands=$m_brand->get_all();
-        $this->assign('brands',$brands);
-         
-        //发货时间
-        $goods_times=Db::name('goods_time')->where('status',2)->order('sort asc')->column('id,name');
-        $this->assign('goods_times',$goods_times);
-        $this->assign('store_sures',config('store_sures'));
-        $this->assign('is_rohs',config('is_rohs'));
+       
         //收款账号
         $where=['status'=>2,'shop'=>1];
         $paytypes=Db::name('paytype')->where($where)->column('id,name');
@@ -390,14 +308,14 @@ class AdminOrderController extends AdminInfoController
         $pay_type2s=config('pay_type2');
         //付款金额比例
         $pay_type3s=config('pay_type3');
-        $send_statuss=config('send_status');
+       
         $pay_statuss=config('pay_status');
         $order_statuss=config('order_status'); 
         $order_types=config('order_type');
         $this->assign('pay_type1s',$pay_type1s);
         $this->assign('pay_type2s',$pay_type2s);
         $this->assign('pay_type3s',$pay_type3s);
-        $this->assign('send_statuss',$send_statuss);
+        
         $this->assign('pay_statuss',$pay_statuss);
         $this->assign('order_statuss',$order_statuss);
         $this->assign('order_types',$order_types);
@@ -433,15 +351,15 @@ class AdminOrderController extends AdminInfoController
     }
    
     /**
-     * 订单导入
+     * 订单支付导入
      * @adminMenu(
-     *     'name'   => ' 订单导入',
+     *     'name'   => ' 订单支付导入',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> false,
      *     'order'  => 100,
      *     'icon'   => '',
-     *     'remark' => ' 订单导入',
+     *     'remark' => ' 订单支付导入',
      *     'param'  => ''
      * )
      */
@@ -533,7 +451,7 @@ class AdminOrderController extends AdminInfoController
        $m_file=new GoodsFileModel();
        $m_val=Db::name('goods_val');
        $m_goods->startTrans();
-       //添加订单
+       //添加订单支付
        $m_goods->insertAll($data_goods);
        $pids=$m_goods->where('store_code','in',$store_codes)->column('store_code,id','store_code');
        if(!empty($data_file)){
@@ -571,7 +489,7 @@ class AdminOrderController extends AdminInfoController
         $data=$this->request->param();
         $this->pay_do($data,21,$flag);
     }
-    /* 改变订单支付状态 */
+    /* 改变订单支付支付状态 */
     public function pay_do($data,$pay_status,$flag){
          
         $m=$this->m;
@@ -613,11 +531,11 @@ class AdminOrderController extends AdminInfoController
         }
         $order=$m->where($where_order)->find();
         if(empty($order)){
-            $this->error('订单信息错误');
+            $this->error('订单支付信息错误');
         }
         $pay=$m_pay->where($where_pay)->order('id desc')->find();
         if(empty($order)){
-            $this->error('订单信息错误');
+            $this->error('订单支付信息错误');
         }
         $update_order['pay_status']=$pay['pay_status_new'];
         //付尾款的为已备货待发货

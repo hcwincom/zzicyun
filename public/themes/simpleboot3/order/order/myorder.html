@@ -144,6 +144,7 @@
 																<div class="listMid fl">
 																	<p>
 																		<span>订单编号：</span>
+																		<input type="hidden" class="id" value="{$vo.id}"/>
 																		<a href="{:url('order_info',['id'=>$key])}">{$vo.name}</a>
 																	</p>
 																</div>
@@ -152,19 +153,21 @@
 															<case value="1">
 															<th width="11%">
 																<div class="listRight">
-																	<a href="{:url('order/Public/file_do',['oid'=>$key,'type'=>2])}">
-																		<i class="iconfont icon-xiazai"></i>
-																		<span>付款水单上传</span>
-																	</a>
+																	 <label >
+																	    <i class="iconfont icon-xiazai"></i>
+																		<span >付款水单上传</span>
+																		<input type="file" class="file_upload" ftype="2" oid="{$key}"/>
+																		 
+																	</label> 
 																</div>
 															</th>
 															</case>
-															<case value="2">
+															 <case value="2">
 															<th width="11%">
 																<div class="listRight">
-																	<a href="{:url('order/Public/file_load',['oid'=>$key,'type'=>2])}">
+																	 <a href="{:url('order/Public/file_load',['oid'=>$key,'type'=>2])}">
 																		<i class="iconfont icon-xiazai"></i>
-																		<span>付款水单下载</span>
+																		<span>水单下载</span>
 																	</a>
 																</div>
 															</th>
@@ -172,17 +175,19 @@
 															<case value="3">
 															<th width="11%">
 																<div class="listRight">
-																	<a href="{:url('order/Public/file_do',['oid'=>$key,'type'=>3])}">
-																		<i class="iconfont icon-xiazai"></i>
-																		<span>尾款水单上传</span>
-																	</a>
+																	<label >
+																	    <i class="iconfont icon-xiazai"></i>
+																		<span >尾款水单上传</span>
+																		<input type="file" class="file_upload" ftype="3" oid="{$key}"/>
+																		 
+																	</label> 
 																</div>
 															</th>
 															</case>
-															<case value="4">
+															  <case value="4">
 															<th width="11%">
 																<div class="listRight">
-																	<a href="{:url('order/Public/file_load',['oid'=>$key,'type'=>3])}">
+																	 <a href="{:url('order/Public/file_load',['oid'=>$key,'type'=>3])}">
 																		<i class="iconfont icon-xiazai"></i>
 																		<span>尾款水单下载</span>
 																	</a>
@@ -190,25 +195,16 @@
 															</th>
 															</case>
 														</switch>
-														<eq name="vo.pay_status" value="2">
-															<th width="11%"><div class="listRight">
-																	<a href="{:url('order/Public/file_load',['oid'=>$key,'type'=>2])}">
-																		<i class="iconfont icon-xiazai"></i>
-																		<span>水单下载</span>
-																	</a>
+														 	<th width="11%">
+																<div class="listRight">
+																	<label >
+																	    <i class="iconfont icon-xiazai"></i>
+																		<span >合同上传</span>
+																		<input type="file" class="file_upload" ftype="1" oid="{$key}"/>
+																		 
+																	</label> 
 																</div>
 															</th>
-														</eq>
-														<eq name="vo.pay_status" value="2">
-															<th width="11%"><div class="listRight">
-																	<a href="{:url('order/Public/file_load',['oid'=>$key,'type'=>2])}">
-																		<i class="iconfont icon-xiazai"></i>
-																		<span>水单下载</span>
-																	</a>
-																</div>
-															</th>
-														</eq>
-															<th width="11%"></th>
 															<th width="11%">
 																<div class="listRight">
 																	<a href="{:url('order/Public/file_load',['oid'=>$key,'type'=>1])}">
@@ -217,14 +213,7 @@
 																	</a>
 																</div>
 															</th>
-															<th width="11%">
-																<div class="listRight">
-																	<a href="">
-																		<i class="iconfont icon-shangchuan"></i>
-																		<span>合同上传</span>
-																	</a>
-																</div>
-															</th>
+															 
 														</tr>
 													</thead>
 													<tbody>
@@ -264,9 +253,12 @@
 															<td class="item-short">
 																<div class="item-order-name">
 																<p>{$pay_statuss[$vo.pay_status]|default=$vo.pay_status}
-																<eq name="vo.pay_status" value="2">
-																	{$vo.pay1}
-																</eq>
+															<switch name="vo.pay_status">
+																<case value="4">{$vo.pay2}</case>
+																<case value="5"></case>
+																<default>{$vo.pay1}</default>
+															</switch>
+																 
 																</p>
 																</div>
 															</td>
@@ -466,6 +458,7 @@
 	  	
 	</body>
 </html>
+ <include file="order@order:order_js"/>
 <script type="text/javascript" src="__TMPL__/public/js/laydate.js"></script>
 	  
 	  	<script type="text/javascript">

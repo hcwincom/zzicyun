@@ -52,15 +52,16 @@ class PublicController extends DeskBaseController
     public function file_do(){
         set_time_limit(300);
         $oid=$this->request->param('oid',0,'intval'); 
-        $type=$this->request->param('type',1,'intval'); 
-        $uid=$this->request->param('uid',0,'intval'); 
+        $type=$this->request->param('type',1,'intval');  
+        $utype=$this->request->param('utype',1,'intval');  
+      
         if(empty($_FILES['file'])){
             $this->error('file_chose');
         }
         $file=$_FILES['file'];
         $where=['id'=>$oid];
-        //有uid是后台，没有是前台，都要检查数据
-        if($uid==0){
+        //$utype==1是前台2后台，都要检查数据
+        if($utype==1){
             $uid=session('user.id');
             $where['uid']=$uid;
         }else{
@@ -70,8 +71,8 @@ class PublicController extends DeskBaseController
             }
         }
         $m_order=Db::name('order');
-        $tmp=$m_order->where($where)->find();
-        if(empty($tmp)){
+        $order=$m_order->where($where)->find();
+        if(empty($order)){ 
             $this->error('data_error');
         }
          
@@ -92,22 +93,54 @@ class PublicController extends DeskBaseController
             $time=time();
             $file_new=$pathid.$type.$time.$ext;
             if(move_uploaded_file($file['tmp_name'], $path.$file_new)){
-                $data=[
-                    'oid'=>$oid,
-                    'type'=>$type,
-                    'time'=>$time,
-                    'uid'=>$uid,
-                    'file'=>$file_new,
-                    'status'=>($type==1)?2:1,
-                ];
                 $m_order->startTrans();
-                //先废弃原数据，再添加
-                $where_update=['oid'=>$oid,'status'=>[1,2],'type'=>$type];
-                $data_update=['status'=>3,'rid'=>$uid];
-                $m_order->where($where_update)->update($data_update);
-                $m_order->insert($data);
+                //合同直接添加，水单添加后还要改变支付状态
+                if($type==1){
+                    $data=[
+                        'oid'=>$oid,
+                        'utype'=>$utype,
+                        'time'=>$time,
+                        'uid'=>$uid,
+                        'file'=>$file_new, 
+                    ]; 
+                    Db::name('order_file')->insert($data);
+                }else{
+                    $data=[
+                        'oid'=>$oid,
+                        'oid_type'=>$order['type'],
+                        'pay_type'=>4,
+                        'type'=>($type==2)?1:2,
+                        'uid'=>$uid, 
+                        'utime'=>$time, 
+                        'file'=>$file_new,
+                        'status'=>1,
+                        'pay_status_old'=>$order['pay_status'],
+                    ];
+                    //手续费为0
+                    $data['fee']=0;
+                    //首次支付还是尾款支付
+                    if($data['type']==2){
+                        $data['money']=$order['pay2'];
+                        $data['money_get']=$order['pay2'];
+                        $data['pay_status_new']=4;
+                    }else{ 
+                        $data['money']=$order['pay1'];
+                        $data['money_get']=$order['pay1']; 
+                        $data['pay_status_new']=2;
+                    } 
+                    //先添加数据，然后更新order
+                    $m_pay=Db::name('order_pay'); 
+                    $m_pay->insert($data); 
+                    $where_update=['id'=>$oid,'pay_status'=>$data['pay_status_old']];
+                    $data_update=['pay_status'=>$data['pay_status_new'],'pay_type2'=>4];
+                    $res=$m_order->where($where_update)->update($data_update); 
+                    if(!($res>0)){
+                        $m_order->rollback();
+                        $this->error('data_error');
+                    }
+                } 
                 $m_order->commit();
-                $this->success('success','',$file_new);
+                $this->success('success');
             }else{
                 $this->error('file_upload_faild');
             }
@@ -121,22 +154,32 @@ class PublicController extends DeskBaseController
      */
     public function file_load(){
         
-        $id=$this->request->param('id',0,'intval');
-        $uid=$this->request->param('uid',0,'intval');
+        $id=$this->request->param('id',0,'intval'); 
         $oid=$this->request->param('oid',0,'intval');
         $type=$this->request->param('type',0,'intval');
-        if($uid==0){
+        $utype=$this->request->param('utype',1,'intval');
+        //先检测用户
+        if($utype==1){
             $uid=session('user.id');
+            $order=Db::name('order')->where(['id'=>$oid,'uid'=>$uid])->find();
+            if(empty($order)){
+                $this->error('data_error'); 
+            }
         }elseif(empty(session('ADMIN_ID'))){
                 $this->error('data_error'); 
         }
-        $m_file=Db::name('order_file');
-        //有id是后台直接下载，没id是前台下载
-        if($id==0){
-            $where=['oid'=>$oid,'type'=>$type,'uid'=>$uid]; 
-        }else{
-            $where=['id'=>$id]; 
-        }
+        //有无id判断
+        $where=['oid'=>$oid];
+        if($id>0){
+            $where['id']=$id;
+        } 
+        //分辨合同还是水单
+        if($type==1){ 
+            $m_file=Db::name('order_file');
+        }else{ 
+            $m_file=Db::name('order_pay');
+            $where['type']=($type==2)?1:2;
+        } 
         $file=$m_file->where($where)->order('id desc')->value('file');
         if(empty($file)){
             $this->error('no_file');
