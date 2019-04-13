@@ -284,21 +284,21 @@
 											<table class="table shopOrderTotalTable">
 												<tr>
 													<td class="shopLeftwidth"><p><span class="shopOrange">{$count_num}</span>件商品，商品总金额：</p></td>
-													<td class="shopRightwidth"><p>{$money_flag}{$count_money}</p></td>
+													<td class="shopRightwidth"><p class="totalMonet">{$money_flag}{$count_money}</p></td>
 												</tr>
 												<tr>
 													<td class="shopLeftwidth"><p> 运费：</p></td>
-													<td class="shopRightwidth"><p><b class="shopOrange">{$money_flag}{$freight_fee}</b></p></td>
+													<td class="shopRightwidth"><p class="shopOrange">{$money_flag}<b class="freight_free">{$freight_fee}</b></p></td>
 												</tr>
 												 
 												<tr>
 													<td class="shopLeftwidth"><p> 商品优惠：</p></td>
-													<td class="shopRightwidth"><p>-{$money_flag}{$coupon_money}</p></td>
+													<td class="shopRightwidth"><p>-{$money_flag}<span class="couponMoney">{$coupon_money}</span></p></td>
 												</tr>
 												<tr>
 													<td class="shopLeftwidth"><p>应付金额：</p></td>
 													<td class="shopRightwidth">
-														<p class="shoplarge"><b class="redColor">{$money_flag}{$money_end}</b></p>
+														<p class="shoplarge"><span class="redColor">{$money_flag}<i class="copeWith">{$money_end}</i></span></p>
 													</td>
 												</tr>
 												
@@ -365,21 +365,29 @@
 
 	}
 // 点击使用优惠券
-$(".orderInfodis-list>ul>li").click(function () {
-	$(this).addClass("onfodisactive").siblings().removeClass();
-	var coupon_val = $(this).find(".coupon_id").val();
-	var cound_price = parseInt($(this).find(".couponAmount").text());
-	var cound_total = parseInt($(this).find(".moneyOff").text());
+	var money = parseInt($(".totalMonet").text());
+  var money_coupon = parseInt($(".moneyOff").text());
+if(money >= money_coupon){
 
+	$(".orderInfodis-list>ul>li").click(function () {
+		$(this).addClass("onfodisactive").siblings().removeClass();
+		var coupon_val = $(this).find(".coupon_id").val();
+		var cound_price = parseInt($(this).find(".couponAmount").text());
+		var cound_total = parseInt($(this).find(".moneyOff").text());
+		
+		// 运费
+		var freight_free = parseInt($(".freight_free").text());
+		// 应付金额
+		var deal_with_money = cound_total + freight_free - cound_price;
 
+		$(".couponMoney").text(cound_price);
+		$("#coupon_id").val(coupon_val);
+		$("#coupon_money").val(cound_price);
+		$("#freight_pay").val(freight_free);
+		$("#goods_money").val(deal_with_money.toFixed(2));
+	});
 
-
-
-$("#coupon_id").val(coupon_val);
-$("#coupon_money").val(cound_price);
-
-
-});
+}
 
 
 

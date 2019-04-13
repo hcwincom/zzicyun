@@ -225,10 +225,10 @@
 														<ul>
 														<foreach name="coupons" item="vo">
 															<li class="clear">
-																<div class="col-xs-3 col-md-3 shopPrice">
+																<div class="col-xs-4 col-md-4 shopPrice">
 																	<p><span><eq name="type" value="1">￥<else/>$</eq></span>{$vo.money}</p>
 																</div>
-																<div class="col-xs-6 col-md-6 shopLeft">
+																<div class="col-xs-5 col-md-5 shopLeft">
 																	<p>{$vo.name}</p>
 																	<span>{$vo.time1|date='Y-m-d',###}—{$vo.time2|date='Y-m-d',###}</span>
 																</div>
@@ -338,7 +338,44 @@ function cart_changes(type=0){
 			  // 点击领取优惠券
 			  $(".shopHerf>button").click(function () {
 				  $(this).hide().next("p").show();
+				
+
+
+
 			  });
+
+
+
+
+
+
+			  var url_get = "{:url('coupon/CouponUser/coupon_get')}";
+				function coupon_get(id) {
+
+					$.ajax({
+						"url": url_get,
+						"type": "POST",
+						"data": { 'id': id },
+						"dataType": "json",
+						"success": function (data) {
+
+							if (data.code == 1) {
+								//领用成功
+
+							} else {
+								msg(data.msg);
+								if (data.url != '') {
+									location.href = data.url;
+								}
+							}
+
+
+						},
+						"error": function (event, XMLHttpRequest, ajaxOptions, thrownError) {
+							msg(event.responseText, 1);
+						}
+					});
+				}
 	  	</script>
 	</body>
 </html>

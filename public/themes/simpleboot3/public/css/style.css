@@ -3612,7 +3612,7 @@
 	border: 1px solid #ff0000;
 	background: #fff;
 	z-index: 10;
-	padding: 10px 20px;
+	padding: 10px;
 	display: none;
 }
 .shopPop>i{
@@ -3628,7 +3628,6 @@
 }
 .shopPop-part>ul>li>div.shopPrice>p,.shopPop-part>ul>li>div.shopHerf>button{
 	text-align: center;
-	width: 97px;
 	height: 43px;
 	margin: 0 auto;
 	color: #FF0000;
@@ -3637,6 +3636,7 @@
 	font-size: 24px;
 }
 .shopPop-part>ul>li>div.shopHerf>button{
+	width: 97px;
 	font-size: 18px;
 	background: #FF0000;
 	color: #fff;
@@ -4459,7 +4459,8 @@
 .shopOrderTotalTable>tbody>tr>td>p.shoplarge{
 	font-size: 18px;
 }
-.shopOrderTotalTable>tbody>tr>td>p>.shopOrange{
+.shopOrderTotalTable>tbody>tr>td>p>.shopOrange,
+.shopOrderTotalTable>tbody>tr>td>p.shopOrange{
 	color: #FF9500;
 }
 .shoptotalbtn{
