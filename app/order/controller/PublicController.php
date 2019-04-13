@@ -97,7 +97,7 @@ class PublicController extends DeskBaseController
                 //合同直接添加，水单添加后还要改变支付状态
                 if($type==1){
                     $data=[
-                        'oid'=>$oid,
+                        'oid'=>$oid, 
                         'utype'=>$utype,
                         'time'=>$time,
                         'uid'=>$uid,
@@ -105,12 +105,20 @@ class PublicController extends DeskBaseController
                     ]; 
                     Db::name('order_file')->insert($data);
                 }else{
+                    //是否有待审核支付
+                    $m_pay=Db::name('order_pay'); 
+                    $where_pay=['oid'=>$order['id'],'status'=>1];
+                    $tmp=$m_pay->where($where_pay)->find();
+                    if(!empty($tmp)){
+                        $this->error('pay_check');
+                    }
                     $data=[
                         'oid'=>$oid,
+                        'uname'=>$order['uname'],
+                        'oname'=>$order['name'],
                         'oid_type'=>$order['type'],
-                        'pay_type'=>4,
-                        'type'=>($type==2)?1:2,
-                        'uid'=>$uid, 
+                        'pay_type'=>4, 
+                        'uid'=>$order['uid'],
                         'utime'=>$time, 
                         'file'=>$file_new,
                         'status'=>1,
@@ -118,18 +126,28 @@ class PublicController extends DeskBaseController
                     ];
                     //手续费为0
                     $data['fee']=0;
-                    //首次支付还是尾款支付
-                    if($data['type']==2){
+                    //根据订单状态信息判断首次支付还是尾款支付
+                    if($order['pay_status']==3){
+                        $data['type']=3;
                         $data['money']=$order['pay2'];
                         $data['money_get']=$order['pay2'];
                         $data['pay_status_new']=4;
-                    }else{ 
+                    }elseif($order['pay_status']==1){
+                        if($order['pay_type3']>1){
+                            $data['type']=2;
+                        }else{
+                            $data['type']=1;
+                        }
                         $data['money']=$order['pay1'];
-                        $data['money_get']=$order['pay1']; 
+                        $data['money_get']=$order['pay1'];
                         $data['pay_status_new']=2;
-                    } 
+                    }else{
+                        $this->error('data_error');
+                    }
+                   
+                    
                     //先添加数据，然后更新order
-                    $m_pay=Db::name('order_pay'); 
+                   
                     $m_pay->insert($data); 
                     $where_update=['id'=>$oid,'pay_status'=>$data['pay_status_old']];
                     $data_update=['pay_status'=>$data['pay_status_new'],'pay_type2'=>4];

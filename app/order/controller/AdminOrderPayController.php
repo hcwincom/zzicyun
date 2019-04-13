@@ -365,8 +365,7 @@ class AdminOrderPayController extends AdminInfoController
      */
     public function import()
     {
-        dump($_POST);
-        dump($_FILES);
+        
         $excel_url=$this->request->param('excel_url','');
         $path='upload/';
         $file =$path.$excel_url;
